@@ -1,0 +1,1600 @@
+const data = {
+  "Poetry": [[
+  {
+    "author": "A. D. Hope",
+    "works": ["Australia"],
+    "region": "Australian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/A-D-Hope"
+  },
+  {
+    "author": "Alfred Lord Tennyson",
+    "works": ["In Memoriam A.H.H."],
+    "region": "British",
+    "literary_period": "Victorian",
+    "author_link": "https://www.britannica.com/biography/Alfred-Lord-Tennyson"
+  },
+  {
+    "author": "Alexander Pope",
+    "works": ["An Essay on Criticism", "The Rape of the Lock"],
+    "region": "British",
+    "literary_period": "Neoclassicism",
+    "author_link": "https://www.britannica.com/biography/Alexander-Pope"
+  },
+  {
+    "author": "Ben Okri",
+    "works": ["An African Elegy"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Ben-Okri"
+  },
+  {
+    "author": "Dante Alighieri",
+    "works": ["The Divine Comedy"],
+    "region": "Italian",
+    "literary_period": "Medieval",
+    "author_link": "https://www.britannica.com/biography/Dante-Alighieri"
+  },
+  {
+    "author": "Dylan Thomas",
+    "works": ["Fern Hill", "Do Not Go Gentle into That Good Night"],
+    "region": "British",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Dylan-Thomas"
+  },
+  {
+    "author": "Edmund Spenser",
+    "works": ["The Faerie Queene", "Epithalamion"],
+    "region": "British",
+    "literary_period": "Renaissance",
+    "author_link": "https://www.britannica.com/biography/Edmund-Spenser"
+  },
+  {
+    "author": "Geoffrey Chaucer",
+    "works": ["The Canterbury Tales"],
+    "region": "British",
+    "literary_period": "Medieval",
+    "author_link": "https://www.britannica.com/biography/Geoffrey-Chaucer"
+  },
+  {
+    "author": "Gerard Manley Hopkins",
+    "works": ["The Windhover"],
+    "region": "British",
+    "literary_period": "Victorian",
+    "author_link": "https://www.britannica.com/biography/Gerard-Manley-Hopkins"
+  },
+  {
+    "author": "Homer",
+    "works": ["The Iliad"],
+    "region": "Greek",
+    "literary_period": "Classical",
+    "author_link": "https://www.britannica.com/biography/Homer"
+  },
+  {
+    "author": "John Donne",
+    "works": ["The Sun Rising", "A Valediction: Forbidding Mourning"],
+    "region": "British",
+    "literary_period": "Metaphysical",
+    "author_link": "https://www.britannica.com/biography/John-Donne"
+  },
+  {
+    "author": "John Keats",
+    "works": ["Ode to a Nightingale", "Ode on a Grecian Urn"],
+    "region": "British",
+    "literary_period": "Romanticism",
+    "author_link": "https://www.britannica.com/biography/John-Keats"
+  },
+  {
+    "author": "John Milton",
+    "works": ["Paradise Lost"],
+    "region": "British",
+    "literary_period": "Renaissance",
+    "author_link": "https://www.britannica.com/biography/John-Milton"
+  },
+  {
+    "author": "Judith Wright",
+    "works": ["Fire at the Murdering Hut"],
+    "region": "Australian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Judith-Wright"
+  },
+  {
+    "author": "Matthew Arnold",
+    "works": ["The Scholar Gypsy"],
+    "region": "British",
+    "literary_period": "Victorian",
+    "author_link": "https://www.britannica.com/biography/Matthew-Arnold"
+  },
+  {
+    "author": "Philip Larkin",
+    "works": ["The Whitsun Weddings"],
+    "region": "British",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Philip-Larkin"
+  },
+  {
+    "author": "P. B. Shelley",
+    "works": ["Ode to the West Wind"],
+    "region": "British",
+    "literary_period": "Romanticism",
+    "author_link": "https://www.britannica.com/biography/Percy-Bysshe-Shelley"
+  },
+  {
+    "author": "Robert Browning",
+    "works": ["My Last Duchess"],
+    "region": "British",
+    "literary_period": "Victorian",
+    "author_link": "https://www.britannica.com/biography/Robert-Browning"
+  },
+  {
+    "author": "Samuel Taylor Coleridge",
+    "works": ["The Rime of the Ancient Mariner"],
+    "region": "British",
+    "literary_period": "Romanticism",
+    "author_link": "https://www.britannica.com/biography/Samuel-Taylor-Coleridge"
+  },
+  {
+    "author": "Seamus Heaney",
+    "works": ["Digging"],
+    "region": "Irish",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Seamus-Heaney"
+  },
+  {
+    "author": "T. S. Eliot",
+    "works": ["The Waste Land"],
+    "region": "British-American",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/T-S-Eliot"
+  },
+  {
+    "author": "Ted Hughes",
+    "works": ["The Thought-Fox"],
+    "region": "British",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Ted-Hughes"
+  },
+  {
+    "author": "W. B. Yeats",
+    "works": ["The Second Coming"],
+    "region": "Irish",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/W-B-Yeats"
+  },
+  {
+    "author": "William Blake",
+    "works": ["The Tyger", "The Lamb"],
+    "region": "British",
+    "literary_period": "Romanticism",
+    "author_link": "https://www.britannica.com/biography/William-Blake"
+  },
+  {
+    "author": "William Wordsworth",
+    "works": ["Tintern Abbey"],
+    "region": "British",
+    "literary_period": "Romanticism",
+    "author_link": "https://www.britannica.com/biography/William-Wordsworth"
+  }
+]],
+  "Drama": [[
+  {
+    "author": "Adrienne Kennedy",
+    "works": ["Funnyhouse of a Negro"],
+    "region": "American",
+    "literary_period": "Postmodernism",
+    "author_link": "https://www.britannica.com/biography/Adrienne-Kennedy"
+  },
+  {
+    "author": "Anton Chekhov",
+    "works": ["The Cherry Orchard"],
+    "region": "Russian",
+    "literary_period": "Realism",
+    "author_link": "https://www.britannica.com/biography/Anton-Chekhov"
+  },
+  {
+    "author": "Arnold Wesker",
+    "works": ["Roots", "Chicken Soup with Barley"],
+    "region": "British",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/Arnold-Wesker"
+  },
+  {
+    "author": "Bertolt Brecht",
+    "works": ["Galileo", "Mother Courage and Her Children"],
+    "region": "German",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/Bertolt-Brecht"
+  },
+  {
+    "author": "Christopher Marlowe",
+    "works": ["Doctor Faustus", "Edward II"],
+    "region": "British",
+    "literary_period": "Renaissance",
+    "author_link": "https://www.britannica.com/biography/Christopher-Marlowe"
+  },
+  {
+    "author": "Eugene O’Neill",
+    "works": ["Mourning Becomes Electra"],
+    "region": "American",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/Eugene-ONeill"
+  },
+  {
+    "author": "George Bernard Shaw",
+    "works": ["Pygmalion"],
+    "region": "Irish",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/George-Bernard-Shaw"
+  },
+  {
+    "author": "Harold Pinter",
+    "works": ["The Birthday Party"],
+    "region": "British",
+    "literary_period": "Postmodernism",
+    "author_link": "https://www.britannica.com/biography/Harold-Pinter"
+  },
+  {
+    "author": "Henrik Ibsen",
+    "works": ["A Doll’s House"],
+    "region": "Norwegian",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/Henrik-Ibsen"
+  },
+  {
+    "author": "J. M. Synge",
+    "works": ["The Playboy of the Western World"],
+    "region": "Irish",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/John-Millington-Synge"
+  },
+  {
+    "author": "John Osborne",
+    "works": ["Look Back in Anger"],
+    "region": "British",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/John-Osborne"
+  },
+  {
+    "author": "John Webster",
+    "works": ["The Duchess of Malfi"],
+    "region": "British",
+    "literary_period": "Renaissance",
+    "author_link": "https://www.britannica.com/biography/John-Webster"
+  },
+  {
+    "author": "Luigi Pirandello",
+    "works": ["Six Characters in Search of an Author"],
+    "region": "Italian",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/Luigi-Pirandello"
+  },
+  {
+    "author": "Ngũgĩ wa Thiong'o",
+    "works": ["The Black Hermit"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Ngugi-wa-Thiongo"
+  },
+  {
+    "author": "Oliver Goldsmith",
+    "works": ["She Stoops to Conquer"],
+    "region": "Irish",
+    "literary_period": "Neoclassicism",
+    "author_link": "https://www.britannica.com/biography/Oliver-Goldsmith"
+  },
+  {
+    "author": "Oscar Wilde",
+    "works": ["The Importance of Being Earnest"],
+    "region": "Irish",
+    "literary_period": "Victorian",
+    "author_link": "https://www.britannica.com/biography/Oscar-Wilde"
+  },
+  {
+    "author": "Poile Sengupta",
+    "works": ["Keats Was a Tuber"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "author_link": "https://en.wikipedia.org/wiki/Poile_Sengupta"
+  },
+  {
+    "author": "R. B. Sheridan",
+    "works": ["The Rivals"],
+    "region": "Irish",
+    "literary_period": "Neoclassicism",
+    "author_link": "https://www.britannica.com/biography/Richard-Brinsley-Sheridan"
+  },
+  {
+    "author": "Samuel Beckett",
+    "works": ["Waiting for Godot"],
+    "region": "Irish",
+    "literary_period": "Postmodernism",
+    "author_link": "https://www.britannica.com/biography/Samuel-Beckett"
+  },
+  {
+    "author": "Sophocles",
+    "works": ["Oedipus Rex"],
+    "region": "Greek",
+    "literary_period": "Classical",
+    "author_link": "https://www.britannica.com/biography/Sophocles"
+  },
+  {
+    "author": "T. S. Eliot",
+    "works": ["Murder in the Cathedral"],
+    "region": "British-American",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/T-S-Eliot"
+  },
+  {
+    "author": "Thomas Kyd",
+    "works": ["The Spanish Tragedy"],
+    "region": "British",
+    "literary_period": "Renaissance",
+    "author_link": "https://www.britannica.com/biography/Thomas-Kyd"
+  },
+  {
+    "author": "Tom Stoppard",
+    "works": ["Rosencrantz and Guildenstern Are Dead"],
+    "region": "British",
+    "literary_period": "Postmodernism",
+    "author_link": "https://www.britannica.com/biography/Tom-Stoppard"
+  },
+  {
+    "author": "William Congreve",
+    "works": ["The Way of the World"],
+    "region": "British",
+    "literary_period": "Restoration",
+    "author_link": "https://www.britannica.com/biography/William-Congreve"
+  },
+  {
+    "author": "William Shakespeare",
+    "works": [
+      "Hamlet",
+      "Macbeth",
+      "The Tempest",
+      "Twelfth Night",
+      "Julius Caesar"
+    ],
+    "region": "British",
+    "literary_period": "Renaissance",
+    "author_link": "https://www.britannica.com/biography/William-Shakespeare"
+  }
+]],
+  "Prose & Fiction": [[
+  {
+    "author": "Albert Camus",
+    "works": ["The Outsider"],
+    "region": "French",
+    "literary_period": "Existentialism",
+    "author_link": "https://www.britannica.com/biography/Albert-Camus"
+  },
+  {
+    "author": "Anton Chekhov",
+    "works": ["The Lady with the Dog"],
+    "region": "Russian",
+    "literary_period": "Realism",
+    "author_link": "https://www.britannica.com/biography/Anton-Chekhov"
+  },
+  {
+    "author": "Balzac",
+    "works": ["Eugenie Grandet"],
+    "region": "French",
+    "literary_period": "Realism",
+    "author_link": "https://www.britannica.com/biography/Honore-de-Balzac"
+  },
+  {
+    "author": "Charles Dickens",
+    "works": ["Great Expectations", "Hard Times", "A Tale of Two Cities"],
+    "region": "British",
+    "literary_period": "Victorian",
+    "author_link": "https://www.britannica.com/biography/Charles-Dickens"
+  },
+  {
+    "author": "Charlotte Brontë",
+    "works": ["Jane Eyre"],
+    "region": "British",
+    "literary_period": "Victorian",
+    "author_link": "https://www.britannica.com/biography/Charlotte-Bronte"
+  },
+  {
+    "author": "D. H. Lawrence",
+    "works": ["Sons and Lovers"],
+    "region": "British",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/D-H-Lawrence"
+  },
+  {
+    "author": "Edgar Allan Poe",
+    "works": ["The Tell-Tale Heart"],
+    "region": "American",
+    "literary_period": "Gothic",
+    "author_link": "https://www.britannica.com/biography/Edgar-Allan-Poe"
+  },
+  {
+    "author": "Emily Brontë",
+    "works": ["Wuthering Heights"],
+    "region": "British",
+    "literary_period": "Victorian",
+    "author_link": "https://www.britannica.com/biography/Emily-Bronte"
+  },
+  {
+    "author": "E. M. Forster",
+    "works": ["A Passage to India"],
+    "region": "British",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/E-M-Forster"
+  },
+  {
+    "author": "Franz Kafka",
+    "works": ["The Castle"],
+    "region": "Czech",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/Franz-Kafka"
+  },
+  {
+    "author": "Fyodor Dostoevsky",
+    "works": ["Crime and Punishment", "The Brothers Karamazov"],
+    "region": "Russian",
+    "literary_period": "Realism",
+    "author_link": "https://www.britannica.com/biography/Fyodor-Dostoyevsky"
+  },
+  {
+    "author": "Gabriel García Márquez",
+    "works": ["Balthazar’s Marvelous Afternoon"],
+    "region": "Colombian",
+    "literary_period": "Magical Realism",
+    "author_link": "https://www.britannica.com/biography/Gabriel-Garcia-Marquez"
+  },
+  {
+    "author": "George Eliot",
+    "works": ["Middlemarch"],
+    "region": "British",
+    "literary_period": "Victorian",
+    "author_link": "https://www.britannica.com/biography/George-Eliot"
+  },
+  {
+    "author": "George Orwell",
+    "works": ["Burmese Days", "Politics and the English Language"],
+    "region": "British",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/George-Orwell"
+  },
+  {
+    "author": "Graham Greene",
+    "works": ["The Power and the Glory"],
+    "region": "British",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/Graham-Greene"
+  },
+  {
+    "author": "Gustave Flaubert",
+    "works": ["Madame Bovary"],
+    "region": "French",
+    "literary_period": "Realism",
+    "author_link": "https://www.britannica.com/biography/Gustave-Flaubert"
+  },
+  {
+    "author": "H. G. Wells",
+    "works": ["The Time Machine"],
+    "region": "British",
+    "literary_period": "Early Science Fiction",
+    "author_link": "https://www.britannica.com/biography/H-G-Wells"
+  },
+  {
+    "author": "Henry Fielding",
+    "works": ["Joseph Andrews"],
+    "region": "British",
+    "literary_period": "Neoclassicism",
+    "author_link": "https://www.britannica.com/biography/Henry-Fielding"
+  },
+  {
+    "author": "James Joyce",
+    "works": ["A Portrait of the Artist as a Young Man"],
+    "region": "Irish",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/James-Joyce"
+  },
+  {
+    "author": "Jane Austen",
+    "works": ["Pride and Prejudice", "Emma"],
+    "region": "British",
+    "literary_period": "Romanticism",
+    "author_link": "https://www.britannica.com/biography/Jane-Austen"
+  },
+  {
+    "author": "Jonathan Swift",
+    "works": ["Gulliver’s Travels"],
+    "region": "Irish",
+    "literary_period": "Neoclassicism",
+    "author_link": "https://www.britannica.com/biography/Jonathan-Swift"
+  },
+  {
+    "author": "Joseph Conrad",
+    "works": ["Heart of Darkness"],
+    "region": "Polish-British",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/Joseph-Conrad"
+  },
+  {
+    "author": "Katherine Mansfield",
+    "works": ["The Doll’s House"],
+    "region": "New Zealand",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/Katherine-Mansfield"
+  },
+  {
+    "author": "Leo Tolstoy",
+    "works": ["War and Peace", "Anna Karenina"],
+    "region": "Russian",
+    "literary_period": "Realism",
+    "author_link": "https://www.britannica.com/biography/Leo-Tolstoy"
+  },
+  {
+    "author": "Mary Shelley",
+    "works": ["Frankenstein"],
+    "region": "British",
+    "literary_period": "Romanticism",
+    "author_link": "https://www.britannica.com/biography/Mary-Wollstonecraft-Shelley"
+  },
+  {
+    "author": "O. Henry",
+    "works": ["The Last Leaf"],
+    "region": "American",
+    "literary_period": "Realism",
+    "author_link": "https://www.britannica.com/biography/O-Henry"
+  },
+  {
+    "author": "Oscar Wilde",
+    "works": ["The Selfish Giant"],
+    "region": "Irish",
+    "literary_period": "Victorian",
+    "author_link": "https://www.britannica.com/biography/Oscar-Wilde"
+  },
+  {
+    "author": "Thomas Hardy",
+    "works": ["Tess of the d’Urbervilles"],
+    "region": "British",
+    "literary_period": "Victorian",
+    "author_link": "https://www.britannica.com/biography/Thomas-Hardy"
+  },
+  {
+    "author": "Virginia Woolf",
+    "works": ["Mrs Dalloway", "A Room of One’s Own"],
+    "region": "British",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/Virginia-Woolf"
+  },
+  {
+    "author": "William Golding",
+    "works": ["Lord of the Flies"],
+    "region": "British",
+    "literary_period": "Postmodernism",
+    "author_link": "https://www.britannica.com/biography/William-Golding"
+  }
+]],
+  "Cultural Studies": [[
+  {
+    "author": "Anand K. Coomaraswamy",
+    "works": ["The Aims of Indian Art"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "theory_type": "Art Criticism",
+    "author_link": "https://www.britannica.com/biography/Ananda-Kentish-Coomaraswamy"
+  },
+  {
+    "author": "Aime Cesaire",
+    "works": ["Discourse on Colonialism"],
+    "region": "Caribbean",
+    "literary_period": "Postcolonial",
+    "theory_type": "Postcolonial Theory",
+    "author_link": "https://www.britannica.com/biography/Aime-Cesaire"
+  },
+  {
+    "author": "Bill Ashcroft",
+    "works": ["The Empire Writes Back (Introduction)"],
+    "region": "Australian",
+    "literary_period": "Postcolonial",
+    "theory_type": "Postcolonial Theory",
+    "author_link": "https://en.wikipedia.org/wiki/Bill_Ashcroft"
+  },
+  {
+    "author": "Debiprasad Chattopadhyaya",
+    "works": ["The Chanting Dogs"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "theory_type": "Philosophy",
+    "author_link": "https://en.wikipedia.org/wiki/Debiprasad_Chattopadhyaya"
+  },
+  {
+    "author": "Dattu Methre",
+    "works": ["Andhra Pradesh History and Culture"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Cultural History",
+    "author_link": "https://en.wikipedia.org/wiki/Dattu_Methre"
+  },
+  {
+    "author": "Elaine Showalter",
+    "works": ["Towards a Feminist Poetics"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "theory_type": "Feminist Theory",
+    "author_link": "https://www.britannica.com/biography/Elaine-Showalter"
+  },
+  {
+    "author": "Elizabeth Long",
+    "works": ["Feminism and Cultural Studies"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "theory_type": "Feminist Theory",
+    "author_link": "https://en.wikipedia.org/wiki/Elizabeth_Long"
+  },
+  {
+    "author": "Frantz Fanon",
+    "works": ["On National Culture"],
+    "region": "African-Caribbean",
+    "literary_period": "Postcolonial",
+    "theory_type": "Postcolonial Theory",
+    "author_link": "https://www.britannica.com/biography/Frantz-Fanon"
+  },
+  {
+    "author": "Glotfelty",
+    "works": ["Literary Studies in an Age of Environmental Crisis"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "theory_type": "Ecocriticism",
+    "author_link": "https://en.wikipedia.org/wiki/Cheryll_Glotfelty"
+  },
+  {
+    "author": "Ipshita Chanda",
+    "works": ["Selfing the City"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Urban Cultural Studies",
+    "author_link": "https://en.wikipedia.org/wiki/Ipshita_Chanda"
+  },
+  {
+    "author": "John Storey",
+    "works": ["What is Cultural Studies?"],
+    "region": "British",
+    "literary_period": "Contemporary",
+    "theory_type": "Cultural Theory",
+    "author_link": "https://en.wikipedia.org/wiki/John_Storey"
+  },
+  {
+    "author": "Kaveri Nambisan",
+    "works": ["The Scent of Pepper"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Literary Fiction",
+    "author_link": "https://en.wikipedia.org/wiki/Kaveri_Nambisan"
+  },
+  {
+    "author": "Mararand Paranjape",
+    "works": ["Postmodernism and India"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Postmodern Theory",
+    "author_link": "https://en.wikipedia.org/wiki/Makarand_Paranjape"
+  },
+  {
+    "author": "Max Horkheimer",
+    "works": ["The Culture Industry"],
+    "region": "German",
+    "literary_period": "Modern",
+    "theory_type": "Marxist Theory",
+    "author_link": "https://www.britannica.com/biography/Max-Horkheimer"
+  },
+  {
+    "author": "Raymond Williams",
+    "works": ["Advertising: The Magic System"],
+    "region": "British",
+    "literary_period": "Modern",
+    "theory_type": "Cultural Materialism",
+    "author_link": "https://www.britannica.com/biography/Raymond-Williams"
+  },
+  {
+    "author": "Simon During",
+    "works": ["The Cultural Studies Reader"],
+    "region": "New Zealand",
+    "literary_period": "Contemporary",
+    "theory_type": "Cultural Theory",
+    "author_link": "https://en.wikipedia.org/wiki/Simon_During"
+  },
+  {
+    "author": "Stuart Hall",
+    "works": ["Cultural Studies and its Theoretical Legacy"],
+    "region": "Caribbean-British",
+    "literary_period": "Contemporary",
+    "theory_type": "Cultural Theory",
+    "author_link": "https://www.britannica.com/biography/Stuart-Hall"
+  },
+  {
+    "author": "Theodor Adorno",
+    "works": ["The Culture Industry"],
+    "region": "German",
+    "literary_period": "Modern",
+    "theory_type": "Marxist Theory",
+    "author_link": "https://www.britannica.com/biography/Theodor-Adorno"
+  },
+  {
+    "author": "William Dalrymple",
+    "works": ["Nine Lives"],
+    "region": "British",
+    "literary_period": "Contemporary",
+    "theory_type": "Cultural History",
+    "author_link": "https://www.britannica.com/biography/William-Dalrymple"
+  }
+]],
+  "Women’s Writing": [[
+  {
+    "author": "Adrienne Rich",
+    "works": ["Snapshots of a Daughter-in-Law"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "theory_type": "Feminist Poetry",
+    "author_link": "https://www.britannica.com/biography/Adrienne-Rich"
+  },
+  {
+    "author": "Alice Walker",
+    "works": ["In Search of Our Mothers’ Gardens"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "theory_type": "Black Feminism",
+    "author_link": "https://www.britannica.com/biography/Alice-Walker"
+  },
+  {
+    "author": "Ama Ata Aidoo",
+    "works": ["Anowa"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "theory_type": "African Feminism",
+    "author_link": "https://www.britannica.com/biography/Ama-Ata-Aidoo"
+  },
+  {
+    "author": "Anita Desai",
+    "works": ["Clear Light of Day"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "theory_type": "Feminist Fiction",
+    "author_link": "https://www.britannica.com/biography/Anita-Desai"
+  },
+  {
+    "author": "Bapsi Sidhwa",
+    "works": ["Ice-Candy-Man", "The Pakistani Bride"],
+    "region": "Pakistani",
+    "literary_period": "Postcolonial",
+    "theory_type": "Postcolonial Feminism",
+    "author_link": "https://en.wikipedia.org/wiki/Bapsi_Sidhwa"
+  },
+  {
+    "author": "Bessie Head",
+    "works": ["A Question of Power"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "theory_type": "African Feminism",
+    "author_link": "https://www.britannica.com/biography/Bessie-Head"
+  },
+  {
+    "author": "Buchi Emecheta",
+    "works": ["The Joys of Motherhood"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "theory_type": "African Feminism",
+    "author_link": "https://www.britannica.com/biography/Buchi-Emecheta"
+  },
+  {
+    "author": "Dina Mehta",
+    "works": ["Brides Are Not for Burning"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Feminist Drama",
+    "author_link": "https://en.wikipedia.org/wiki/Dina_Mehta"
+  },
+  {
+    "author": "Doris Lessing",
+    "works": ["The Grass is Singing"],
+    "region": "British-African",
+    "literary_period": "Modern",
+    "theory_type": "Feminist Fiction",
+    "author_link": "https://www.britannica.com/biography/Doris-Lessing"
+  },
+  {
+    "author": "Eudora Welty",
+    "works": ["The Optimist’s Daughter"],
+    "region": "American",
+    "literary_period": "Modern",
+    "theory_type": "Feminist Fiction",
+    "author_link": "https://www.britannica.com/biography/Eudora-Welty"
+  },
+  {
+    "author": "Gloria Naylor",
+    "works": ["Mama Day"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "theory_type": "Black Feminism",
+    "author_link": "https://www.britannica.com/biography/Gloria-Naylor"
+  },
+  {
+    "author": "Helen Cixous",
+    "works": ["The Laugh of the Medusa"],
+    "region": "French",
+    "literary_period": "Postmodernism",
+    "theory_type": "Feminist Theory",
+    "author_link": "https://www.britannica.com/biography/Helene-Cixous"
+  },
+  {
+    "author": "Ismat Chughtai",
+    "works": ["The Veil"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "theory_type": "Feminist Fiction",
+    "author_link": "https://www.britannica.com/biography/Ismat-Chughtai"
+  },
+  {
+    "author": "Jean Rhys",
+    "works": ["Wide Sargasso Sea"],
+    "region": "Caribbean-British",
+    "literary_period": "Modern",
+    "theory_type": "Postcolonial Feminism",
+    "author_link": "https://www.britannica.com/biography/Jean-Rhys"
+  },
+  {
+    "author": "Kate Millett",
+    "works": ["Sexual Politics"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "theory_type": "Feminist Theory",
+    "author_link": "https://www.britannica.com/biography/Kate-Millett"
+  },
+  {
+    "author": "Margaret Laurence",
+    "works": ["The Stone Angel"],
+    "region": "Canadian",
+    "literary_period": "Modern",
+    "theory_type": "Feminist Fiction",
+    "author_link": "https://www.britannica.com/biography/Margaret-Laurence"
+  },
+  {
+    "author": "Mary Wollstonecraft",
+    "works": ["A Vindication of the Rights of Woman"],
+    "region": "British",
+    "literary_period": "Enlightenment",
+    "theory_type": "Feminist Philosophy",
+    "author_link": "https://www.britannica.com/biography/Mary-Wollstonecraft"
+  },
+  {
+    "author": "Nadine Gordimer",
+    "works": ["Burger’s Daughter"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "theory_type": "Political Feminism",
+    "author_link": "https://www.britannica.com/biography/Nadine-Gordimer"
+  },
+  {
+    "author": "Shashi Deshpande",
+    "works": ["That Long Silence"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Feminist Fiction",
+    "author_link": "https://www.britannica.com/biography/Shashi-Deshpande"
+  },
+  {
+    "author": "Simone de Beauvoir",
+    "works": ["The Second Sex"],
+    "region": "French",
+    "literary_period": "Existentialism",
+    "theory_type": "Feminist Philosophy",
+    "author_link": "https://www.britannica.com/biography/Simone-de-Beauvoir"
+  },
+  {
+    "author": "Sylvia Plath",
+    "works": ["Daddy", "Lady Lazarus"],
+    "region": "American",
+    "literary_period": "Confessional Poetry",
+    "theory_type": "Feminist Poetry",
+    "author_link": "https://www.britannica.com/biography/Sylvia-Plath"
+  },
+  {
+    "author": "Toni Morrison",
+    "works": ["Beloved"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "theory_type": "Black Feminism",
+    "author_link": "https://www.britannica.com/biography/Toni-Morrison"
+  },
+  {
+    "author": "Virginia Woolf",
+    "works": ["A Room of One’s Own"],
+    "region": "British",
+    "literary_period": "Modernism",
+    "theory_type": "Feminist Theory",
+    "author_link": "https://www.britannica.com/biography/Virginia-Woolf"
+  }
+]],
+  "Indian Writing in English": [[
+  {
+    "author": "Amitav Ghosh",
+    "works": ["The Shadow Lines", "The Great Derangement"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "author_link": "https://www.britannica.com/biography/Amitav-Ghosh"
+  },
+  {
+    "author": "Amartya Sen",
+    "works": ["The Argumentative Indian"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "author_link": "https://www.britannica.com/biography/Amartya-Sen"
+  },
+  {
+    "author": "Aurobindo Ghose",
+    "works": ["Savitri", "The Renaissance in India"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Sri-Aurobindo"
+  },
+  {
+    "author": "B. R. Ambedkar",
+    "works": ["The Buddha and His Dhamma"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/B-R-Ambedkar"
+  },
+  {
+    "author": "Girish Karnad",
+    "works": ["Hayavadana"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Girish-Karnad"
+  },
+  {
+    "author": "Gurram Jashuva",
+    "works": ["Gabbilam (The Graveyard)"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://en.wikipedia.org/wiki/Gurram_Jashuva"
+  },
+  {
+    "author": "Henry Louis Vivian Derozio",
+    "works": ["The Harp of India"],
+    "region": "Indian",
+    "literary_period": "Romanticism",
+    "author_link": "https://www.britannica.com/biography/Henry-Louis-Vivian-Derozio"
+  },
+  {
+    "author": "Jayanta Mahapatra",
+    "works": ["Dawn at Puri", "An Indian Summer"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Jayanta-Mahapatra"
+  },
+  {
+    "author": "Kalidasa",
+    "works": ["Meghaduta", "Kumarasambhava"],
+    "region": "Indian",
+    "literary_period": "Classical",
+    "author_link": "https://www.britannica.com/biography/Kalidasa"
+  },
+  {
+    "author": "Kamala Das",
+    "works": ["An Introduction"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Kamala-Das"
+  },
+  {
+    "author": "Kiran Desai",
+    "works": ["The Inheritance of Loss"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "author_link": "https://www.britannica.com/biography/Kiran-Desai"
+  },
+  {
+    "author": "Kushwant Singh",
+    "works": ["Train to Pakistan"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Khushwant-Singh"
+  },
+  {
+    "author": "Mulk Raj Anand",
+    "works": ["Untouchable", "Two Leaves and a Bud"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Mulk-Raj-Anand"
+  },
+  {
+    "author": "Nissim Ezekiel",
+    "works": ["Night of the Scorpion"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Nissim-Ezekiel"
+  },
+  {
+    "author": "Premchand",
+    "works": ["Godan"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Premchand"
+  },
+  {
+    "author": "Qurratulain Hyder",
+    "works": ["River of Fire"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Qurratulain-Hyder"
+  },
+  {
+    "author": "Rabindranath Tagore",
+    "works": ["Gitanjali", "The Cabuliwallah"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Rabindranath-Tagore"
+  },
+  {
+    "author": "R. K. Narayan",
+    "works": ["The Guide", "Waiting for the Mahatma"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/R-K-Narayan"
+  },
+  {
+    "author": "Raja Rao",
+    "works": ["Kanthapura"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Raja-Rao"
+  },
+  {
+    "author": "Salman Rushdie",
+    "works": ["Midnight’s Children"],
+    "region": "Indian-British",
+    "literary_period": "Postmodernism",
+    "author_link": "https://www.britannica.com/biography/Salman-Rushdie"
+  },
+  {
+    "author": "Sarojini Naidu",
+    "works": ["The Soul’s Prayer"],
+    "region": "Indian",
+    "literary_period": "Romanticism",
+    "author_link": "https://www.britannica.com/biography/Sarojini-Naidu"
+  },
+  {
+    "author": "Subramania Bharati",
+    "works": ["Panchali’s Vow"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Subramania-Bharati"
+  },
+  {
+    "author": "U. R. Ananthamurthy",
+    "works": ["Samskara"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/U-R-Ananthamurthy"
+  },
+  {
+    "author": "Vijay Tendulkar",
+    "works": ["Silence! The Court is in Session"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Vijay-Tendulkar"
+  }
+]],
+  "American Literature": [[
+  {
+    "author": "Arthur Miller",
+    "works": ["Death of a Salesman"],
+    "region": "American",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/Arthur-Miller"
+  },
+  {
+    "author": "Edward Albee",
+    "works": ["Who’s Afraid of Virginia Woolf?"],
+    "region": "American",
+    "literary_period": "Postmodern Drama",
+    "author_link": "https://www.britannica.com/biography/Edward-Albee"
+  },
+  {
+    "author": "Emily Dickinson",
+    "works": [
+      "Because I Could Not Stop for Death",
+      "I Heard a Fly Buzz When I Died"
+    ],
+    "region": "American",
+    "literary_period": "Romanticism",
+    "author_link": "https://www.britannica.com/biography/Emily-Dickinson"
+  },
+  {
+    "author": "Ernest Hemingway",
+    "works": ["The Old Man and the Sea"],
+    "region": "American",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/Ernest-Hemingway"
+  },
+  {
+    "author": "Eugene O’Neill",
+    "works": ["The Hairy Ape"],
+    "region": "American",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/Eugene-ONeill"
+  },
+  {
+    "author": "Henry David Thoreau",
+    "works": ["Walden"],
+    "region": "American",
+    "literary_period": "Transcendentalism",
+    "author_link": "https://www.britannica.com/biography/Henry-David-Thoreau"
+  },
+  {
+    "author": "John Steinbeck",
+    "works": ["The Grapes of Wrath"],
+    "region": "American",
+    "literary_period": "Realism",
+    "author_link": "https://www.britannica.com/biography/John-Steinbeck"
+  },
+  {
+    "author": "Lorraine Hansberry",
+    "works": ["A Raisin in the Sun"],
+    "region": "American",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/Lorraine-Hansberry"
+  },
+  {
+    "author": "Mark Twain",
+    "works": ["Adventures of Huckleberry Finn"],
+    "region": "American",
+    "literary_period": "Realism",
+    "author_link": "https://www.britannica.com/biography/Mark-Twain"
+  },
+  {
+    "author": "Nathaniel Hawthorne",
+    "works": ["The Scarlet Letter"],
+    "region": "American",
+    "literary_period": "Dark Romanticism",
+    "author_link": "https://www.britannica.com/biography/Nathaniel-Hawthorne"
+  },
+  {
+    "author": "Ralph Ellison",
+    "works": ["Invisible Man"],
+    "region": "American",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/Ralph-Ellison"
+  },
+  {
+    "author": "Ralph Waldo Emerson",
+    "works": ["Self-Reliance", "The American Scholar"],
+    "region": "American",
+    "literary_period": "Transcendentalism",
+    "author_link": "https://www.britannica.com/biography/Ralph-Waldo-Emerson"
+  },
+  {
+    "author": "Robert Frost",
+    "works": ["The Road Not Taken", "Stopping by Woods on a Snowy Evening"],
+    "region": "American",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/Robert-Frost"
+  },
+  {
+    "author": "Stephen Crane",
+    "works": ["The Red Badge of Courage"],
+    "region": "American",
+    "literary_period": "Naturalism",
+    "author_link": "https://www.britannica.com/biography/Stephen-Crane"
+  },
+  {
+    "author": "Tennessee Williams",
+    "works": ["A Streetcar Named Desire"],
+    "region": "American",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/Tennessee-Williams"
+  },
+  {
+    "author": "Theodore Dreiser",
+    "works": ["An American Tragedy"],
+    "region": "American",
+    "literary_period": "Naturalism",
+    "author_link": "https://www.britannica.com/biography/Theodore-Dreiser"
+  },
+  {
+    "author": "Toni Morrison",
+    "works": ["Sula"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "author_link": "https://www.britannica.com/biography/Toni-Morrison"
+  },
+  {
+    "author": "Wallace Stevens",
+    "works": ["Sunday Morning"],
+    "region": "American",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/Wallace-Stevens"
+  },
+  {
+    "author": "Walt Whitman",
+    "works": ["Out of the Cradle Endlessly Rocking"],
+    "region": "American",
+    "literary_period": "Transcendentalism",
+    "author_link": "https://www.britannica.com/biography/Walt-Whitman"
+  },
+  {
+    "author": "William Faulkner",
+    "works": ["The Sound and the Fury"],
+    "region": "American",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/William-Faulkner"
+  }
+]],
+  "Afro Literature": [[
+  {
+    "author": "Alan Paton",
+    "works": ["Cry, the Beloved Country"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Alan-Paton"
+  },
+  {
+    "author": "Chinua Achebe",
+    "works": ["Things Fall Apart"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Chinua-Achebe"
+  },
+  {
+    "author": "Coetzee (J. M. Coetzee)",
+    "works": ["Waiting for the Barbarians"],
+    "region": "African",
+    "literary_period": "Postmodernism",
+    "author_link": "https://www.britannica.com/biography/J-M-Coetzee"
+  },
+  {
+    "author": "Derek Walcott",
+    "works": ["A Far Cry from Africa"],
+    "region": "Caribbean",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Derek-Walcott"
+  },
+  {
+    "author": "Doris Lessing",
+    "works": ["The Grass is Singing"],
+    "region": "British-African",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Doris-Lessing"
+  },
+  {
+    "author": "E. J. Pratt",
+    "works": ["The Dying Eagle"],
+    "region": "Canadian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/E-J-Pratt"
+  },
+  {
+    "author": "Gabriel Okara",
+    "works": ["Once Upon a Time"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Gabriel-Okara"
+  },
+  {
+    "author": "George Lamming",
+    "works": ["In the Castle of My Skin"],
+    "region": "Caribbean",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/George-Lamming"
+  },
+  {
+    "author": "J. P. Clark",
+    "works": ["The Casualties"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/J-P-Clark"
+  },
+  {
+    "author": "Joyce Cary",
+    "works": ["Mister Johnson"],
+    "region": "British-African",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Joyce-Cary"
+  },
+  {
+    "author": "Leopold Sedar Senghor",
+    "works": ["New York"],
+    "region": "African",
+    "literary_period": "Negritude",
+    "author_link": "https://www.britannica.com/biography/Leopold-Sedar-Senghor"
+  },
+  {
+    "author": "Margaret Atwood",
+    "works": ["Surfacing", "The Penelopiad"],
+    "region": "Canadian",
+    "literary_period": "Postmodernism",
+    "author_link": "https://www.britannica.com/biography/Margaret-Atwood"
+  },
+  {
+    "author": "Margaret Laurence",
+    "works": ["The Stone Angel"],
+    "region": "Canadian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Margaret-Laurence"
+  },
+  {
+    "author": "Ngũgĩ wa Thiong'o",
+    "works": ["A Grain of Wheat", "Decolonising the Mind"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Ngugi-wa-Thiongo"
+  },
+  {
+    "author": "Patrick White",
+    "works": ["Voss"],
+    "region": "Australian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Patrick-White"
+  },
+  {
+    "author": "Ralph Ellison",
+    "works": ["Invisible Man"],
+    "region": "American",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/Ralph-Ellison"
+  },
+  {
+    "author": "Rita Joe",
+    "works": ["The Ecstasy of Rita Joe"],
+    "region": "Indigenous Canadian",
+    "literary_period": "Contemporary",
+    "author_link": "https://en.wikipedia.org/wiki/Rita_Joe"
+  },
+  {
+    "author": "V. S. Naipaul",
+    "works": ["A House for Mr Biswas"],
+    "region": "Caribbean-Indian",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/V-S-Naipaul"
+  },
+  {
+    "author": "Wole Soyinka",
+    "works": ["The Lion and the Jewel"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Wole-Soyinka"
+  },
+  {
+    "author": "Zadie Smith",
+    "works": ["White Teeth"],
+    "region": "British-Caribbean",
+    "literary_period": "Contemporary",
+    "author_link": "https://www.britannica.com/biography/Zadie-Smith"
+  }
+]],
+  "Dalit Literature": [[
+  {
+    "author": "Arjun Dangle",
+    "works": ["Poisoned Bread (Selections)"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Literature",
+    "author_link": "https://en.wikipedia.org/wiki/Arjun_Dangle"
+  },
+  {
+    "author": "Bama",
+    "works": ["Karukku", "Vanmam"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Feminism",
+    "author_link": "https://www.britannica.com/biography/Bama"
+  },
+  {
+    "author": "Baby Kamble",
+    "works": ["The Prisons We Broke"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Feminism",
+    "author_link": "https://en.wikipedia.org/wiki/Baby_Kamble"
+  },
+  {
+    "author": "Eleanor Zelliot",
+    "works": ["From Untouchable to Dalit"],
+    "region": "American",
+    "literary_period": "Modern",
+    "theory_type": "Dalit Studies",
+    "author_link": "https://en.wikipedia.org/wiki/Eleanor_Zelliot"
+  },
+  {
+    "author": "Gail Omvedt",
+    "works": ["Dalits and the Democratic Revolution"],
+    "region": "American-Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Studies",
+    "author_link": "https://www.britannica.com/biography/Gail-Omvedt"
+  },
+  {
+    "author": "Mahasweta Devi",
+    "works": ["Draupadi", "Rudali"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "theory_type": "Subaltern Studies",
+    "author_link": "https://www.britannica.com/biography/Mahasweta-Devi"
+  },
+  {
+    "author": "Narendra Jadhav",
+    "works": ["Outcaste"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Autobiography",
+    "author_link": "https://en.wikipedia.org/wiki/Narendra_Jadhav"
+  },
+  {
+    "author": "Sharan Kumar Limbale",
+    "works": ["The Outcaste"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Criticism",
+    "author_link": "https://en.wikipedia.org/wiki/Sharan_Kumar_Limbale"
+  },
+  {
+    "author": "Urmila Pawar",
+    "works": ["The Weave of My Life"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Feminism",
+    "author_link": "https://en.wikipedia.org/wiki/Urmila_Pawar"
+  },
+  {
+    "author": "Vasant Moon",
+    "works": ["Growing Up Untouchable in India"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Autobiography",
+    "author_link": "https://en.wikipedia.org/wiki/Vasant_Moon"
+  }
+]],
+  "Comparative Literature": [[
+  {
+    "author": "Auerbach / Comparative Tradition",
+    "works": ["Comparative Literature (Conceptual Study)"],
+    "region": "European",
+    "literary_period": "Modern",
+    "theory_type": "Comparative Literature"
+  },
+  {
+    "author": "René Wellek & Austin Warren",
+    "works": ["Theory of Literature"],
+    "region": "European-American",
+    "literary_period": "Modern",
+    "theory_type": "Literary Theory",
+    "author_link": "https://www.britannica.com/biography/Rene-Wellek"
+  },
+  {
+    "author": "Susan Bassnett",
+    "works": ["Comparative Literature"],
+    "region": "British",
+    "literary_period": "Contemporary",
+    "theory_type": "Comparative Literature",
+    "author_link": "https://en.wikipedia.org/wiki/Susan_Bassnett"
+  },
+  {
+    "author": "Mikhail Bakhtin",
+    "works": ["Discourse in the Novel"],
+    "region": "Russian",
+    "literary_period": "Modern",
+    "theory_type": "Dialogism",
+    "author_link": "https://www.britannica.com/biography/Mikhail-Bakhtin"
+  },
+  {
+    "author": "Roland Barthes",
+    "works": ["The Death of the Author"],
+    "region": "French",
+    "literary_period": "Postmodernism",
+    "theory_type": "Structuralism/Post-Structuralism",
+    "author_link": "https://www.britannica.com/biography/Roland-Barthes"
+  },
+  {
+    "author": "Paul de Man",
+    "works": ["Semiology and Rhetoric"],
+    "region": "Belgian-American",
+    "literary_period": "Postmodernism",
+    "theory_type": "Deconstruction",
+    "author_link": "https://www.britannica.com/biography/Paul-de-Man"
+  }
+]],
+  "Literary Criticism": [[
+  {
+    "author": "Aristotle",
+    "works": ["Poetics", "Rhetoric"],
+    "region": "Greek",
+    "literary_period": "Classical",
+    "theory_type": "Classical Criticism",
+    "author_link": "https://www.britannica.com/biography/Aristotle"
+  },
+  {
+    "author": "Plato",
+    "works": ["The Republic"],
+    "region": "Greek",
+    "literary_period": "Classical",
+    "theory_type": "Philosophical Criticism",
+    "author_link": "https://www.britannica.com/biography/Plato"
+  },
+  {
+    "author": "Longinus",
+    "works": ["On the Sublime"],
+    "region": "Greek",
+    "literary_period": "Classical",
+    "theory_type": "Aesthetic Theory",
+    "author_link": "https://www.britannica.com/topic/On-the-Sublime"
+  },
+  {
+    "author": "Philip Sidney",
+    "works": ["An Apology for Poetry"],
+    "region": "British",
+    "literary_period": "Renaissance",
+    "theory_type": "Humanist Criticism",
+    "author_link": "https://www.britannica.com/biography/Sir-Philip-Sidney"
+  },
+  {
+    "author": "John Dryden",
+    "works": ["Essay of Dramatic Poesy"],
+    "region": "British",
+    "literary_period": "Neoclassicism",
+    "theory_type": "Neoclassical Criticism",
+    "author_link": "https://www.britannica.com/biography/John-Dryden"
+  },
+  {
+    "author": "Samuel Johnson",
+    "works": ["Preface to Shakespeare"],
+    "region": "British",
+    "literary_period": "Neoclassicism",
+    "theory_type": "Critical Realism",
+    "author_link": "https://www.britannica.com/biography/Samuel-Johnson"
+  },
+  {
+    "author": "William Wordsworth",
+    "works": ["Preface to Lyrical Ballads"],
+    "region": "British",
+    "literary_period": "Romanticism",
+    "theory_type": "Romantic Criticism",
+    "author_link": "https://www.britannica.com/biography/William-Wordsworth"
+  },
+  {
+    "author": "Samuel Taylor Coleridge",
+    "works": ["Biographia Literaria"],
+    "region": "British",
+    "literary_period": "Romanticism",
+    "theory_type": "Romantic Criticism",
+    "author_link": "https://www.britannica.com/biography/Samuel-Taylor-Coleridge"
+  },
+  {
+    "author": "T. S. Eliot",
+    "works": ["Tradition and the Individual Talent"],
+    "region": "British-American",
+    "literary_period": "Modernism",
+    "theory_type": "Modern Criticism",
+    "author_link": "https://www.britannica.com/biography/T-S-Eliot"
+  },
+  {
+    "author": "Jacques Derrida",
+    "works": ["Structure, Sign and Play"],
+    "region": "French",
+    "literary_period": "Postmodernism",
+    "theory_type": "Deconstruction",
+    "author_link": "https://www.britannica.com/biography/Jacques-Derrida"
+  },
+  {
+    "author": "Edward Said",
+    "works": ["Orientalism"],
+    "region": "Palestinian-American",
+    "literary_period": "Postcolonial",
+    "theory_type": "Postcolonial Theory",
+    "author_link": "https://www.britannica.com/biography/Edward-Said"
+  },
+  {
+    "author": "Northrop Frye",
+    "works": ["The Archetypes of Literature"],
+    "region": "Canadian",
+    "literary_period": "Modern",
+    "theory_type": "Archetypal Criticism",
+    "author_link": "https://www.britannica.com/biography/Northrop-Frye"
+  }
+]]
+};
