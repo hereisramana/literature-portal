@@ -2,178 +2,269 @@
   "Poetry": [
   {
     "author": "A. D. Hope",
-    "works": ["Australia"],
+    "works": ["Australia (poem)"],
     "region": "Australian",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/A-D-Hope"
   },
   {
-    "author": "Alfred Lord Tennyson",
-    "works": ["In Memoriam A.H.H."],
-    "region": "British",
-    "literary_period": "Victorian",
-    "author_link": "https://www.britannica.com/biography/Alfred-Lord-Tennyson"
-  },
-  {
     "author": "Alexander Pope",
     "works": ["An Essay on Criticism", "The Rape of the Lock"],
     "region": "British",
-    "literary_period": "Neoclassicism",
-    "author_link": "https://www.britannica.com/biography/Alexander-Pope"
+    "literary_period": "Neoclassicism"
   },
   {
-    "author": "Ben Okri",
-    "works": ["An African Elegy"],
-    "region": "African",
-    "literary_period": "Postcolonial",
-    "author_link": "https://www.britannica.com/biography/Ben-Okri"
+    "author": "Alfred Lord Tennyson",
+    "works": ["In Memoriam (Sections 1–25)"],
+    "region": "British",
+    "literary_period": "Victorian"
   },
   {
     "author": "Dante Alighieri",
     "works": ["The Divine Comedy"],
     "region": "Italian",
-    "literary_period": "Medieval",
-    "author_link": "https://www.britannica.com/biography/Dante-Alighieri"
+    "literary_period": "Medieval"
+  },
+  {
+    "author": "Ben Okri",
+    "works": ["An African Elegy", "Living Is a Fire"],
+    "region": "African",
+    "literary_period": "Postcolonial"
   },
   {
     "author": "Dylan Thomas",
-    "works": ["Fern Hill", "Do Not Go Gentle into That Good Night"],
+    "works": [
+      "Fern Hill",
+      "Do Not Go Gentle into That Good Night",
+      "Poem in October"
+    ],
     "region": "British",
-    "literary_period": "Modern",
-    "author_link": "https://www.britannica.com/biography/Dylan-Thomas"
+    "literary_period": "Modern"
+  },
+  {
+    "author": "E. J. Pratt",
+    "works": ["The Dying Eagle"],
+    "region": "Canadian",
+    "literary_period": "Modern"
   },
   {
     "author": "Edmund Spenser",
-    "works": ["The Faerie Queene", "Epithalamion"],
+    "works": [
+      "Epithalamion",
+      "Prothalamion",
+      "The Faerie Queene (Book I)"
+    ],
     "region": "British",
-    "literary_period": "Renaissance",
-    "author_link": "https://www.britannica.com/biography/Edmund-Spenser"
-  },
-  {
-    "author": "Geoffrey Chaucer",
-    "works": ["The Canterbury Tales"],
-    "region": "British",
-    "literary_period": "Medieval",
-    "author_link": "https://www.britannica.com/biography/Geoffrey-Chaucer"
+    "literary_period": "Renaissance"
   },
   {
     "author": "Gerard Manley Hopkins",
-    "works": ["The Windhover"],
+    "works": [
+      "The Windhover",
+      "Thou Art Indeed Just, My Lord",
+      "The Wreck of the Deutschland"
+    ],
     "region": "British",
-    "literary_period": "Victorian",
-    "author_link": "https://www.britannica.com/biography/Gerard-Manley-Hopkins"
+    "literary_period": "Victorian"
+  },
+  {
+    "author": "Geoffrey Chaucer",
+    "works": ["Prologue to The Canterbury Tales"],
+    "region": "British",
+    "literary_period": "Medieval"
   },
   {
     "author": "Homer",
-    "works": ["The Iliad"],
+    "works": ["The Iliad (Canto 1)"],
     "region": "Greek",
-    "literary_period": "Classical",
-    "author_link": "https://www.britannica.com/biography/Homer"
+    "literary_period": "Classical"
   },
   {
     "author": "John Donne",
-    "works": ["The Sun Rising", "A Valediction: Forbidding Mourning"],
+    "works": [
+      "The Sun Rising",
+      "The Ecstasy",
+      "A Valediction: Forbidding Mourning",
+      "The Good Morrow",
+      "The Flea",
+      "Batter My Heart, Three-Personed God"
+    ],
     "region": "British",
-    "literary_period": "Metaphysical",
-    "author_link": "https://www.britannica.com/biography/John-Donne"
+    "literary_period": "Metaphysical"
   },
   {
     "author": "John Keats",
-    "works": ["Ode to a Nightingale", "Ode on a Grecian Urn"],
+    "works": [
+      "Ode to a Nightingale",
+      "Ode on a Grecian Urn",
+      "Ode to Autumn",
+      "Ode to Psyche",
+      "Ode on Melancholy",
+      "Letters to Fanny Brawne"
+    ],
     "region": "British",
-    "literary_period": "Romanticism",
-    "author_link": "https://www.britannica.com/biography/John-Keats"
+    "literary_period": "Romanticism"
   },
   {
     "author": "John Milton",
-    "works": ["Paradise Lost"],
+    "works": [
+      "Paradise Lost (Book I)",
+      "Paradise Lost (Book IX)"
+    ],
     "region": "British",
-    "literary_period": "Renaissance",
-    "author_link": "https://www.britannica.com/biography/John-Milton"
+    "literary_period": "Renaissance"
   },
   {
     "author": "Judith Wright",
     "works": ["Fire at the Murdering Hut"],
     "region": "Australian",
-    "literary_period": "Modern",
-    "author_link": "https://www.britannica.com/biography/Judith-Wright"
+    "literary_period": "Modern"
   },
   {
     "author": "Matthew Arnold",
     "works": ["The Scholar Gypsy"],
     "region": "British",
-    "literary_period": "Victorian",
-    "author_link": "https://www.britannica.com/biography/Matthew-Arnold"
+    "literary_period": "Victorian"
   },
   {
-    "author": "Philip Larkin",
-    "works": ["The Whitsun Weddings"],
-    "region": "British",
-    "literary_period": "Modern",
-    "author_link": "https://www.britannica.com/biography/Philip-Larkin"
+    "author": "Mervyn Morris",
+    "works": ["Literary Evening in Jamaica"],
+    "region": "Caribbean",
+    "literary_period": "Postcolonial"
   },
   {
     "author": "P. B. Shelley",
-    "works": ["Ode to the West Wind"],
+    "works": ["Ode to a Skylark", "Ode to the West Wind"],
     "region": "British",
-    "literary_period": "Romanticism",
-    "author_link": "https://www.britannica.com/biography/Percy-Bysshe-Shelley"
+    "literary_period": "Romanticism"
+  },
+  {
+    "author": "Philip Larkin",
+    "works": [
+      "The Whitsun Weddings",
+      "Church Going",
+      "Ambulances",
+      "Wants",
+      "Next, Please"
+    ],
+    "region": "British",
+    "literary_period": "Modern"
   },
   {
     "author": "Robert Browning",
-    "works": ["My Last Duchess"],
+    "works": [
+      "Andrea del Sarto",
+      "Rabbi Ben Ezra",
+      "Fra Lippo Lippi",
+      "The Last Ride Together",
+      "My Last Duchess",
+      "A Grammarian’s Funeral"
+    ],
     "region": "British",
-    "literary_period": "Victorian",
-    "author_link": "https://www.britannica.com/biography/Robert-Browning"
+    "literary_period": "Victorian"
+  },
+  {
+    "author": "Robert Graves",
+    "works": ["Recalling War", "In Broken Images"],
+    "region": "British",
+    "literary_period": "Modern"
   },
   {
     "author": "Samuel Taylor Coleridge",
     "works": ["The Rime of the Ancient Mariner"],
     "region": "British",
-    "literary_period": "Romanticism",
-    "author_link": "https://www.britannica.com/biography/Samuel-Taylor-Coleridge"
+    "literary_period": "Romanticism"
   },
   {
     "author": "Seamus Heaney",
-    "works": ["Digging"],
+    "works": [
+      "Death of a Naturalist",
+      "Digging",
+      "Punishment",
+      "At a Potato Digging"
+    ],
     "region": "Irish",
-    "literary_period": "Modern",
-    "author_link": "https://www.britannica.com/biography/Seamus-Heaney"
+    "literary_period": "Modern"
+  },
+  {
+    "author": "William Shakespeare",
+    "works": ["Sonnets 18, 27, 104, 116, 130"],
+    "region": "British",
+    "literary_period": "Renaissance"
+  },
+  {
+    "author": "Sujata Bhatt",
+    "works": [
+      "Search for My Tongue",
+      "A Different History",
+      "The Stinking Rose"
+    ],
+    "region": "Indian",
+    "literary_period": "Contemporary"
   },
   {
     "author": "T. S. Eliot",
     "works": ["The Waste Land"],
     "region": "British-American",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/T-S-Eliot"
+    "literary_period": "Modernism"
   },
   {
     "author": "Ted Hughes",
-    "works": ["The Thought-Fox"],
+    "works": [
+      "The Thought-Fox",
+      "Hawk Roosting",
+      "The Jaguar",
+      "Thrushes",
+      "Out"
+    ],
     "region": "British",
-    "literary_period": "Modern",
-    "author_link": "https://www.britannica.com/biography/Ted-Hughes"
+    "literary_period": "Modern"
+  },
+  {
+    "author": "Thomas Gunn",
+    "works": [
+      "In Santa Maria del Popolo",
+      "Rites of Passage",
+      "On the Move"
+    ],
+    "region": "British-American",
+    "literary_period": "Modern"
   },
   {
     "author": "W. B. Yeats",
-    "works": ["The Second Coming"],
+    "works": [
+      "Sailing to Byzantium",
+      "The Second Coming",
+      "A Prayer for My Daughter",
+      "An Irish Airman Foresees His Death",
+      "Among School Children"
+    ],
     "region": "Irish",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/W-B-Yeats"
+    "literary_period": "Modernism"
   },
   {
     "author": "William Blake",
-    "works": ["The Tyger", "The Lamb"],
+    "works": ["The Lamb", "The Tyger"],
     "region": "British",
-    "literary_period": "Romanticism",
-    "author_link": "https://www.britannica.com/biography/William-Blake"
+    "literary_period": "Romanticism"
   },
   {
     "author": "William Wordsworth",
-    "works": ["Tintern Abbey"],
+    "works": [
+      "The Prelude (Book I)",
+      "Tintern Abbey",
+      "Ode: Intimations of Immortality",
+      "Ode to Duty",
+      "Preface to Lyrical Ballads"
+    ],
     "region": "British",
-    "literary_period": "Romanticism",
-    "author_link": "https://www.britannica.com/biography/William-Wordsworth"
+    "literary_period": "Romanticism"
+  },
+  {
+    "author": "Zulfikar Ghose",
+    "works": ["This Landscape, These People"],
+    "region": "Pakistani",
+    "literary_period": "Contemporary"
   }
 ],
   "Drama": [
