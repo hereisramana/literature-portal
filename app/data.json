@@ -1241,6 +1241,13 @@
     "author_link": "https://www.britannica.com/biography/Arthur-Miller"
   },
   {
+    "author": "Bernard Malamud",
+    "works": ["The Assistant"],
+    "region": "American",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Bernard-Malamud"
+  },
+  {
     "author": "Edward Albee",
     "works": ["Who’s Afraid of Virginia Woolf?"],
     "region": "American",
@@ -1251,7 +1258,11 @@
     "author": "Emily Dickinson",
     "works": [
       "Because I Could Not Stop for Death",
-      "I Heard a Fly Buzz When I Died"
+      "I Heard a Fly Buzz When I Died",
+      "If You Were Coming in the Fall",
+      "A Narrow Fellow in the Grass",
+      "I Died for Beauty",
+      "The Soul Selects Her Own Society"
     ],
     "region": "American",
     "literary_period": "Romanticism",
@@ -1315,14 +1326,22 @@
   },
   {
     "author": "Ralph Waldo Emerson",
-    "works": ["Self-Reliance", "The American Scholar"],
+    "works": ["The American Scholar", "Self-Reliance"],
     "region": "American",
     "literary_period": "Transcendentalism",
     "author_link": "https://www.britannica.com/biography/Ralph-Waldo-Emerson"
   },
   {
     "author": "Robert Frost",
-    "works": ["The Road Not Taken", "Stopping by Woods on a Snowy Evening"],
+    "works": [
+      "After Apple-Picking",
+      "Stopping by Woods on a Snowy Evening",
+      "The Road Not Taken",
+      "Birches",
+      "Home Burial",
+      "West-Running Brook",
+      "Mending Wall"
+    ],
     "region": "American",
     "literary_period": "Modernism",
     "author_link": "https://www.britannica.com/biography/Robert-Frost"
@@ -1333,6 +1352,13 @@
     "region": "American",
     "literary_period": "Naturalism",
     "author_link": "https://www.britannica.com/biography/Stephen-Crane"
+  },
+  {
+    "author": "Sylvia Plath",
+    "works": ["Poppies in July"],
+    "region": "American",
+    "literary_period": "Confessional Poetry",
+    "author_link": "https://www.britannica.com/biography/Sylvia-Plath"
   },
   {
     "author": "Tennessee Williams",
@@ -1357,14 +1383,22 @@
   },
   {
     "author": "Wallace Stevens",
-    "works": ["Sunday Morning"],
+    "works": [
+      "Sunday Morning",
+      "Of Modern Poetry",
+      "Peter Quince at the Clavier",
+      "The Emperor of Ice Cream"
+    ],
     "region": "American",
     "literary_period": "Modernism",
     "author_link": "https://www.britannica.com/biography/Wallace-Stevens"
   },
   {
     "author": "Walt Whitman",
-    "works": ["Out of the Cradle Endlessly Rocking"],
+    "works": [
+      "Out of the Cradle Endlessly Rocking",
+      "When Lilacs Last in the Dooryard Bloom’d"
+    ],
     "region": "American",
     "literary_period": "Transcendentalism",
     "author_link": "https://www.britannica.com/biography/Walt-Whitman"
