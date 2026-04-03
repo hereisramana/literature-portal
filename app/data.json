@@ -573,20 +573,20 @@
 ],
   "Cultural Studies": [
   {
-    "author": "Anand K. Coomaraswamy",
-    "works": ["The Aims of Indian Art"],
-    "region": "Indian",
-    "literary_period": "Modern",
-    "theory_type": "Art Criticism",
-    "author_link": "https://www.britannica.com/biography/Ananda-Kentish-Coomaraswamy"
-  },
-  {
     "author": "Aime Cesaire",
     "works": ["Discourse on Colonialism"],
     "region": "Caribbean",
     "literary_period": "Postcolonial",
     "theory_type": "Postcolonial Theory",
     "author_link": "https://www.britannica.com/biography/Aime-Cesaire"
+  },
+  {
+    "author": "Ananda K. Coomaraswamy",
+    "works": ["The Aims of Indian Art"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "theory_type": "Art Criticism",
+    "author_link": "https://www.britannica.com/biography/Ananda-Kentish-Coomaraswamy"
   },
   {
     "author": "Bill Ashcroft",
@@ -597,12 +597,12 @@
     "author_link": "https://en.wikipedia.org/wiki/Bill_Ashcroft"
   },
   {
-    "author": "Debiprasad Chattopadhyaya",
-    "works": ["The Chanting Dogs"],
-    "region": "Indian",
-    "literary_period": "Modern",
-    "theory_type": "Philosophy",
-    "author_link": "https://en.wikipedia.org/wiki/Debiprasad_Chattopadhyaya"
+    "author": "Cheryll Glotfelty",
+    "works": ["Literary Studies in an Age of Environmental Crisis"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "theory_type": "Ecocriticism",
+    "author_link": "https://en.wikipedia.org/wiki/Cheryll_Glotfelty"
   },
   {
     "author": "Dattu Methre",
@@ -613,40 +613,38 @@
     "author_link": "https://en.wikipedia.org/wiki/Dattu_Methre"
   },
   {
-    "author": "Elaine Showalter",
-    "works": ["Towards a Feminist Poetics"],
-    "region": "American",
-    "literary_period": "Contemporary",
-    "theory_type": "Feminist Theory",
-    "author_link": "https://www.britannica.com/biography/Elaine-Showalter"
+    "author": "Debiprasad Chattopadhyaya",
+    "works": ["The Chanting Dogs"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "theory_type": "Philosophy",
+    "author_link": "https://en.wikipedia.org/wiki/Debiprasad_Chattopadhyaya"
   },
   {
     "author": "Elizabeth Long",
     "works": ["Feminism and Cultural Studies"],
     "region": "American",
     "literary_period": "Contemporary",
-    "theory_type": "Feminist Theory",
+    "theory_type": "Feminist Cultural Theory",
     "author_link": "https://en.wikipedia.org/wiki/Elizabeth_Long"
   },
   {
     "author": "Frantz Fanon",
-    "works": ["On National Culture"],
+    "works": [
+      "On National Culture",
+      "Reciprocal Bases of National Culture",
+      "The Fight for Freedom"
+    ],
     "region": "African-Caribbean",
     "literary_period": "Postcolonial",
     "theory_type": "Postcolonial Theory",
     "author_link": "https://www.britannica.com/biography/Frantz-Fanon"
   },
   {
-    "author": "Glotfelty",
-    "works": ["Literary Studies in an Age of Environmental Crisis"],
-    "region": "American",
-    "literary_period": "Contemporary",
-    "theory_type": "Ecocriticism",
-    "author_link": "https://en.wikipedia.org/wiki/Cheryll_Glotfelty"
-  },
-  {
     "author": "Ipshita Chanda",
-    "works": ["Selfing the City"],
+    "works": [
+      "Selfing the City: The Myth of Calcutta and the Culture of Everyday Life"
+    ],
     "region": "Indian",
     "literary_period": "Contemporary",
     "theory_type": "Urban Cultural Studies",
@@ -669,7 +667,7 @@
     "author_link": "https://en.wikipedia.org/wiki/Kaveri_Nambisan"
   },
   {
-    "author": "Mararand Paranjape",
+    "author": "Makarand Paranjape",
     "works": ["Postmodernism and India"],
     "region": "Indian",
     "literary_period": "Contemporary",
@@ -677,12 +675,12 @@
     "author_link": "https://en.wikipedia.org/wiki/Makarand_Paranjape"
   },
   {
-    "author": "Max Horkheimer",
-    "works": ["The Culture Industry"],
-    "region": "German",
-    "literary_period": "Modern",
-    "theory_type": "Marxist Theory",
-    "author_link": "https://www.britannica.com/biography/Max-Horkheimer"
+    "author": "Pramod K. Nayar",
+    "works": ["Cultural Studies"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Cultural Theory",
+    "author_link": "https://en.wikipedia.org/wiki/Pramod_K._Nayar"
   },
   {
     "author": "Raymond Williams",
@@ -702,19 +700,22 @@
   },
   {
     "author": "Stuart Hall",
-    "works": ["Cultural Studies and its Theoretical Legacy"],
+    "works": [
+      "Race, Culture and Communications",
+      "Cultural Studies and its Theoretical Legacy"
+    ],
     "region": "Caribbean-British",
     "literary_period": "Contemporary",
     "theory_type": "Cultural Theory",
     "author_link": "https://www.britannica.com/biography/Stuart-Hall"
   },
   {
-    "author": "Theodor Adorno",
+    "author": "Theodor Adorno & Max Horkheimer",
     "works": ["The Culture Industry"],
     "region": "German",
     "literary_period": "Modern",
-    "theory_type": "Marxist Theory",
-    "author_link": "https://www.britannica.com/biography/Theodor-Adorno"
+    "theory_type": "Marxist Cultural Theory",
+    "author_link": "https://www.britannica.com/topic/culture-industry"
   },
   {
     "author": "William Dalrymple",
