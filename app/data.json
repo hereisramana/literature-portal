@@ -1603,19 +1603,32 @@
 ],
   "Comparative Literature": [
   {
-    "author": "Auerbach / Comparative Tradition",
-    "works": ["Comparative Literature (Conceptual Study)"],
-    "region": "European",
+    "author": "Albert Camus & Buchi Babu",
+    "works": ["The Outsider", "Chivaraku Migiledi"],
+    "region": "French-Indian",
     "literary_period": "Modern",
     "theory_type": "Comparative Literature"
   },
   {
-    "author": "René Wellek & Austin Warren",
-    "works": ["Theory of Literature"],
-    "region": "European-American",
+    "author": "Ernest Hemingway & Kesava Reddy",
+    "works": ["The Old Man and the Sea", "He Conquered the Jungle"],
+    "region": "American-Indian",
     "literary_period": "Modern",
-    "theory_type": "Literary Theory",
-    "author_link": "https://www.britannica.com/biography/Rene-Wellek"
+    "theory_type": "Comparative Literature"
+  },
+  {
+    "author": "Kalidasa & William Shakespeare",
+    "works": ["Abhijnanasakuntalam", "The Tempest"],
+    "region": "Indian-British",
+    "literary_period": "Classical–Renaissance",
+    "theory_type": "Comparative Literature"
+  },
+  {
+    "author": "Samuel Beckett & Badal Sircar",
+    "works": ["Waiting for Godot", "Evam Indrajit"],
+    "region": "Irish-Indian",
+    "literary_period": "Modern",
+    "theory_type": "Comparative Literature"
   },
   {
     "author": "Susan Bassnett",
@@ -1634,6 +1647,22 @@
     "author_link": "https://www.britannica.com/biography/Mikhail-Bakhtin"
   },
   {
+    "author": "Paul de Man",
+    "works": ["Semiology and Rhetoric"],
+    "region": "Belgian-American",
+    "literary_period": "Postmodernism",
+    "theory_type": "Deconstruction",
+    "author_link": "https://www.britannica.com/biography/Paul-de-Man"
+  },
+  {
+    "author": "René Wellek & Austin Warren",
+    "works": ["Theory of Literature", "General, National and Comparative"],
+    "region": "European-American",
+    "literary_period": "Modern",
+    "theory_type": "Literary Theory",
+    "author_link": "https://www.britannica.com/biography/Rene-Wellek"
+  },
+  {
     "author": "Roland Barthes",
     "works": ["The Death of the Author"],
     "region": "French",
@@ -1642,12 +1671,21 @@
     "author_link": "https://www.britannica.com/biography/Roland-Barthes"
   },
   {
-    "author": "Paul de Man",
-    "works": ["Semiology and Rhetoric"],
-    "region": "Belgian-American",
-    "literary_period": "Postmodernism",
-    "theory_type": "Deconstruction",
-    "author_link": "https://www.britannica.com/biography/Paul-de-Man"
+    "author": "V. S. Sethuraman & Indira C. T.",
+    "works": ["Practical Criticism (Analysis of Unknown Passage: Prose or Poem)"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Practical Criticism"
+  },
+  {
+    "author": "V. S. Sethuraman",
+    "works": [
+      "Dhvanyaloka (Anandavardhana)",
+      "Natyasastra (Bharata)"
+    ],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Indian Aesthetics"
   }
 ],
   "Literary Criticism": [
