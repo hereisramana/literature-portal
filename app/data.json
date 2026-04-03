@@ -735,6 +735,18 @@
     "author_link": "https://www.britannica.com/biography/Adrienne-Rich"
   },
   {
+    "author": "Akka Mahadevi",
+    "works": [
+      "Don’t Despise Me, Brother",
+      "You’ve Come",
+      "Not One, Not Two",
+      "Would a Circling Surface Vulture"
+    ],
+    "region": "Indian",
+    "literary_period": "Bhakti",
+    "theory_type": "Women’s Devotional Poetry"
+  },
+  {
     "author": "Alice Walker",
     "works": ["In Search of Our Mothers’ Gardens"],
     "region": "American",
@@ -749,6 +761,13 @@
     "literary_period": "Postcolonial",
     "theory_type": "African Feminism",
     "author_link": "https://www.britannica.com/biography/Ama-Ata-Aidoo"
+  },
+  {
+    "author": "Amba",
+    "works": ["Squirrel"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "theory_type": "Women’s Writing"
   },
   {
     "author": "Anita Desai",
@@ -799,6 +818,14 @@
     "author_link": "https://www.britannica.com/biography/Doris-Lessing"
   },
   {
+    "author": "Elaine Showalter",
+    "works": ["New Feminist Criticism"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "theory_type": "Feminist Theory",
+    "author_link": "https://www.britannica.com/biography/Elaine-Showalter"
+  },
+  {
     "author": "Eudora Welty",
     "works": ["The Optimist’s Daughter"],
     "region": "American",
@@ -815,7 +842,7 @@
     "author_link": "https://www.britannica.com/biography/Gloria-Naylor"
   },
   {
-    "author": "Helen Cixous",
+    "author": "Hélène Cixous",
     "works": ["The Laugh of the Medusa"],
     "region": "French",
     "literary_period": "Postmodernism",
@@ -829,6 +856,13 @@
     "literary_period": "Modern",
     "theory_type": "Feminist Fiction",
     "author_link": "https://www.britannica.com/biography/Ismat-Chughtai"
+  },
+  {
+    "author": "J. S. Mill",
+    "works": ["The Subjection of Women"],
+    "region": "British",
+    "literary_period": "Victorian",
+    "theory_type": "Feminist Philosophy"
   },
   {
     "author": "Jean Rhys",
@@ -871,6 +905,13 @@
     "author_link": "https://www.britannica.com/biography/Nadine-Gordimer"
   },
   {
+    "author": "Padmanabhan",
+    "works": ["Lights Out"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Feminist Drama"
+  },
+  {
     "author": "Shashi Deshpande",
     "works": ["That Long Silence"],
     "region": "Indian",
@@ -888,11 +929,24 @@
   },
   {
     "author": "Sylvia Plath",
-    "works": ["Daddy", "Lady Lazarus"],
+    "works": [
+      "Daddy",
+      "Lady Lazarus",
+      "Apprehensions",
+      "Three Women",
+      "Ariel"
+    ],
     "region": "American",
     "literary_period": "Confessional Poetry",
     "theory_type": "Feminist Poetry",
     "author_link": "https://www.britannica.com/biography/Sylvia-Plath"
+  },
+  {
+    "author": "Thrity Umrigar",
+    "works": ["If Today Be Sweet"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Feminist Fiction"
   },
   {
     "author": "Toni Morrison",
