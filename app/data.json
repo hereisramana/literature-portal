@@ -1522,19 +1522,14 @@
   "Dalit Literature": [
   {
     "author": "Arjun Dangle",
-    "works": ["Poisoned Bread (Selections)"],
+    "works": [
+      "Two Poems from Poisoned Bread",
+      "Poisoned Bread (Anthology)"
+    ],
     "region": "Indian",
     "literary_period": "Contemporary",
     "theory_type": "Dalit Literature",
     "author_link": "https://en.wikipedia.org/wiki/Arjun_Dangle"
-  },
-  {
-    "author": "Bama",
-    "works": ["Karukku", "Vanmam"],
-    "region": "Indian",
-    "literary_period": "Contemporary",
-    "theory_type": "Dalit Feminism",
-    "author_link": "https://www.britannica.com/biography/Bama"
   },
   {
     "author": "Baby Kamble",
@@ -1545,12 +1540,27 @@
     "author_link": "https://en.wikipedia.org/wiki/Baby_Kamble"
   },
   {
+    "author": "Bama",
+    "works": ["Karukku", "Vanmam"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Feminism",
+    "author_link": "https://www.britannica.com/biography/Bama"
+  },
+  {
     "author": "Eleanor Zelliot",
     "works": ["From Untouchable to Dalit"],
     "region": "American",
     "literary_period": "Modern",
     "theory_type": "Dalit Studies",
     "author_link": "https://en.wikipedia.org/wiki/Eleanor_Zelliot"
+  },
+  {
+    "author": "Enduri Sudhakar",
+    "works": ["Neelika"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Poetry"
   },
   {
     "author": "Gail Omvedt",
@@ -1561,8 +1571,34 @@
     "author_link": "https://www.britannica.com/biography/Gail-Omvedt"
   },
   {
+    "author": "Joseph Macwan",
+    "works": ["The Stepchild"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "theory_type": "Dalit Fiction"
+  },
+  {
+    "author": "K. Enoch",
+    "works": ["Munivahanudu"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "theory_type": "Dalit Drama"
+  },
+  {
+    "author": "L. S. Rokade",
+    "works": ["To Be or Not To Be Born"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Poetry"
+  },
+  {
     "author": "Mahasweta Devi",
-    "works": ["Draupadi", "Rudali"],
+    "works": [
+      "Draupadi",
+      "Rudali",
+      "Stanadayini",
+      "Chotti Munda and His Arrow"
+    ],
     "region": "Indian",
     "literary_period": "Modern",
     "theory_type": "Subaltern Studies",
@@ -1577,12 +1613,26 @@
     "author_link": "https://en.wikipedia.org/wiki/Narendra_Jadhav"
   },
   {
+    "author": "Prahlada Chanwarkar",
+    "works": ["My Father"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Autobiographical Writing"
+  },
+  {
     "author": "Sharan Kumar Limbale",
     "works": ["The Outcaste"],
     "region": "Indian",
     "literary_period": "Contemporary",
     "theory_type": "Dalit Criticism",
     "author_link": "https://en.wikipedia.org/wiki/Sharan_Kumar_Limbale"
+  },
+  {
+    "author": "Sikhamani",
+    "works": ["Two Poems from Black Rainbow"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "theory_type": "Dalit Poetry"
   },
   {
     "author": "Urmila Pawar",
@@ -1594,7 +1644,10 @@
   },
   {
     "author": "Vasant Moon",
-    "works": ["Growing Up Untouchable in India"],
+    "works": [
+      "Growing Up as an Untouchable",
+      "Growing Up Untouchable in India"
+    ],
     "region": "Indian",
     "literary_period": "Contemporary",
     "theory_type": "Dalit Autobiography",
