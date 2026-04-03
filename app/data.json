@@ -1652,6 +1652,30 @@
 ],
   "Literary Criticism": [
   {
+    "author": "Abhinavagupta",
+    "works": ["On Santa Rasa and Aesthetic Equipoise"],
+    "region": "Indian",
+    "literary_period": "Classical",
+    "theory_type": "Indian Aesthetics",
+    "author_link": "https://en.wikipedia.org/wiki/Abhinavagupta"
+  },
+  {
+    "author": "Alexander Pope",
+    "works": ["An Essay on Criticism"],
+    "region": "British",
+    "literary_period": "Neoclassicism",
+    "theory_type": "Neoclassical Criticism",
+    "author_link": "https://www.britannica.com/biography/Alexander-Pope"
+  },
+  {
+    "author": "Ananda Vardhana",
+    "works": ["Dhvanyaloka (Structure of Poetic Meaning: The First Flash)"],
+    "region": "Indian",
+    "literary_period": "Classical",
+    "theory_type": "Dhvani Theory",
+    "author_link": "https://en.wikipedia.org/wiki/Anandavardhana"
+  },
+  {
     "author": "Aristotle",
     "works": ["Poetics", "Rhetoric"],
     "region": "Greek",
@@ -1660,12 +1684,92 @@
     "author_link": "https://www.britannica.com/biography/Aristotle"
   },
   {
-    "author": "Plato",
-    "works": ["The Republic"],
-    "region": "Greek",
+    "author": "Bharata Muni",
+    "works": ["Natyashastra (On Natya and Rasa)"],
+    "region": "Indian",
     "literary_period": "Classical",
-    "theory_type": "Philosophical Criticism",
-    "author_link": "https://www.britannica.com/biography/Plato"
+    "theory_type": "Rasa Theory",
+    "author_link": "https://www.britannica.com/biography/Bharata"
+  },
+  {
+    "author": "Cleanth Brooks",
+    "works": ["Irony as a Principle of Structure"],
+    "region": "American",
+    "literary_period": "Modern",
+    "theory_type": "New Criticism",
+    "author_link": "https://www.britannica.com/biography/Cleanth-Brooks"
+  },
+  {
+    "author": "Edmund Wilson",
+    "works": ["Marxism and Literature"],
+    "region": "American",
+    "literary_period": "Modern",
+    "theory_type": "Marxist Criticism",
+    "author_link": "https://www.britannica.com/biography/Edmund-Wilson"
+  },
+  {
+    "author": "Edward Said",
+    "works": ["Orientalism"],
+    "region": "Palestinian-American",
+    "literary_period": "Postcolonial",
+    "theory_type": "Postcolonial Theory",
+    "author_link": "https://www.britannica.com/biography/Edward-Said"
+  },
+  {
+    "author": "Elaine Showalter",
+    "works": ["Towards a Feminist Poetics"],
+    "region": "American",
+    "literary_period": "Contemporary",
+    "theory_type": "Feminist Criticism",
+    "author_link": "https://www.britannica.com/biography/Elaine-Showalter"
+  },
+  {
+    "author": "Francis Bacon",
+    "works": ["The Advancement of Learning"],
+    "region": "British",
+    "literary_period": "Renaissance",
+    "theory_type": "Empirical Criticism",
+    "author_link": "https://www.britannica.com/biography/Francis-Bacon"
+  },
+  {
+    "author": "Horace",
+    "works": ["Ars Poetica"],
+    "region": "Roman",
+    "literary_period": "Classical",
+    "theory_type": "Classical Criticism",
+    "author_link": "https://www.britannica.com/biography/Horace"
+  },
+  {
+    "author": "I. A. Richards",
+    "works": ["Four Kinds of Meaning"],
+    "region": "British",
+    "literary_period": "Modern",
+    "theory_type": "Practical Criticism",
+    "author_link": "https://www.britannica.com/biography/I-A-Richards"
+  },
+  {
+    "author": "Jacques Derrida",
+    "works": ["Structure, Sign and Play in the Discourse of the Human Sciences"],
+    "region": "French",
+    "literary_period": "Postmodernism",
+    "theory_type": "Deconstruction",
+    "author_link": "https://www.britannica.com/biography/Jacques-Derrida"
+  },
+  {
+    "author": "John Dryden",
+    "works": ["An Essay of Dramatic Poesy"],
+    "region": "British",
+    "literary_period": "Neoclassicism",
+    "theory_type": "Neoclassical Criticism",
+    "author_link": "https://www.britannica.com/biography/John-Dryden"
+  },
+  {
+    "author": "Lionel Trilling",
+    "works": ["Freud and Literature"],
+    "region": "American",
+    "literary_period": "Modern",
+    "theory_type": "Psychoanalytic Criticism",
+    "author_link": "https://www.britannica.com/biography/Lionel-Trilling"
   },
   {
     "author": "Longinus",
@@ -1676,6 +1780,35 @@
     "author_link": "https://www.britannica.com/topic/On-the-Sublime"
   },
   {
+    "author": "Matthew Arnold",
+    "works": [
+      "The Function of Criticism",
+      "The Study of Poetry",
+      "Culture and Anarchy",
+      "Touchstone Method"
+    ],
+    "region": "British",
+    "literary_period": "Victorian",
+    "theory_type": "Cultural Criticism",
+    "author_link": "https://www.britannica.com/biography/Matthew-Arnold"
+  },
+  {
+    "author": "Northrop Frye",
+    "works": ["The Archetypes of Literature"],
+    "region": "Canadian",
+    "literary_period": "Modern",
+    "theory_type": "Archetypal Criticism",
+    "author_link": "https://www.britannica.com/biography/Northrop-Frye"
+  },
+  {
+    "author": "P. B. Shelley",
+    "works": ["A Defence of Poetry"],
+    "region": "British",
+    "literary_period": "Romanticism",
+    "theory_type": "Romantic Criticism",
+    "author_link": "https://www.britannica.com/biography/Percy-Bysshe-Shelley"
+  },
+  {
     "author": "Philip Sidney",
     "works": ["An Apology for Poetry"],
     "region": "British",
@@ -1684,12 +1817,24 @@
     "author_link": "https://www.britannica.com/biography/Sir-Philip-Sidney"
   },
   {
-    "author": "John Dryden",
-    "works": ["Essay of Dramatic Poesy"],
-    "region": "British",
-    "literary_period": "Neoclassicism",
-    "theory_type": "Neoclassical Criticism",
-    "author_link": "https://www.britannica.com/biography/John-Dryden"
+    "author": "Plato",
+    "works": [
+      "The Republic",
+      "Theory of Ideas",
+      "Art and Truth (Representation and Reality)"
+    ],
+    "region": "Greek",
+    "literary_period": "Classical",
+    "theory_type": "Philosophical Criticism",
+    "author_link": "https://www.britannica.com/biography/Plato"
+  },
+  {
+    "author": "Plotinus",
+    "works": ["On the Intellectual Beauties"],
+    "region": "Greek",
+    "literary_period": "Classical",
+    "theory_type": "Neoplatonism",
+    "author_link": "https://www.britannica.com/biography/Plotinus"
   },
   {
     "author": "Samuel Johnson",
@@ -1698,14 +1843,6 @@
     "literary_period": "Neoclassicism",
     "theory_type": "Critical Realism",
     "author_link": "https://www.britannica.com/biography/Samuel-Johnson"
-  },
-  {
-    "author": "William Wordsworth",
-    "works": ["Preface to Lyrical Ballads"],
-    "region": "British",
-    "literary_period": "Romanticism",
-    "theory_type": "Romantic Criticism",
-    "author_link": "https://www.britannica.com/biography/William-Wordsworth"
   },
   {
     "author": "Samuel Taylor Coleridge",
@@ -1717,35 +1854,38 @@
   },
   {
     "author": "T. S. Eliot",
-    "works": ["Tradition and the Individual Talent"],
+    "works": [
+      "Tradition and the Individual Talent",
+      "The Metaphysical Poets"
+    ],
     "region": "British-American",
     "literary_period": "Modernism",
     "theory_type": "Modern Criticism",
     "author_link": "https://www.britannica.com/biography/T-S-Eliot"
   },
   {
-    "author": "Jacques Derrida",
-    "works": ["Structure, Sign and Play"],
-    "region": "French",
-    "literary_period": "Postmodernism",
-    "theory_type": "Deconstruction",
-    "author_link": "https://www.britannica.com/biography/Jacques-Derrida"
-  },
-  {
-    "author": "Edward Said",
-    "works": ["Orientalism"],
-    "region": "Palestinian-American",
-    "literary_period": "Postcolonial",
-    "theory_type": "Postcolonial Theory",
-    "author_link": "https://www.britannica.com/biography/Edward-Said"
-  },
-  {
-    "author": "Northrop Frye",
-    "works": ["The Archetypes of Literature"],
-    "region": "Canadian",
+    "author": "W. K. Wimsatt & Monroe Beardsley",
+    "works": ["The Intentional Fallacy", "The Affective Fallacy"],
+    "region": "American",
     "literary_period": "Modern",
-    "theory_type": "Archetypal Criticism",
-    "author_link": "https://www.britannica.com/biography/Northrop-Frye"
+    "theory_type": "New Criticism",
+    "author_link": "https://en.wikipedia.org/wiki/W._K._Wimsatt"
+  },
+  {
+    "author": "William Empson",
+    "works": ["Seven Types of Ambiguity"],
+    "region": "British",
+    "literary_period": "Modern",
+    "theory_type": "Practical Criticism",
+    "author_link": "https://www.britannica.com/biography/William-Empson"
+  },
+  {
+    "author": "William Wordsworth",
+    "works": ["Preface to the Second Edition of Lyrical Ballads"],
+    "region": "British",
+    "literary_period": "Romanticism",
+    "theory_type": "Romantic Criticism",
+    "author_link": "https://www.britannica.com/biography/William-Wordsworth"
   }
 ]
 }
