@@ -911,7 +911,14 @@
     "author_link": "https://www.britannica.com/biography/Virginia-Woolf"
   }
 ],
-  "Indian Writing in English": [
+  [
+  {
+    "author": "A. P. J. Abdul Kalam",
+    "works": ["A Leader Should Know How to Manage Failure"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "author_link": "https://www.britannica.com/biography/A-P-J-Abdul-Kalam"
+  },
   {
     "author": "Amitav Ghosh",
     "works": ["The Shadow Lines", "The Great Derangement"],
@@ -921,24 +928,56 @@
   },
   {
     "author": "Amartya Sen",
-    "works": ["The Argumentative Indian"],
+    "works": ["The Argumentative Indian Essays from Twentieth Century Prose"],
     "region": "Indian",
     "literary_period": "Contemporary",
     "author_link": "https://www.britannica.com/biography/Amartya-Sen"
   },
   {
-    "author": "Aurobindo Ghose",
-    "works": ["Savitri", "The Renaissance in India"],
+    "author": "Arun Kolatkar",
+    "works": ["An Old Woman", "Heart of Ruin", "A Low Temple"],
     "region": "Indian",
     "literary_period": "Modern",
-    "author_link": "https://www.britannica.com/biography/Sri-Aurobindo"
+    "author_link": "https://en.wikipedia.org/wiki/Arun_Kolatkar"
+  },
+  {
+    "author": "Badal Sircar",
+    "works": ["Evam Indrajit"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Badal-Sircar"
   },
   {
     "author": "B. R. Ambedkar",
-    "works": ["The Buddha and His Dhamma"],
+    "works": [
+      "The Buddha and His Dhamma",
+      "Dhamma, Adhamma and Sadhamma",
+      "Role of Dr. B. R. Ambedkar in Bringing Untouchable on the Political Horizon of India and Laying a Foundation of Indian Democracy"
+    ],
     "region": "Indian",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/B-R-Ambedkar"
+  },
+  {
+    "author": "Chandu Menon",
+    "works": ["Indulekha"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://en.wikipedia.org/wiki/O._Chandu_Menon"
+  },
+  {
+    "author": "D. Bala Gangadhar Tilak",
+    "works": ["Ambrosia Dropped", "My Poesy"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://en.wikipedia.org/wiki/Bal_Gangadhar_Tilak"
+  },
+  {
+    "author": "G. V. Krishna Rao",
+    "works": ["Puppets"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://en.wikipedia.org/wiki/G._V._Krishna_Rao"
   },
   {
     "author": "Girish Karnad",
@@ -946,6 +985,20 @@
     "region": "Indian",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/Girish-Karnad"
+  },
+  {
+    "author": "Gita Hariharan",
+    "works": ["The Thousand Faces of Night"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "author_link": "https://en.wikipedia.org/wiki/Githa_Hariharan"
+  },
+  {
+    "author": "Gurajada Apparao",
+    "works": ["Kanyasulkam"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://en.wikipedia.org/wiki/Gurazada_Apparao"
   },
   {
     "author": "Gurram Jashuva",
@@ -956,31 +1009,52 @@
   },
   {
     "author": "Henry Louis Vivian Derozio",
-    "works": ["The Harp of India"],
+    "works": ["The Harp of India", "To India—My Native Land"],
     "region": "Indian",
     "literary_period": "Romanticism",
     "author_link": "https://www.britannica.com/biography/Henry-Louis-Vivian-Derozio"
   },
   {
     "author": "Jayanta Mahapatra",
-    "works": ["Dawn at Puri", "An Indian Summer"],
+    "works": [
+      "Landscape",
+      "June Rain",
+      "Village Evening",
+      "Dawn at Puri",
+      "An Indian Summer",
+      "The Moon Moments"
+    ],
     "region": "Indian",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/Jayanta-Mahapatra"
   },
   {
     "author": "Kalidasa",
-    "works": ["Meghaduta", "Kumarasambhava"],
+    "works": ["Kumarasambhava", "Meghaduta"],
     "region": "Indian",
     "literary_period": "Classical",
     "author_link": "https://www.britannica.com/biography/Kalidasa"
   },
   {
     "author": "Kamala Das",
-    "works": ["An Introduction"],
+    "works": ["The Freaks", "Ghanshyam", "An Introduction"],
     "region": "Indian",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/Kamala-Das"
+  },
+  {
+    "author": "Keiki N. Daruwalla",
+    "works": ["Al Azhar Lecture", "Migration", "Before"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Keki-N-Daruwalla"
+  },
+  {
+    "author": "Kesava Reddy",
+    "works": ["Moogavani Pillanagrovi: Ballad of Ontillu"],
+    "region": "Indian",
+    "literary_period": "Contemporary",
+    "author_link": "https://en.wikipedia.org/wiki/Kesava_Reddy"
   },
   {
     "author": "Kiran Desai",
@@ -990,7 +1064,7 @@
     "author_link": "https://www.britannica.com/biography/Kiran-Desai"
   },
   {
-    "author": "Kushwant Singh",
+    "author": "Khushwant Singh",
     "works": ["Train to Pakistan"],
     "region": "Indian",
     "literary_period": "Modern",
@@ -1005,10 +1079,21 @@
   },
   {
     "author": "Nissim Ezekiel",
-    "works": ["Night of the Scorpion"],
+    "works": [
+      "Enterprise",
+      "Night of the Scorpion",
+      "Goodbye Party for Miss Pushpa T. S"
+    ],
     "region": "Indian",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/Nissim-Ezekiel"
+  },
+  {
+    "author": "Parthasarathy",
+    "works": ["Homecoming (Sections 1, 3 & 4)"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://en.wikipedia.org/wiki/R._Parthasarathy"
   },
   {
     "author": "Premchand",
@@ -1026,7 +1111,15 @@
   },
   {
     "author": "Rabindranath Tagore",
-    "works": ["Gitanjali", "The Cabuliwallah"],
+    "works": [
+      "Gitanjali",
+      "Mukta-Dhara",
+      "An Eastern University",
+      "East and West",
+      "Chitra",
+      "Religion of the Forest",
+      "The Cabuliwallah"
+    ],
     "region": "Indian",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/Rabindranath-Tagore"
@@ -1040,7 +1133,7 @@
   },
   {
     "author": "Raja Rao",
-    "works": ["Kanthapura"],
+    "works": ["Kanthapura", "The Cow of the Barricades"],
     "region": "Indian",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/Raja-Rao"
@@ -1054,17 +1147,75 @@
   },
   {
     "author": "Sarojini Naidu",
-    "works": ["The Soul’s Prayer"],
+    "works": ["The Soul’s Prayer", "Songs of Radha"],
     "region": "Indian",
     "literary_period": "Romanticism",
     "author_link": "https://www.britannica.com/biography/Sarojini-Naidu"
   },
   {
+    "author": "Sarat Chandra Chattopadhyay",
+    "works": ["Pather Dabi"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Sarat-Chandra-Chatterjee"
+  },
+  {
+    "author": "Sri Aurobindo",
+    "works": [
+      "Savitri",
+      "Book I",
+      "Perseus the Deliverer",
+      "Renaissance in India"
+    ],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Sri-Aurobindo"
+  },
+  {
+    "author": "Sri Sri",
+    "works": [
+      "To Poesy",
+      "Rhapsody",
+      "The March of History",
+      "Forward March"
+    ],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://en.wikipedia.org/wiki/Sri_Sri"
+  },
+  {
+    "author": "Sripada Subrahmanya Sastri",
+    "works": ["Attar of Roses"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://en.wikipedia.org/wiki/Sripada_Subrahmanya_Sastry"
+  },
+  {
     "author": "Subramania Bharati",
-    "works": ["Panchali’s Vow"],
+    "works": [
+      "Phoenix",
+      "Truth",
+      "Deception",
+      "Kuyil Paatu",
+      "Panchali’s Vow"
+    ],
     "region": "Indian",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/Subramania-Bharati"
+  },
+  {
+    "author": "S. Radhakrishnan",
+    "works": ["Kalki"],
+    "region": "Indian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/Sarvepalli-Radhakrishnan"
+  },
+  {
+    "author": "Toru Dutt",
+    "works": ["Our Casuarina Tree", "Sita", "Lakshman", "Jogadya Uma"],
+    "region": "Indian",
+    "literary_period": "Romanticism",
+    "author_link": "https://www.britannica.com/biography/Toru-Dutt"
   },
   {
     "author": "U. R. Ananthamurthy",
