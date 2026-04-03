@@ -1427,7 +1427,46 @@
     "region": "British-African",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/Joyce-Cary"
+  },
+  {
+    "author": "J. M. Coetzee",
+    "works": ["Waiting for the Barbarians"],
+    "region": "African",
+    "literary_period": "Postmodernism",
+    "author_link": "https://www.britannica.com/biography/J-M-Coetzee"
+  },
+  {
+    "author": "Leopold Sedar Senghor",
+    "works": ["New York"],
+    "region": "African",
+    "literary_period": "Negritude",
+    "author_link": "https://www.britannica.com/biography/Leopold-Sedar-Senghor"
+  },
+  {
+    "author": "Ngũgĩ wa Thiong'o",
+    "works": ["A Grain of Wheat", "Decolonising the Mind"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Ngugi-wa-Thiongo"
+  },
+  {
+    "author": "Nadine Gordimer",
+    "works": ["My Son’s Story"],
+    "region": "African",
+    "literary_period": "Postcolonial"
+  },
+  {
+    "author": "Wole Soyinka",
+    "works": [
+      "The Lion and the Jewel",
+      "Kongi’s Harvest",
+      "A Dance of the Forests"
+    ],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Wole-Soyinka"
   }
+  
 ],
   "New Literature": [
   {
@@ -1491,26 +1530,7 @@
     "literary_period": "Postcolonial",
     "author_link": "https://www.britannica.com/biography/Derek-Walcott"
   },
-  {
-    "author": "Leopold Sedar Senghor",
-    "works": ["New York"],
-    "region": "African",
-    "literary_period": "Negritude",
-    "author_link": "https://www.britannica.com/biography/Leopold-Sedar-Senghor"
-  },
-  {
-    "author": "Ngũgĩ wa Thiong'o",
-    "works": ["A Grain of Wheat", "Decolonising the Mind"],
-    "region": "African",
-    "literary_period": "Postcolonial",
-    "author_link": "https://www.britannica.com/biography/Ngugi-wa-Thiongo"
-  },
-  {
-    "author": "Nadine Gordimer",
-    "works": ["My Son’s Story"],
-    "region": "African",
-    "literary_period": "Postcolonial"
-  },
+  
   {
     "author": "Ralph Ellison",
     "works": ["Invisible Man"],
@@ -1525,29 +1545,11 @@
     "literary_period": "Modern"
   },
   {
-    "author": "Wole Soyinka",
-    "works": [
-      "The Lion and the Jewel",
-      "Kongi’s Harvest",
-      "A Dance of the Forests"
-    ],
-    "region": "African",
-    "literary_period": "Postcolonial",
-    "author_link": "https://www.britannica.com/biography/Wole-Soyinka"
-  },
-  {
     "author": "Zadie Smith",
     "works": ["White Teeth"],
     "region": "British-Caribbean",
     "literary_period": "Contemporary",
     "author_link": "https://www.britannica.com/biography/Zadie-Smith"
-  },
-  {
-    "author": "J. M. Coetzee",
-    "works": ["Waiting for the Barbarians"],
-    "region": "African",
-    "literary_period": "Postmodernism",
-    "author_link": "https://www.britannica.com/biography/J-M-Coetzee"
   }
 ],
   "Dalit Literature": [
