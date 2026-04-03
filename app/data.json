@@ -193,10 +193,24 @@
   },
   {
     "author": "Arnold Wesker",
-    "works": ["Roots", "Chicken Soup with Barley"],
+    "works": ["Chicken Soup with Barley", "Roots"],
     "region": "British",
     "literary_period": "Modern Drama",
     "author_link": "https://www.britannica.com/biography/Arnold-Wesker"
+  },
+  {
+    "author": "Ben Jonson",
+    "works": ["Volpone", "Every Man in His Humour"],
+    "region": "British",
+    "literary_period": "Renaissance",
+    "author_link": "https://www.britannica.com/biography/Ben-Jonson"
+  },
+  {
+    "author": "George Bernard Shaw",
+    "works": ["Pygmalion"],
+    "region": "Irish",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/George-Bernard-Shaw"
   },
   {
     "author": "Bertolt Brecht",
@@ -218,13 +232,6 @@
     "region": "American",
     "literary_period": "Modern Drama",
     "author_link": "https://www.britannica.com/biography/Eugene-ONeill"
-  },
-  {
-    "author": "George Bernard Shaw",
-    "works": ["Pygmalion"],
-    "region": "Irish",
-    "literary_period": "Modern Drama",
-    "author_link": "https://www.britannica.com/biography/George-Bernard-Shaw"
   },
   {
     "author": "Harold Pinter",
@@ -262,13 +269,6 @@
     "author_link": "https://www.britannica.com/biography/John-Webster"
   },
   {
-    "author": "Luigi Pirandello",
-    "works": ["Six Characters in Search of an Author"],
-    "region": "Italian",
-    "literary_period": "Modern Drama",
-    "author_link": "https://www.britannica.com/biography/Luigi-Pirandello"
-  },
-  {
     "author": "Ngũgĩ wa Thiong'o",
     "works": ["The Black Hermit"],
     "region": "African",
@@ -288,6 +288,13 @@
     "region": "Irish",
     "literary_period": "Victorian",
     "author_link": "https://www.britannica.com/biography/Oscar-Wilde"
+  },
+  {
+    "author": "Luigi Pirandello",
+    "works": ["Six Characters in Search of an Author"],
+    "region": "Italian",
+    "literary_period": "Modern Drama",
+    "author_link": "https://www.britannica.com/biography/Luigi-Pirandello"
   },
   {
     "author": "Poile Sengupta",
@@ -349,10 +356,13 @@
     "author": "William Shakespeare",
     "works": [
       "Hamlet",
+      "Henry IV Part I",
       "Macbeth",
-      "The Tempest",
       "Twelfth Night",
-      "Julius Caesar"
+      "Much Ado About Nothing",
+      "Julius Caesar",
+      "The Tempest",
+      "Cymbeline"
     ],
     "region": "British",
     "literary_period": "Renaissance",
