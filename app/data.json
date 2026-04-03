@@ -1393,20 +1393,6 @@
     "author_link": "https://www.britannica.com/biography/Chinua-Achebe"
   },
   {
-    "author": "Coetzee (J. M. Coetzee)",
-    "works": ["Waiting for the Barbarians"],
-    "region": "African",
-    "literary_period": "Postmodernism",
-    "author_link": "https://www.britannica.com/biography/J-M-Coetzee"
-  },
-  {
-    "author": "Derek Walcott",
-    "works": ["A Far Cry from Africa"],
-    "region": "Caribbean",
-    "literary_period": "Postcolonial",
-    "author_link": "https://www.britannica.com/biography/Derek-Walcott"
-  },
-  {
     "author": "Doris Lessing",
     "works": ["The Grass is Singing"],
     "region": "British-African",
@@ -1414,29 +1400,23 @@
     "author_link": "https://www.britannica.com/biography/Doris-Lessing"
   },
   {
-    "author": "E. J. Pratt",
-    "works": ["The Dying Eagle"],
-    "region": "Canadian",
-    "literary_period": "Modern",
-    "author_link": "https://www.britannica.com/biography/E-J-Pratt"
-  },
-  {
     "author": "Gabriel Okara",
-    "works": ["Once Upon a Time"],
+    "works": [
+      "Once Upon a Time",
+      "Spirit of the Wind",
+      "The Mystic Drum"
+    ],
     "region": "African",
     "literary_period": "Postcolonial",
     "author_link": "https://www.britannica.com/biography/Gabriel-Okara"
   },
   {
-    "author": "George Lamming",
-    "works": ["In the Castle of My Skin"],
-    "region": "Caribbean",
-    "literary_period": "Postcolonial",
-    "author_link": "https://www.britannica.com/biography/George-Lamming"
-  },
-  {
     "author": "J. P. Clark",
-    "works": ["The Casualties"],
+    "works": [
+      "The Casualties",
+      "Olokun",
+      "Night Rain"
+    ],
     "region": "African",
     "literary_period": "Postcolonial",
     "author_link": "https://www.britannica.com/biography/J-P-Clark"
@@ -1447,13 +1427,27 @@
     "region": "British-African",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/Joyce-Cary"
+  }
+],
+  "New Literature": [
+  {
+    "author": "A. D. Hope",
+    "works": ["Australia", "The Death of the Bird"],
+    "region": "Australian",
+    "literary_period": "Modern"
   },
   {
-    "author": "Leopold Sedar Senghor",
-    "works": ["New York"],
-    "region": "African",
-    "literary_period": "Negritude",
-    "author_link": "https://www.britannica.com/biography/Leopold-Sedar-Senghor"
+    "author": "Douglas Stewart",
+    "works": ["Ned Kelly"],
+    "region": "Australian",
+    "literary_period": "Modern"
+  },
+  {
+    "author": "E. J. Pratt",
+    "works": ["Brébeuf and His Brethren", "The Dying Eagle"],
+    "region": "Canadian",
+    "literary_period": "Modern",
+    "author_link": "https://www.britannica.com/biography/E-J-Pratt"
   },
   {
     "author": "Margaret Atwood",
@@ -1470,25 +1464,11 @@
     "author_link": "https://www.britannica.com/biography/Margaret-Laurence"
   },
   {
-    "author": "Ngũgĩ wa Thiong'o",
-    "works": ["A Grain of Wheat", "Decolonising the Mind"],
-    "region": "African",
-    "literary_period": "Postcolonial",
-    "author_link": "https://www.britannica.com/biography/Ngugi-wa-Thiongo"
-  },
-  {
     "author": "Patrick White",
     "works": ["Voss"],
     "region": "Australian",
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/Patrick-White"
-  },
-  {
-    "author": "Ralph Ellison",
-    "works": ["Invisible Man"],
-    "region": "American",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/Ralph-Ellison"
   },
   {
     "author": "Rita Joe",
@@ -1505,8 +1485,52 @@
     "author_link": "https://www.britannica.com/biography/V-S-Naipaul"
   },
   {
+    "author": "Derek Walcott",
+    "works": ["A Far Cry from Africa", "Ruins of a Great House"],
+    "region": "Caribbean",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Derek-Walcott"
+  },
+  {
+    "author": "Leopold Sedar Senghor",
+    "works": ["New York"],
+    "region": "African",
+    "literary_period": "Negritude",
+    "author_link": "https://www.britannica.com/biography/Leopold-Sedar-Senghor"
+  },
+  {
+    "author": "Ngũgĩ wa Thiong'o",
+    "works": ["A Grain of Wheat", "Decolonising the Mind"],
+    "region": "African",
+    "literary_period": "Postcolonial",
+    "author_link": "https://www.britannica.com/biography/Ngugi-wa-Thiongo"
+  },
+  {
+    "author": "Nadine Gordimer",
+    "works": ["My Son’s Story"],
+    "region": "African",
+    "literary_period": "Postcolonial"
+  },
+  {
+    "author": "Ralph Ellison",
+    "works": ["Invisible Man"],
+    "region": "American",
+    "literary_period": "Modernism",
+    "author_link": "https://www.britannica.com/biography/Ralph-Ellison"
+  },
+  {
+    "author": "Lorraine Hansberry",
+    "works": ["A Raisin in the Sun"],
+    "region": "American",
+    "literary_period": "Modern"
+  },
+  {
     "author": "Wole Soyinka",
-    "works": ["The Lion and the Jewel"],
+    "works": [
+      "The Lion and the Jewel",
+      "Kongi’s Harvest",
+      "A Dance of the Forests"
+    ],
     "region": "African",
     "literary_period": "Postcolonial",
     "author_link": "https://www.britannica.com/biography/Wole-Soyinka"
@@ -1517,6 +1541,13 @@
     "region": "British-Caribbean",
     "literary_period": "Contemporary",
     "author_link": "https://www.britannica.com/biography/Zadie-Smith"
+  },
+  {
+    "author": "J. M. Coetzee",
+    "works": ["Waiting for the Barbarians"],
+    "region": "African",
+    "literary_period": "Postmodernism",
+    "author_link": "https://www.britannica.com/biography/J-M-Coetzee"
   }
 ],
   "Dalit Literature": [
