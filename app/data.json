@@ -1,5 +1,5 @@
-const data = {
-  "Poetry": [[
+ {
+  "Poetry": [
   {
     "author": "A. D. Hope",
     "works": ["Australia"],
@@ -175,8 +175,8 @@ const data = {
     "literary_period": "Romanticism",
     "author_link": "https://www.britannica.com/biography/William-Wordsworth"
   }
-]],
-  "Drama": [[
+],
+  "Drama": [
   {
     "author": "Adrienne Kennedy",
     "works": ["Funnyhouse of a Negro"],
@@ -358,8 +358,8 @@ const data = {
     "literary_period": "Renaissance",
     "author_link": "https://www.britannica.com/biography/William-Shakespeare"
   }
-]],
-  "Prose & Fiction": [[
+],
+  "Prose & Fiction": [
   {
     "author": "Albert Camus",
     "works": ["The Outsider"],
@@ -570,8 +570,8 @@ const data = {
     "literary_period": "Postmodernism",
     "author_link": "https://www.britannica.com/biography/William-Golding"
   }
-]],
-  "Cultural Studies": [[
+],
+  "Cultural Studies": [
   {
     "author": "Anand K. Coomaraswamy",
     "works": ["The Aims of Indian Art"],
@@ -724,8 +724,8 @@ const data = {
     "theory_type": "Cultural History",
     "author_link": "https://www.britannica.com/biography/William-Dalrymple"
   }
-]],
-  "Women’s Writing": [[
+],
+  "Women’s Writing": [
   {
     "author": "Adrienne Rich",
     "works": ["Snapshots of a Daughter-in-Law"],
@@ -910,8 +910,8 @@ const data = {
     "theory_type": "Feminist Theory",
     "author_link": "https://www.britannica.com/biography/Virginia-Woolf"
   }
-]],
-  "Indian Writing in English": [[
+],
+  "Indian Writing in English": [
   {
     "author": "Amitav Ghosh",
     "works": ["The Shadow Lines", "The Great Derangement"],
@@ -1080,8 +1080,8 @@ const data = {
     "literary_period": "Modern",
     "author_link": "https://www.britannica.com/biography/Vijay-Tendulkar"
   }
-]],
-  "American Literature": [[
+],
+  "American Literature": [
   {
     "author": "Arthur Miller",
     "works": ["Death of a Salesman"],
@@ -1225,8 +1225,8 @@ const data = {
     "literary_period": "Modernism",
     "author_link": "https://www.britannica.com/biography/William-Faulkner"
   }
-]],
-  "Afro Literature": [[
+],
+  "Afro Literature": [
   {
     "author": "Alan Paton",
     "works": ["Cry, the Beloved Country"],
@@ -1367,8 +1367,8 @@ const data = {
     "literary_period": "Contemporary",
     "author_link": "https://www.britannica.com/biography/Zadie-Smith"
   }
-]],
-  "Dalit Literature": [[
+],
+  "Dalit Literature": [
   {
     "author": "Arjun Dangle",
     "works": ["Poisoned Bread (Selections)"],
@@ -1449,8 +1449,8 @@ const data = {
     "theory_type": "Dalit Autobiography",
     "author_link": "https://en.wikipedia.org/wiki/Vasant_Moon"
   }
-]],
-  "Comparative Literature": [[
+],
+  "Comparative Literature": [
   {
     "author": "Auerbach / Comparative Tradition",
     "works": ["Comparative Literature (Conceptual Study)"],
@@ -1498,8 +1498,8 @@ const data = {
     "theory_type": "Deconstruction",
     "author_link": "https://www.britannica.com/biography/Paul-de-Man"
   }
-]],
-  "Literary Criticism": [[
+],
+  "Literary Criticism": [
   {
     "author": "Aristotle",
     "works": ["Poetics", "Rhetoric"],
@@ -1596,5 +1596,5 @@ const data = {
     "theory_type": "Archetypal Criticism",
     "author_link": "https://www.britannica.com/biography/Northrop-Frye"
   }
-]]
+]
 };
