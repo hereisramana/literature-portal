@@ -364,211 +364,260 @@
     "author": "Albert Camus",
     "works": ["The Outsider"],
     "region": "French",
-    "literary_period": "Existentialism",
-    "author_link": "https://www.britannica.com/biography/Albert-Camus"
+    "literary_period": "Existentialism"
   },
   {
     "author": "Anton Chekhov",
     "works": ["The Lady with the Dog"],
     "region": "Russian",
-    "literary_period": "Realism",
-    "author_link": "https://www.britannica.com/biography/Anton-Chekhov"
+    "literary_period": "Realism"
   },
   {
     "author": "Balzac",
     "works": ["Eugenie Grandet"],
     "region": "French",
-    "literary_period": "Realism",
-    "author_link": "https://www.britannica.com/biography/Honore-de-Balzac"
+    "literary_period": "Realism"
+  },
+  {
+    "author": "Beatrice Culleton",
+    "works": ["In Search of April Raintree"],
+    "region": "Canadian",
+    "literary_period": "Contemporary"
   },
   {
     "author": "Charles Dickens",
-    "works": ["Great Expectations", "Hard Times", "A Tale of Two Cities"],
+    "works": [
+      "Hard Times",
+      "Great Expectations",
+      "David Copperfield",
+      "A Tale of Two Cities"
+    ],
     "region": "British",
-    "literary_period": "Victorian",
-    "author_link": "https://www.britannica.com/biography/Charles-Dickens"
+    "literary_period": "Victorian"
+  },
+  {
+    "author": "Charles Lamb",
+    "works": [
+      "Dream Children: A Reverie",
+      "Imperfect Sympathies",
+      "A Bachelor’s Complaint",
+      "New Year’s Eve",
+      "All Fools’ Day",
+      "The South Sea House",
+      "Grace Before Meat",
+      "A Dissertation upon a Roast Pig",
+      "Old China",
+      "The Chimney Sweepers",
+      "On the Artificial Comedy"
+    ],
+    "region": "British",
+    "literary_period": "Romanticism"
   },
   {
     "author": "Charlotte Brontë",
     "works": ["Jane Eyre"],
     "region": "British",
-    "literary_period": "Victorian",
-    "author_link": "https://www.britannica.com/biography/Charlotte-Bronte"
+    "literary_period": "Victorian"
   },
   {
     "author": "D. H. Lawrence",
     "works": ["Sons and Lovers"],
     "region": "British",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/D-H-Lawrence"
+    "literary_period": "Modernism"
   },
   {
     "author": "Edgar Allan Poe",
     "works": ["The Tell-Tale Heart"],
     "region": "American",
-    "literary_period": "Gothic",
-    "author_link": "https://www.britannica.com/biography/Edgar-Allan-Poe"
-  },
-  {
-    "author": "Emily Brontë",
-    "works": ["Wuthering Heights"],
-    "region": "British",
-    "literary_period": "Victorian",
-    "author_link": "https://www.britannica.com/biography/Emily-Bronte"
+    "literary_period": "Gothic"
   },
   {
     "author": "E. M. Forster",
     "works": ["A Passage to India"],
     "region": "British",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/E-M-Forster"
+    "literary_period": "Modernism"
+  },
+  {
+    "author": "Emily Brontë",
+    "works": ["Wuthering Heights"],
+    "region": "British",
+    "literary_period": "Victorian"
+  },
+  {
+    "author": "Evelyn Waugh",
+    "works": ["A Handful of Dust"],
+    "region": "British",
+    "literary_period": "Modern"
+  },
+  {
+    "author": "Francis Bacon",
+    "works": [
+      "Of Studies",
+      "Of Truth",
+      "Of Youth and Age",
+      "Of Death",
+      "Of Revenge",
+      "Of Love",
+      "Of Adversity",
+      "Of Parents and Children",
+      "Of Friendship",
+      "Of Customs and Education",
+      "Of Nature in Men",
+      "Of Beauty",
+      "Of Marriage and Single Life",
+      "New Atlantis"
+    ],
+    "region": "British",
+    "literary_period": "Renaissance"
   },
   {
     "author": "Franz Kafka",
     "works": ["The Castle"],
     "region": "Czech",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/Franz-Kafka"
+    "literary_period": "Modernism"
   },
   {
     "author": "Fyodor Dostoevsky",
     "works": ["Crime and Punishment", "The Brothers Karamazov"],
     "region": "Russian",
-    "literary_period": "Realism",
-    "author_link": "https://www.britannica.com/biography/Fyodor-Dostoyevsky"
+    "literary_period": "Realism"
   },
   {
     "author": "Gabriel García Márquez",
     "works": ["Balthazar’s Marvelous Afternoon"],
     "region": "Colombian",
-    "literary_period": "Magical Realism",
-    "author_link": "https://www.britannica.com/biography/Gabriel-Garcia-Marquez"
+    "literary_period": "Magical Realism"
   },
   {
     "author": "George Eliot",
-    "works": ["Middlemarch"],
+    "works": ["Middlemarch", "The Mill on the Floss"],
     "region": "British",
-    "literary_period": "Victorian",
-    "author_link": "https://www.britannica.com/biography/George-Eliot"
+    "literary_period": "Victorian"
   },
   {
     "author": "George Orwell",
-    "works": ["Burmese Days", "Politics and the English Language"],
+    "works": [
+      "Burmese Days",
+      "You and the Atomic Bomb",
+      "Politics and the English Language"
+    ],
     "region": "British",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/George-Orwell"
+    "literary_period": "Modernism"
   },
   {
     "author": "Graham Greene",
-    "works": ["The Power and the Glory"],
+    "works": ["The Heart of the Matter", "The Power and the Glory"],
     "region": "British",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/Graham-Greene"
-  },
-  {
-    "author": "Gustave Flaubert",
-    "works": ["Madame Bovary"],
-    "region": "French",
-    "literary_period": "Realism",
-    "author_link": "https://www.britannica.com/biography/Gustave-Flaubert"
+    "literary_period": "Modernism"
   },
   {
     "author": "H. G. Wells",
     "works": ["The Time Machine"],
     "region": "British",
-    "literary_period": "Early Science Fiction",
-    "author_link": "https://www.britannica.com/biography/H-G-Wells"
+    "literary_period": "Science Fiction"
   },
   {
     "author": "Henry Fielding",
     "works": ["Joseph Andrews"],
     "region": "British",
-    "literary_period": "Neoclassicism",
-    "author_link": "https://www.britannica.com/biography/Henry-Fielding"
+    "literary_period": "Neoclassicism"
   },
   {
-    "author": "James Joyce",
-    "works": ["A Portrait of the Artist as a Young Man"],
-    "region": "Irish",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/James-Joyce"
+    "author": "Herman Hesse",
+    "works": ["Siddhartha"],
+    "region": "German",
+    "literary_period": "Modern"
   },
   {
     "author": "Jane Austen",
     "works": ["Pride and Prejudice", "Emma"],
     "region": "British",
-    "literary_period": "Romanticism",
-    "author_link": "https://www.britannica.com/biography/Jane-Austen"
+    "literary_period": "Romanticism"
+  },
+  {
+    "author": "James Joyce",
+    "works": ["A Portrait of the Artist as a Young Man"],
+    "region": "Irish",
+    "literary_period": "Modernism"
   },
   {
     "author": "Jonathan Swift",
-    "works": ["Gulliver’s Travels"],
+    "works": [
+      "Gulliver’s Travels (Chapters 1 & 2)",
+      "The Battle of the Books"
+    ],
     "region": "Irish",
-    "literary_period": "Neoclassicism",
-    "author_link": "https://www.britannica.com/biography/Jonathan-Swift"
+    "literary_period": "Neoclassicism"
   },
   {
     "author": "Joseph Conrad",
     "works": ["Heart of Darkness"],
     "region": "Polish-British",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/Joseph-Conrad"
+    "literary_period": "Modernism"
   },
   {
     "author": "Katherine Mansfield",
     "works": ["The Doll’s House"],
     "region": "New Zealand",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/Katherine-Mansfield"
+    "literary_period": "Modernism"
   },
   {
     "author": "Leo Tolstoy",
     "works": ["War and Peace", "Anna Karenina"],
     "region": "Russian",
-    "literary_period": "Realism",
-    "author_link": "https://www.britannica.com/biography/Leo-Tolstoy"
+    "literary_period": "Realism"
   },
   {
     "author": "Mary Shelley",
     "works": ["Frankenstein"],
     "region": "British",
-    "literary_period": "Romanticism",
-    "author_link": "https://www.britannica.com/biography/Mary-Wollstonecraft-Shelley"
+    "literary_period": "Romanticism"
   },
   {
     "author": "O. Henry",
     "works": ["The Last Leaf"],
     "region": "American",
-    "literary_period": "Realism",
-    "author_link": "https://www.britannica.com/biography/O-Henry"
+    "literary_period": "Realism"
   },
   {
     "author": "Oscar Wilde",
     "works": ["The Selfish Giant"],
     "region": "Irish",
-    "literary_period": "Victorian",
-    "author_link": "https://www.britannica.com/biography/Oscar-Wilde"
+    "literary_period": "Victorian"
+  },
+  {
+    "author": "Somerset Maugham",
+    "works": ["The Ant and the Grasshopper", "Six Stories from Cosmopolitan"],
+    "region": "British",
+    "literary_period": "Modern"
   },
   {
     "author": "Thomas Hardy",
-    "works": ["Tess of the d’Urbervilles"],
+    "works": ["Tess of the d’Urbervilles", "The Mayor of Casterbridge"],
     "region": "British",
-    "literary_period": "Victorian",
-    "author_link": "https://www.britannica.com/biography/Thomas-Hardy"
+    "literary_period": "Victorian"
   },
   {
     "author": "Virginia Woolf",
-    "works": ["Mrs Dalloway", "A Room of One’s Own"],
+    "works": [
+      "A Room of One’s Own",
+      "Mrs Dalloway",
+      "To the Lighthouse"
+    ],
     "region": "British",
-    "literary_period": "Modernism",
-    "author_link": "https://www.britannica.com/biography/Virginia-Woolf"
+    "literary_period": "Modernism"
   },
   {
     "author": "William Golding",
     "works": ["Lord of the Flies"],
     "region": "British",
-    "literary_period": "Postmodernism",
-    "author_link": "https://www.britannica.com/biography/William-Golding"
+    "literary_period": "Postmodernism"
+  },
+  {
+    "author": "William Thackeray",
+    "works": ["Vanity Fair"],
+    "region": "British",
+    "literary_period": "Victorian"
   }
 ],
   "Cultural Studies": [
