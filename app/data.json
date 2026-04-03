@@ -368,7 +368,7 @@
   },
   {
     "author": "Anton Chekhov",
-    "works": ["The Lady with the Dog"],
+    "works": ["The Lady with the Pet Dog"],
     "region": "Russian",
     "literary_period": "Realism"
   },
@@ -398,6 +398,7 @@
   {
     "author": "Charles Lamb",
     "works": [
+      "My Relations",
       "Dream Children: A Reverie",
       "Imperfect Sympathies",
       "A Bachelor’s Complaint",
@@ -408,7 +409,7 @@
       "A Dissertation upon a Roast Pig",
       "Old China",
       "The Chimney Sweepers",
-      "On the Artificial Comedy"
+      "On the Artificial Comedy of the Last Century"
     ],
     "region": "British",
     "literary_period": "Romanticism"
@@ -426,16 +427,22 @@
     "literary_period": "Modernism"
   },
   {
-    "author": "Edgar Allan Poe",
-    "works": ["The Tell-Tale Heart"],
-    "region": "American",
-    "literary_period": "Gothic"
+    "author": "Fyodor Dostoevsky",
+    "works": ["The Brothers Karamazov", "Crime and Punishment"],
+    "region": "Russian",
+    "literary_period": "Realism"
   },
   {
     "author": "E. M. Forster",
     "works": ["A Passage to India"],
     "region": "British",
     "literary_period": "Modernism"
+  },
+  {
+    "author": "Edgar Allan Poe",
+    "works": ["The Tell-Tale Heart"],
+    "region": "American",
+    "literary_period": "Gothic"
   },
   {
     "author": "Emily Brontë",
@@ -471,16 +478,16 @@
     "literary_period": "Renaissance"
   },
   {
+    "author": "Frank Kermode",
+    "works": ["Uses of Error"],
+    "region": "British",
+    "literary_period": "Contemporary"
+  },
+  {
     "author": "Franz Kafka",
     "works": ["The Castle"],
     "region": "Czech",
     "literary_period": "Modernism"
-  },
-  {
-    "author": "Fyodor Dostoevsky",
-    "works": ["Crime and Punishment", "The Brothers Karamazov"],
-    "region": "Russian",
-    "literary_period": "Realism"
   },
   {
     "author": "Gabriel García Márquez",
@@ -490,9 +497,15 @@
   },
   {
     "author": "George Eliot",
-    "works": ["Middlemarch", "The Mill on the Floss"],
+    "works": ["The Mill on the Floss", "Middlemarch"],
     "region": "British",
     "literary_period": "Victorian"
+  },
+  {
+    "author": "George Lamming",
+    "works": ["In the Castle of My Skin"],
+    "region": "Caribbean",
+    "literary_period": "Postcolonial"
   },
   {
     "author": "George Orwell",
@@ -509,6 +522,24 @@
     "works": ["The Heart of the Matter", "The Power and the Glory"],
     "region": "British",
     "literary_period": "Modernism"
+  },
+  {
+    "author": "Gregory David Roberts",
+    "works": ["Shantaram"],
+    "region": "Australian",
+    "literary_period": "Contemporary"
+  },
+  {
+    "author": "Gustave Flaubert",
+    "works": ["Madame Bovary"],
+    "region": "French",
+    "literary_period": "Realism"
+  },
+  {
+    "author": "Guy de Maupassant",
+    "works": ["Vendetta"],
+    "region": "French",
+    "literary_period": "Realism"
   },
   {
     "author": "H. G. Wells",
@@ -541,12 +572,36 @@
     "literary_period": "Modernism"
   },
   {
+    "author": "Jean Rhys",
+    "works": ["Wide Sargasso Sea"],
+    "region": "Caribbean-British",
+    "literary_period": "Modern"
+  },
+  {
+    "author": "John Bunyan",
+    "works": ["Pilgrim’s Progress"],
+    "region": "British",
+    "literary_period": "Restoration"
+  },
+  {
     "author": "Jonathan Swift",
     "works": [
-      "Gulliver’s Travels (Chapters 1 & 2)",
-      "The Battle of the Books"
+      "The Battle of the Books",
+      "Gulliver’s Travels (Chapters 1 & 2)"
     ],
     "region": "Irish",
+    "literary_period": "Neoclassicism"
+  },
+  {
+    "author": "Joseph Addison & Richard Steele",
+    "works": [
+      "The Coverley Household",
+      "Sir Roger at Church",
+      "Hunting Scene with Sir Roger",
+      "His Disappointment in Love",
+      "Visit to Westminster Abbey"
+    ],
+    "region": "British",
     "literary_period": "Neoclassicism"
   },
   {
@@ -562,10 +617,34 @@
     "literary_period": "Modernism"
   },
   {
+    "author": "Kingsley Amis",
+    "works": ["Lucky Jim"],
+    "region": "British",
+    "literary_period": "Postwar"
+  },
+  {
     "author": "Leo Tolstoy",
-    "works": ["War and Peace", "Anna Karenina"],
+    "works": ["Anna Karenina", "War and Peace"],
     "region": "Russian",
     "literary_period": "Realism"
+  },
+  {
+    "author": "Leslie Marmon Silko",
+    "works": ["Ceremony"],
+    "region": "Native American",
+    "literary_period": "Contemporary"
+  },
+  {
+    "author": "Louis Erdrich",
+    "works": ["Tracks"],
+    "region": "Native American",
+    "literary_period": "Contemporary"
+  },
+  {
+    "author": "Maria Campbell",
+    "works": ["Half Breed"],
+    "region": "Indigenous Canadian",
+    "literary_period": "Contemporary"
   },
   {
     "author": "Mary Shelley",
@@ -574,10 +653,28 @@
     "literary_period": "Romanticism"
   },
   {
+    "author": "Mudrooroo",
+    "works": ["Wild Cat Screaming"],
+    "region": "Australian Indigenous",
+    "literary_period": "Contemporary"
+  },
+  {
+    "author": "N. Scott Momaday",
+    "works": ["House Made of Dawn"],
+    "region": "Native American",
+    "literary_period": "Contemporary"
+  },
+  {
     "author": "O. Henry",
     "works": ["The Last Leaf"],
     "region": "American",
     "literary_period": "Realism"
+  },
+  {
+    "author": "Oodgeroo (Kath Walker)",
+    "works": ["My People"],
+    "region": "Australian Indigenous",
+    "literary_period": "Contemporary"
   },
   {
     "author": "Oscar Wilde",
@@ -586,16 +683,58 @@
     "literary_period": "Victorian"
   },
   {
+    "author": "Paul Scott",
+    "works": ["Staying On"],
+    "region": "British",
+    "literary_period": "Postcolonial"
+  },
+  {
+    "author": "Rudyard Kipling",
+    "works": ["Kim"],
+    "region": "British-Indian",
+    "literary_period": "Imperial"
+  },
+  {
+    "author": "Sally Morgan",
+    "works": ["My Place"],
+    "region": "Australian Indigenous",
+    "literary_period": "Contemporary"
+  },
+  {
     "author": "Somerset Maugham",
     "works": ["The Ant and the Grasshopper", "Six Stories from Cosmopolitan"],
     "region": "British",
     "literary_period": "Modern"
   },
   {
+    "author": "Stendhal",
+    "works": ["The Red and the Black"],
+    "region": "French",
+    "literary_period": "Realism"
+  },
+  {
+    "author": "Thomas Carlyle",
+    "works": ["Hero as Poet"],
+    "region": "British",
+    "literary_period": "Victorian"
+  },
+  {
     "author": "Thomas Hardy",
     "works": ["Tess of the d’Urbervilles", "The Mayor of Casterbridge"],
     "region": "British",
     "literary_period": "Victorian"
+  },
+  {
+    "author": "Thomas King",
+    "works": ["Green Grass Running Water", "Medicine River"],
+    "region": "Canadian Indigenous",
+    "literary_period": "Contemporary"
+  },
+  {
+    "author": "Ivan Turgenev",
+    "works": ["Fathers and Sons"],
+    "region": "Russian",
+    "literary_period": "Realism"
   },
   {
     "author": "Virginia Woolf",
@@ -608,10 +747,28 @@
     "literary_period": "Modernism"
   },
   {
+    "author": "Walter Pater",
+    "works": ["Style"],
+    "region": "British",
+    "literary_period": "Victorian"
+  },
+  {
+    "author": "Walter Scott",
+    "works": ["Kenilworth"],
+    "region": "British",
+    "literary_period": "Romanticism"
+  },
+  {
     "author": "William Golding",
     "works": ["Lord of the Flies"],
     "region": "British",
     "literary_period": "Postmodernism"
+  },
+  {
+    "author": "William Hazlitt",
+    "works": ["An Essay on the Principles of Human Action"],
+    "region": "British",
+    "literary_period": "Romanticism"
   },
   {
     "author": "William Thackeray",
