@@ -1,12 +1,12 @@
 "use client";
 
-import raw from "@/data/data.json";
-import { structureData } from "@/utils/structureData";
+import raw from "../data/data.json";
+import { structureData } from "../utils/structureData.js";
 import { useState } from "react";
 
-import Sidebar from "@/components/layout/Sidebar";
-import AuthorCard from "@/components/cards/AuthorCard";
-import ModeToggle from "@/components/layout/ModeToggle";
+import Sidebar from "../components/layout/Sidebar.jsx";
+import AuthorCard from "../components/cards/AuthorCard.jsx";
+import ModeToggle from "../components/layout/ModeToggle.jsx";
 
 export default function Page() {
   const data = structureData(raw);
