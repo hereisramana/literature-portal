@@ -1,44 +1,39 @@
 export default function AuthorCardBrowse({ author }) {
   return (
-    <div className="card p-5 flex flex-col gap-3">
+    <article className="card min-h-[220px] p-5 flex flex-col gap-4">
 
-      {/* Header */}
       <div className="flex justify-between items-start">
-        <h2 className="text-lg leading-tight">
+        <h2 className="text-xl leading-tight">
           {author.author}
         </h2>
 
-        {author.literary_period && (
-          <span className="text-xs text-[var(--color-accent)]">
-            {author.literary_period}
-          </span>
-        )}
+        <span className="rounded-full bg-[var(--color-bg-primary)] px-3 py-1 text-xs font-semibold text-[var(--color-accent)]">
+          {author.literary_period || "Reference"}
+        </span>
       </div>
 
-      {/* Region */}
       {author.region && (
-        <p className="text-xs text-[var(--color-text-secondary)]">
+        <p className="text-xs font-medium uppercase tracking-[0.12em] text-[var(--color-text-secondary)]">
           {author.region}
         </p>
       )}
 
-      {/* Works (dense but readable) */}
       <div className="text-sm">
-        <ul className="space-y-1">
+        <ul className="space-y-2">
           {author.works?.slice(0, 6).map((w, i) => (
-            <li key={i} className="leading-snug">
-              {i + 1}. {w}
+            <li key={i} className="leading-snug text-[var(--color-text-primary)]">
+              <span className="mr-2 text-[var(--color-accent)]">{i + 1}.</span>
+              {w}
             </li>
           ))}
         </ul>
 
         {author.works?.length > 6 && (
-          <p className="text-xs mt-1 text-[var(--color-text-secondary)]">
+          <p className="mt-3 text-xs font-medium text-[var(--color-text-secondary)]">
             +{author.works.length - 6} more
           </p>
         )}
       </div>
-
-    </div>
+    </article>
   );
 }

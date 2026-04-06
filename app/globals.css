@@ -10,6 +10,7 @@
   --color-bg-surface:    #F2EBDC;
   --color-bg-raised:     #E8E1D2;
   --color-bg-inset:      #DDD4C2;
+  --color-bg-sidebar:    #F6ECD8;
 
   /* Text */
   --color-text-primary:  #4F4A3F;
@@ -18,6 +19,7 @@
 
   /* UI */
   --color-border-subtle: #D9CEAD;
+  --color-border-strong: #CBB588;
   --color-accent:        #8C7750;
 
   /* Shadows */
@@ -31,14 +33,32 @@
 ========================= */
 
 body {
+  margin: 0;
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
-  font-family: 'Inter', sans-serif;
+  font-family: Georgia, "Times New Roman", serif;
 }
 
 h1, h2, h3 {
-  font-family: 'Lora', serif;
+  font-family: Georgia, "Times New Roman", serif;
   color: var(--color-text-strong);
+  margin: 0;
+}
+
+p, button, input, li, span {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 /* =========================
@@ -51,7 +71,7 @@ h1, h2, h3 {
   background: var(--color-bg-surface);
   box-shadow: var(--shadow-soft);
   border: 1px solid var(--color-border-subtle);
-  border-radius: 16px;
+  border-radius: 22px;
 }
 
 .inset {
@@ -62,4 +82,24 @@ h1, h2, h3 {
 .accent {
   background: var(--color-accent);
   color: #F2F2F0;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(140, 119, 80, 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
