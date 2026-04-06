@@ -95,7 +95,6 @@ export function buildCatalog(data) {
       shortLabel: "Prose/Fiction",
       description: "Novels, essays, and prose with period filters",
       authors: britishProse,
-      subcategories: buildBritishSubcategories(britishProse),
     },
     {
       id: "american",
@@ -159,6 +158,13 @@ export function buildCatalog(data) {
       shortLabel: "Criticism",
       description: "Literary criticism and aesthetics",
       authors: criticism,
+    },
+    {
+      id: "award-winners",
+      label: "Award Winners",
+      shortLabel: "Awards",
+      description: "Reserved for prize-winning writers and texts",
+      authors: [],
     },
   ];
 }

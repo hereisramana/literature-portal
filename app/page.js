@@ -24,6 +24,18 @@ export default function Page() {
   const activeCategory =
     categories.find((entry) => entry.id === category) || categories[0];
 
+  const periodOptions = useMemo(() => {
+    if (!activeCategory) {
+      return [];
+    }
+
+    return [...new Set(
+      activeCategory.authors
+        .map((author) => author.literary_period)
+        .filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b));
+  }, [activeCategory]);
+
   const filteredAuthors = useMemo(() => {
     if (!activeCategory) {
       return [];
@@ -141,41 +153,27 @@ export default function Page() {
           </div>
 
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="w-full max-w-xl">
-              <SearchBar onSearch={setQuery} />
+            <div className="flex w-full max-w-3xl flex-col gap-3 md:flex-row md:items-center">
+              <div className="w-full md:flex-1">
+                <SearchBar onSearch={setQuery} />
+              </div>
+              <select
+                value={subCategory}
+                onChange={(e) => setSubCategory(e.target.value)}
+                className="h-12 min-w-[180px] rounded-full border border-[var(--input-border)] bg-[var(--input-bg)] px-4 text-sm text-[var(--text-body-color)] shadow-[var(--input-shadow),var(--highlight-soft)] outline-none transition focus:border-[var(--color-focus-ring)]"
+              >
+                <option value="all">All Periods</option>
+                {periodOptions.map((period) => (
+                  <option key={period} value={period}>
+                    {period}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="hidden md:block">
               <ModeToggle mode={mode} setMode={setMode} />
             </div>
           </div>
-
-          {activeCategory?.subcategories?.length > 0 && (
-            <div className="mt-5 flex flex-wrap gap-2">
-              <button
-                onClick={() => setSubCategory("all")}
-                className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] ${
-                  subCategory === "all"
-                    ? "border-[var(--button-primary-bg)] bg-[var(--button-primary-bg)] text-[var(--button-primary-text)]"
-                    : "border-[var(--divider-color)] bg-[var(--button-secondary-bg)] text-[var(--text-muted-color)]"
-                }`}
-              >
-                All
-              </button>
-              {activeCategory.subcategories.map((entry) => (
-                <button
-                  key={entry.label}
-                  onClick={() => setSubCategory(entry.label)}
-                  className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] ${
-                    subCategory === entry.label
-                      ? "border-[var(--button-primary-bg)] bg-[var(--button-primary-bg)] text-[var(--button-primary-text)]"
-                      : "border-[var(--divider-color)] bg-[var(--button-secondary-bg)] text-[var(--text-muted-color)]"
-                  }`}
-                >
-                  {entry.label} ({entry.count})
-                </button>
-              ))}
-            </div>
-          )}
         </div>
 
         <section className="scrollbar-thin flex-1 overflow-y-auto px-4 py-5 md:px-8 md:py-6">
