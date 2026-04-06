@@ -1,3 +1,65 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* =========================
+   DESIGN TOKENS
+========================= */
+
+:root {
+  /* Backgrounds */
+  --color-bg-primary:    #F2F2F0;
+  --color-bg-surface:    #F2EBDC;
+  --color-bg-raised:     #E8E1D2;
+  --color-bg-inset:      #DDD4C2;
+
+  /* Text */
+  --color-text-primary:  #4F4A3F;
+  --color-text-secondary:#8A8372;
+  --color-text-strong:   #2F2B24;
+
+  /* UI */
+  --color-border-subtle: #D9CEAD;
+  --color-accent:        #8C7750;
+
+  /* Shadows */
+  --shadow-soft:   0 2px 6px rgba(47,43,36,0.12);
+  --shadow-medium: 0 4px 12px rgba(47,43,36,0.16);
+  --shadow-inset:  inset 0 1px 2px rgba(47,43,36,0.12);
+}
+
+/* =========================
+   BASE STYLES
+========================= */
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Lora', serif;
+  color: var(--color-text-strong);
+}
+
+/* =========================
+   UTILITY EXTENSIONS
+========================= */
+
+/* Optional helpers (keeps JSX clean) */
+
+.card {
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+}
+
+.inset {
+  background: var(--color-bg-inset);
+  box-shadow: var(--shadow-inset);
+}
+
+.accent {
+  background: var(--color-accent);
+  color: #F2F2F0;
+}

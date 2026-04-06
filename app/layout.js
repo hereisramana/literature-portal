@@ -1,12 +1,8 @@
 import "./globals.css";
 
-export const metadata = {
-  title: "Literature Portal"
-};
-
 export default function RootLayout({ children }) {
   return (
-    <html>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
