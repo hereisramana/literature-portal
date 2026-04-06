@@ -2,10 +2,21 @@
 
 import { shuffle } from "@/utils/shuffle";
 
+type Author = {
+  works?: string[];
+};
+
+type MatchingPair = {
+  left: string;
+  right: string;
+};
+
+type TaskData = string[] | MatchingPair[];
+
 /**
  * Generates a test task for a given author
  */
-export function useTaskGenerator(author) {
+export function useTaskGenerator(author: Author) {
   if (!author || !author.works) {
     return { taskType: null, taskData: [] };
   }
@@ -15,7 +26,7 @@ export function useTaskGenerator(author) {
   const taskType =
     taskTypes[Math.floor(Math.random() * taskTypes.length)];
 
-  let taskData: any = [];
+  let taskData: TaskData = [];
 
   // -------------------------
   // ORDERING (chronology feel)
