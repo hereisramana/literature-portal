@@ -14,10 +14,10 @@ export default function SearchBar({ onSearch }) {
         }}
         placeholder="Value"
         className="
-          h-12 w-full rounded-full border border-[var(--color-border-strong)]
-          bg-[var(--color-bg-surface)] pl-5 pr-12 text-sm text-[var(--color-text-primary)]
-          outline-none transition focus:border-[var(--color-accent)] focus:ring-2
-          focus:ring-[color:rgba(140,119,80,0.15)]
+          h-12 w-full rounded-full border border-[var(--input-border)]
+          bg-[var(--input-bg)] pl-5 pr-12 text-sm text-[var(--text-body-color)]
+          shadow-[var(--input-shadow),var(--highlight-soft)]
+          outline-none transition focus:border-[var(--color-focus-ring)]
         "
       />
       <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-[var(--color-accent)]">

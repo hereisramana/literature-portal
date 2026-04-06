@@ -4,8 +4,8 @@ export default function ModeToggle({ mode, setMode }) {
   return (
     <div
       className="
-        grid grid-cols-2 rounded-full border border-[var(--color-border-subtle)]
-        bg-[var(--color-bg-surface)] p-1
+        grid grid-cols-2 rounded-full border border-[var(--divider-color)]
+        bg-[var(--button-secondary-bg)] p-1
       "
     >
       <button
@@ -15,8 +15,8 @@ export default function ModeToggle({ mode, setMode }) {
           transition
           ${
             mode === "browse"
-              ? "bg-[var(--color-accent)] text-[var(--color-bg-primary)] shadow-sm"
-              : "text-[var(--color-text-secondary)]"
+              ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-[var(--shadow-soft)]"
+              : "text-[var(--text-muted-color)]"
           }
         `}
       >
@@ -30,8 +30,8 @@ export default function ModeToggle({ mode, setMode }) {
           transition
           ${
             mode === "test"
-              ? "bg-[var(--color-accent)] text-[var(--color-bg-primary)] shadow-sm"
-              : "text-[var(--color-text-secondary)]"
+              ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-[var(--shadow-soft)]"
+              : "text-[var(--text-muted-color)]"
           }
         `}
       >

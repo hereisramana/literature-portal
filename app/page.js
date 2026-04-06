@@ -9,6 +9,7 @@ import AuthorCard from "../components/cards/AuthorCard.jsx";
 import ModeToggle from "../components/layout/ModeToggle.jsx";
 import SearchBar from "../components/common/Searchbar.jsx";
 import EmptyState from "../components/common/Emptystate.jsx";
+import InfoModal from "../components/common/InfoModal.jsx";
 
 export default function Page() {
   const categories = useMemo(() => buildCatalog(raw), []);
@@ -17,6 +18,8 @@ export default function Page() {
   const [query, setQuery] = useState("");
   const [subCategory, setSubCategory] = useState("all");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [modal, setModal] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const activeCategory =
     categories.find((entry) => entry.id === category) || categories[0];
@@ -47,9 +50,36 @@ export default function Page() {
     setSubCategory("all");
   }
 
+  async function openModal(title, author = "") {
+    setModal({ title, author, summary: "" });
+    setLoading(true);
+
+    try {
+      const queryTitle = encodeURIComponent(title);
+      const response = await fetch(
+        `https://en.wikipedia.org/api/rest_v1/page/summary/${queryTitle}`
+      );
+      const payload = await response.json();
+
+      setModal({
+        title,
+        author,
+        summary: payload.extract || "No summary available.",
+      });
+    } catch {
+      setModal({
+        title,
+        author,
+        summary: "No summary available.",
+      });
+    }
+
+    setLoading(false);
+  }
+
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
-      <div className="hidden h-full w-[300px] border-r border-[var(--color-border-strong)] lg:block">
+      <div className="hidden h-full w-[300px] border-r border-[var(--divider-color)] lg:block">
         <Sidebar
           categories={categories}
           active={activeCategory?.id}
@@ -59,7 +89,7 @@ export default function Page() {
 
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-30 bg-black/20 lg:hidden">
-          <div className="h-full w-[86%] max-w-[320px] border-r border-[var(--color-border-strong)] shadow-[var(--shadow-medium)]">
+          <div className="h-full w-[86%] max-w-[320px] border-r border-[var(--divider-color)] shadow-[var(--shadow-medium)]">
             <Sidebar
               categories={categories}
               active={activeCategory?.id}
@@ -69,7 +99,7 @@ export default function Page() {
           </div>
           <button
             aria-label="Close categories"
-            className="absolute right-4 top-4 rounded-xl bg-[var(--color-accent)] p-3 text-[var(--color-bg-primary)]"
+            className="absolute right-4 top-4 rounded-xl bg-[var(--button-primary-bg)] p-3 text-[var(--button-primary-text)]"
             onClick={() => setMobileMenuOpen(false)}
           >
             <svg
@@ -87,7 +117,7 @@ export default function Page() {
       )}
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
-        <div className="border-b border-[var(--color-border-subtle)] px-4 pb-4 pt-5 md:px-8 md:pb-6 md:pt-7">
+        <div className="border-b border-[var(--divider-color)] px-4 pb-4 pt-5 md:px-8 md:pb-6 md:pt-7">
           <div className="mb-6 flex items-center gap-4">
             <button
               aria-label="Open categories"
@@ -125,8 +155,8 @@ export default function Page() {
                 onClick={() => setSubCategory("all")}
                 className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] ${
                   subCategory === "all"
-                    ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-bg-primary)]"
-                    : "border-[var(--color-border-subtle)] bg-[var(--color-bg-surface)] text-[var(--color-text-secondary)]"
+                    ? "border-[var(--button-primary-bg)] bg-[var(--button-primary-bg)] text-[var(--button-primary-text)]"
+                    : "border-[var(--divider-color)] bg-[var(--button-secondary-bg)] text-[var(--text-muted-color)]"
                 }`}
               >
                 All
@@ -137,8 +167,8 @@ export default function Page() {
                   onClick={() => setSubCategory(entry.label)}
                   className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] ${
                     subCategory === entry.label
-                      ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-bg-primary)]"
-                      : "border-[var(--color-border-subtle)] bg-[var(--color-bg-surface)] text-[var(--color-text-secondary)]"
+                      ? "border-[var(--button-primary-bg)] bg-[var(--button-primary-bg)] text-[var(--button-primary-text)]"
+                      : "border-[var(--divider-color)] bg-[var(--button-secondary-bg)] text-[var(--text-muted-color)]"
                   }`}
                 >
                   {entry.label} ({entry.count})
@@ -152,7 +182,12 @@ export default function Page() {
           {filteredAuthors.length > 0 ? (
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-3">
               {filteredAuthors.map((author, index) => (
-                <AuthorCard key={`${author.author}-${index}`} author={author} mode={mode} />
+                <AuthorCard
+                  key={`${author.author}-${index}`}
+                  author={author}
+                  mode={mode}
+                  onOpenModal={openModal}
+                />
               ))}
             </div>
           ) : (
@@ -162,10 +197,12 @@ export default function Page() {
           )}
         </section>
 
-        <div className="border-t border-[var(--color-border-subtle)] bg-[var(--color-bg-sidebar)] p-3 md:hidden">
+        <div className="border-t border-[var(--divider-color)] bg-[var(--color-bg-surface)] p-3 md:hidden">
           <ModeToggle mode={mode} setMode={setMode} />
         </div>
       </main>
+
+      <InfoModal modal={modal} loading={loading} onClose={() => setModal(null)} />
     </div>
   );
 }

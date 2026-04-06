@@ -1,52 +1,61 @@
 @import "tailwindcss";
 
-/* =========================
-   DESIGN TOKENS
-========================= */
-
 :root {
   /* Backgrounds */
   --color-bg-primary:    #F2F2F0;
   --color-bg-surface:    #F2EBDC;
   --color-bg-raised:     #E8E1D2;
   --color-bg-inset:      #DDD4C2;
-  --color-bg-sidebar:    #F6ECD8;
 
   /* Text */
   --color-text-primary:  #4F4A3F;
   --color-text-secondary:#8A8372;
   --color-text-strong:   #2F2B24;
 
-  /* UI */
+  /* UI Elements */
   --color-border-subtle: #D9CEAD;
-  --color-border-strong: #CBB588;
   --color-accent:        #8C7750;
+  --color-neutral-cool:  #C2C6C8;
 
-  /* Shadows */
-  --shadow-soft:   0 2px 6px rgba(47,43,36,0.12);
-  --shadow-medium: 0 4px 12px rgba(47,43,36,0.16);
-  --shadow-inset:  inset 0 1px 2px rgba(47,43,36,0.12);
-}
+  /* Shadows (warm, not black) */
+  --shadow-soft:   0 2px 6px rgba(47, 43, 36, 0.12);
+  --shadow-medium: 0 4px 12px rgba(47, 43, 36, 0.16);
+  --shadow-inset: inset 0 1px 2px rgba(47, 43, 36, 0.12);
+  --highlight-soft: inset 0 1px 0 rgba(255, 255, 255, 0.4);
 
-/* =========================
-   BASE STYLES
-========================= */
+  /* Hover / Active surfaces */
+  --color-interaction-hover:  #E8E1D2;
+  --color-interaction-active: #DDD4C2;
 
-body {
-  margin: 0;
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  font-family: Georgia, "Times New Roman", serif;
-}
+  /* Focus */
+  --color-focus-ring: #8C7750;
 
-h1, h2, h3 {
-  font-family: Georgia, "Times New Roman", serif;
-  color: var(--color-text-strong);
-  margin: 0;
-}
+  /* Disabled */
+  --color-disabled-text: #B5AE9D;
+  --color-disabled-bg:   #ECE6D8;
 
-p, button, input, li, span {
-  font-family: Arial, Helvetica, sans-serif;
+  --text-body-color: var(--color-text-primary);
+  --text-muted-color: var(--color-text-secondary);
+  --text-heading-color: var(--color-text-strong);
+  --text-on-accent: #F2F2F0;
+
+  /* Cards */
+  --card-bg: var(--color-bg-surface);
+  --card-shadow: var(--shadow-soft);
+
+  /* Inputs */
+  --input-bg: var(--color-bg-inset);
+  --input-border: var(--color-border-subtle);
+  --input-shadow: var(--shadow-inset);
+
+  /* Buttons */
+  --button-primary-bg: var(--color-accent);
+  --button-primary-text: var(--text-on-accent);
+  --button-secondary-bg: var(--color-bg-raised);
+  --button-secondary-text: var(--color-text-primary);
+
+  /* Dividers */
+  --divider-color: var(--color-border-subtle);
 }
 
 html, body {
@@ -54,39 +63,47 @@ html, body {
 }
 
 body {
+  margin: 0;
+  background: var(--color-bg-primary);
+  color: var(--text-body-color);
+  font-family: Georgia, "Times New Roman", serif;
   overflow: hidden;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text-heading-color);
+  margin: 0;
+}
+
+p, button, input, li, span, a, select, option {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* =========================
-   UTILITY EXTENSIONS
-========================= */
-
-/* Optional helpers (keeps JSX clean) */
-
 .card {
-  background: var(--color-bg-surface);
-  box-shadow: var(--shadow-soft);
-  border: 1px solid var(--color-border-subtle);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow), var(--highlight-soft);
+  border: 1px solid var(--divider-color);
   border-radius: 22px;
 }
 
 .inset {
-  background: var(--color-bg-inset);
-  box-shadow: var(--shadow-inset);
+  background: var(--input-bg);
+  box-shadow: var(--input-shadow), var(--highlight-soft);
 }
 
 .accent {
-  background: var(--color-accent);
-  color: #F2F2F0;
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
 }
 
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border-strong) transparent;
+  scrollbar-color: var(--color-accent) transparent;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
@@ -98,8 +115,16 @@ body {
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(140, 119, 80, 0.35);
+  background: rgba(47, 43, 36, 0.16);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: content-box;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
 }
