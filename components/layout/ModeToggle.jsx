@@ -4,14 +4,14 @@ export default function ModeToggle({ mode, setMode }) {
   return (
     <div
       className="
-        grid grid-cols-2 rounded-full border border-[var(--divider-color)]
+        grid grid-cols-2 overflow-hidden rounded-full border border-[var(--divider-color)]
         bg-[var(--button-secondary-bg)] p-1
       "
     >
       <button
         onClick={() => setMode("browse")}
         className={`
-          min-w-28 rounded-full px-5 py-2 text-sm font-semibold tracking-[0.03em]
+          min-w-[112px] rounded-full px-5 py-2 text-sm font-semibold tracking-[0.03em]
           transition
           ${
             mode === "browse"
@@ -26,7 +26,7 @@ export default function ModeToggle({ mode, setMode }) {
       <button
         onClick={() => setMode("test")}
         className={`
-          min-w-28 rounded-full px-5 py-2 text-sm font-semibold tracking-[0.03em]
+          min-w-[112px] rounded-full px-5 py-2 text-sm font-semibold tracking-[0.03em]
           transition
           ${
             mode === "test"

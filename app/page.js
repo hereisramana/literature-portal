@@ -123,6 +123,39 @@ export default function Page() {
     };
   }, [focusedAuthor, get, ready]);
 
+  useEffect(() => {
+    if (!ready || filteredAuthors.length === 0) {
+      return;
+    }
+
+    let cancelled = false;
+
+    Promise.all(
+      filteredAuthors.map(async (author) => {
+        const value = await get(`confidence:${author.author}`);
+        return [author.author, value?.confidence || value || ""];
+      })
+    ).then((entries) => {
+      if (cancelled) {
+        return;
+      }
+
+      setConfidenceMap((current) => {
+        const next = { ...current };
+        entries.forEach(([authorName, confidence]) => {
+          if (confidence) {
+            next[authorName] = confidence;
+          }
+        });
+        return next;
+      });
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [filteredAuthors, get, ready]);
+
   async function handleConfidenceSave(payload) {
     await save(`confidence:${payload.author}`, payload);
     setConfidenceMap((current) => ({

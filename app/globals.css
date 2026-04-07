@@ -56,6 +56,9 @@
 
   /* Dividers */
   --divider-color: var(--color-border-subtle);
+  --color-success-soft: #DDE8D7;
+  --color-success-border: #A8BE9A;
+  --color-success-text: #4F6A49;
 }
 
 html, body {
@@ -119,6 +122,12 @@ p, button, input, li, span, a, select, option {
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: content-box;
+}
+
+.success-surface {
+  background: var(--color-success-soft);
+  border-color: var(--color-success-border);
+  color: var(--color-success-text);
 }
 
 button:focus-visible,

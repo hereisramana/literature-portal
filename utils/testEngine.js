@@ -68,6 +68,16 @@ function inferTypeLens(category) {
   return "Contextual reading";
 }
 
+function buildThemePool(allAuthors, category) {
+  return [...new Set(
+    allAuthors
+      .flatMap((entry) =>
+        (entry.works || []).map((work) => inferTheme(work, entry, category))
+      )
+      .filter(Boolean)
+  )];
+}
+
 export function createExerciseSet(author, category, allAuthors) {
   const works = author.works || [];
   const sampleWorks = works.slice(0, Math.min(works.length, 4));
@@ -81,7 +91,12 @@ export function createExerciseSet(author, category, allAuthors) {
     prompt: work,
     answer: inferTheme(work, author, category),
   }));
-  const themeChoices = shuffle([...new Set(themePairs.map((item) => item.answer))]);
+  const themePool = buildThemePool(allAuthors, category);
+  const coreThemeChoices = [...new Set(themePairs.map((item) => item.answer))];
+  const themeChoices = shuffle([
+    ...coreThemeChoices,
+    ...pickDistinct(themePool, 4, coreThemeChoices),
+  ]);
 
   const typeLens = inferTypeLens(category);
   const typeChoices = shuffle([
