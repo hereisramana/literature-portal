@@ -53,19 +53,6 @@ export default function Page() {
     });
   }, [activeCategory, query]);
 
-  const groupedAuthors = useMemo(() => {
-    const groups = filteredAuthors.reduce((acc, author) => {
-      const key = author.literary_period || "Other";
-      if (!acc[key]) {
-        acc[key] = [];
-      }
-      acc[key].push(author);
-      return acc;
-    }, {});
-
-    return Object.entries(groups).sort((a, b) => a[0].localeCompare(b[0]));
-  }, [filteredAuthors]);
-
   function handleCategoryChange(nextCategory) {
     setCategory(nextCategory);
   }
@@ -257,31 +244,22 @@ export default function Page() {
         <section className="scrollbar-thin flex-1 overflow-y-auto">
           <div className="shell-width px-4 py-4 md:px-8 md:py-5 lg:px-10">
           {filteredAuthors.length > 0 ? (
-            <div className="space-y-8">
-              {groupedAuthors.map(([period, authors]) => (
-                <section key={period}>
-                  <h2 className="mb-4 text-[24px] leading-none text-[var(--text-heading-color)] md:text-[28px]">
-                    {period}
-                  </h2>
-                  <div
-                    className={`grid grid-cols-1 gap-4 md:grid-cols-2 ${
-                      desktopSidebarCollapsed ? "xl:grid-cols-3" : "2xl:grid-cols-3"
-                    }`}
-                  >
-                    {authors.map((author, index) => (
-                      <AuthorCard
-                        key={`${period}-${author.author}-${index}`}
-                        author={author}
-                        mode={mode}
-                        onOpenModal={(title, authorName = "") =>
-                          openModal(title, authorName, author)
-                        }
-                        onStartTest={setFocusedAuthor}
-                        confidence={confidenceMap[author.author]}
-                      />
-                    ))}
-                  </div>
-                </section>
+            <div
+              className={`grid grid-cols-1 gap-4 md:grid-cols-2 ${
+                desktopSidebarCollapsed ? "xl:grid-cols-3" : "2xl:grid-cols-3"
+              }`}
+            >
+              {filteredAuthors.map((author, index) => (
+                <AuthorCard
+                  key={`${author.author}-${index}`}
+                  author={author}
+                  mode={mode}
+                  onOpenModal={(title, authorName = "") =>
+                    openModal(title, authorName, author)
+                  }
+                  onStartTest={setFocusedAuthor}
+                  confidence={confidenceMap[author.author]}
+                />
               ))}
             </div>
           ) : (

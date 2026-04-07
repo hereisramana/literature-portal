@@ -30,10 +30,7 @@ export default function Sidebar({
           <>
             <div className="max-w-[250px] pt-1">
               <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[var(--text-muted-color)]">
-                Literature Portal
-              </p>
-              <p className="mt-2 text-sm leading-6 text-[var(--text-muted-color)]">
-                Browse syllabus buckets, then switch into focused test mode when you are ready to practice recall.
+                Categories
               </p>
             </div>
             <button
