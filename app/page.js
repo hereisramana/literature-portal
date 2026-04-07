@@ -234,12 +234,12 @@ export default function Page() {
       </AnimatePresence>
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden lg:pl-[72px]">
-        <div className="bg-[var(--color-bg-primary)]/80 backdrop-blur-md sticky top-0 z-10">
+        <div className="sticky top-0 z-10 bg-[var(--color-bg-primary)]/80 backdrop-blur-md">
           <div className="shell-width px-4 py-4 md:px-8 lg:px-10">
-            <div className="relative flex items-center justify-center">
+            <div className="flex items-center gap-3">
               <button
                 aria-label="Open categories"
-                className="absolute left-0 rounded-2xl p-2 text-[var(--text-heading-color)] transition hover:bg-[var(--color-interaction-hover)] lg:hidden"
+                className="rounded-2xl p-2 text-[var(--text-heading-color)] transition hover:bg-[var(--color-interaction-hover)] lg:hidden"
                 onClick={() => setMobileMenuOpen(true)}
               >
                 <svg
@@ -254,9 +254,14 @@ export default function Page() {
                 </svg>
               </button>
 
-              <div className="w-full max-w-[560px] transform transition-all duration-300">
-                <SearchBar onSearch={setQuery} />
+              <div className="flex-1 flex justify-center">
+                <div className="w-full max-w-[560px] transform transition-all duration-300">
+                  <SearchBar onSearch={setQuery} />
+                </div>
               </div>
+
+              {/* Spacer for desktop to keep search centered when lg:pl-[72px] is active */}
+              <div className="hidden w-11 lg:block" aria-hidden="true" />
             </div>
           </div>
         </div>
