@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function Sidebar({
   categories,
   active,
@@ -30,7 +32,7 @@ export default function Sidebar({
         ) : (
           <>
             <div className="max-w-[240px] pt-1">
-              <h1 className="text-[28px] leading-[1.05] text-[var(--text-body-color)]">
+              <h1 className="text-[28px] font-bold leading-[1.05] text-[var(--text-body-color)]">
                 {title}
               </h1>
             </div>
@@ -69,24 +71,36 @@ export default function Sidebar({
                   onSelect?.();
                 }}
                 className={`
-                  ease-figma w-full rounded-[24px] px-5 py-4 text-left transition duration-300
+                  ease-figma relative w-full rounded-[24px] px-5 py-4 text-left transition duration-300
                   ${
                     isActive
                       ? "bg-[var(--color-bg-surface)] shadow-[var(--shadow-soft)]"
-                      : "bg-transparent hover:bg-[rgba(58,64,59,0.12)]"
+                      : "bg-transparent hover:bg-[rgba(58,64,59,0.05)]"
                   }
                 `}
               >
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-[15px] font-extrabold text-[var(--text-heading-color)]">
+                {isActive && (
+                  <motion.div
+                    layoutId="sidebar-active-indicator"
+                    className="absolute inset-0 z-0 rounded-[24px] border-2 border-[var(--color-border-strong)]"
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  />
+                )}
+                <div className="relative z-10 flex items-start justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[15px] font-bold text-[var(--text-heading-color)] truncate">
                       {category.label}
                     </p>
-                    <p className="mt-2 text-xs leading-5 text-[var(--text-muted-color)]">
+                    <p className="mt-1 text-xs leading-5 text-[var(--text-muted-color)] line-clamp-2">
                       {category.description}
                     </p>
                   </div>
-                  <span className="rounded-full bg-[var(--color-bg-raised)] px-2.5 py-1 text-[11px] font-extrabold text-[var(--text-muted-color)]">
+                  <span className="shrink-0 rounded-full bg-[var(--color-bg-inset)] px-2.5 py-1 text-[10px] font-bold text-[var(--text-muted-color)] opacity-70">
                     {category.authors.length}
                   </span>
                 </div>

@@ -11,6 +11,7 @@ import SearchBar from "../components/common/Searchbar.jsx";
 import EmptyState from "../components/common/Emptystate.jsx";
 import StudyFocusView from "../components/study/StudyFocusView.jsx";
 import TestFocusView from "../components/test/TestFocusView.jsx";
+import { motion, AnimatePresence } from "framer-motion";
 import { mergeAuthorWithEnriched } from "../utils/enrichedData.js";
 import { inferTheme } from "../utils/testEngine.js";
 import { useProgress } from "../hooks/useProgress.js";
@@ -228,26 +229,49 @@ export default function Page() {
 
         <section className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
           <div className="shell-width px-4 py-3 pb-28 md:px-8 md:py-4 md:pb-8 lg:px-10">
-          {filteredAuthors.length > 0 ? (
-            <div
-              className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
-            >
-              {filteredAuthors.map((author, index) => (
-                <AuthorCard
-                  key={`${author.author}-${index}`}
-                  author={author}
-                  mode={mode}
-                  onOpenStudy={openStudy}
-                  onStartTest={setFocusedAuthor}
-                  confidence={confidenceMap[author.author]}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="pt-16">
-              <EmptyState />
-            </div>
-          )}
+          <AnimatePresence mode="wait">
+            {filteredAuthors.length > 0 ? (
+              <motion.div
+                key={activeCategory?.id || "all"}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
+              >
+                {filteredAuthors.map((author, index) => (
+                  <motion.div
+                    key={`${author.author}-${index}`}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: index * 0.03,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    <AuthorCard
+                      author={author}
+                      mode={mode}
+                      onOpenStudy={openStudy}
+                      onStartTest={setFocusedAuthor}
+                      confidence={confidenceMap[author.author]}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="empty"
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                className="pt-16"
+              >
+                <EmptyState />
+              </motion.div>
+            )}
+          </AnimatePresence>
           </div>
         </section>
 
