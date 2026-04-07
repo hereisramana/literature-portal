@@ -7,12 +7,12 @@ export default function Sidebar({
   onToggle,
 }) {
   return (
-    <aside className="flex h-full flex-col bg-[rgba(255,255,255,0.55)] backdrop-blur-sm">
+    <aside className="flex h-full flex-col bg-[var(--color-bg-primary)]">
       <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-6"}`}>
         {collapsed ? (
-          <button
-            aria-label="Open categories panel"
-            onClick={onToggle}
+            <button
+              aria-label="Open categories panel"
+              onClick={onToggle}
             className="mt-1 flex h-12 w-12 items-center justify-center rounded-2xl text-[var(--text-heading-color)] transition hover:bg-[var(--color-interaction-hover)]"
           >
             <svg
@@ -72,7 +72,7 @@ export default function Sidebar({
                   ${
                     isActive
                       ? "bg-[var(--color-bg-surface)] shadow-[var(--shadow-soft)]"
-                      : "bg-transparent hover:bg-[rgba(255,255,255,0.58)]"
+                      : "bg-transparent hover:bg-[var(--color-interaction-hover)]"
                   }
                 `}
               >

@@ -159,7 +159,7 @@ export default function Page() {
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
       <div
-        className={`hidden h-full bg-[rgba(255,255,255,0.42)] transition-[width] duration-300 lg:block ${
+        className={`hidden h-full bg-[var(--color-bg-primary)] transition-[width] duration-300 lg:block ${
           desktopSidebarCollapsed ? "w-[72px]" : "w-[320px]"
         }`}
       >
@@ -202,12 +202,12 @@ export default function Page() {
       )}
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
-        <div className="bg-[rgba(255,255,255,0.34)] backdrop-blur-sm">
+        <div className="bg-[var(--color-bg-primary)]">
           <div className="shell-width px-4 pb-6 pt-5 md:px-8 md:pb-8 md:pt-6 lg:px-10">
           <div className="mb-8 flex items-start gap-4">
             <button
               aria-label="Open categories"
-              className="rounded-2xl p-2 text-[var(--text-heading-color)] transition hover:bg-[rgba(255,255,255,0.52)] lg:hidden"
+              className="rounded-2xl p-2 text-[var(--text-heading-color)] transition hover:bg-[var(--color-interaction-hover)] lg:hidden"
               onClick={() => setMobileMenuOpen(true)}
             >
               <svg
@@ -222,7 +222,7 @@ export default function Page() {
               </svg>
             </button>
             <div className="w-full text-center md:text-left">
-              <h1 className="text-[33px] leading-[1] md:text-[46px] lg:text-[52px]">
+              <h1 className="text-[33px] leading-[1] text-[var(--text-body-color)] md:text-[46px] lg:text-[52px]">
                 English Literature Revision Guide
               </h1>
             </div>
@@ -245,9 +245,7 @@ export default function Page() {
           <div className="shell-width px-4 py-4 md:px-8 md:py-5 lg:px-10">
           {filteredAuthors.length > 0 ? (
             <div
-              className={`grid grid-cols-1 gap-4 md:grid-cols-2 ${
-                desktopSidebarCollapsed ? "xl:grid-cols-3" : "2xl:grid-cols-3"
-              }`}
+              className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
             >
               {filteredAuthors.map((author, index) => (
                 <AuthorCard
@@ -270,7 +268,7 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="safe-bottom bg-[rgba(255,255,255,0.82)] px-4 pt-3 backdrop-blur-md md:hidden">
+        <div className="safe-bottom bg-[var(--color-bg-primary)] px-4 pt-3 md:hidden">
           <ModeToggle mode={mode} setMode={setMode} />
         </div>
       </main>
