@@ -1,6 +1,6 @@
 export default function EmptyState() {
   return (
-    <div className="mx-auto max-w-xl rounded-[30px] border border-[var(--divider-color)] bg-[var(--color-bg-surface)] px-8 py-14 text-center">
+    <div className="card mx-auto max-w-xl px-8 py-14 text-center">
       <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[var(--text-muted-color)]">
         No Matches
       </p>

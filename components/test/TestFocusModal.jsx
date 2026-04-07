@@ -11,7 +11,7 @@ function ResultNote({ children, success = false }) {
       className={`rounded-2xl border px-4 py-3 text-sm leading-7 ${
         success
           ? "success-surface"
-          : "border-[var(--divider-color)] bg-[var(--color-bg-primary)] text-[var(--text-body-color)]"
+          : "border-[var(--divider-color)] bg-[var(--color-bg-raised)] text-[var(--text-body-color)]"
       }`}
     >
       {children}
@@ -64,8 +64,8 @@ function SelectExercise({ exercise, selected, onToggle, onSubmit, submitted, res
                 isCorrect
                   ? "success-surface"
                   : active
-                  ? "border-[var(--button-primary-bg)] bg-[var(--color-interaction-active)]"
-                  : "border-[var(--divider-color)] bg-[var(--color-bg-primary)] hover:bg-[var(--color-interaction-hover)]"
+                  ? "border-[var(--button-primary-bg)] bg-[var(--color-bg-accent-soft)]"
+                  : "border-[var(--divider-color)] bg-[var(--color-bg-raised)] hover:bg-[var(--color-interaction-hover)]"
               }`}
             >
               {option}
@@ -106,7 +106,7 @@ function OrderingExercise({ exercise, placed, onPlace, onReset, onSubmit, submit
                 className={`rounded-2xl border px-4 py-3 text-sm ${
                   isCorrect
                     ? "success-surface"
-                    : "border-dashed border-[var(--divider-color)]"
+                    : "border-dashed border-[var(--divider-color)] bg-[var(--color-bg-raised)]"
                 }`}
               >
                 {submitted ? correctValue : value}
@@ -123,7 +123,7 @@ function OrderingExercise({ exercise, placed, onPlace, onReset, onSubmit, submit
               key={item}
               onClick={() => onPlace(item)}
               disabled={placed.includes(item)}
-              className="w-full rounded-2xl border border-[var(--divider-color)] bg-[var(--color-bg-primary)] px-4 py-3 text-left text-sm disabled:cursor-not-allowed disabled:opacity-40"
+              className="w-full rounded-2xl border border-[var(--divider-color)] bg-[var(--color-bg-raised)] px-4 py-3 text-left text-sm disabled:cursor-not-allowed disabled:opacity-40"
             >
               {item}
             </button>
@@ -161,7 +161,7 @@ function ThemesExercise({ exercise, answers, onChange, onSubmit, submitted, resu
           const correctAnswer = submitted ? pair.answer : null;
           const isCorrect = submitted && answers[pair.prompt] === pair.answer;
           return (
-            <div key={pair.prompt} className="rounded-2xl bg-[var(--color-bg-primary)] p-4">
+            <div key={pair.prompt} className="rounded-2xl border border-[var(--divider-color)] bg-[var(--color-bg-raised)] p-4">
               <p className="mb-3 text-sm font-semibold text-[var(--text-heading-color)]">
                 {pair.prompt}
               </p>
@@ -206,7 +206,7 @@ function TypeExercise({ exercise, selected, onSelect, onSubmit, submitted, resul
       <p className="text-sm leading-7 text-[var(--text-muted-color)]">
         {exercise.prompt}
       </p>
-      <div className="rounded-3xl bg-[var(--color-bg-primary)] p-4">
+      <div className="rounded-3xl border border-[var(--divider-color)] bg-[var(--color-bg-raised)] p-4">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--text-muted-color)]">
           Current category
         </p>
@@ -230,8 +230,8 @@ function TypeExercise({ exercise, selected, onSelect, onSubmit, submitted, resul
                 isCorrect
                   ? "success-surface"
                   : selected === choice
-                  ? "border-[var(--button-primary-bg)] bg-[var(--color-interaction-active)]"
-                  : "border-[var(--divider-color)] bg-[var(--color-bg-primary)] hover:bg-[var(--color-interaction-hover)]"
+                  ? "border-[var(--button-primary-bg)] bg-[var(--color-bg-accent-soft)]"
+                  : "border-[var(--divider-color)] bg-[var(--color-bg-raised)] hover:bg-[var(--color-interaction-hover)]"
               }`}
             >
               {choice}
@@ -377,7 +377,7 @@ export default function TestFocusModal({
 
   return (
     <>
-      <div className="fixed inset-0 z-40 bg-[rgba(47,43,36,0.22)] backdrop-blur-sm" />
+      <div className="fixed inset-0 z-40 bg-[rgba(24,32,47,0.18)] backdrop-blur-sm" />
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div className="card flex h-[min(88vh,860px)] w-full max-w-4xl flex-col overflow-hidden rounded-[32px]">
           <div className="flex flex-col gap-4 border-b border-[var(--divider-color)] px-5 pb-5 pt-5 md:px-8 md:flex-row md:items-start md:justify-between">
@@ -394,7 +394,7 @@ export default function TestFocusModal({
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="grid grid-cols-2 gap-2 rounded-full bg-[var(--button-secondary-bg)] p-1 md:grid-cols-5">
+              <div className="grid grid-cols-2 gap-2 rounded-full bg-[var(--color-bg-raised)] p-1 md:grid-cols-5">
                 {exercises.map((exercise) => (
                   <button
                     key={exercise.id}
@@ -405,7 +405,7 @@ export default function TestFocusModal({
                     className={`rounded-full px-3 py-2 text-xs font-semibold transition ${
                       activeMode === exercise.id
                         ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)]"
-                        : "text-[var(--text-muted-color)]"
+                        : "text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)]"
                     }`}
                   >
                     {exercise.label}
@@ -423,7 +423,7 @@ export default function TestFocusModal({
 
           <div className="scrollbar-thin flex-1 overflow-y-auto px-5 py-6 md:px-8">
             <div className="grid gap-6 lg:grid-cols-[1.45fr_0.55fr]">
-              <div className="rounded-[28px] bg-[var(--color-bg-primary)] p-5 md:p-6">
+              <div className="rounded-[28px] border border-[var(--divider-color)] bg-[var(--color-bg-surface)] p-5 md:p-6">
                 {activeExercise?.id === "recall" && (
                   <RecallExercise
                     exercise={activeExercise}
@@ -499,7 +499,7 @@ export default function TestFocusModal({
               </div>
 
               <aside className="space-y-4">
-                <div className="rounded-[28px] bg-[var(--color-bg-primary)] p-5">
+                <div className="rounded-[28px] border border-[var(--divider-color)] bg-[var(--color-bg-raised)] p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted-color)]">
                     Exercise Guide
                   </p>
@@ -508,7 +508,7 @@ export default function TestFocusModal({
                   </p>
                 </div>
 
-                <div className="rounded-[28px] bg-[var(--color-bg-primary)] p-5">
+                <div className="rounded-[28px] border border-[var(--divider-color)] bg-[var(--color-bg-raised)] p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted-color)]">
                     Session Notes
                   </p>

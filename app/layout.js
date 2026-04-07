@@ -1,11 +1,11 @@
-import { Lora, Nunito } from "next/font/google";
+import { Manrope, Nunito } from "next/font/google";
 
 import "./globals.css";
 
-const lora = Lora({
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700", "800"],
 });
 
 const nunito = Nunito({
@@ -16,7 +16,7 @@ const nunito = Nunito({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${lora.variable} ${nunito.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${nunito.variable}`}>
       <body>{children}</body>
     </html>
   );

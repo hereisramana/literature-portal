@@ -8,7 +8,7 @@ export default function InfoModal({ modal, loading, onClose }) {
   const query = encodeURIComponent(modal.title);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(47,43,36,0.45)] p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(24,32,47,0.22)] p-4 backdrop-blur-sm">
       <div className="card scrollbar-thin max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-[32px] p-6 md:p-8">
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -34,7 +34,7 @@ export default function InfoModal({ modal, loading, onClose }) {
           </button>
         </div>
 
-        <div className="mt-6 rounded-[24px] border border-[var(--divider-color)] bg-[var(--color-bg-primary)] p-5 shadow-[var(--shadow-inset)]">
+        <div className="mt-6 rounded-[24px] border border-[var(--divider-color)] bg-[var(--color-bg-raised)] p-5">
           {loading ? (
             <p className="text-sm text-[var(--text-body-color)]">Loading...</p>
           ) : (

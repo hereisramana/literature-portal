@@ -1,64 +1,54 @@
 @import "tailwindcss";
 
 :root {
-  /* Backgrounds */
-  --color-bg-primary:    #F2F2F0;
-  --color-bg-surface:    #F2EBDC;
-  --color-bg-raised:     #E8E1D2;
-  --color-bg-inset:      #DDD4C2;
+  --color-bg-primary: #edf3fa;
+  --color-bg-surface: #ffffff;
+  --color-bg-raised: #f7f9fc;
+  --color-bg-inset: #f2f5f9;
+  --color-bg-accent-soft: #fff2e8;
 
-  /* Text */
-  --color-text-primary:  #4F4A3F;
-  --color-text-secondary:#8A8372;
-  --color-text-strong:   #2F2B24;
+  --color-text-primary: #243042;
+  --color-text-secondary: #6f7d92;
+  --color-text-strong: #18202f;
 
-  /* UI Elements */
-  --color-border-subtle: #D9CEAD;
-  --color-accent:        #8C7750;
-  --color-neutral-cool:  #C2C6C8;
+  --color-border-subtle: #dbe5f0;
+  --color-border-strong: #c7d4e4;
+  --color-accent: #ff9a57;
+  --color-accent-strong: #ff8b3d;
+  --color-neutral-cool: #d8e1eb;
 
-  /* Shadows (warm, not black) */
-  --shadow-soft:   0 2px 6px rgba(47, 43, 36, 0.12);
-  --shadow-medium: 0 4px 12px rgba(47, 43, 36, 0.16);
-  --shadow-inset: inset 0 1px 2px rgba(47, 43, 36, 0.12);
-  --highlight-soft: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  --shadow-soft: 0 8px 24px rgba(34, 48, 74, 0.08);
+  --shadow-medium: 0 18px 44px rgba(34, 48, 74, 0.14);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --highlight-soft: inset 0 1px 0 rgba(255, 255, 255, 0.72);
 
-  /* Hover / Active surfaces */
-  --color-interaction-hover:  #E8E1D2;
-  --color-interaction-active: #DDD4C2;
-
-  /* Focus */
-  --color-focus-ring: #8C7750;
-
-  /* Disabled */
-  --color-disabled-text: #B5AE9D;
-  --color-disabled-bg:   #ECE6D8;
+  --color-interaction-hover: #f5f8fc;
+  --color-interaction-active: #eef3f9;
+  --color-focus-ring: #ff9a57;
+  --color-disabled-text: #9eacbf;
+  --color-disabled-bg: #edf2f7;
 
   --text-body-color: var(--color-text-primary);
   --text-muted-color: var(--color-text-secondary);
   --text-heading-color: var(--color-text-strong);
-  --text-on-accent: #F2F2F0;
+  --text-on-accent: #ffffff;
 
-  /* Cards */
   --card-bg: var(--color-bg-surface);
   --card-shadow: var(--shadow-soft);
 
-  /* Inputs */
-  --input-bg: var(--color-bg-inset);
+  --input-bg: var(--color-bg-surface);
   --input-border: var(--color-border-subtle);
-  --input-shadow: var(--shadow-inset);
+  --input-shadow: 0 1px 0 rgba(255, 255, 255, 0.82), 0 8px 18px rgba(36, 48, 66, 0.05);
 
-  /* Buttons */
   --button-primary-bg: var(--color-accent);
   --button-primary-text: var(--text-on-accent);
-  --button-secondary-bg: var(--color-bg-raised);
+  --button-secondary-bg: var(--color-bg-surface);
   --button-secondary-text: var(--color-text-primary);
 
-  /* Dividers */
   --divider-color: var(--color-border-subtle);
-  --color-success-soft: #DDE8D7;
-  --color-success-border: #A8BE9A;
-  --color-success-text: #4F6A49;
+  --color-success-soft: #e7f7ee;
+  --color-success-border: #9dd5ad;
+  --color-success-text: #256447;
   --page-max-width: 1440px;
 }
 
@@ -68,16 +58,20 @@ html, body {
 
 body {
   margin: 0;
-  background: var(--color-bg-primary);
+  background:
+    radial-gradient(circle at top left, rgba(255, 154, 87, 0.12), transparent 22%),
+    linear-gradient(180deg, #f3f7fc 0%, #edf3fa 100%);
   color: var(--text-body-color);
   font-family: var(--font-body), "Nunito", sans-serif;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3 {
-  font-family: var(--font-display), "Lora", serif;
+  font-family: var(--font-display), "Manrope", sans-serif;
   color: var(--text-heading-color);
   margin: 0;
+  letter-spacing: -0.04em;
 }
 
 p, button, input, li, span, a, select, option {
@@ -89,19 +83,19 @@ p, button, input, li, span, a, select, option {
 }
 
 ::selection {
-  background: rgba(140, 119, 80, 0.18);
+  background: rgba(255, 154, 87, 0.2);
 }
 
 .card {
   background: var(--card-bg);
   box-shadow: var(--card-shadow), var(--highlight-soft);
-  border: 1px solid var(--divider-color);
-  border-radius: 22px;
+  border: 1px solid rgba(219, 229, 240, 0.95);
+  border-radius: 24px;
 }
 
 .inset {
   background: var(--input-bg);
-  box-shadow: var(--input-shadow), var(--highlight-soft);
+  box-shadow: var(--input-shadow);
 }
 
 .accent {
@@ -109,9 +103,15 @@ p, button, input, li, span, a, select, option {
   color: var(--button-primary-text);
 }
 
+.subtle-surface {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(219, 229, 240, 0.9);
+  backdrop-filter: blur(12px);
+}
+
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-accent) transparent;
+  scrollbar-color: #c6d2df transparent;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
@@ -123,7 +123,7 @@ p, button, input, li, span, a, select, option {
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(47, 43, 36, 0.16);
+  background: rgba(111, 125, 146, 0.4);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: content-box;
@@ -154,5 +154,5 @@ input:focus-visible,
 select:focus-visible,
 a:focus-visible {
   outline: 2px solid var(--color-focus-ring);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }

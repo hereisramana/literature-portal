@@ -169,7 +169,7 @@ export default function Page() {
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
       <div
-        className={`hidden h-full border-r border-[var(--divider-color)] bg-[var(--color-bg-surface)] transition-[width] duration-300 lg:block ${
+        className={`hidden h-full border-r border-[var(--divider-color)] bg-[rgba(255,255,255,0.42)] transition-[width] duration-300 lg:block ${
           desktopSidebarCollapsed ? "w-[52px]" : "w-[340px]"
         }`}
       >
@@ -183,8 +183,8 @@ export default function Page() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-30 bg-black/20 lg:hidden">
-          <div className="h-full w-[86%] max-w-[320px] border-r border-[var(--divider-color)] shadow-[var(--shadow-medium)]">
+        <div className="fixed inset-0 z-30 bg-[rgba(24,32,47,0.18)] backdrop-blur-sm lg:hidden">
+          <div className="h-full w-[86%] max-w-[320px] border-r border-[var(--divider-color)] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)]">
             <Sidebar
               categories={categories}
               active={activeCategory?.id}
@@ -194,7 +194,7 @@ export default function Page() {
           </div>
           <button
             aria-label="Close categories"
-            className="absolute right-4 top-4 rounded-xl bg-[var(--button-primary-bg)] p-3 text-[var(--button-primary-text)]"
+            className="absolute right-4 top-4 rounded-2xl bg-[var(--color-text-strong)] p-3 text-white"
             onClick={() => setMobileMenuOpen(false)}
           >
             <svg
@@ -212,12 +212,12 @@ export default function Page() {
       )}
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
-        <div className="border-b border-[var(--divider-color)] bg-[rgba(194,198,200,0.08)]">
-          <div className="shell-width px-4 pb-5 pt-5 md:px-4 md:pb-5 md:pt-5">
-          <div className="mb-5 flex items-center gap-4">
+        <div className="border-b border-[var(--divider-color)] bg-[rgba(255,255,255,0.34)] backdrop-blur-sm">
+          <div className="shell-width px-4 pb-6 pt-5 md:px-7 md:pb-7 md:pt-6">
+          <div className="mb-6 flex items-center gap-4">
             <button
               aria-label="Open categories"
-              className="rounded-xl p-2 text-[var(--color-accent)] lg:hidden"
+              className="rounded-2xl p-2 text-[var(--text-heading-color)] transition hover:bg-[rgba(255,255,255,0.52)] lg:hidden"
               onClick={() => setMobileMenuOpen(true)}
             >
               <svg
@@ -231,33 +231,36 @@ export default function Page() {
                 <path d="M3 6h18M3 12h18M3 18h18" />
               </svg>
             </button>
-            <div className="w-full text-center">
-              <h1 className="text-[34px] leading-[1.02] md:text-[38px]">
+            <div className="w-full text-center md:text-left">
+              <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[var(--text-muted-color)]">
+                UX-style revision workspace
+              </p>
+              <h1 className="mt-2 text-[33px] leading-[1] md:text-[46px]">
                 English Literature Revision Guide
               </h1>
-              <p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-[var(--text-muted-color)] md:text-[13px]">
-                Minimal revision cards, focused testing, and locally stored confidence for calmer repeated study.
+              <p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-[var(--text-muted-color)] md:mx-0 md:text-[15px]">
+                Browse clean reference cards, launch focused tests, and keep lightweight progress without leaving the study flow.
               </p>
             </div>
           </div>
 
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="relative flex w-full items-center gap-3">
-              <div className="w-full md:max-w-[282px]">
+              <div className="w-full md:max-w-[336px]">
                 <SearchBar onSearch={setQuery} />
               </div>
               <button
                 aria-label="Open contextual filters"
                 onClick={() => setFilterOpen((current) => !current)}
-                className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full border transition ${
+                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition ${
                   filterOpen
-                    ? "border-[var(--button-primary-bg)] bg-[var(--color-interaction-active)]"
+                    ? "border-[var(--color-accent)] bg-[var(--color-bg-accent-soft)]"
                     : "border-[var(--divider-color)] bg-[var(--button-secondary-bg)] hover:bg-[var(--color-interaction-hover)]"
                 }`}
               >
                 <svg
                   aria-hidden="true"
-                  className="h-5 w-5 text-[var(--color-accent)]"
+                  className="h-5 w-5 text-[var(--text-muted-color)]"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -268,7 +271,7 @@ export default function Page() {
               </button>
 
               {filterOpen && (
-                <div className="absolute right-0 top-[calc(100%+12px)] z-20 w-[280px] rounded-[24px] border border-[var(--divider-color)] bg-[var(--color-bg-surface)] p-5 shadow-[var(--shadow-medium)]">
+                <div className="subtle-surface absolute right-0 top-[calc(100%+12px)] z-20 w-[280px] rounded-[24px] p-5 shadow-[var(--shadow-medium)]">
                   <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--text-muted-color)]">
                     Context filters
                   </p>
@@ -279,7 +282,7 @@ export default function Page() {
                     <select
                       value={subCategory}
                       onChange={(e) => setSubCategory(e.target.value)}
-                      className="w-full rounded-2xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-3 text-sm text-[var(--text-body-color)] shadow-[var(--input-shadow),var(--highlight-soft)]"
+                      className="w-full rounded-2xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-3 text-sm text-[var(--text-body-color)] shadow-[var(--input-shadow)]"
                     >
                       <option value="all">All Periods</option>
                       {periodOptions.map((period) => (
@@ -300,10 +303,10 @@ export default function Page() {
         </div>
 
         <section className="scrollbar-thin flex-1 overflow-y-auto">
-          <div className="shell-width px-3 py-5 md:px-4 md:py-5">
+          <div className="shell-width px-4 py-6 md:px-7 md:py-7">
           {filteredAuthors.length > 0 ? (
             <div
-              className={`grid grid-cols-1 gap-3 md:grid-cols-2 ${
+              className={`grid grid-cols-1 gap-5 md:grid-cols-2 ${
                 desktopSidebarCollapsed ? "lg:grid-cols-3" : "2xl:grid-cols-3"
               }`}
             >
@@ -326,7 +329,7 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="safe-bottom border-t border-[var(--divider-color)] bg-[var(--color-bg-surface)] px-4 pt-3 md:hidden">
+        <div className="safe-bottom border-t border-[var(--divider-color)] bg-[rgba(255,255,255,0.82)] px-4 pt-3 backdrop-blur-md md:hidden">
           <ModeToggle mode={mode} setMode={setMode} />
         </div>
       </main>
