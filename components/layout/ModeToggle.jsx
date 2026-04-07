@@ -42,19 +42,24 @@ export default function ModeToggle({ mode, setMode }) {
         TEST
       </button>
 
-      <motion.div
-        className="absolute bottom-[5px] top-[5px] z-0 rounded-full bg-[var(--button-primary-bg)] shadow-[0_4px_12px_rgba(58,64,59,0.15)]"
-        initial={false}
-        animate={{
-          left: mode === "study" ? "5px" : "50%",
-          right: mode === "study" ? "50%" : "5px",
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 35,
-        }}
-      />
+      <div className="absolute inset-[5px] flex">
+        <motion.div
+          className="h-full rounded-full bg-[var(--button-primary-bg)] shadow-[0_4px_12px_rgba(58,64,59,0.15)]"
+          initial={false}
+          animate={{
+            x: mode === "study" ? 0 : "100%",
+          }}
+          style={{
+            width: "50%",
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 500,
+            damping: 38,
+            mass: 0.8,
+          }}
+        />
+      </div>
     </div>
   );
 }

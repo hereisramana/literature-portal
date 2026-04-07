@@ -149,53 +149,89 @@ export default function Page() {
         </div>
       </div>
 
-      {!desktopSidebarCollapsed && (
-        <div className="fixed inset-0 z-30 hidden lg:block">
-          <div
-            className="ease-figma absolute inset-0 bg-[rgba(24,32,47,0.12)] transition-opacity duration-300"
-            onClick={() => setDesktopSidebarCollapsed(true)}
-          />
-          <div className="ease-figma absolute inset-y-0 left-0 w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)] transition-transform duration-300">
-            <Sidebar
-              categories={categories}
-              active={activeCategory?.id}
-              setActive={handleCategoryChange}
-              collapsed={false}
-              onToggle={() => setDesktopSidebarCollapsed(true)}
-            />
-          </div>
-        </div>
-      )}
-
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-30 bg-[rgba(24,32,47,0.18)] backdrop-blur-sm lg:hidden">
-          <div className="ease-figma h-full w-[86%] max-w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)] transition-transform duration-300">
-            <Sidebar
-              categories={categories}
-              active={activeCategory?.id}
-              setActive={handleCategoryChange}
-              onSelect={() => setMobileMenuOpen(false)}
-              title="English Literature Revision Guide"
-            />
-          </div>
-          <button
-            aria-label="Close categories"
-            className="absolute right-4 top-4 rounded-2xl bg-[var(--color-text-strong)] p-3 text-white"
-            onClick={() => setMobileMenuOpen(false)}
+      <AnimatePresence>
+        {!desktopSidebarCollapsed && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-30 hidden lg:block"
           >
-            <svg
-              aria-hidden="true"
-              className="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-[rgba(24,32,47,0.12)]"
+              onClick={() => setDesktopSidebarCollapsed(true)}
+            />
+            <motion.div
+              initial={{ x: -320 }}
+              animate={{ x: 0 }}
+              exit={{ x: -320 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="absolute inset-y-0 left-0 w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)]"
             >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-        </div>
-      )}
+              <Sidebar
+                categories={categories}
+                active={activeCategory?.id}
+                setActive={handleCategoryChange}
+                collapsed={false}
+                onToggle={() => setDesktopSidebarCollapsed(true)}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-30 lg:hidden"
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-[rgba(24,32,47,0.18)] backdrop-blur-sm"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="h-full w-[86%] max-w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)]"
+            >
+              <Sidebar
+                categories={categories}
+                active={activeCategory?.id}
+                setActive={handleCategoryChange}
+                onSelect={() => setMobileMenuOpen(false)}
+                title="English Literature Revision Guide"
+              />
+              <button
+                aria-label="Close categories"
+                className="absolute right-4 top-4 rounded-2xl bg-[var(--color-text-strong)] p-3 text-white"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden lg:pl-[72px]">
         <div className="bg-[var(--color-bg-primary)]">

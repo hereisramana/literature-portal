@@ -74,7 +74,7 @@ export default function Sidebar({
                   ease-figma relative w-full rounded-[24px] px-5 py-4 text-left transition duration-300
                   ${
                     isActive
-                      ? "bg-[var(--color-bg-surface)] shadow-[var(--shadow-soft)]"
+                    ? "shadow-[var(--shadow-soft)]"
                       : "bg-transparent hover:bg-[rgba(58,64,59,0.05)]"
                   }
                 `}
@@ -82,7 +82,7 @@ export default function Sidebar({
                 {isActive && (
                   <motion.div
                     layoutId="sidebar-active-indicator"
-                    className="absolute inset-0 z-0 rounded-[24px] border-2 border-[var(--color-border-strong)]"
+                    className="absolute inset-0 z-0 rounded-[24px] bg-[var(--color-bg-surface)]"
                     initial={false}
                     transition={{
                       type: "spring",
