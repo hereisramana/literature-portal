@@ -252,11 +252,11 @@ function TypeExercise({ exercise, selected, onSelect, onSubmit, submitted, resul
 }
 
 const GUIDES = {
-  recall: "Reveal mode shows the full works list after a memory attempt. Use it as a quick warm-up before structured questions.",
-  select: "Select every work that truly belongs to this author. Correct titles turn green after checking.",
-  ordering: "Rebuild the works in listed syllabus order. When checked, the correct sequence is surfaced in green.",
-  themes: "Pair each work with the best theme cue. The options are mixed with distractor themes drawn from other texts in the dataset.",
-  type: "Choose the most useful interpretive lens for this author within the active category. The expected answer is highlighted after checking.",
+  recall: "Start with retrieval before support appears. Use this as the memory-first step before verification.",
+  select: "Reveal the options, then select every work that truly belongs to this author. Distractors are mixed in deliberately.",
+  ordering: "Rebuild the syllabus order shown for this author. This reinforces sequence memory after recall.",
+  themes: "Pair each work to its theme cue. Distractors are drawn from other authors in the current dataset.",
+  type: "Choose the strongest interpretive lens for this author in context. This prepares later comparative or interleaved testing.",
 };
 
 export default function TestFocusModal({
@@ -383,7 +383,7 @@ export default function TestFocusModal({
           <div className="flex flex-col gap-4 px-5 pb-5 pt-5 md:px-8 md:flex-row md:items-start md:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--text-muted-color)]">
-                Focus Mode
+                Test Mode
               </p>
               <h2 className="mt-2 text-3xl leading-tight md:text-4xl">
                 {author.author}
@@ -513,7 +513,7 @@ export default function TestFocusModal({
                     Session Notes
                   </p>
                   <p className="mt-3 text-sm leading-7 text-[var(--text-body-color)]">
-                    {result?.message || "Work through one exercise at a time. When you close the session, you will be asked to save your confidence level for this author."}
+                    {result?.message || "Work through retrieval first, then verify with structured options. Interleaved author mixing can plug into this same shell next."}
                   </p>
                 </div>
               </aside>

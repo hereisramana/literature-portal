@@ -6,7 +6,7 @@ import AuthorCardTest from "./AuthorCardTest.jsx";
 export default function AuthorCard({
   author,
   mode,
-  onOpenModal,
+  onOpenStudy,
   onStartTest,
   confidence,
 }) {
@@ -20,5 +20,5 @@ export default function AuthorCard({
     );
   }
 
-  return <AuthorCardBrowse author={author} onOpenModal={onOpenModal} />;
+  return <AuthorCardBrowse author={author} onOpenStudy={onOpenStudy} />;
 }

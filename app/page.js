@@ -9,7 +9,7 @@ import AuthorCard from "../components/cards/AuthorCard.jsx";
 import ModeToggle from "../components/layout/ModeToggle.jsx";
 import SearchBar from "../components/common/Searchbar.jsx";
 import EmptyState from "../components/common/Emptystate.jsx";
-import InfoModal from "../components/common/InfoModal.jsx";
+import StudyFocusModal from "../components/study/StudyFocusModal.jsx";
 import TestFocusModal from "../components/test/TestFocusModal.jsx";
 import { inferTheme } from "../utils/testEngine.js";
 import { useProgress } from "../hooks/useProgress.js";
@@ -18,13 +18,12 @@ import { useCloudSync } from "../hooks/useCloudSync.js";
 export default function Page() {
   const categories = useMemo(() => buildCatalog(raw), []);
   const [category, setCategory] = useState(categories[0]?.id || "");
-  const [mode, setMode] = useState("browse");
+  const [mode, setMode] = useState("study");
   const [query, setQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [desktopSidebarCollapsed, setDesktopSidebarCollapsed] = useState(false);
-  const [modal, setModal] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [focusedAuthor, setFocusedAuthor] = useState(null);
+  const [studyContext, setStudyContext] = useState(null);
   const [confidenceMap, setConfidenceMap] = useState({});
   const { get, save, ready } = useProgress();
   const cloud = useCloudSync();
@@ -57,40 +56,11 @@ export default function Page() {
     setCategory(nextCategory);
   }
 
-  async function openModal(title, author = "", sourceAuthor = null) {
-    const themeSource = sourceAuthor || activeCategory?.authors.find((entry) => entry.author === author);
-    const themes = themeSource
-      ? [...new Set(
-          (themeSource.works || []).map((work) => inferTheme(work, themeSource, activeCategory))
-        )]
-      : [];
-
-    setModal({ title, author, summary: "", themes });
-    setLoading(true);
-
-    try {
-      const queryTitle = encodeURIComponent(title);
-      const response = await fetch(
-        `https://en.wikipedia.org/api/rest_v1/page/summary/${queryTitle}`
-      );
-      const payload = await response.json();
-
-      setModal({
-        title,
-        author,
-        summary: payload.extract || "No summary available.",
-        themes,
-      });
-    } catch {
-      setModal({
-        title,
-        author,
-        summary: "No summary available.",
-        themes,
-      });
-    }
-
-    setLoading(false);
+  function openStudy(author, selectedWork = "") {
+    setStudyContext({
+      author,
+      selectedWork,
+    });
   }
 
   useEffect(() => {
@@ -259,9 +229,7 @@ export default function Page() {
                   key={`${author.author}-${index}`}
                   author={author}
                   mode={mode}
-                  onOpenModal={(title, authorName = "") =>
-                    openModal(title, authorName, author)
-                  }
+                  onOpenStudy={openStudy}
                   onStartTest={setFocusedAuthor}
                   confidence={confidenceMap[author.author]}
                 />
@@ -280,7 +248,16 @@ export default function Page() {
         </div>
       </main>
 
-      <InfoModal modal={modal} loading={loading} onClose={() => setModal(null)} />
+      {mode === "study" && studyContext && (
+        <StudyFocusModal
+          author={studyContext.author}
+          category={activeCategory}
+          allAuthors={allAuthors}
+          selectedWork={studyContext.selectedWork}
+          inferTheme={inferTheme}
+          onClose={() => setStudyContext(null)}
+        />
+      )}
       {mode === "test" && focusedAuthor && (
         <TestFocusModal
           author={focusedAuthor}

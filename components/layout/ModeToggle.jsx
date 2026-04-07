@@ -10,19 +10,19 @@ export default function ModeToggle({ mode, setMode }) {
       "
     >
       <button
-        onClick={() => setMode("browse")}
+        onClick={() => setMode("study")}
         className={`
           flex items-center justify-center rounded-full px-5 text-[16px] font-extrabold tracking-[0.01em]
           md:px-3 md:text-[17px]
           ease-figma transition-all duration-300
           ${
-            mode === "browse"
+            mode === "study"
               ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-[0_8px_20px_rgba(58,64,59,0.16)]"
               : "text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)]"
           }
         `}
       >
-        BROWSE
+        STUDY
       </button>
 
       <button
