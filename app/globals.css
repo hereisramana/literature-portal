@@ -69,18 +69,18 @@ body {
   margin: 0;
   background: var(--color-bg-primary);
   color: var(--text-body-color);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-body), "Nunito", sans-serif;
   overflow: hidden;
 }
 
 h1, h2, h3 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display), "Lora", serif;
   color: var(--text-heading-color);
   margin: 0;
 }
 
 p, button, input, li, span, a, select, option {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), "Nunito", sans-serif;
 }
 
 * {

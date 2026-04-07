@@ -4,18 +4,20 @@ export default function ModeToggle({ mode, setMode }) {
   return (
     <div
       className="
-        grid grid-cols-2 overflow-hidden rounded-full border border-[var(--divider-color)]
-        bg-[var(--button-secondary-bg)] p-1
+        grid h-[56px] w-full max-w-full grid-cols-2 overflow-hidden rounded-[28px]
+        bg-[var(--color-bg-surface)] p-2
+        md:h-[82px] md:w-[736px] md:rounded-[38px] md:p-4
       "
     >
       <button
         onClick={() => setMode("browse")}
         className={`
-          min-w-[112px] rounded-full px-5 py-2 text-sm font-semibold tracking-[0.03em]
-          transition
+          flex items-center justify-center rounded-[22px] px-5 text-[20px] font-extrabold tracking-[0.02em]
+          md:rounded-[30px] md:text-[34px]
+          transition-colors
           ${
             mode === "browse"
-              ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-[var(--shadow-soft)]"
+              ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)]"
               : "text-[var(--text-muted-color)]"
           }
         `}
@@ -26,11 +28,12 @@ export default function ModeToggle({ mode, setMode }) {
       <button
         onClick={() => setMode("test")}
         className={`
-          min-w-[112px] rounded-full px-5 py-2 text-sm font-semibold tracking-[0.03em]
-          transition
+          flex items-center justify-center rounded-[22px] px-5 text-[20px] font-extrabold tracking-[0.02em]
+          md:rounded-[30px] md:text-[34px]
+          transition-colors
           ${
             mode === "test"
-              ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-[var(--shadow-soft)]"
+              ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)]"
               : "text-[var(--text-muted-color)]"
           }
         `}

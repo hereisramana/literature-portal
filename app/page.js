@@ -21,6 +21,7 @@ export default function Page() {
   const [query, setQuery] = useState("");
   const [subCategory, setSubCategory] = useState("all");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [desktopSidebarCollapsed, setDesktopSidebarCollapsed] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [modal, setModal] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -167,11 +168,17 @@ export default function Page() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
-      <div className="hidden h-full w-[300px] border-r border-[var(--divider-color)] lg:block">
+      <div
+        className={`hidden h-full border-r border-[var(--divider-color)] bg-[var(--color-bg-surface)] transition-[width] duration-300 lg:block ${
+          desktopSidebarCollapsed ? "w-[144px]" : "w-[300px]"
+        }`}
+      >
         <Sidebar
           categories={categories}
           active={activeCategory?.id}
           setActive={handleCategoryChange}
+          collapsed={desktopSidebarCollapsed}
+          onToggle={() => setDesktopSidebarCollapsed((current) => !current)}
         />
       </div>
 
@@ -292,7 +299,11 @@ export default function Page() {
 
         <section className="scrollbar-thin flex-1 overflow-y-auto px-4 py-5 md:px-8 md:py-6">
           {filteredAuthors.length > 0 ? (
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3">
+            <div
+              className={`grid grid-cols-1 gap-5 md:grid-cols-2 ${
+                desktopSidebarCollapsed ? "lg:grid-cols-3" : "2xl:grid-cols-3"
+              }`}
+            >
               {filteredAuthors.map((author, index) => (
                 <AuthorCard
                   key={`${author.author}-${index}`}
