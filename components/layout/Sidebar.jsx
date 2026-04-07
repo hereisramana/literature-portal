@@ -12,7 +12,7 @@ export default function Sidebar({
 }) {
   return (
     <aside className="flex h-full flex-col bg-[var(--color-bg-primary)]">
-      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-6"}`}>
+      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-6 md:px-8 md:py-8"}`}>
         {collapsed ? (
             <button
               aria-label="Open categories panel"
@@ -62,8 +62,8 @@ export default function Sidebar({
         )}
       </div>
 
-      <div className={`scrollbar-thin flex-1 overflow-y-auto ${collapsed ? "px-0 py-0" : "px-5 py-2"}`}>
-        <nav className={`${collapsed ? "space-y-0" : "space-y-2"}`}>
+      <div className={`scrollbar-thin flex-1 overflow-y-auto ${collapsed ? "px-0 py-0" : "px-5 py-2 md:px-7 md:py-4"}`}>
+        <nav className={`${collapsed ? "space-y-0" : "space-y-2.5"}`}>
           {!collapsed && categories.map((category) => {
             const isActive = active === category.id;
 

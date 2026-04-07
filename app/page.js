@@ -209,25 +209,9 @@ export default function Page() {
                 active={activeCategory?.id}
                 setActive={handleCategoryChange}
                 onSelect={() => setMobileMenuOpen(false)}
-              title="EnLit"
-              tagline="exam revision portal"
+                collapsed={false}
+                onToggle={() => setMobileMenuOpen(false)}
               />
-              <button
-                aria-label="Close categories"
-                className="absolute right-4 top-4 rounded-2xl bg-[var(--color-text-strong)] p-3 text-white"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <svg
-                  aria-hidden="true"
-                  className="h-5 w-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
             </motion.div>
           </motion.div>
         )}
