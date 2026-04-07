@@ -157,7 +157,7 @@ export default function Page() {
   }
 
   return (
-    <div className="h-screen overflow-hidden bg-[var(--color-bg-primary)]">
+    <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
       <div className="fixed inset-y-0 left-0 z-20 hidden lg:block">
         <div className="h-full w-[72px] bg-[var(--color-bg-primary)]">
           <Sidebar
@@ -173,10 +173,10 @@ export default function Page() {
       {!desktopSidebarCollapsed && (
         <div className="fixed inset-0 z-30 hidden lg:block">
           <div
-            className="absolute inset-0 bg-[rgba(24,32,47,0.12)]"
+            className="ease-figma absolute inset-0 bg-[rgba(24,32,47,0.12)] transition-opacity duration-300"
             onClick={() => setDesktopSidebarCollapsed(true)}
           />
-          <div className="absolute inset-y-0 left-0 w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)]">
+          <div className="ease-figma absolute inset-y-0 left-0 w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)] transition-transform duration-300">
             <Sidebar
               categories={categories}
               active={activeCategory?.id}
@@ -190,7 +190,7 @@ export default function Page() {
 
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-30 bg-[rgba(24,32,47,0.18)] backdrop-blur-sm lg:hidden">
-          <div className="h-full w-[86%] max-w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)]">
+          <div className="ease-figma h-full w-[86%] max-w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)] transition-transform duration-300">
             <Sidebar
               categories={categories}
               active={activeCategory?.id}
@@ -248,8 +248,8 @@ export default function Page() {
         </div>
         </div>
 
-        <section className="scrollbar-thin flex-1 overflow-y-auto">
-          <div className="shell-width px-4 py-3 md:px-8 md:py-4 lg:px-10">
+        <section className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
+          <div className="shell-width px-4 py-3 pb-28 md:px-8 md:py-4 md:pb-8 lg:px-10">
           {filteredAuthors.length > 0 ? (
             <div
               className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
@@ -275,7 +275,7 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="safe-bottom bg-[var(--color-bg-primary)] px-4 pt-3 md:hidden">
+        <div className="safe-bottom fixed inset-x-0 bottom-0 z-20 bg-[var(--color-bg-primary)] px-4 pt-3 md:hidden">
           <ModeToggle mode={mode} setMode={setMode} />
         </div>
       </main>

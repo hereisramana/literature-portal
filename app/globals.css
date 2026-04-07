@@ -140,11 +140,15 @@ p, button, input, li, span, a, select, option {
 }
 
 .safe-bottom {
-  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px) + 14px);
 }
 
 .safe-bottom-lg {
-  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px) + 14px);
+}
+
+.ease-figma {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 button:focus-visible,

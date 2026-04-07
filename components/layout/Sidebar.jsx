@@ -14,7 +14,7 @@ export default function Sidebar({
             <button
               aria-label="Open categories panel"
               onClick={onToggle}
-            className="mt-1 flex h-12 w-12 items-center justify-center rounded-2xl text-[var(--text-heading-color)] transition hover:bg-[var(--color-interaction-hover)]"
+            className="ease-figma mt-1 flex h-12 w-12 items-center justify-center rounded-2xl text-[var(--text-heading-color)] transition duration-300 hover:bg-[var(--color-interaction-hover)]"
           >
             <svg
               aria-hidden="true"
@@ -37,7 +37,7 @@ export default function Sidebar({
             <button
               aria-label="Collapse categories panel"
               onClick={onToggle}
-              className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--color-text-strong)] text-white transition hover:scale-[0.98]"
+              className="ease-figma flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--color-text-strong)] text-white transition duration-300 hover:scale-[0.98]"
             >
               <svg
                 aria-hidden="true"
@@ -69,7 +69,7 @@ export default function Sidebar({
                   onSelect?.();
                 }}
                 className={`
-                  w-full rounded-[24px] px-5 py-4 text-left transition
+                  ease-figma w-full rounded-[24px] px-5 py-4 text-left transition duration-300
                   ${
                     isActive
                       ? "bg-[var(--color-bg-surface)] shadow-[var(--shadow-soft)]"
