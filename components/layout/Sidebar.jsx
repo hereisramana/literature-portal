@@ -8,7 +8,7 @@ export default function Sidebar({
 }) {
   return (
     <aside className="flex h-full flex-col bg-[rgba(255,255,255,0.55)] backdrop-blur-sm">
-      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between border-b border-[var(--divider-color)] px-5 py-5"}`}>
+      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between border-b border-[var(--divider-color)] px-6 py-6"}`}>
         {collapsed ? (
           <button
             aria-label="Open categories panel"
@@ -28,12 +28,12 @@ export default function Sidebar({
           </button>
         ) : (
           <>
-            <div>
+            <div className="max-w-[250px] pt-1">
               <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[var(--text-muted-color)]">
                 Literature Portal
               </p>
               <p className="mt-2 text-sm leading-6 text-[var(--text-muted-color)]">
-                Clear revision buckets for browse and focused testing.
+                Browse syllabus buckets, then switch into focused test mode when you are ready to practice recall.
               </p>
             </div>
             <button
@@ -58,7 +58,7 @@ export default function Sidebar({
         )}
       </div>
 
-      <div className={`scrollbar-thin flex-1 overflow-y-auto ${collapsed ? "px-0 py-0" : "px-4 py-4"}`}>
+      <div className={`scrollbar-thin flex-1 overflow-y-auto ${collapsed ? "px-0 py-0" : "px-5 py-5"}`}>
         <nav className={`${collapsed ? "space-y-0" : "space-y-2"}`}>
           {!collapsed && categories.map((category) => {
             const isActive = active === category.id;
@@ -71,7 +71,7 @@ export default function Sidebar({
                   onSelect?.();
                 }}
                 className={`
-                  w-full rounded-[22px] border px-4 py-4 text-left transition
+                  w-full rounded-[24px] border px-5 py-4 text-left transition
                   ${
                     isActive
                       ? "border-[var(--color-border-strong)] bg-[var(--color-bg-surface)] shadow-[var(--shadow-soft)]"
@@ -84,7 +84,7 @@ export default function Sidebar({
                     <p className="text-[15px] font-extrabold text-[var(--text-heading-color)]">
                       {category.label}
                     </p>
-                    <p className="mt-1.5 text-xs leading-5 text-[var(--text-muted-color)]">
+                    <p className="mt-2 text-xs leading-5 text-[var(--text-muted-color)]">
                       {category.description}
                     </p>
                   </div>

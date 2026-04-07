@@ -170,7 +170,7 @@ export default function Page() {
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
       <div
         className={`hidden h-full border-r border-[var(--divider-color)] bg-[rgba(255,255,255,0.42)] transition-[width] duration-300 lg:block ${
-          desktopSidebarCollapsed ? "w-[52px]" : "w-[340px]"
+          desktopSidebarCollapsed ? "w-[72px]" : "w-[440px] xl:w-[500px]"
         }`}
       >
         <Sidebar
@@ -213,8 +213,8 @@ export default function Page() {
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
         <div className="border-b border-[var(--divider-color)] bg-[rgba(255,255,255,0.34)] backdrop-blur-sm">
-          <div className="shell-width px-4 pb-6 pt-5 md:px-7 md:pb-7 md:pt-6">
-          <div className="mb-6 flex items-center gap-4">
+          <div className="shell-width px-4 pb-6 pt-5 md:px-8 md:pb-8 md:pt-6 lg:px-10">
+          <div className="mb-8 flex items-start gap-4">
             <button
               aria-label="Open categories"
               className="rounded-2xl p-2 text-[var(--text-heading-color)] transition hover:bg-[rgba(255,255,255,0.52)] lg:hidden"
@@ -235,7 +235,7 @@ export default function Page() {
               <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[var(--text-muted-color)]">
                 UX-style revision workspace
               </p>
-              <h1 className="mt-2 text-[33px] leading-[1] md:text-[46px]">
+              <h1 className="mt-2 text-[33px] leading-[1] md:text-[46px] lg:text-[52px]">
                 English Literature Revision Guide
               </h1>
               <p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-[var(--text-muted-color)] md:mx-0 md:text-[15px]">
@@ -244,9 +244,9 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="relative flex w-full items-center gap-3">
-              <div className="w-full md:max-w-[336px]">
+              <div className="w-full lg:max-w-[427px]">
                 <SearchBar onSearch={setQuery} />
               </div>
               <button
@@ -303,11 +303,15 @@ export default function Page() {
         </div>
 
         <section className="scrollbar-thin flex-1 overflow-y-auto">
-          <div className="shell-width px-4 py-6 md:px-7 md:py-7">
+          <div className="shell-width px-4 py-4 md:px-8 md:py-5 lg:px-10">
           {filteredAuthors.length > 0 ? (
             <div
-              className={`grid grid-cols-1 gap-5 md:grid-cols-2 ${
-                desktopSidebarCollapsed ? "lg:grid-cols-3" : "2xl:grid-cols-3"
+              className={`grid grid-cols-1 gap-4 md:grid-cols-2 ${
+                mode === "test"
+                  ? "xl:grid-cols-2"
+                  : desktopSidebarCollapsed
+                  ? "xl:grid-cols-3"
+                  : "2xl:grid-cols-3"
               }`}
             >
               {filteredAuthors.map((author, index) => (

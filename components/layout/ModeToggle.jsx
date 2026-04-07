@@ -6,14 +6,14 @@ export default function ModeToggle({ mode, setMode }) {
       className="
         subtle-surface grid h-[52px] w-full max-w-full grid-cols-2 overflow-hidden rounded-full
         p-[5px] shadow-[var(--shadow-soft)]
-        md:h-[46px] md:w-[244px]
+        md:h-[57px] md:w-[360px]
       "
     >
       <button
         onClick={() => setMode("browse")}
         className={`
           flex items-center justify-center rounded-full px-5 text-[16px] font-extrabold tracking-[0.01em]
-          md:px-3 md:text-[14px]
+          md:px-3 md:text-[17px]
           transition-all duration-200
           ${
             mode === "browse"
@@ -29,7 +29,7 @@ export default function ModeToggle({ mode, setMode }) {
         onClick={() => setMode("test")}
         className={`
           flex items-center justify-center rounded-full px-5 text-[16px] font-extrabold tracking-[0.01em]
-          md:px-3 md:text-[14px]
+          md:px-3 md:text-[17px]
           transition-all duration-200
           ${
             mode === "test"

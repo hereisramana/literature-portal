@@ -4,7 +4,7 @@ export default function AuthorCardBrowse({ author, onOpenModal }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <article className="card flex min-h-[250px] flex-col gap-5 p-6 transition duration-200 hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]">
+    <article className="card flex min-h-[251px] flex-col gap-5 p-6 transition duration-200 hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[var(--text-muted-color)]">

@@ -19,6 +19,7 @@ export default function SearchBar({ onSearch }) {
           shadow-[var(--input-shadow)] outline-none transition
           focus:border-[var(--color-focus-ring)] focus:bg-white
           placeholder:font-medium placeholder:text-[var(--text-muted-color)]
+          md:h-14
         "
       />
       <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-[var(--text-muted-color)]">
