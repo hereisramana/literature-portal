@@ -7,7 +7,8 @@ export default function Sidebar({
   onSelect,
   collapsed = false,
   onToggle,
-  title = "English Literature Revision Guide",
+  title = "EnLit",
+  tagline = "exam revision portal",
 }) {
   return (
     <aside className="flex h-full flex-col bg-[var(--color-bg-primary)]">
@@ -32,9 +33,12 @@ export default function Sidebar({
         ) : (
           <>
             <div className="max-w-[240px] pt-1">
-              <h1 className="text-[28px] font-bold leading-[1.05] text-[var(--text-body-color)]">
+              <h1 className="text-[32px] font-bold leading-[1.05] text-[var(--text-body-color)]">
                 {title}
               </h1>
+              <p className="mt-1 text-xs font-bold uppercase tracking-widest text-[var(--text-muted-color)] opacity-60">
+                {tagline}
+              </p>
             </div>
             <button
               aria-label="Collapse categories panel"
@@ -71,36 +75,24 @@ export default function Sidebar({
                   onSelect?.();
                 }}
                 className={`
-                  ease-figma relative w-full rounded-[24px] px-5 py-4 text-left transition duration-300
+                  ease-figma w-full rounded-[24px] px-5 py-4 text-left transition duration-300
                   ${
                     isActive
-                    ? "shadow-[var(--shadow-soft)]"
-                      : "bg-transparent hover:bg-[rgba(58,64,59,0.05)]"
+                      ? "bg-[var(--color-bg-surface)] shadow-[var(--shadow-soft)]"
+                      : "bg-transparent hover:bg-[rgba(58,64,59,0.12)]"
                   }
                 `}
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="sidebar-active-indicator"
-                    className="absolute inset-0 z-0 rounded-[24px] bg-[var(--color-bg-surface)]"
-                    initial={false}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
-                    }}
-                  />
-                )}
-                <div className="relative z-10 flex items-start justify-between gap-3">
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[15px] font-bold text-[var(--text-heading-color)] truncate">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-[15px] font-extrabold text-[var(--text-heading-color)]">
                       {category.label}
                     </p>
-                    <p className="mt-1 text-xs leading-5 text-[var(--text-muted-color)] line-clamp-2">
+                    <p className="mt-2 text-xs leading-5 text-[var(--text-muted-color)]">
                       {category.description}
                     </p>
                   </div>
-                  <span className="shrink-0 rounded-full bg-[var(--color-bg-inset)] px-2.5 py-1 text-[10px] font-bold text-[var(--text-muted-color)] opacity-70">
+                  <span className="rounded-full bg-[var(--color-bg-raised)] px-2.5 py-1 text-[11px] font-extrabold text-[var(--text-muted-color)]">
                     {category.authors.length}
                   </span>
                 </div>

@@ -210,7 +210,8 @@ export default function Page() {
                 active={activeCategory?.id}
                 setActive={handleCategoryChange}
                 onSelect={() => setMobileMenuOpen(false)}
-                title="English Literature Revision Guide"
+              title="EnLit"
+              tagline="exam revision portal"
               />
               <button
                 aria-label="Close categories"

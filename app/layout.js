@@ -14,6 +14,11 @@ const nunito = Nunito({
   weight: ["400", "500", "600", "700"],
 });
 
+export const metadata = {
+  title: "EnLit | Exam Revision Portal",
+  description: "A comprehensive literature exam revision portal",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${manrope.variable} ${nunito.variable}`}>
