@@ -20,7 +20,6 @@ import { useCloudSync } from "../hooks/useCloudSync.js";
 export default function Page() {
   const categories = useMemo(() => buildCatalog(raw), []);
   const [category, setCategory] = useState(categories[0]?.id || "");
-  const [mode, setMode] = useState("study");
   const [query, setQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [desktopSidebarCollapsed, setDesktopSidebarCollapsed] = useState(false);
@@ -235,33 +234,31 @@ export default function Page() {
       </AnimatePresence>
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden lg:pl-[72px]">
-        <div className="bg-[var(--color-bg-primary)]">
-          <div className="shell-width px-4 pb-3 pt-3 md:px-8 md:pb-4 md:pt-4 lg:px-10">
-          <div className="flex items-center justify-between gap-4">
-            <button
-              aria-label="Open categories"
-              className="rounded-2xl p-2 text-[var(--text-heading-color)] transition hover:bg-[var(--color-interaction-hover)] lg:hidden"
-              onClick={() => setMobileMenuOpen(true)}
-            >
-              <svg
-                aria-hidden="true"
-                className="h-8 w-8"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
+        <div className="bg-[var(--color-bg-primary)]/80 backdrop-blur-md sticky top-0 z-10">
+          <div className="shell-width px-4 py-4 md:px-8 lg:px-10">
+            <div className="relative flex items-center justify-center">
+              <button
+                aria-label="Open categories"
+                className="absolute left-0 rounded-2xl p-2 text-[var(--text-heading-color)] transition hover:bg-[var(--color-interaction-hover)] lg:hidden"
+                onClick={() => setMobileMenuOpen(true)}
               >
-                <path d="M3 6h18M3 12h18M3 18h18" />
-              </svg>
-            </button>
-            <div className="w-full lg:max-w-[427px]">
-              <SearchBar onSearch={setQuery} />
-            </div>
-            <div className="hidden shrink-0 md:block">
-              <ModeToggle mode={mode} setMode={setMode} />
+                <svg
+                  aria-hidden="true"
+                  className="h-7 w-7"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <path d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+              </button>
+
+              <div className="w-full max-w-[560px] transform transition-all duration-300">
+                <SearchBar onSearch={setQuery} />
+              </div>
             </div>
           </div>
-        </div>
         </div>
 
         <section className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
@@ -289,7 +286,6 @@ export default function Page() {
                   >
                     <AuthorCard
                       author={author}
-                      mode={mode}
                       onOpenStudy={openStudy}
                       onStartTest={setFocusedAuthor}
                       confidence={confidenceMap[author.author]}
@@ -312,12 +308,9 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="safe-bottom fixed inset-x-0 bottom-0 z-20 bg-[var(--color-bg-primary)] px-4 pt-3 md:hidden">
-          <ModeToggle mode={mode} setMode={setMode} />
-        </div>
       </main>
 
-      {mode === "study" && studyContext && (
+      {studyContext && (
         <StudyFocusView
           author={studyContext.author}
           category={activeCategory}
@@ -327,7 +320,7 @@ export default function Page() {
           onClose={() => setStudyContext(null)}
         />
       )}
-      {mode === "test" && focusedAuthor && (
+      {focusedAuthor && (
         <TestFocusView
           author={focusedAuthor}
           category={activeCategory}

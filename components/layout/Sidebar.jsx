@@ -75,15 +75,27 @@ export default function Sidebar({
                   onSelect?.();
                 }}
                 className={`
-                  ease-figma w-full rounded-[24px] px-5 py-4 text-left transition duration-300
+                  ease-figma relative w-full rounded-[24px] px-5 py-4 text-left transition duration-300
                   ${
                     isActive
-                      ? "bg-[var(--color-bg-surface)] shadow-[var(--shadow-soft)]"
-                      : "bg-transparent hover:bg-[rgba(58,64,59,0.12)]"
+                    ? "shadow-[var(--shadow-medium)] ring-1 ring-[var(--color-border-strong)]"
+                    : "bg-transparent hover:bg-[rgba(58,64,59,0.08)]"
                   }
                 `}
               >
-                <div className="flex items-start justify-between gap-3">
+                {isActive && (
+                  <motion.div
+                    layoutId="sidebar-active-indicator"
+                    className="absolute inset-0 z-0 rounded-[24px] bg-[var(--color-bg-inset)]"
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  />
+                )}
+                <div className="relative z-10 flex items-start justify-between gap-3">
                   <div>
                     <p className="text-[15px] font-extrabold text-[var(--text-heading-color)]">
                       {category.label}
