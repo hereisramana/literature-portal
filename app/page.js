@@ -173,7 +173,7 @@ export default function Page() {
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
       <div
         className={`hidden h-full border-r border-[var(--divider-color)] bg-[rgba(255,255,255,0.42)] transition-[width] duration-300 lg:block ${
-          desktopSidebarCollapsed ? "w-[72px]" : "w-[440px] xl:w-[500px]"
+          desktopSidebarCollapsed ? "w-[72px]" : "w-[320px]"
         }`}
       >
         <Sidebar
@@ -265,11 +265,7 @@ export default function Page() {
                   </h2>
                   <div
                     className={`grid grid-cols-1 gap-4 md:grid-cols-2 ${
-                      mode === "test"
-                        ? "xl:grid-cols-2"
-                        : desktopSidebarCollapsed
-                        ? "xl:grid-cols-3"
-                        : "2xl:grid-cols-3"
+                      desktopSidebarCollapsed ? "xl:grid-cols-3" : "2xl:grid-cols-3"
                     }`}
                   >
                     {authors.map((author, index) => (

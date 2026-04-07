@@ -17,7 +17,7 @@ export default function ModeToggle({ mode, setMode }) {
           transition-all duration-200
           ${
             mode === "browse"
-              ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-[0_8px_20px_rgba(255,154,87,0.28)]"
+              ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-[0_8px_20px_rgba(58,64,59,0.16)]"
               : "text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)]"
           }
         `}
@@ -33,7 +33,7 @@ export default function ModeToggle({ mode, setMode }) {
           transition-all duration-200
           ${
             mode === "test"
-              ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-[0_8px_20px_rgba(255,154,87,0.28)]"
+              ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-[0_8px_20px_rgba(58,64,59,0.16)]"
               : "text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)]"
           }
         `}

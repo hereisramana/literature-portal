@@ -1,6 +1,6 @@
 export default function AuthorCardBrowse({ author, onOpenModal }) {
   return (
-    <article className="card flex min-h-[251px] flex-col px-7 py-6 transition duration-200 hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]">
+    <article className="card flex h-[304px] flex-col overflow-hidden px-7 py-6 transition duration-200 hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]">
       <button
         onClick={() => onOpenModal?.(author.author, "")}
         className="w-fit text-left"
@@ -10,7 +10,7 @@ export default function AuthorCardBrowse({ author, onOpenModal }) {
         </h2>
       </button>
 
-      <ul className="mt-5 space-y-3">
+      <ul className="scrollbar-thin mt-5 flex-1 space-y-3 overflow-y-auto pr-1">
         {author.works?.map((work, index) => (
           <li key={index}>
             <button
