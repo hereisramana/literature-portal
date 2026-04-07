@@ -16,6 +16,13 @@ function openDB() {
   });
 }
 
+function requestToPromise(request) {
+  return new Promise((resolve, reject) => {
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
 export function useProgress() {
   const [db, setDb] = useState(null);
 
@@ -25,15 +32,19 @@ export function useProgress() {
 
   const save = async (key, value) => {
     if (!db) return;
-    const tx = db.transaction(STORE, "readwrite");
-    tx.objectStore(STORE).put(value, key);
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, "readwrite");
+      tx.objectStore(STORE).put(value, key);
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+    });
   };
 
   const get = async (key) => {
     if (!db) return null;
     const tx = db.transaction(STORE, "readonly");
-    return tx.objectStore(STORE).get(key);
+    return requestToPromise(tx.objectStore(STORE).get(key));
   };
 
-  return { save, get };
+  return { save, get, ready: Boolean(db) };
 }

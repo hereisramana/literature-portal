@@ -2,7 +2,7 @@
 
 import raw from "../data/data.json";
 import { buildCatalog } from "../utils/catalog.js";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Sidebar from "../components/layout/Sidebar.jsx";
 import AuthorCard from "../components/cards/AuthorCard.jsx";
@@ -10,6 +10,9 @@ import ModeToggle from "../components/layout/ModeToggle.jsx";
 import SearchBar from "../components/common/Searchbar.jsx";
 import EmptyState from "../components/common/Emptystate.jsx";
 import InfoModal from "../components/common/InfoModal.jsx";
+import TestFocusModal from "../components/test/TestFocusModal.jsx";
+import { useProgress } from "../hooks/useProgress.js";
+import { useCloudSync } from "../hooks/useCloudSync.js";
 
 export default function Page() {
   const categories = useMemo(() => buildCatalog(raw), []);
@@ -18,11 +21,20 @@ export default function Page() {
   const [query, setQuery] = useState("");
   const [subCategory, setSubCategory] = useState("all");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [filterOpen, setFilterOpen] = useState(false);
   const [modal, setModal] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [focusedAuthor, setFocusedAuthor] = useState(null);
+  const [confidenceMap, setConfidenceMap] = useState({});
+  const { get, save, ready } = useProgress();
+  const cloud = useCloudSync();
 
   const activeCategory =
     categories.find((entry) => entry.id === category) || categories[0];
+  const allAuthors = useMemo(
+    () => categories.flatMap((entry) => entry.authors || []),
+    [categories]
+  );
 
   const periodOptions = useMemo(() => {
     if (!activeCategory) {
@@ -60,6 +72,7 @@ export default function Page() {
   function handleCategoryChange(nextCategory) {
     setCategory(nextCategory);
     setSubCategory("all");
+    setFilterOpen(false);
   }
 
   async function openModal(title, author = "") {
@@ -87,6 +100,36 @@ export default function Page() {
     }
 
     setLoading(false);
+  }
+
+  useEffect(() => {
+    if (!focusedAuthor || !ready) {
+      return;
+    }
+
+    let cancelled = false;
+
+    get(`confidence:${focusedAuthor.author}`).then((value) => {
+      if (!cancelled && value) {
+        setConfidenceMap((current) => ({
+          ...current,
+          [focusedAuthor.author]: value.confidence || value,
+        }));
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [focusedAuthor, get, ready]);
+
+  async function handleConfidenceSave(payload) {
+    await save(`confidence:${payload.author}`, payload);
+    setConfidenceMap((current) => ({
+      ...current,
+      [payload.author]: payload.confidence,
+    }));
+    await cloud.sync(payload);
   }
 
   return (
@@ -129,7 +172,7 @@ export default function Page() {
       )}
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
-        <div className="border-b border-[var(--divider-color)] px-4 pb-4 pt-5 md:px-8 md:pb-6 md:pt-7">
+        <div className="border-b border-[var(--divider-color)] bg-[rgba(194,198,200,0.16)] px-4 pb-5 pt-5 md:px-8 md:pb-7 md:pt-7">
           <div className="mb-6 flex items-center gap-4">
             <button
               aria-label="Open categories"
@@ -147,28 +190,66 @@ export default function Page() {
                 <path d="M3 6h18M3 12h18M3 18h18" />
               </svg>
             </button>
-            <h1 className="text-3xl leading-tight md:text-5xl">
-              English Literature Revision Guide
-            </h1>
+            <div className="w-full text-center lg:text-left">
+              <h1 className="text-3xl leading-tight md:text-5xl">
+                English Literature Revision Guide
+              </h1>
+              <p className="mt-3 text-sm leading-7 text-[var(--text-muted-color)] md:text-base">
+                Minimal revision cards, focused testing, and locally stored confidence for calmer repeated study.
+              </p>
+            </div>
           </div>
 
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex w-full max-w-3xl flex-col gap-3 md:flex-row md:items-center">
-              <div className="w-full md:flex-1">
+            <div className="relative flex w-full max-w-3xl items-center gap-3">
+              <div className="w-full">
                 <SearchBar onSearch={setQuery} />
               </div>
-              <select
-                value={subCategory}
-                onChange={(e) => setSubCategory(e.target.value)}
-                className="h-12 min-w-[180px] rounded-full border border-[var(--input-border)] bg-[var(--input-bg)] px-4 text-sm text-[var(--text-body-color)] shadow-[var(--input-shadow),var(--highlight-soft)] outline-none transition focus:border-[var(--color-focus-ring)]"
+              <button
+                aria-label="Open contextual filters"
+                onClick={() => setFilterOpen((current) => !current)}
+                className={`flex h-12 w-12 items-center justify-center rounded-full border transition ${
+                  filterOpen
+                    ? "border-[var(--button-primary-bg)] bg-[var(--color-interaction-active)]"
+                    : "border-[var(--divider-color)] bg-[var(--button-secondary-bg)] hover:bg-[var(--color-interaction-hover)]"
+                }`}
               >
-                <option value="all">All Periods</option>
-                {periodOptions.map((period) => (
-                  <option key={period} value={period}>
-                    {period}
-                  </option>
-                ))}
-              </select>
+                <svg
+                  aria-hidden="true"
+                  className="h-5 w-5 text-[var(--color-accent)]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M4 6h16M7 12h10M10 18h4" />
+                </svg>
+              </button>
+
+              {filterOpen && (
+                <div className="absolute right-0 top-[calc(100%+12px)] z-20 w-[260px] rounded-[24px] border border-[var(--divider-color)] bg-[var(--color-bg-surface)] p-4 shadow-[var(--shadow-medium)]">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted-color)]">
+                    Context filters
+                  </p>
+                  <div className="mt-3">
+                    <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-muted-color)]">
+                      Period
+                    </label>
+                    <select
+                      value={subCategory}
+                      onChange={(e) => setSubCategory(e.target.value)}
+                      className="w-full rounded-2xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-3 text-sm text-[var(--text-body-color)] shadow-[var(--input-shadow),var(--highlight-soft)]"
+                    >
+                      <option value="all">All Periods</option>
+                      {periodOptions.map((period) => (
+                        <option key={period} value={period}>
+                          {period}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="hidden md:block">
               <ModeToggle mode={mode} setMode={setMode} />
@@ -178,13 +259,15 @@ export default function Page() {
 
         <section className="scrollbar-thin flex-1 overflow-y-auto px-4 py-5 md:px-8 md:py-6">
           {filteredAuthors.length > 0 ? (
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3">
               {filteredAuthors.map((author, index) => (
                 <AuthorCard
                   key={`${author.author}-${index}`}
                   author={author}
                   mode={mode}
                   onOpenModal={openModal}
+                  onStartTest={setFocusedAuthor}
+                  confidence={confidenceMap[author.author]}
                 />
               ))}
             </div>
@@ -201,6 +284,17 @@ export default function Page() {
       </main>
 
       <InfoModal modal={modal} loading={loading} onClose={() => setModal(null)} />
+      {mode === "test" && focusedAuthor && (
+        <TestFocusModal
+          author={focusedAuthor}
+          category={activeCategory}
+          allAuthors={allAuthors}
+          storedConfidence={confidenceMap[focusedAuthor.author]}
+          onSaveConfidence={handleConfidenceSave}
+          cloud={cloud}
+          onClose={() => setFocusedAuthor(null)}
+        />
+      )}
     </div>
   );
 }

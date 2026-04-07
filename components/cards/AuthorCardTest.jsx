@@ -1,59 +1,54 @@
 "use client";
 
-import { useState } from "react";
-import { useTaskGenerator } from "../../hooks/useTaskGenerator.js";
+const TEST_MODES = ["Recall", "Select", "Order", "Themes", "Type"];
 
-import MicroRecall from "../test/MicroRecall.jsx";
-import Ordering from "../test/Ordering.jsx";
-import SelectWorks from "../test/SelectWorks.jsx";
-import Matching from "../test/Matching.jsx";
-import Confidence from "../test/Confidence.jsx";
-
-export default function AuthorCardTest({ author }) {
-  const { taskType, taskData } = useTaskGenerator(author);
-
-  const [revealed, setRevealed] = useState(false);
-  const [completed, setCompleted] = useState(false);
-
+export default function AuthorCardTest({
+  author,
+  onStartTest,
+  confidence,
+}) {
   return (
-    <div className="card p-5 flex flex-col gap-4">
+    <article className="card flex min-h-[240px] flex-col justify-between p-5">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--text-muted-color)]">
+            Focus Study
+          </p>
+          <h2 className="mt-2 text-2xl leading-tight">
+            {author.author}
+          </h2>
+          <p className="mt-2 text-sm text-[var(--text-muted-color)]">
+            {author.region || "Unknown region"} · {author.literary_period || "Reference"}
+          </p>
+        </div>
 
-      {/* Author */}
-      <h2 className="text-lg">{author.author}</h2>
+        <div className="rounded-full bg-[var(--button-secondary-bg)] px-3 py-1 text-xs font-semibold text-[var(--button-secondary-text)]">
+          {confidence || "New"}
+        </div>
+      </div>
 
-      {/* STEP 1: Micro Recall */}
-      {!revealed && (
-        <>
-          <MicroRecall author={author} />
-          <button
-            onClick={() => setRevealed(true)}
-            className="text-sm text-[var(--color-accent)]"
-          >
-            Reveal
-          </button>
-        </>
-      )}
+      <div className="mt-6">
+        <div className="flex flex-wrap gap-2">
+          {TEST_MODES.map((mode) => (
+            <span
+              key={mode}
+              className="rounded-full border border-[var(--divider-color)] bg-[var(--color-bg-primary)] px-3 py-1 text-xs font-semibold text-[var(--text-muted-color)]"
+            >
+              {mode}
+            </span>
+          ))}
+        </div>
+        <p className="mt-4 text-sm leading-7 text-[var(--text-muted-color)]">
+          Open this card in focus mode to run one exercise at a time, blur the background, and save confidence after each check.
+        </p>
+      </div>
 
-      {/* STEP 2: Task */}
-      {revealed && !completed && (
-        <>
-          {taskType === "ordering" && (
-            <Ordering data={taskData} onDone={() => setCompleted(true)} />
-          )}
-
-          {taskType === "select" && (
-            <SelectWorks data={taskData} onDone={() => setCompleted(true)} />
-          )}
-
-          {taskType === "matching" && (
-            <Matching data={taskData} onDone={() => setCompleted(true)} />
-          )}
-        </>
-      )}
-
-      {/* STEP 3: Confidence */}
-      {completed && <Confidence />}
-
-    </div>
+      <button
+        onClick={() => onStartTest?.(author)}
+        className="mt-6 rounded-full bg-[var(--button-primary-bg)] px-4 py-2 text-sm font-semibold text-[var(--button-primary-text)]"
+      >
+        Start Focus Test
+      </button>
+    </article>
   );
 }
