@@ -212,8 +212,9 @@ export default function Page() {
       )}
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
-        <div className="border-b border-[var(--divider-color)] bg-[rgba(194,198,200,0.16)] px-4 pb-5 pt-5 md:px-8 md:pb-7 md:pt-7">
-          <div className="mb-6 flex items-center gap-4">
+        <div className="border-b border-[var(--divider-color)] bg-[rgba(194,198,200,0.12)]">
+          <div className="shell-width px-4 pb-5 pt-5 md:px-8 md:pb-7 md:pt-7">
+          <div className="mb-7 flex items-center gap-4">
             <button
               aria-label="Open categories"
               className="rounded-xl p-2 text-[var(--color-accent)] lg:hidden"
@@ -231,16 +232,16 @@ export default function Page() {
               </svg>
             </button>
             <div className="w-full text-center lg:text-left">
-              <h1 className="text-3xl leading-tight md:text-5xl">
+              <h1 className="text-[42px] leading-[0.98] md:text-[68px]">
                 English Literature Revision Guide
               </h1>
-              <p className="mt-3 text-sm leading-7 text-[var(--text-muted-color)] md:text-base">
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--text-muted-color)] md:text-lg">
                 Minimal revision cards, focused testing, and locally stored confidence for calmer repeated study.
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div className="relative flex w-full max-w-3xl items-center gap-3">
               <div className="w-full">
                 <SearchBar onSearch={setQuery} />
@@ -248,7 +249,7 @@ export default function Page() {
               <button
                 aria-label="Open contextual filters"
                 onClick={() => setFilterOpen((current) => !current)}
-                className={`flex h-12 w-12 items-center justify-center rounded-full border transition ${
+                className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full border transition ${
                   filterOpen
                     ? "border-[var(--button-primary-bg)] bg-[var(--color-interaction-active)]"
                     : "border-[var(--divider-color)] bg-[var(--button-secondary-bg)] hover:bg-[var(--color-interaction-hover)]"
@@ -267,12 +268,12 @@ export default function Page() {
               </button>
 
               {filterOpen && (
-                <div className="absolute right-0 top-[calc(100%+12px)] z-20 w-[260px] rounded-[24px] border border-[var(--divider-color)] bg-[var(--color-bg-surface)] p-4 shadow-[var(--shadow-medium)]">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted-color)]">
+                <div className="absolute right-0 top-[calc(100%+12px)] z-20 w-[280px] rounded-[24px] border border-[var(--divider-color)] bg-[var(--color-bg-surface)] p-5 shadow-[var(--shadow-medium)]">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--text-muted-color)]">
                     Context filters
                   </p>
-                  <div className="mt-3">
-                    <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-muted-color)]">
+                  <div className="mt-4">
+                    <label className="mb-2 block text-xs font-extrabold uppercase tracking-[0.08em] text-[var(--text-muted-color)]">
                       Period
                     </label>
                     <select
@@ -291,16 +292,18 @@ export default function Page() {
                 </div>
               )}
             </div>
-            <div className="hidden md:block">
+            <div className="hidden shrink-0 md:block">
               <ModeToggle mode={mode} setMode={setMode} />
             </div>
           </div>
         </div>
+        </div>
 
-        <section className="scrollbar-thin flex-1 overflow-y-auto px-4 py-5 md:px-8 md:py-6">
+        <section className="scrollbar-thin flex-1 overflow-y-auto">
+          <div className="shell-width px-4 py-6 md:px-8 md:py-7">
           {filteredAuthors.length > 0 ? (
             <div
-              className={`grid grid-cols-1 gap-5 md:grid-cols-2 ${
+              className={`grid grid-cols-1 gap-6 md:grid-cols-2 ${
                 desktopSidebarCollapsed ? "lg:grid-cols-3" : "2xl:grid-cols-3"
               }`}
             >
@@ -320,9 +323,10 @@ export default function Page() {
               <EmptyState />
             </div>
           )}
+          </div>
         </section>
 
-        <div className="border-t border-[var(--divider-color)] bg-[var(--color-bg-surface)] p-3 md:hidden">
+        <div className="safe-bottom border-t border-[var(--divider-color)] bg-[var(--color-bg-surface)] px-4 pt-3 md:hidden">
           <ModeToggle mode={mode} setMode={setMode} />
         </div>
       </main>

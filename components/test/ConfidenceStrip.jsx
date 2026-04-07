@@ -20,7 +20,7 @@ export default function ConfidenceStrip({
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[70] border-t border-[var(--divider-color)] bg-[rgba(242,242,240,0.96)] px-4 py-3 backdrop-blur-md">
+    <div className="safe-bottom-lg fixed inset-x-0 bottom-0 z-[70] border-t border-[var(--divider-color)] bg-[rgba(242,242,240,0.96)] px-4 py-3 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm font-semibold text-[var(--text-heading-color)]">

@@ -12,15 +12,15 @@ export default function SearchBar({ onSearch }) {
           setValue(e.target.value);
           onSearch?.(e.target.value);
         }}
-        placeholder="Value"
+        placeholder="Search authors or works"
         className="
-          h-12 w-full rounded-full border border-[var(--input-border)]
-          bg-[var(--input-bg)] pl-5 pr-12 text-sm text-[var(--text-body-color)]
+          h-14 w-full rounded-full border border-[var(--input-border)]
+          bg-[var(--color-bg-primary)] pl-6 pr-14 text-[15px] font-semibold text-[var(--text-body-color)]
           shadow-[var(--input-shadow),var(--highlight-soft)]
-          outline-none transition focus:border-[var(--color-focus-ring)]
+          outline-none transition focus:border-[var(--color-focus-ring)] placeholder:font-medium placeholder:text-[var(--text-muted-color)]
         "
       />
-      <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-[var(--color-accent)]">
+      <span className="pointer-events-none absolute inset-y-0 right-5 flex items-center text-[var(--color-accent)]">
         <svg
           aria-hidden="true"
           className="h-4 w-4"
