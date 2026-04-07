@@ -1,0 +1,101 @@
+{
+  "categoryId": "british-poetry",
+  "label": "British Poetry",
+  "authors": [
+    {
+      "author": "Alexander Pope",
+      "region": "British",
+      "literary_period": "Neoclassicism",
+      "movements": [],
+      "genreTags": [],
+      "works": [
+        {
+          "title": "An Essay on Criticism",
+          "year": "",
+          "type": ""
+        },
+        {
+          "title": "The Rape of the Lock",
+          "year": "",
+          "type": ""
+        }
+      ],
+      "nodes": []
+    },
+    {
+      "author": "John Donne",
+      "region": "British",
+      "literary_period": "Metaphysical",
+      "movements": [],
+      "genreTags": [],
+      "works": [
+        {
+          "title": "The Sun Rising",
+          "year": "",
+          "type": ""
+        },
+        {
+          "title": "The Ecstasy",
+          "year": "",
+          "type": ""
+        },
+        {
+          "title": "A Valediction: Forbidding Mourning",
+          "year": "",
+          "type": ""
+        },
+        {
+          "title": "The Good Morrow",
+          "year": "",
+          "type": ""
+        },
+        {
+          "title": "The Flea",
+          "year": "",
+          "type": ""
+        },
+        {
+          "title": "Batter My Heart, Three-Personed God",
+          "year": "",
+          "type": ""
+        }
+      ],
+      "nodes": []
+    },
+    {
+      "author": "William Wordsworth",
+      "region": "British",
+      "literary_period": "Romanticism",
+      "movements": [],
+      "genreTags": [],
+      "works": [
+        {
+          "title": "The Prelude (Book I)",
+          "year": "",
+          "type": ""
+        },
+        {
+          "title": "Tintern Abbey",
+          "year": "",
+          "type": ""
+        },
+        {
+          "title": "Ode: Intimations of Immortality",
+          "year": "",
+          "type": ""
+        },
+        {
+          "title": "Ode to Duty",
+          "year": "",
+          "type": ""
+        },
+        {
+          "title": "Preface to Lyrical Ballads",
+          "year": "",
+          "type": ""
+        }
+      ],
+      "nodes": []
+    }
+  ]
+}
