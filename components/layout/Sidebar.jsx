@@ -5,6 +5,7 @@ export default function Sidebar({
   onSelect,
   collapsed = false,
   onToggle,
+  title = "English Literature Revision Guide",
 }) {
   return (
     <aside className="flex h-full flex-col bg-[var(--color-bg-primary)]">
@@ -28,10 +29,10 @@ export default function Sidebar({
           </button>
         ) : (
           <>
-            <div className="max-w-[250px] pt-1">
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[var(--text-muted-color)]">
-                Categories
-              </p>
+            <div className="max-w-[240px] pt-1">
+              <h1 className="text-[28px] leading-[1.05] text-[var(--text-body-color)]">
+                {title}
+              </h1>
             </div>
             <button
               aria-label="Collapse categories panel"
@@ -55,7 +56,7 @@ export default function Sidebar({
         )}
       </div>
 
-      <div className={`scrollbar-thin flex-1 overflow-y-auto ${collapsed ? "px-0 py-0" : "px-5 py-5"}`}>
+      <div className={`scrollbar-thin flex-1 overflow-y-auto ${collapsed ? "px-0 py-0" : "px-5 py-2"}`}>
         <nav className={`${collapsed ? "space-y-0" : "space-y-2"}`}>
           {!collapsed && categories.map((category) => {
             const isActive = active === category.id;
@@ -72,7 +73,7 @@ export default function Sidebar({
                   ${
                     isActive
                       ? "bg-[var(--color-bg-surface)] shadow-[var(--shadow-soft)]"
-                      : "bg-transparent hover:bg-[var(--color-interaction-hover)]"
+                      : "bg-transparent hover:bg-[rgba(58,64,59,0.12)]"
                   }
                 `}
               >

@@ -157,20 +157,36 @@ export default function Page() {
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
-      <div
-        className={`hidden h-full bg-[var(--color-bg-primary)] transition-[width] duration-300 lg:block ${
-          desktopSidebarCollapsed ? "w-[72px]" : "w-[320px]"
-        }`}
-      >
-        <Sidebar
-          categories={categories}
-          active={activeCategory?.id}
-          setActive={handleCategoryChange}
-          collapsed={desktopSidebarCollapsed}
-          onToggle={() => setDesktopSidebarCollapsed((current) => !current)}
-        />
+    <div className="h-screen overflow-hidden bg-[var(--color-bg-primary)]">
+      <div className="fixed inset-y-0 left-0 z-20 hidden lg:block">
+        <div className="h-full w-[72px] bg-[var(--color-bg-primary)]">
+          <Sidebar
+            categories={categories}
+            active={activeCategory?.id}
+            setActive={handleCategoryChange}
+            collapsed={true}
+            onToggle={() => setDesktopSidebarCollapsed(false)}
+          />
+        </div>
       </div>
+
+      {!desktopSidebarCollapsed && (
+        <div className="fixed inset-0 z-30 hidden lg:block">
+          <div
+            className="absolute inset-0 bg-[rgba(24,32,47,0.12)]"
+            onClick={() => setDesktopSidebarCollapsed(true)}
+          />
+          <div className="absolute inset-y-0 left-0 w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)]">
+            <Sidebar
+              categories={categories}
+              active={activeCategory?.id}
+              setActive={handleCategoryChange}
+              collapsed={false}
+              onToggle={() => setDesktopSidebarCollapsed(true)}
+            />
+          </div>
+        </div>
+      )}
 
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-30 bg-[rgba(24,32,47,0.18)] backdrop-blur-sm lg:hidden">
@@ -180,6 +196,7 @@ export default function Page() {
               active={activeCategory?.id}
               setActive={handleCategoryChange}
               onSelect={() => setMobileMenuOpen(false)}
+              title="English Literature Revision Guide"
             />
           </div>
           <button
@@ -201,10 +218,10 @@ export default function Page() {
         </div>
       )}
 
-      <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
+      <main className="flex min-w-0 flex-1 flex-col overflow-hidden lg:pl-[72px]">
         <div className="bg-[var(--color-bg-primary)]">
-          <div className="shell-width px-4 pb-6 pt-5 md:px-8 md:pb-8 md:pt-6 lg:px-10">
-          <div className="mb-8 flex items-start gap-4">
+          <div className="shell-width px-4 pb-3 pt-3 md:px-8 md:pb-4 md:pt-4 lg:px-10">
+          <div className="flex items-center justify-between gap-4">
             <button
               aria-label="Open categories"
               className="rounded-2xl p-2 text-[var(--text-heading-color)] transition hover:bg-[var(--color-interaction-hover)] lg:hidden"
@@ -221,18 +238,8 @@ export default function Page() {
                 <path d="M3 6h18M3 12h18M3 18h18" />
               </svg>
             </button>
-            <div className="w-full text-center md:text-left">
-              <h1 className="text-[33px] leading-[1] text-[var(--text-body-color)] md:text-[46px] lg:text-[52px]">
-                English Literature Revision Guide
-              </h1>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="relative flex w-full items-center gap-3">
-              <div className="w-full lg:max-w-[427px]">
-                <SearchBar onSearch={setQuery} />
-              </div>
+            <div className="w-full lg:max-w-[427px]">
+              <SearchBar onSearch={setQuery} />
             </div>
             <div className="hidden shrink-0 md:block">
               <ModeToggle mode={mode} setMode={setMode} />
@@ -242,7 +249,7 @@ export default function Page() {
         </div>
 
         <section className="scrollbar-thin flex-1 overflow-y-auto">
-          <div className="shell-width px-4 py-4 md:px-8 md:py-5 lg:px-10">
+          <div className="shell-width px-4 py-3 md:px-8 md:py-4 lg:px-10">
           {filteredAuthors.length > 0 ? (
             <div
               className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
