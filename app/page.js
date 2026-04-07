@@ -11,6 +11,7 @@ import SearchBar from "../components/common/Searchbar.jsx";
 import EmptyState from "../components/common/Emptystate.jsx";
 import InfoModal from "../components/common/InfoModal.jsx";
 import TestFocusModal from "../components/test/TestFocusModal.jsx";
+import { inferTheme } from "../utils/testEngine.js";
 import { useProgress } from "../hooks/useProgress.js";
 import { useCloudSync } from "../hooks/useCloudSync.js";
 
@@ -19,10 +20,8 @@ export default function Page() {
   const [category, setCategory] = useState(categories[0]?.id || "");
   const [mode, setMode] = useState("browse");
   const [query, setQuery] = useState("");
-  const [subCategory, setSubCategory] = useState("all");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [desktopSidebarCollapsed, setDesktopSidebarCollapsed] = useState(false);
-  const [filterOpen, setFilterOpen] = useState(false);
   const [modal, setModal] = useState(null);
   const [loading, setLoading] = useState(false);
   const [focusedAuthor, setFocusedAuthor] = useState(null);
@@ -37,18 +36,6 @@ export default function Page() {
     [categories]
   );
 
-  const periodOptions = useMemo(() => {
-    if (!activeCategory) {
-      return [];
-    }
-
-    return [...new Set(
-      activeCategory.authors
-        .map((author) => author.literary_period)
-        .filter(Boolean)
-    )].sort((a, b) => a.localeCompare(b));
-  }, [activeCategory]);
-
   const filteredAuthors = useMemo(() => {
     if (!activeCategory) {
       return [];
@@ -62,22 +49,36 @@ export default function Page() {
           work.toLowerCase().includes(query.toLowerCase())
         );
 
-      const matchesSubCategory =
-        subCategory === "all" ||
-        author.literary_period === subCategory;
-
-      return matchesQuery && matchesSubCategory;
+      return matchesQuery;
     });
-  }, [activeCategory, query, subCategory]);
+  }, [activeCategory, query]);
+
+  const groupedAuthors = useMemo(() => {
+    const groups = filteredAuthors.reduce((acc, author) => {
+      const key = author.literary_period || "Other";
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(author);
+      return acc;
+    }, {});
+
+    return Object.entries(groups).sort((a, b) => a[0].localeCompare(b[0]));
+  }, [filteredAuthors]);
 
   function handleCategoryChange(nextCategory) {
     setCategory(nextCategory);
-    setSubCategory("all");
-    setFilterOpen(false);
   }
 
-  async function openModal(title, author = "") {
-    setModal({ title, author, summary: "" });
+  async function openModal(title, author = "", sourceAuthor = null) {
+    const themeSource = sourceAuthor || activeCategory?.authors.find((entry) => entry.author === author);
+    const themes = themeSource
+      ? [...new Set(
+          (themeSource.works || []).map((work) => inferTheme(work, themeSource, activeCategory))
+        )]
+      : [];
+
+    setModal({ title, author, summary: "", themes });
     setLoading(true);
 
     try {
@@ -91,12 +92,14 @@ export default function Page() {
         title,
         author,
         summary: payload.extract || "No summary available.",
+        themes,
       });
     } catch {
       setModal({
         title,
         author,
         summary: "No summary available.",
+        themes,
       });
     }
 
@@ -243,51 +246,6 @@ export default function Page() {
               <div className="w-full lg:max-w-[427px]">
                 <SearchBar onSearch={setQuery} />
               </div>
-              <button
-                aria-label="Open contextual filters"
-                onClick={() => setFilterOpen((current) => !current)}
-                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition ${
-                  filterOpen
-                    ? "border-[var(--color-accent)] bg-[var(--color-bg-accent-soft)]"
-                    : "border-[var(--divider-color)] bg-[var(--button-secondary-bg)] hover:bg-[var(--color-interaction-hover)]"
-                }`}
-              >
-                <svg
-                  aria-hidden="true"
-                  className="h-5 w-5 text-[var(--text-muted-color)]"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M4 6h16M7 12h10M10 18h4" />
-                </svg>
-              </button>
-
-              {filterOpen && (
-                <div className="subtle-surface absolute right-0 top-[calc(100%+12px)] z-20 w-[280px] rounded-[24px] p-5 shadow-[var(--shadow-medium)]">
-                  <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--text-muted-color)]">
-                    Context filters
-                  </p>
-                  <div className="mt-4">
-                    <label className="mb-2 block text-xs font-extrabold uppercase tracking-[0.08em] text-[var(--text-muted-color)]">
-                      Period
-                    </label>
-                    <select
-                      value={subCategory}
-                      onChange={(e) => setSubCategory(e.target.value)}
-                      className="w-full rounded-2xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-3 text-sm text-[var(--text-body-color)] shadow-[var(--input-shadow)]"
-                    >
-                      <option value="all">All Periods</option>
-                      {periodOptions.map((period) => (
-                        <option key={period} value={period}>
-                          {period}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              )}
             </div>
             <div className="hidden shrink-0 md:block">
               <ModeToggle mode={mode} setMode={setMode} />
@@ -299,24 +257,35 @@ export default function Page() {
         <section className="scrollbar-thin flex-1 overflow-y-auto">
           <div className="shell-width px-4 py-4 md:px-8 md:py-5 lg:px-10">
           {filteredAuthors.length > 0 ? (
-            <div
-              className={`grid grid-cols-1 gap-4 md:grid-cols-2 ${
-                mode === "test"
-                  ? "xl:grid-cols-2"
-                  : desktopSidebarCollapsed
-                  ? "xl:grid-cols-3"
-                  : "2xl:grid-cols-3"
-              }`}
-            >
-              {filteredAuthors.map((author, index) => (
-                <AuthorCard
-                  key={`${author.author}-${index}`}
-                  author={author}
-                  mode={mode}
-                  onOpenModal={openModal}
-                  onStartTest={setFocusedAuthor}
-                  confidence={confidenceMap[author.author]}
-                />
+            <div className="space-y-8">
+              {groupedAuthors.map(([period, authors]) => (
+                <section key={period}>
+                  <h2 className="mb-4 text-[24px] leading-none text-[var(--text-heading-color)] md:text-[28px]">
+                    {period}
+                  </h2>
+                  <div
+                    className={`grid grid-cols-1 gap-4 md:grid-cols-2 ${
+                      mode === "test"
+                        ? "xl:grid-cols-2"
+                        : desktopSidebarCollapsed
+                        ? "xl:grid-cols-3"
+                        : "2xl:grid-cols-3"
+                    }`}
+                  >
+                    {authors.map((author, index) => (
+                      <AuthorCard
+                        key={`${period}-${author.author}-${index}`}
+                        author={author}
+                        mode={mode}
+                        onOpenModal={(title, authorName = "") =>
+                          openModal(title, authorName, author)
+                        }
+                        onStartTest={setFocusedAuthor}
+                        confidence={confidenceMap[author.author]}
+                      />
+                    ))}
+                  </div>
+                </section>
               ))}
             </div>
           ) : (

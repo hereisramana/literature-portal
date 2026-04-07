@@ -13,7 +13,7 @@ function pickDistinct(items, count, skip = []) {
   return shuffle(items.filter((item) => !banned.has(item))).slice(0, count);
 }
 
-function inferTheme(work, author, category) {
+export function inferTheme(work, author, category) {
   const text = `${work} ${author.literary_period || ""} ${category.label}`.toLowerCase();
 
   if (/(love|daughter|heart|bride|wife|morrow|valediction)/.test(text)) {

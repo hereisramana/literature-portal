@@ -44,6 +44,24 @@ export default function InfoModal({ modal, loading, onClose }) {
           )}
         </div>
 
+        {modal.themes?.length > 0 && (
+          <div className="mt-6 rounded-[24px] border border-[var(--divider-color)] bg-[var(--color-bg-surface)] p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--text-muted-color)]">
+              Themes
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {modal.themes.map((theme) => (
+                <span
+                  key={theme}
+                  className="rounded-full bg-[var(--color-bg-raised)] px-3 py-2 text-sm font-semibold text-[var(--text-body-color)]"
+                >
+                  {theme}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="mt-6 grid gap-3 md:grid-cols-2">
           <a
             href={`https://en.wikipedia.org/wiki/Special:Search?search=${query}`}
