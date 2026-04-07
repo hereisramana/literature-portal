@@ -232,15 +232,9 @@ export default function Page() {
               </svg>
             </button>
             <div className="w-full text-center md:text-left">
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[var(--text-muted-color)]">
-                UX-style revision workspace
-              </p>
-              <h1 className="mt-2 text-[33px] leading-[1] md:text-[46px] lg:text-[52px]">
+              <h1 className="text-[33px] leading-[1] md:text-[46px] lg:text-[52px]">
                 English Literature Revision Guide
               </h1>
-              <p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-[var(--text-muted-color)] md:mx-0 md:text-[15px]">
-                Browse clean reference cards, launch focused tests, and keep lightweight progress without leaving the study flow.
-              </p>
             </div>
           </div>
 

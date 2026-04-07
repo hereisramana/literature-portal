@@ -2,57 +2,46 @@ import { useState } from "react";
 
 export default function AuthorCardBrowse({ author, onOpenModal }) {
   const [expanded, setExpanded] = useState(false);
+  const workCount = author.works?.length || 0;
+  const accentLabel = author.region || author.literary_period || "Reference";
 
   return (
-    <article className="card flex min-h-[251px] flex-col gap-5 p-6 transition duration-200 hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[var(--text-muted-color)]">
-            Literature Reference
-          </p>
-          <div className="mt-3 flex items-center gap-2">
-            <h2 className="text-[28px] leading-[1.08]">
-              {author.author}
-            </h2>
-            <button
-              onClick={() => onOpenModal?.(author.author, "")}
-              className="rounded-full border border-[var(--divider-color)] bg-[var(--button-secondary-bg)] px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.08em] text-[var(--text-heading-color)] transition hover:bg-[var(--color-interaction-hover)]"
-            >
-              Info
-            </button>
-          </div>
-          {author.author_link && (
-            <a
-              href={author.author_link}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-3 inline-block text-xs font-bold uppercase tracking-[0.08em] text-[var(--text-muted-color)] underline-offset-2 hover:text-[var(--text-heading-color)] hover:underline"
-            >
-              External source
-            </a>
-          )}
-        </div>
-
-        <span className="rounded-full bg-[var(--color-bg-raised)] px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.08em] text-[var(--text-muted-color)]">
-          {author.literary_period || "Reference"}
-        </span>
+    <article className="card flex min-h-[251px] flex-col overflow-hidden px-8 py-7 text-center transition duration-200 hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]">
+      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-[20px] bg-[var(--color-bg-accent-soft)] text-[24px] font-extrabold text-[var(--color-accent-strong)] shadow-[0_10px_24px_rgba(255,154,87,0.14)]">
+        {author.author?.charAt(0)}
       </div>
 
-      {author.region && (
-        <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--color-text-secondary)]">
-          {author.region}
+      <div className="mt-6">
+        <h2 className="mx-auto max-w-[18ch] text-[28px] leading-[1.15]">
+          {author.author}
+        </h2>
+        <p className="mt-4 text-sm leading-6 text-[var(--text-muted-color)]">
+          {workCount} works in this revision set
         </p>
-      )}
+      </div>
 
-      <button
-        onClick={() => setExpanded((current) => !current)}
-        className="w-fit rounded-full border border-[var(--divider-color)] bg-[var(--button-secondary-bg)] px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] text-[var(--button-secondary-text)] transition hover:bg-[var(--color-interaction-hover)]"
-      >
-        {expanded ? "Hide Works" : "Show Works"}
-      </button>
+      <div className="mt-auto pt-6">
+        <p className="text-sm text-[var(--text-muted-color)]">
+          {accentLabel}
+        </p>
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+          <button
+            onClick={() => setExpanded((current) => !current)}
+            className="rounded-full border border-[var(--divider-color)] bg-[var(--button-secondary-bg)] px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] text-[var(--button-secondary-text)] transition hover:bg-[var(--color-interaction-hover)]"
+          >
+            {expanded ? "Hide Works" : "View Works"}
+          </button>
+          <button
+            onClick={() => onOpenModal?.(author.author, "")}
+            className="rounded-full border border-[var(--divider-color)] bg-[var(--button-secondary-bg)] px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] text-[var(--button-secondary-text)] transition hover:bg-[var(--color-interaction-hover)]"
+          >
+            Info
+          </button>
+        </div>
+      </div>
 
       {expanded && (
-        <div className="text-sm">
+        <div className="mt-6 border-t border-[var(--divider-color)] pt-5 text-left">
           <ul className="space-y-3">
             {author.works?.map((w, i) => (
               <li
@@ -72,6 +61,16 @@ export default function AuthorCardBrowse({ author, onOpenModal }) {
               </li>
             ))}
           </ul>
+          {author.author_link && (
+            <a
+              href={author.author_link}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-block text-xs font-bold uppercase tracking-[0.08em] text-[var(--text-muted-color)] underline-offset-2 hover:text-[var(--text-heading-color)] hover:underline"
+            >
+              External source
+            </a>
+          )}
         </div>
       )}
     </article>
