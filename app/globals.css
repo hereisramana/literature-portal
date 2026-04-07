@@ -1,44 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --color-bg-primary: #edf3fa;
-  --color-bg-surface: #ffffff;
-  --color-bg-raised: #f7f9fc;
-  --color-bg-inset: #f2f5f9;
-  --color-bg-accent-soft: #fff2e8;
+  --color-bg-primary: #f2ede4;
+  --color-bg-surface: #fcfaf5;
+  --color-bg-raised: #f5f0e7;
+  --color-bg-inset: #ede6db;
+  --color-bg-accent-soft: #e8e4da;
 
-  --color-text-primary: #243042;
-  --color-text-secondary: #6f7d92;
-  --color-text-strong: #18202f;
+  --color-text-primary: #3a403b;
+  --color-text-secondary: #8c8c87;
+  --color-text-strong: #1c2621;
 
-  --color-border-subtle: #dbe5f0;
-  --color-border-strong: #c7d4e4;
-  --color-accent: #ff9a57;
-  --color-accent-strong: #ff8b3d;
-  --color-neutral-cool: #d8e1eb;
+  --color-border-subtle: #d7d1c7;
+  --color-border-strong: #bfbcb4;
+  --color-accent: #3a403b;
+  --color-accent-strong: #1c2621;
+  --color-neutral-cool: #bfbcb4;
 
-  --shadow-soft: 0 8px 24px rgba(34, 48, 74, 0.08);
-  --shadow-medium: 0 18px 44px rgba(34, 48, 74, 0.14);
-  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  --highlight-soft: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  --shadow-soft: 0 10px 28px rgba(28, 38, 33, 0.08);
+  --shadow-medium: 0 20px 48px rgba(28, 38, 33, 0.14);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  --highlight-soft: inset 0 1px 0 rgba(255, 255, 255, 0.62);
 
-  --color-interaction-hover: #f5f8fc;
-  --color-interaction-active: #eef3f9;
-  --color-focus-ring: #ff9a57;
-  --color-disabled-text: #9eacbf;
-  --color-disabled-bg: #edf2f7;
+  --color-interaction-hover: #f1ece2;
+  --color-interaction-active: #e7e1d6;
+  --color-focus-ring: #3a403b;
+  --color-disabled-text: #aaa79f;
+  --color-disabled-bg: #e4ded2;
 
   --text-body-color: var(--color-text-primary);
   --text-muted-color: var(--color-text-secondary);
   --text-heading-color: var(--color-text-strong);
-  --text-on-accent: #ffffff;
+  --text-on-accent: #f2ede4;
 
   --card-bg: var(--color-bg-surface);
   --card-shadow: var(--shadow-soft);
 
   --input-bg: var(--color-bg-surface);
   --input-border: var(--color-border-subtle);
-  --input-shadow: 0 1px 0 rgba(255, 255, 255, 0.82), 0 8px 18px rgba(36, 48, 66, 0.05);
+  --input-shadow: 0 1px 0 rgba(255, 255, 255, 0.78), 0 8px 18px rgba(28, 38, 33, 0.05);
 
   --button-primary-bg: var(--color-accent);
   --button-primary-text: var(--text-on-accent);
@@ -46,9 +46,9 @@
   --button-secondary-text: var(--color-text-primary);
 
   --divider-color: var(--color-border-subtle);
-  --color-success-soft: #e7f7ee;
-  --color-success-border: #9dd5ad;
-  --color-success-text: #256447;
+  --color-success-soft: #dde5db;
+  --color-success-border: #aab7ac;
+  --color-success-text: #2f4735;
   --page-max-width: 1440px;
 }
 
@@ -59,8 +59,8 @@ html, body {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(255, 154, 87, 0.12), transparent 22%),
-    linear-gradient(180deg, #f3f7fc 0%, #edf3fa 100%);
+    radial-gradient(circle at top left, rgba(191, 188, 180, 0.18), transparent 24%),
+    linear-gradient(180deg, #f7f2ea 0%, #f2ede4 100%);
   color: var(--text-body-color);
   font-family: var(--font-body), "Nunito", sans-serif;
   overflow: hidden;
@@ -83,13 +83,13 @@ p, button, input, li, span, a, select, option {
 }
 
 ::selection {
-  background: rgba(255, 154, 87, 0.2);
+  background: rgba(58, 64, 59, 0.18);
 }
 
 .card {
   background: var(--card-bg);
   box-shadow: var(--card-shadow), var(--highlight-soft);
-  border: 1px solid rgba(219, 229, 240, 0.95);
+  border: 1px solid rgba(191, 188, 180, 0.72);
   border-radius: 24px;
 }
 
@@ -104,14 +104,14 @@ p, button, input, li, span, a, select, option {
 }
 
 .subtle-surface {
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(219, 229, 240, 0.9);
+  background: rgba(252, 250, 245, 0.74);
+  border: 1px solid rgba(191, 188, 180, 0.66);
   backdrop-filter: blur(12px);
 }
 
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: #c6d2df transparent;
+  scrollbar-color: #b6b2aa transparent;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
@@ -123,7 +123,7 @@ p, button, input, li, span, a, select, option {
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(111, 125, 146, 0.4);
+  background: rgba(140, 140, 135, 0.46);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: content-box;
