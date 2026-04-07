@@ -27,14 +27,14 @@ export default function InfoModal({ modal, loading, onClose }) {
 
           <button
             aria-label="Close info modal"
-            className="rounded-full border border-[var(--divider-color)] bg-[var(--button-secondary-bg)] px-4 py-2 text-sm font-extrabold text-[var(--button-secondary-text)] transition hover:bg-[var(--color-interaction-hover)]"
+            className="rounded-full bg-[var(--button-secondary-bg)] px-4 py-2 text-sm font-extrabold text-[var(--button-secondary-text)] transition hover:bg-[var(--color-interaction-hover)]"
             onClick={onClose}
           >
             Close
           </button>
         </div>
 
-        <div className="mt-6 rounded-[24px] border border-[var(--divider-color)] bg-[var(--color-bg-raised)] p-5">
+        <div className="mt-6 rounded-[24px] bg-[var(--color-bg-raised)] p-5">
           {loading ? (
             <p className="text-sm text-[var(--text-body-color)]">Loading...</p>
           ) : (
@@ -45,7 +45,7 @@ export default function InfoModal({ modal, loading, onClose }) {
         </div>
 
         {modal.themes?.length > 0 && (
-          <div className="mt-6 rounded-[24px] border border-[var(--divider-color)] bg-[var(--color-bg-surface)] p-5">
+          <div className="mt-6 rounded-[24px] bg-[var(--color-bg-surface)] p-5">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--text-muted-color)]">
               Themes
             </p>
@@ -67,7 +67,7 @@ export default function InfoModal({ modal, loading, onClose }) {
             href={`https://en.wikipedia.org/wiki/Special:Search?search=${query}`}
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl border border-[var(--divider-color)] bg-[var(--button-secondary-bg)] px-4 py-3 text-sm font-semibold text-[var(--button-secondary-text)] no-underline transition hover:bg-[var(--color-interaction-hover)]"
+            className="rounded-2xl bg-[var(--button-secondary-bg)] px-4 py-3 text-sm font-semibold text-[var(--button-secondary-text)] no-underline transition hover:bg-[var(--color-interaction-hover)]"
           >
             Wikipedia
           </a>
@@ -75,7 +75,7 @@ export default function InfoModal({ modal, loading, onClose }) {
             href={`https://www.britannica.com/search?query=${query}`}
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl border border-[var(--divider-color)] bg-[var(--button-secondary-bg)] px-4 py-3 text-sm font-semibold text-[var(--button-secondary-text)] no-underline transition hover:bg-[var(--color-interaction-hover)]"
+            className="rounded-2xl bg-[var(--button-secondary-bg)] px-4 py-3 text-sm font-semibold text-[var(--button-secondary-text)] no-underline transition hover:bg-[var(--color-interaction-hover)]"
           >
             Britannica
           </a>
@@ -83,7 +83,7 @@ export default function InfoModal({ modal, loading, onClose }) {
             href={`https://www.poetryfoundation.org/search?query=${query}`}
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl border border-[var(--divider-color)] bg-[var(--button-secondary-bg)] px-4 py-3 text-sm font-semibold text-[var(--button-secondary-text)] no-underline transition hover:bg-[var(--color-interaction-hover)]"
+            className="rounded-2xl bg-[var(--button-secondary-bg)] px-4 py-3 text-sm font-semibold text-[var(--button-secondary-text)] no-underline transition hover:bg-[var(--color-interaction-hover)]"
           >
             Poetry Foundation
           </a>
@@ -91,7 +91,7 @@ export default function InfoModal({ modal, loading, onClose }) {
             href={`https://www.google.com/search?q=${query}`}
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl border border-[var(--divider-color)] bg-[var(--button-secondary-bg)] px-4 py-3 text-sm font-semibold text-[var(--button-secondary-text)] no-underline transition hover:bg-[var(--color-interaction-hover)]"
+            className="rounded-2xl bg-[var(--button-secondary-bg)] px-4 py-3 text-sm font-semibold text-[var(--button-secondary-text)] no-underline transition hover:bg-[var(--color-interaction-hover)]"
           >
             Google
           </a>

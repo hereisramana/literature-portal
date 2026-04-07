@@ -8,10 +8,10 @@ import { createExerciseSet } from "../../utils/testEngine.js";
 function ResultNote({ children, success = false }) {
   return (
     <div
-      className={`rounded-2xl border px-4 py-3 text-sm leading-7 ${
+      className={`rounded-2xl px-4 py-3 text-sm leading-7 ${
         success
           ? "success-surface"
-          : "border-[var(--divider-color)] bg-[var(--color-bg-raised)] text-[var(--text-body-color)]"
+          : "bg-[var(--color-bg-raised)] text-[var(--text-body-color)]"
       }`}
     >
       {children}
@@ -35,7 +35,7 @@ function RecallExercise({ exercise, revealed, onReveal }) {
       ) : (
         <ul className="space-y-2">
           {exercise.data.works.map((work, index) => (
-            <li key={work} className="success-surface rounded-2xl border px-4 py-3 text-sm">
+            <li key={work} className="success-surface rounded-2xl px-4 py-3 text-sm">
               <span className="mr-2 font-semibold">{index + 1}.</span>
               {work}
             </li>
@@ -60,12 +60,12 @@ function SelectExercise({ exercise, selected, onToggle, onSubmit, submitted, res
             <button
               key={option}
               onClick={() => onToggle(option)}
-              className={`rounded-2xl border px-4 py-3 text-left text-sm transition ${
+              className={`rounded-2xl px-4 py-3 text-left text-sm transition ${
                 isCorrect
                   ? "success-surface"
                   : active
-                  ? "border-[var(--button-primary-bg)] bg-[var(--color-bg-accent-soft)]"
-                  : "border-[var(--divider-color)] bg-[var(--color-bg-raised)] hover:bg-[var(--color-interaction-hover)]"
+                  ? "bg-[var(--color-bg-accent-soft)]"
+                  : "bg-[var(--color-bg-raised)] hover:bg-[var(--color-interaction-hover)]"
               }`}
             >
               {option}
@@ -103,10 +103,10 @@ function OrderingExercise({ exercise, placed, onPlace, onReset, onSubmit, submit
             return (
               <div
                 key={index}
-                className={`rounded-2xl border px-4 py-3 text-sm ${
+                className={`rounded-2xl px-4 py-3 text-sm ${
                   isCorrect
                     ? "success-surface"
-                    : "border-dashed border-[var(--divider-color)] bg-[var(--color-bg-raised)]"
+                    : "bg-[var(--color-bg-raised)]"
                 }`}
               >
                 {submitted ? correctValue : value}
@@ -123,7 +123,7 @@ function OrderingExercise({ exercise, placed, onPlace, onReset, onSubmit, submit
               key={item}
               onClick={() => onPlace(item)}
               disabled={placed.includes(item)}
-              className="w-full rounded-2xl border border-[var(--divider-color)] bg-[var(--color-bg-raised)] px-4 py-3 text-left text-sm disabled:cursor-not-allowed disabled:opacity-40"
+              className="w-full rounded-2xl bg-[var(--color-bg-raised)] px-4 py-3 text-left text-sm disabled:cursor-not-allowed disabled:opacity-40"
             >
               {item}
             </button>
@@ -141,7 +141,7 @@ function OrderingExercise({ exercise, placed, onPlace, onReset, onSubmit, submit
         </button>
         <button
           onClick={onReset}
-          className="rounded-full border border-[var(--divider-color)] bg-[var(--button-secondary-bg)] px-4 py-2 text-sm font-semibold text-[var(--button-secondary-text)]"
+          className="rounded-full bg-[var(--button-secondary-bg)] px-4 py-2 text-sm font-semibold text-[var(--button-secondary-text)]"
         >
           Reset
         </button>
@@ -161,15 +161,15 @@ function ThemesExercise({ exercise, answers, onChange, onSubmit, submitted, resu
           const correctAnswer = submitted ? pair.answer : null;
           const isCorrect = submitted && answers[pair.prompt] === pair.answer;
           return (
-            <div key={pair.prompt} className="rounded-2xl border border-[var(--divider-color)] bg-[var(--color-bg-raised)] p-4">
+            <div key={pair.prompt} className="rounded-2xl bg-[var(--color-bg-raised)] p-4">
               <p className="mb-3 text-sm font-semibold text-[var(--text-heading-color)]">
                 {pair.prompt}
               </p>
               <select
                 value={answers[pair.prompt] || ""}
                 onChange={(event) => onChange(pair.prompt, event.target.value)}
-                className={`w-full rounded-xl border bg-[var(--input-bg)] px-3 py-2 text-sm ${
-                  isCorrect ? "success-surface" : "border-[var(--input-border)]"
+                className={`w-full rounded-xl bg-[var(--input-bg)] px-3 py-2 text-sm ${
+                  isCorrect ? "success-surface" : ""
                 }`}
               >
                 <option value="">Select theme</option>
@@ -206,7 +206,7 @@ function TypeExercise({ exercise, selected, onSelect, onSubmit, submitted, resul
       <p className="text-sm leading-7 text-[var(--text-muted-color)]">
         {exercise.prompt}
       </p>
-      <div className="rounded-3xl border border-[var(--divider-color)] bg-[var(--color-bg-raised)] p-4">
+      <div className="rounded-3xl bg-[var(--color-bg-raised)] p-4">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--text-muted-color)]">
           Current category
         </p>
@@ -226,12 +226,12 @@ function TypeExercise({ exercise, selected, onSelect, onSubmit, submitted, resul
             <button
               key={choice}
               onClick={() => onSelect(choice)}
-              className={`rounded-2xl border px-4 py-3 text-left text-sm transition ${
+              className={`rounded-2xl px-4 py-3 text-left text-sm transition ${
                 isCorrect
                   ? "success-surface"
                   : selected === choice
-                  ? "border-[var(--button-primary-bg)] bg-[var(--color-bg-accent-soft)]"
-                  : "border-[var(--divider-color)] bg-[var(--color-bg-raised)] hover:bg-[var(--color-interaction-hover)]"
+                  ? "bg-[var(--color-bg-accent-soft)]"
+                  : "bg-[var(--color-bg-raised)] hover:bg-[var(--color-interaction-hover)]"
               }`}
             >
               {choice}
@@ -380,7 +380,7 @@ export default function TestFocusModal({
       <div className="fixed inset-0 z-40 bg-[rgba(24,32,47,0.18)] backdrop-blur-sm" />
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div className="card flex h-[min(88vh,860px)] w-full max-w-4xl flex-col overflow-hidden rounded-[32px]">
-          <div className="flex flex-col gap-4 border-b border-[var(--divider-color)] px-5 pb-5 pt-5 md:px-8 md:flex-row md:items-start md:justify-between">
+          <div className="flex flex-col gap-4 px-5 pb-5 pt-5 md:px-8 md:flex-row md:items-start md:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--text-muted-color)]">
                 Focus Mode
@@ -414,7 +414,7 @@ export default function TestFocusModal({
               </div>
               <button
                 onClick={handleCloseAttempt}
-                className="rounded-full border border-[var(--divider-color)] bg-[var(--button-secondary-bg)] px-4 py-2 text-sm font-semibold"
+                className="rounded-full bg-[var(--button-secondary-bg)] px-4 py-2 text-sm font-semibold"
               >
                 Close
               </button>
@@ -423,7 +423,7 @@ export default function TestFocusModal({
 
           <div className="scrollbar-thin flex-1 overflow-y-auto px-5 py-6 md:px-8">
             <div className="grid gap-6 lg:grid-cols-[1.45fr_0.55fr]">
-              <div className="rounded-[28px] border border-[var(--divider-color)] bg-[var(--color-bg-surface)] p-5 md:p-6">
+              <div className="rounded-[28px] bg-[var(--color-bg-surface)] p-5 md:p-6">
                 {activeExercise?.id === "recall" && (
                   <RecallExercise
                     exercise={activeExercise}
@@ -499,7 +499,7 @@ export default function TestFocusModal({
               </div>
 
               <aside className="space-y-4">
-                <div className="rounded-[28px] border border-[var(--divider-color)] bg-[var(--color-bg-raised)] p-5">
+                <div className="rounded-[28px] bg-[var(--color-bg-raised)] p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted-color)]">
                     Exercise Guide
                   </p>
@@ -508,7 +508,7 @@ export default function TestFocusModal({
                   </p>
                 </div>
 
-                <div className="rounded-[28px] border border-[var(--divider-color)] bg-[var(--color-bg-raised)] p-5">
+                <div className="rounded-[28px] bg-[var(--color-bg-raised)] p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted-color)]">
                     Session Notes
                   </p>

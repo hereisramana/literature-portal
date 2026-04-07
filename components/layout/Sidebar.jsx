@@ -8,7 +8,7 @@ export default function Sidebar({
 }) {
   return (
     <aside className="flex h-full flex-col bg-[rgba(255,255,255,0.55)] backdrop-blur-sm">
-      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between border-b border-[var(--divider-color)] px-6 py-6"}`}>
+      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-6"}`}>
         {collapsed ? (
           <button
             aria-label="Open categories panel"
@@ -68,11 +68,11 @@ export default function Sidebar({
                   onSelect?.();
                 }}
                 className={`
-                  w-full rounded-[24px] border px-5 py-4 text-left transition
+                  w-full rounded-[24px] px-5 py-4 text-left transition
                   ${
                     isActive
-                      ? "border-[var(--color-border-strong)] bg-[var(--color-bg-surface)] shadow-[var(--shadow-soft)]"
-                      : "border-transparent bg-transparent hover:border-[var(--divider-color)] hover:bg-[rgba(255,255,255,0.58)]"
+                      ? "bg-[var(--color-bg-surface)] shadow-[var(--shadow-soft)]"
+                      : "bg-transparent hover:bg-[rgba(255,255,255,0.58)]"
                   }
                 `}
               >

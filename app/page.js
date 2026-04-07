@@ -159,7 +159,7 @@ export default function Page() {
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
       <div
-        className={`hidden h-full border-r border-[var(--divider-color)] bg-[rgba(255,255,255,0.42)] transition-[width] duration-300 lg:block ${
+        className={`hidden h-full bg-[rgba(255,255,255,0.42)] transition-[width] duration-300 lg:block ${
           desktopSidebarCollapsed ? "w-[72px]" : "w-[320px]"
         }`}
       >
@@ -174,7 +174,7 @@ export default function Page() {
 
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-30 bg-[rgba(24,32,47,0.18)] backdrop-blur-sm lg:hidden">
-          <div className="h-full w-[86%] max-w-[320px] border-r border-[var(--divider-color)] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)]">
+          <div className="h-full w-[86%] max-w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)]">
             <Sidebar
               categories={categories}
               active={activeCategory?.id}
@@ -202,7 +202,7 @@ export default function Page() {
       )}
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
-        <div className="border-b border-[var(--divider-color)] bg-[rgba(255,255,255,0.34)] backdrop-blur-sm">
+        <div className="bg-[rgba(255,255,255,0.34)] backdrop-blur-sm">
           <div className="shell-width px-4 pb-6 pt-5 md:px-8 md:pb-8 md:pt-6 lg:px-10">
           <div className="mb-8 flex items-start gap-4">
             <button
@@ -270,7 +270,7 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="safe-bottom border-t border-[var(--divider-color)] bg-[rgba(255,255,255,0.82)] px-4 pt-3 backdrop-blur-md md:hidden">
+        <div className="safe-bottom bg-[rgba(255,255,255,0.82)] px-4 pt-3 backdrop-blur-md md:hidden">
           <ModeToggle mode={mode} setMode={setMode} />
         </div>
       </main>

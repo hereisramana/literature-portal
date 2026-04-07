@@ -20,7 +20,7 @@ export default function ConfidenceStrip({
   }
 
   return (
-    <div className="safe-bottom-lg fixed inset-x-0 bottom-0 z-[70] border-t border-[var(--divider-color)] bg-[rgba(255,255,255,0.88)] px-4 py-3 backdrop-blur-md">
+    <div className="safe-bottom-lg fixed inset-x-0 bottom-0 z-[70] bg-[rgba(255,255,255,0.88)] px-4 py-3 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm font-semibold text-[var(--text-heading-color)]">
@@ -36,10 +36,10 @@ export default function ConfidenceStrip({
             <button
               key={level.id}
               onClick={() => onSelect(level.id)}
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                 currentValue === level.id
-                  ? "border-[var(--button-primary-bg)] bg-[var(--button-primary-bg)] text-[var(--button-primary-text)]"
-                  : "border-[var(--divider-color)] bg-[var(--button-secondary-bg)] text-[var(--button-secondary-text)] hover:bg-[var(--color-interaction-hover)]"
+                  ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)]"
+                  : "bg-[var(--button-secondary-bg)] text-[var(--button-secondary-text)] hover:bg-[var(--color-interaction-hover)]"
               }`}
             >
               {level.label}
@@ -55,7 +55,7 @@ export default function ConfidenceStrip({
               </span>
               <button
                 onClick={onDisconnect}
-                className="rounded-full border border-[var(--divider-color)] bg-white px-3 py-1.5 font-semibold text-[var(--button-secondary-text)]"
+                className="rounded-full bg-white px-3 py-1.5 font-semibold text-[var(--button-secondary-text)]"
               >
                 Disconnect
               </button>
@@ -64,13 +64,13 @@ export default function ConfidenceStrip({
             <>
               <button
                 onClick={() => onConnect("Google")}
-                className="rounded-full border border-[var(--divider-color)] bg-white px-3 py-1.5 font-semibold text-[var(--button-secondary-text)]"
+                className="rounded-full bg-white px-3 py-1.5 font-semibold text-[var(--button-secondary-text)]"
               >
                 Connect Google
               </button>
               <button
                 onClick={() => onConnect("OneDrive")}
-                className="rounded-full border border-[var(--divider-color)] bg-white px-3 py-1.5 font-semibold text-[var(--button-secondary-text)]"
+                className="rounded-full bg-white px-3 py-1.5 font-semibold text-[var(--button-secondary-text)]"
               >
                 Connect OneDrive
               </button>

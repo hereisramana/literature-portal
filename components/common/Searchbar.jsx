@@ -14,10 +14,10 @@ export default function SearchBar({ onSearch }) {
         }}
         placeholder="Ex: metaphysical poets"
         className="
-          h-12 w-full rounded-full border border-[var(--input-border)]
+          h-12 w-full rounded-full
           bg-[var(--input-bg)] pl-5 pr-12 text-[15px] font-semibold text-[var(--text-body-color)]
           shadow-[var(--input-shadow)] outline-none transition
-          focus:border-[var(--color-focus-ring)] focus:bg-white
+          focus:bg-white
           placeholder:font-medium placeholder:text-[var(--text-muted-color)]
           md:h-14
         "
