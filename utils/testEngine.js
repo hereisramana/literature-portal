@@ -1,4 +1,5 @@
 import { shuffle } from "./shuffle.js";
+import { getWorkTitles } from "./enrichedData.js";
 
 function titleCase(value = "") {
   return value
@@ -72,86 +73,173 @@ function buildThemePool(allAuthors, category) {
   return [...new Set(
     allAuthors
       .flatMap((entry) =>
-        (entry.works || []).map((work) => inferTheme(work, entry, category))
+        getWorkTitles(entry).map((work) => inferTheme(work, entry, category))
       )
       .filter(Boolean)
   )];
 }
 
-export function createExerciseSet(author, category, allAuthors) {
-  const works = author.works || [];
-  const sampleWorks = works.slice(0, Math.min(works.length, 4));
-  const allWorks = allAuthors.flatMap((entry) => entry.works || []);
+function getRelatedAuthors(author, allAuthors) {
+  return allAuthors
+    .filter((entry) => entry.author !== author.author)
+    .filter((entry) => {
+      const samePeriod =
+        entry.literary_period &&
+        entry.literary_period === author.literary_period;
+      const sameRegion = entry.region && entry.region === author.region;
+      return samePeriod || sameRegion;
+    })
+    .slice(0, 6);
+}
 
-  const distractors = pickDistinct(allWorks, 5, works);
-  const selectCorrect = works.slice(0, Math.min(3, works.length));
-  const selectOptions = shuffle([...selectCorrect, ...distractors.slice(0, 4)]);
-
-  const themePairs = sampleWorks.map((work) => ({
-    prompt: work,
-    answer: inferTheme(work, author, category),
-  }));
-  const themePool = buildThemePool(allAuthors, category);
-  const coreThemeChoices = [...new Set(themePairs.map((item) => item.answer))];
-  const themeChoices = shuffle([
-    ...coreThemeChoices,
-    ...pickDistinct(themePool, 4, coreThemeChoices),
-  ]);
-
+function createFallbackNodes(author, category, allAuthors, relatedAuthors) {
+  const works = getWorkTitles(author);
+  const allWorks = allAuthors.flatMap((entry) => getWorkTitles(entry));
+  const relatedWorks = relatedAuthors.flatMap((entry) => getWorkTitles(entry));
+  const workSample = works.slice(0, Math.min(works.length, 4));
   const typeLens = inferTypeLens(category);
-  const typeChoices = shuffle([
-    typeLens,
-    "Character constellation",
-    "Symbolic pattern",
-    "Historical frame",
-  ]);
+  const themePool = buildThemePool(allAuthors, category);
 
-  return [
-    {
-      id: "recall",
-      label: "Recall",
-      prompt: "Recall as many works as you can before revealing the list.",
-      data: {
-        works,
-      },
-    },
-    {
-      id: "select",
-      label: "Select",
-      prompt: `Select every work that belongs to ${author.author}.`,
-      data: {
-        options: selectOptions,
-        answers: selectCorrect,
-      },
-    },
-    {
-      id: "ordering",
-      label: "Order",
-      prompt: "Rebuild the syllabus order shown for this author.",
-      data: {
-        shuffled: shuffle(sampleWorks),
-        answer: sampleWorks,
-      },
-    },
-    {
-      id: "themes",
-      label: "Themes",
-      prompt: "Match each work to a concise theme cue.",
-      data: {
-        pairs: themePairs,
-        choices: themeChoices,
-      },
-    },
-    {
-      id: "type",
-      label: "Type Lens",
-      prompt: "Choose the most useful reading lens for this author's works in the current category.",
-      data: {
-        works: sampleWorks,
-        answer: typeLens,
-        choices: typeChoices,
-        categoryLabel: titleCase(category.label),
-      },
-    },
-  ];
+  const nodes = [];
+
+  if (works[0]) {
+    const options = shuffle([
+      works[0],
+      ...pickDistinct(relatedWorks.length ? relatedWorks : allWorks, 3, works),
+    ]).slice(0, 4);
+
+    nodes.push({
+      id: `${author.author}-work-1`,
+      layer: "factual",
+      subType: "genre",
+      prompt: `Which work belongs to ${author.author}?`,
+      answer: works[0],
+      mcqOptions: options,
+      explanation: `${works[0]} is listed in the syllabus under ${author.author}.`,
+      tags: [author.author, author.literary_period || "", category.label],
+      difficulty: 1,
+    });
+  }
+
+  if (author.literary_period) {
+    const periodOptions = shuffle([
+      author.literary_period,
+      ...pickDistinct(
+        relatedAuthors.map((entry) => entry.literary_period).filter(Boolean),
+        3,
+        [author.literary_period]
+      ),
+    ]).slice(0, 4);
+
+    nodes.push({
+      id: `${author.author}-period`,
+      layer: "factual",
+      subType: "period",
+      prompt: `Which literary period is most closely associated with ${author.author}?`,
+      answer: author.literary_period,
+      mcqOptions: periodOptions,
+      explanation: `${author.author} is grouped under ${author.literary_period}.`,
+      tags: [author.author, author.literary_period, category.label],
+      difficulty: 1,
+    });
+  }
+
+  if (workSample[0]) {
+    const answer = inferTheme(workSample[0], author, category);
+    const options = shuffle([
+      answer,
+      ...pickDistinct(themePool, 3, [answer]),
+    ]).slice(0, 4);
+
+    nodes.push({
+      id: `${author.author}-theme-1`,
+      layer: "textual",
+      subType: "theme",
+      prompt: `Which theme best fits ${workSample[0]}?`,
+      answer,
+      mcqOptions: options,
+      explanation: `${workSample[0]} is studied through the theme of ${answer.toLowerCase()}.`,
+      tags: [author.author, author.literary_period || "", category.label],
+      difficulty: 2,
+    });
+  }
+
+  nodes.push({
+    id: `${author.author}-lens`,
+    layer: "critical",
+    subType: "idea",
+    prompt: `Which reading lens is strongest for studying ${author.author} in this category?`,
+    answer: typeLens,
+    mcqOptions: shuffle([
+      typeLens,
+      "Character constellation",
+      "Symbolic pattern",
+      "Historical frame",
+    ]),
+    explanation: `${typeLens} best matches the current category framing.`,
+    tags: [author.author, author.literary_period || "", category.label],
+    difficulty: 2,
+  });
+
+  if (relatedAuthors[0] && works[0]) {
+    nodes.push({
+      id: `${author.author}-compare-1`,
+      layer: "comparative",
+      subType: "contemporary",
+      prompt: `Which author is the best adjacent interleaving match for ${author.author} here?`,
+      answer: relatedAuthors[0].author,
+      mcqOptions: shuffle([
+        relatedAuthors[0].author,
+        ...pickDistinct(
+          allAuthors.map((entry) => entry.author),
+          3,
+          [author.author, relatedAuthors[0].author]
+        ),
+      ]).slice(0, 4),
+      explanation: `${relatedAuthors[0].author} is related by period or region, making it a useful interleaving partner.`,
+      tags: [author.author, author.literary_period || "", category.label],
+      difficulty: 2,
+    });
+  }
+
+  return nodes;
+}
+
+export function createTestSession(author, category, allAuthors) {
+  const works = getWorkTitles(author);
+  const relatedAuthors = getRelatedAuthors(author, allAuthors);
+  const relatedNodes = relatedAuthors.flatMap((entry) =>
+    (entry.nodes || createFallbackNodes(entry, category, allAuthors, [])).filter(
+      (node) => node.layer !== "comparative"
+    )
+  );
+  const baseNodes = (author.nodes && author.nodes.length > 0)
+    ? author.nodes
+    : createFallbackNodes(author, category, allAuthors, relatedAuthors);
+
+  const retrieval = {
+    prompt: `Recall the key works, themes, and contexts for ${author.author} before revealing support.`,
+    works,
+    hints: [
+      author.literary_period || "Unknown period",
+      ...(author.movements || []),
+      ...(author.genreTags || []),
+    ].filter(Boolean),
+  };
+
+  const verifyQuestions = baseNodes
+    .filter((node) => node.layer !== "comparative")
+    .slice(0, 8);
+
+  const interleaveQuestions = shuffle([
+    ...baseNodes.filter((node) => node.layer === "comparative"),
+    ...relatedNodes.slice(0, 6),
+  ]).slice(0, 8);
+
+  return {
+    retrieval,
+    verifyQuestions,
+    interleaveQuestions,
+    relatedAuthors,
+  };
 }

@@ -22,6 +22,10 @@ export default function StudyFocusModal({
   onClose,
 }) {
   const [activeTab, setActiveTab] = useState(selectedWork ? "works" : "overview");
+  const workTitles = useMemo(
+    () => (author.works || []).map((work) => work.title || work),
+    [author]
+  );
 
   const relatedAuthors = useMemo(() => {
     return allAuthors
@@ -39,22 +43,54 @@ export default function StudyFocusModal({
   const themeSet = useMemo(() => {
     return [
       ...new Set(
-        (author.works || []).map((work) => inferTheme(work, author, category))
+        workTitles.map((work) => inferTheme(work, author, category))
       ),
     ];
-  }, [author, category, inferTheme]);
+  }, [author, category, inferTheme, workTitles]);
+
+  const nodeGroups = useMemo(() => {
+    const groups = {
+      factual: [],
+      textual: [],
+      critical: [],
+      comparative: [],
+    };
+
+    (author.nodes || []).forEach((node) => {
+      if (groups[node.layer]) {
+        groups[node.layer].push(node);
+      }
+    });
+
+    return groups;
+  }, [author]);
 
   const overviewItems = [
     { label: "Category", value: category?.label || "" },
     { label: "Region", value: author.region || "Unknown" },
     { label: "Period", value: author.literary_period || "Unknown" },
-    { label: "Works", value: String(author.works?.length || 0) },
+    { label: "Works", value: String(workTitles.length || 0) },
   ];
+
+  if ((author.movements || []).length > 0) {
+    overviewItems.push({
+      label: "Movements",
+      value: author.movements.join(", "),
+    });
+  }
+
+  if ((author.genreTags || []).length > 0) {
+    overviewItems.push({
+      label: "Genres",
+      value: author.genreTags.join(", "),
+    });
+  }
 
   const tabs = [
     { id: "overview", label: "Overview" },
     { id: "works", label: "Works" },
     { id: "themes", label: "Themes" },
+    { id: "notes", label: "Notes" },
     { id: "links", label: "Links" },
   ];
 
@@ -125,14 +161,21 @@ export default function StudyFocusModal({
                   <ul className="space-y-3">
                     {(author.works || []).map((work) => (
                       <li
-                        key={work}
+                        key={work.title || work}
                         className={`rounded-2xl px-4 py-4 text-sm leading-7 ${
-                          selectedWork === work
+                          selectedWork === (work.title || work)
                             ? "bg-[var(--color-bg-accent-soft)]"
                             : "bg-[var(--color-bg-raised)]"
                         }`}
                       >
-                        {work}
+                        <div className="flex items-center justify-between gap-4">
+                          <span>{work.title || work}</span>
+                          {(work.year || work.type) && (
+                            <span className="text-xs text-[var(--text-muted-color)]">
+                              {[work.year, work.type].filter(Boolean).join(" · ")}
+                            </span>
+                          )}
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -155,6 +198,41 @@ export default function StudyFocusModal({
                         Study these themes before moving into retrieval practice. The current app is using inferred themes from the existing dataset; richer academic theme data can plug into this same surface later.
                       </p>
                     </div>
+                  </div>
+                )}
+
+                {activeTab === "notes" && (
+                  <div className="grid gap-4">
+                    {["factual", "textual", "critical", "comparative"].map((layer) => (
+                      <div key={layer} className="rounded-2xl bg-[var(--color-bg-raised)] px-4 py-4">
+                        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--text-muted-color)]">
+                          {layer}
+                        </p>
+                        {nodeGroups[layer].length > 0 ? (
+                          <ul className="mt-3 space-y-3">
+                            {nodeGroups[layer].slice(0, 4).map((node) => (
+                              <li key={node.id}>
+                                <p className="text-sm font-semibold text-[var(--text-heading-color)]">
+                                  {node.prompt}
+                                </p>
+                                <p className="mt-1 text-sm leading-7 text-[var(--text-body-color)]">
+                                  {node.answer}
+                                </p>
+                                {node.explanation && (
+                                  <p className="mt-1 text-xs leading-6 text-[var(--text-muted-color)]">
+                                    {node.explanation}
+                                  </p>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="mt-3 text-sm leading-7 text-[var(--text-body-color)]">
+                            Enriched academic notes for this layer will appear here as the category batches are completed.
+                          </p>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 )}
 

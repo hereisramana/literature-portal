@@ -14,10 +14,10 @@ export default function AuthorCardBrowse({ author, onOpenStudy }) {
         {author.works?.map((work, index) => (
           <li key={index}>
             <button
-              onClick={() => onOpenStudy?.(author, work)}
+              onClick={() => onOpenStudy?.(author, work.title || work)}
               className="w-full rounded-2xl bg-[var(--color-bg-raised)] px-4 py-2.5 text-left text-[14px] leading-6 text-[var(--text-body-color)] transition hover:bg-[var(--color-interaction-hover)] md:text-[15px]"
             >
-              {work}
+              {work.title || work}
             </button>
           </li>
         ))}

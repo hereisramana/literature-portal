@@ -6,96 +6,266 @@
       "author": "Alexander Pope",
       "region": "British",
       "literary_period": "Neoclassicism",
-      "movements": [],
-      "genreTags": [],
+      "movements": ["Neoclassicism", "Augustan Poetry"],
+      "genreTags": ["poetry", "satire", "heroic couplets"],
       "works": [
         {
           "title": "An Essay on Criticism",
-          "year": "",
-          "type": ""
+          "year": "1711",
+          "type": "didactic poem"
         },
         {
           "title": "The Rape of the Lock",
-          "year": "",
-          "type": ""
+          "year": "1712",
+          "type": "mock-epic poem"
         }
       ],
-      "nodes": []
+      "nodes": [
+        {
+          "id": "pope-factual-1",
+          "layer": "factual",
+          "subType": "publication",
+          "prompt": "In which year was \"An Essay on Criticism\" first published?",
+          "answer": "1711",
+          "mcqOptions": ["1711", "1712", "1733", "1798"],
+          "explanation": "Pope's didactic poem \"An Essay on Criticism\" was first published in 1711.",
+          "tags": ["Alexander Pope", "Neoclassicism", "poetry"],
+          "difficulty": 1
+        },
+        {
+          "id": "pope-textual-1",
+          "layer": "textual",
+          "subType": "character",
+          "prompt": "Who is the young woman whose stolen lock of hair triggers the action of \"The Rape of the Lock\"?",
+          "answer": "Belinda",
+          "mcqOptions": ["Belinda", "Clarissa", "Umbriel", "Ariel"],
+          "explanation": "The poem turns the cutting of Belinda's lock into the central event of its social satire.",
+          "tags": ["Alexander Pope", "Neoclassicism", "satire"],
+          "difficulty": 1
+        },
+        {
+          "id": "pope-critical-1",
+          "layer": "critical",
+          "subType": "style",
+          "prompt": "Which stylistic label best describes Pope's treatment of a trivial social event in \"The Rape of the Lock\"?",
+          "answer": "Mock-epic satire",
+          "mcqOptions": ["Mock-epic satire", "Pastoral elegy", "Dramatic monologue", "Confessional lyric"],
+          "explanation": "Pope elevates a fashionable quarrel through epic conventions in order to expose vanity and social triviality.",
+          "tags": ["Alexander Pope", "Augustan Poetry", "satire"],
+          "difficulty": 2
+        },
+        {
+          "id": "pope-comparative-1",
+          "layer": "comparative",
+          "subType": "same-author",
+          "prompt": "Which comparison best distinguishes \"An Essay on Criticism\" from \"The Rape of the Lock\"?",
+          "answer": "\"An Essay on Criticism\" is a didactic statement on poetic judgment, whereas \"The Rape of the Lock\" uses mock-epic narrative for social satire.",
+          "mcqOptions": [
+            "\"An Essay on Criticism\" is a didactic statement on poetic judgment, whereas \"The Rape of the Lock\" uses mock-epic narrative for social satire.",
+            "\"An Essay on Criticism\" is a dramatic soliloquy, whereas \"The Rape of the Lock\" is a pastoral elegy.",
+            "\"An Essay on Criticism\" centers on courtship ritual, whereas \"The Rape of the Lock\" develops a theory of imagination.",
+            "\"An Essay on Criticism\" rejects decorum, whereas \"The Rape of the Lock\" rejects wit."
+          ],
+          "explanation": "The two works show Pope both as critical thinker and as satiric poet, but through clearly different forms and aims.",
+          "tags": ["Alexander Pope", "Neoclassicism", "poetry"],
+          "difficulty": 3
+        }
+      ]
     },
     {
       "author": "John Donne",
       "region": "British",
       "literary_period": "Metaphysical",
-      "movements": [],
-      "genreTags": [],
+      "movements": ["Metaphysical Poetry", "Renaissance"],
+      "genreTags": ["poetry", "love lyric", "holy sonnet"],
       "works": [
         {
           "title": "The Sun Rising",
-          "year": "",
-          "type": ""
+          "year": "1633",
+          "type": "love lyric"
         },
         {
           "title": "The Ecstasy",
-          "year": "",
-          "type": ""
+          "year": "1633",
+          "type": "metaphysical poem"
         },
         {
           "title": "A Valediction: Forbidding Mourning",
-          "year": "",
-          "type": ""
+          "year": "1633",
+          "type": "metaphysical poem"
         },
         {
           "title": "The Good Morrow",
-          "year": "",
-          "type": ""
+          "year": "1633",
+          "type": "love lyric"
         },
         {
           "title": "The Flea",
-          "year": "",
-          "type": ""
+          "year": "1633",
+          "type": "dramatic lyric"
         },
         {
           "title": "Batter My Heart, Three-Personed God",
-          "year": "",
-          "type": ""
+          "year": "1633",
+          "type": "holy sonnet"
         }
       ],
-      "nodes": []
+      "nodes": [
+        {
+          "id": "donne-factual-1",
+          "layer": "factual",
+          "subType": "movement",
+          "prompt": "With which literary movement is John Donne most closely associated?",
+          "answer": "Metaphysical Poetry",
+          "mcqOptions": ["Metaphysical Poetry", "Augustan Poetry", "Romanticism", "Victorian Realism"],
+          "explanation": "Donne is central to the group later identified as the metaphysical poets for their wit, conceits, and argumentative structure.",
+          "tags": ["John Donne", "Metaphysical Poetry", "poetry"],
+          "difficulty": 1
+        },
+        {
+          "id": "donne-textual-1",
+          "layer": "textual",
+          "subType": "theme",
+          "prompt": "Which theme is most central to \"A Valediction: Forbidding Mourning\"?",
+          "answer": "Spiritual union beyond physical separation",
+          "mcqOptions": [
+            "Spiritual union beyond physical separation",
+            "Political satire against court life",
+            "Nature as moral teacher",
+            "Childhood memory and loss"
+          ],
+          "explanation": "The poem argues that true lovers remain inwardly united even when distance separates them physically.",
+          "tags": ["John Donne", "Metaphysical Poetry", "love lyric"],
+          "difficulty": 2
+        },
+        {
+          "id": "donne-critical-1",
+          "layer": "critical",
+          "subType": "symbolism",
+          "prompt": "What is the best interpretation of the compass image in \"A Valediction: Forbidding Mourning\"?",
+          "answer": "It symbolizes two lovers who remain connected even when one moves away.",
+          "mcqOptions": [
+            "It symbolizes two lovers who remain connected even when one moves away.",
+            "It symbolizes the randomness of earthly desire.",
+            "It symbolizes political expansion and imperial power.",
+            "It symbolizes the speaker's rejection of religion."
+          ],
+          "explanation": "The famous conceit compares the lovers to the two legs of a compass: distinct in movement yet joined at the center.",
+          "tags": ["John Donne", "Metaphysical Poetry", "poetry"],
+          "difficulty": 2
+        },
+        {
+          "id": "donne-comparative-1",
+          "layer": "comparative",
+          "subType": "same-author",
+          "prompt": "Which comparison best captures the difference between Donne's love poems and \"Batter My Heart, Three-Personed God\"?",
+          "answer": "The love poems dramatize erotic and intellectual union, whereas the sonnet stages a violent struggle for spiritual renewal.",
+          "mcqOptions": [
+            "The love poems dramatize erotic and intellectual union, whereas the sonnet stages a violent struggle for spiritual renewal.",
+            "The love poems reject conceits, whereas the sonnet relies only on plain devotional language.",
+            "The love poems are pastoral descriptions of landscape, whereas the sonnet is a political allegory.",
+            "The love poems celebrate social decorum, whereas the sonnet celebrates court wit."
+          ],
+          "explanation": "Donne's secular lyrics and holy sonnets share intensity and argument, but their emotional and theological aims are different.",
+          "tags": ["John Donne", "Metaphysical Poetry", "holy sonnet"],
+          "difficulty": 3
+        }
+      ]
     },
     {
       "author": "William Wordsworth",
       "region": "British",
       "literary_period": "Romanticism",
-      "movements": [],
-      "genreTags": [],
+      "movements": ["Romanticism", "Lake School"],
+      "genreTags": ["poetry", "lyrical ballad", "literary criticism"],
       "works": [
         {
           "title": "The Prelude (Book I)",
-          "year": "",
-          "type": ""
+          "year": "1850",
+          "type": "autobiographical poem"
         },
         {
           "title": "Tintern Abbey",
-          "year": "",
-          "type": ""
+          "year": "1798",
+          "type": "lyrical poem"
         },
         {
           "title": "Ode: Intimations of Immortality",
-          "year": "",
-          "type": ""
+          "year": "1807",
+          "type": "ode"
         },
         {
           "title": "Ode to Duty",
-          "year": "",
-          "type": ""
+          "year": "1807",
+          "type": "ode"
         },
         {
           "title": "Preface to Lyrical Ballads",
-          "year": "",
-          "type": ""
+          "year": "1800",
+          "type": "critical prose"
         }
       ],
-      "nodes": []
+      "nodes": [
+        {
+          "id": "wordsworth-factual-1",
+          "layer": "factual",
+          "subType": "publication",
+          "prompt": "Which text serves as Wordsworth's major statement of Romantic poetic theory in this syllabus?",
+          "answer": "Preface to Lyrical Ballads",
+          "mcqOptions": ["Preface to Lyrical Ballads", "Ode to Duty", "The Prelude (Book I)", "Tintern Abbey"],
+          "explanation": "The \"Preface\" became a foundational statement of Romantic ideas about poetry, language, and emotion.",
+          "tags": ["William Wordsworth", "Romanticism", "literary criticism"],
+          "difficulty": 1
+        },
+        {
+          "id": "wordsworth-textual-1",
+          "layer": "textual",
+          "subType": "theme",
+          "prompt": "Which theme is central to \"Tintern Abbey\"?",
+          "answer": "Nature as a source of memory, moral insight, and spiritual restoration",
+          "mcqOptions": [
+            "Nature as a source of memory, moral insight, and spiritual restoration",
+            "Urban luxury and fashionable satire",
+            "The collapse of religious faith into nihilism",
+            "The absurdity of heroic warfare"
+          ],
+          "explanation": "Wordsworth returns to the landscape not simply to describe it, but to show how remembered nature shapes consciousness and ethical life.",
+          "tags": ["William Wordsworth", "Romanticism", "poetry"],
+          "difficulty": 2
+        },
+        {
+          "id": "wordsworth-critical-1",
+          "layer": "critical",
+          "subType": "idea",
+          "prompt": "Which statement best reflects the poetic principle advanced in the \"Preface to Lyrical Ballads\"?",
+          "answer": "Poetry should use language close to common speech while expressing powerful feeling recollected in tranquility.",
+          "mcqOptions": [
+            "Poetry should use language close to common speech while expressing powerful feeling recollected in tranquility.",
+            "Poetry should imitate epic grandeur through learned allusions and classical decorum.",
+            "Poetry should avoid emotion and remain purely analytical.",
+            "Poetry should be confined to aristocratic subjects and elevated diction."
+          ],
+          "explanation": "Wordsworth's \"Preface\" famously argues for ordinary language, humble subjects, and emotion shaped through reflective memory.",
+          "tags": ["William Wordsworth", "Romanticism", "literary criticism"],
+          "difficulty": 2
+        },
+        {
+          "id": "wordsworth-comparative-1",
+          "layer": "comparative",
+          "subType": "same-author",
+          "prompt": "Which comparison best distinguishes \"Tintern Abbey\" from \"Ode: Intimations of Immortality\"?",
+          "answer": "\"Tintern Abbey\" meditates on remembered landscape, whereas the ode reflects on childhood vision and its partial loss in adulthood.",
+          "mcqOptions": [
+            "\"Tintern Abbey\" meditates on remembered landscape, whereas the ode reflects on childhood vision and its partial loss in adulthood.",
+            "\"Tintern Abbey\" is a dramatic satire, whereas the ode is a mock-epic social poem.",
+            "\"Tintern Abbey\" rejects reflection, whereas the ode rejects imagination.",
+            "\"Tintern Abbey\" is about city crowds, whereas the ode is about parliamentary debate."
+          ],
+          "explanation": "Both poems are reflective and philosophical, but they differ in their central emotional structures and symbolic focus.",
+          "tags": ["William Wordsworth", "Romanticism", "poetry"],
+          "difficulty": 3
+        }
+      ]
     }
   ]
 }

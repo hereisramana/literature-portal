@@ -9,8 +9,9 @@ import AuthorCard from "../components/cards/AuthorCard.jsx";
 import ModeToggle from "../components/layout/ModeToggle.jsx";
 import SearchBar from "../components/common/Searchbar.jsx";
 import EmptyState from "../components/common/Emptystate.jsx";
-import StudyFocusModal from "../components/study/StudyFocusModal.jsx";
-import TestFocusModal from "../components/test/TestFocusModal.jsx";
+import StudyFocusView from "../components/study/StudyFocusView.jsx";
+import TestFocusView from "../components/test/TestFocusView.jsx";
+import { mergeAuthorWithEnriched } from "../utils/enrichedData.js";
 import { inferTheme } from "../utils/testEngine.js";
 import { useProgress } from "../hooks/useProgress.js";
 import { useCloudSync } from "../hooks/useCloudSync.js";
@@ -31,7 +32,12 @@ export default function Page() {
   const activeCategory =
     categories.find((entry) => entry.id === category) || categories[0];
   const allAuthors = useMemo(
-    () => categories.flatMap((entry) => entry.authors || []),
+    () =>
+      categories.flatMap((entry) =>
+        (entry.authors || []).map((author) =>
+          mergeAuthorWithEnriched(author, entry.id)
+        )
+      ),
     [categories]
   );
 
@@ -40,16 +46,18 @@ export default function Page() {
       return [];
     }
 
-    return activeCategory.authors.filter((author) => {
+    return activeCategory.authors
+      .map((author) => mergeAuthorWithEnriched(author, activeCategory.id))
+      .filter((author) => {
       const matchesQuery =
         !query ||
         author.author?.toLowerCase().includes(query.toLowerCase()) ||
         author.works?.some((work) =>
-          work.toLowerCase().includes(query.toLowerCase())
+          (work.title || work).toLowerCase().includes(query.toLowerCase())
         );
 
       return matchesQuery;
-    });
+      });
   }, [activeCategory, query]);
 
   function handleCategoryChange(nextCategory) {
@@ -249,7 +257,7 @@ export default function Page() {
       </main>
 
       {mode === "study" && studyContext && (
-        <StudyFocusModal
+        <StudyFocusView
           author={studyContext.author}
           category={activeCategory}
           allAuthors={allAuthors}
@@ -259,7 +267,7 @@ export default function Page() {
         />
       )}
       {mode === "test" && focusedAuthor && (
-        <TestFocusModal
+        <TestFocusView
           author={focusedAuthor}
           category={activeCategory}
           allAuthors={allAuthors}
