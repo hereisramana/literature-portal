@@ -1,5 +1,634 @@
-{
-  "categoryId": "criticism",
-  "label": "Criticism",
-  "authors": []
+﻿{
+    "categoryId":  "criticism",
+    "label":  "Criticism",
+    "authors":  [
+                    {
+                        "author":  "Abhinavagupta",
+                        "region":  "Indian",
+                        "literary_period":  "Classical",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "On Santa Rasa and Aesthetic Equipoise",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Alexander Pope",
+                        "region":  "British",
+                        "literary_period":  "Neoclassicism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "An Essay on Criticism",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Ananda Vardhana",
+                        "region":  "Indian",
+                        "literary_period":  "Classical",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Dhvanyaloka (Structure of Poetic Meaning: The First Flash)",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Aristotle",
+                        "region":  "Greek",
+                        "literary_period":  "Classical",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Poetics",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Rhetoric",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Bharata Muni",
+                        "region":  "Indian",
+                        "literary_period":  "Classical",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Natyashastra (On Natya and Rasa)",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Cleanth Brooks",
+                        "region":  "American",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Irony as a Principle of Structure",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Edmund Wilson",
+                        "region":  "American",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Marxism and Literature",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Edward Said",
+                        "region":  "Palestinian-American",
+                        "literary_period":  "Postcolonial",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Orientalism",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Elaine Showalter",
+                        "region":  "American",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Towards a Feminist Poetics",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Francis Bacon",
+                        "region":  "British",
+                        "literary_period":  "Renaissance",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Advancement of Learning",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Horace",
+                        "region":  "Roman",
+                        "literary_period":  "Classical",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Ars Poetica",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "I. A. Richards",
+                        "region":  "British",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Four Kinds of Meaning",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Jacques Derrida",
+                        "region":  "French",
+                        "literary_period":  "Postmodernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Structure, Sign and Play in the Discourse of the Human Sciences",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "John Dryden",
+                        "region":  "British",
+                        "literary_period":  "Neoclassicism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "An Essay of Dramatic Poesy",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Lionel Trilling",
+                        "region":  "American",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Freud and Literature",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Longinus",
+                        "region":  "Greek",
+                        "literary_period":  "Classical",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "On the Sublime",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Matthew Arnold",
+                        "region":  "British",
+                        "literary_period":  "Victorian",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Function of Criticism",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "The Study of Poetry",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Culture and Anarchy",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Touchstone Method",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Northrop Frye",
+                        "region":  "Canadian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Archetypes of Literature",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "P. B. Shelley",
+                        "region":  "British",
+                        "literary_period":  "Romanticism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "A Defence of Poetry",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Philip Sidney",
+                        "region":  "British",
+                        "literary_period":  "Renaissance",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "An Apology for Poetry",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Plato",
+                        "region":  "Greek",
+                        "literary_period":  "Classical",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Republic",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Theory of Ideas",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Art and Truth (Representation and Reality)",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Plotinus",
+                        "region":  "Greek",
+                        "literary_period":  "Classical",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "On the Intellectual Beauties",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Samuel Johnson",
+                        "region":  "British",
+                        "literary_period":  "Neoclassicism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Preface to Shakespeare",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Samuel Taylor Coleridge",
+                        "region":  "British",
+                        "literary_period":  "Romanticism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Biographia Literaria",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "T. S. Eliot",
+                        "region":  "British-American",
+                        "literary_period":  "Modernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Tradition and the Individual Talent",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "The Metaphysical Poets",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "W. K. Wimsatt \u0026 Monroe Beardsley",
+                        "region":  "American",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Intentional Fallacy",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "The Affective Fallacy",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "William Empson",
+                        "region":  "British",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Seven Types of Ambiguity",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "William Wordsworth",
+                        "region":  "British",
+                        "literary_period":  "Romanticism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Preface to the Second Edition of Lyrical Ballads",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    }
+                ]
 }

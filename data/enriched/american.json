@@ -1,5 +1,548 @@
-{
-  "categoryId": "american",
-  "label": "American",
-  "authors": []
+﻿{
+    "categoryId":  "american",
+    "label":  "American",
+    "authors":  [
+                    {
+                        "author":  "Arthur Miller",
+                        "region":  "American",
+                        "literary_period":  "Modern Drama",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Death of a Salesman",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Bernard Malamud",
+                        "region":  "American",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Assistant",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Edward Albee",
+                        "region":  "American",
+                        "literary_period":  "Postmodern Drama",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Whoâ€™s Afraid of Virginia Woolf?",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Emily Dickinson",
+                        "region":  "American",
+                        "literary_period":  "Romanticism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Because I Could Not Stop for Death",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "I Heard a Fly Buzz When I Died",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "If You Were Coming in the Fall",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "A Narrow Fellow in the Grass",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "I Died for Beauty",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "The Soul Selects Her Own Society",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Ernest Hemingway",
+                        "region":  "American",
+                        "literary_period":  "Modernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Old Man and the Sea",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Eugene Oâ€™Neill",
+                        "region":  "American",
+                        "literary_period":  "Modern Drama",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Hairy Ape",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Henry David Thoreau",
+                        "region":  "American",
+                        "literary_period":  "Transcendentalism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Walden",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "John Steinbeck",
+                        "region":  "American",
+                        "literary_period":  "Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Grapes of Wrath",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Lorraine Hansberry",
+                        "region":  "American",
+                        "literary_period":  "Modern Drama",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "A Raisin in the Sun",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Mark Twain",
+                        "region":  "American",
+                        "literary_period":  "Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Adventures of Huckleberry Finn",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Nathaniel Hawthorne",
+                        "region":  "American",
+                        "literary_period":  "Dark Romanticism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Scarlet Letter",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Ralph Ellison",
+                        "region":  "American",
+                        "literary_period":  "Modernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Invisible Man",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Ralph Waldo Emerson",
+                        "region":  "American",
+                        "literary_period":  "Transcendentalism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The American Scholar",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Self-Reliance",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Robert Frost",
+                        "region":  "American",
+                        "literary_period":  "Modernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "After Apple-Picking",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Stopping by Woods on a Snowy Evening",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "The Road Not Taken",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Birches",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Home Burial",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "West-Running Brook",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Mending Wall",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Stephen Crane",
+                        "region":  "American",
+                        "literary_period":  "Naturalism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Red Badge of Courage",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Sylvia Plath",
+                        "region":  "American",
+                        "literary_period":  "Confessional Poetry",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Poppies in July",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Tennessee Williams",
+                        "region":  "American",
+                        "literary_period":  "Modern Drama",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "A Streetcar Named Desire",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Theodore Dreiser",
+                        "region":  "American",
+                        "literary_period":  "Naturalism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "An American Tragedy",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Toni Morrison",
+                        "region":  "American",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Sula",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Wallace Stevens",
+                        "region":  "American",
+                        "literary_period":  "Modernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Sunday Morning",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Of Modern Poetry",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Peter Quince at the Clavier",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "The Emperor of Ice Cream",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Walt Whitman",
+                        "region":  "American",
+                        "literary_period":  "Transcendentalism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Out of the Cradle Endlessly Rocking",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "When Lilacs Last in the Dooryard Bloomâ€™d",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "William Faulkner",
+                        "region":  "American",
+                        "literary_period":  "Modernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Sound and the Fury",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    }
+                ]
 }

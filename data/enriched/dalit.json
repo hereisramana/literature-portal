@@ -1,5 +1,372 @@
-{
-  "categoryId": "dalit",
-  "label": "Dalit",
-  "authors": []
+﻿{
+    "categoryId":  "dalit",
+    "label":  "Dalit",
+    "authors":  [
+                    {
+                        "author":  "Arjun Dangle",
+                        "region":  "Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Two Poems from Poisoned Bread",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Poisoned Bread (Anthology)",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Baby Kamble",
+                        "region":  "Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Prisons We Broke",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Bama",
+                        "region":  "Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Karukku",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Vanmam",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Eleanor Zelliot",
+                        "region":  "American",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "From Untouchable to Dalit",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Enduri Sudhakar",
+                        "region":  "Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Neelika",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Gail Omvedt",
+                        "region":  "American-Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Dalits and the Democratic Revolution",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Joseph Macwan",
+                        "region":  "Indian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Stepchild",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "K. Enoch",
+                        "region":  "Indian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Munivahanudu",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "L. S. Rokade",
+                        "region":  "Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "To Be or Not To Be Born",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Mahasweta Devi",
+                        "region":  "Indian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Draupadi",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Rudali",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Stanadayini",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Chotti Munda and His Arrow",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Narendra Jadhav",
+                        "region":  "Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Outcaste",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Prahlada Chanwarkar",
+                        "region":  "Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "My Father",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Sharan Kumar Limbale",
+                        "region":  "Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Outcaste",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Sikhamani",
+                        "region":  "Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Two Poems from Black Rainbow",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Urmila Pawar",
+                        "region":  "Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Weave of My Life",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Vasant Moon",
+                        "region":  "Indian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Growing Up as an Untouchable",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Growing Up Untouchable in India",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    }
+                ]
 }

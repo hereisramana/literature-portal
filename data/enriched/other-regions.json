@@ -1,5 +1,1178 @@
-{
-  "categoryId": "other-regions",
-  "label": "Other Regions",
-  "authors": []
+﻿{
+    "categoryId":  "other-regions",
+    "label":  "Other Regions",
+    "authors":  [
+                    {
+                        "author":  "A. D. Hope",
+                        "region":  "Australian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Australia (poem)",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Dante Alighieri",
+                        "region":  "Italian",
+                        "literary_period":  "Medieval",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Divine Comedy",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "E. J. Pratt",
+                        "region":  "Canadian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Dying Eagle",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Homer",
+                        "region":  "Greek",
+                        "literary_period":  "Classical",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Iliad (Canto 1)",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Judith Wright",
+                        "region":  "Australian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Fire at the Murdering Hut",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Mervyn Morris",
+                        "region":  "Caribbean",
+                        "literary_period":  "Postcolonial",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Literary Evening in Jamaica",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Seamus Heaney",
+                        "region":  "Irish",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Death of a Naturalist",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Digging",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Punishment",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "At a Potato Digging",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "W. B. Yeats",
+                        "region":  "Irish",
+                        "literary_period":  "Modernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Sailing to Byzantium",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "The Second Coming",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "A Prayer for My Daughter",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "An Irish Airman Foresees His Death",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Among School Children",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Zulfikar Ghose",
+                        "region":  "Pakistani",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "This Landscape, These People",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Anton Chekhov",
+                        "region":  "Russian",
+                        "literary_period":  "Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Cherry Orchard",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "George Bernard Shaw",
+                        "region":  "Irish",
+                        "literary_period":  "Modern Drama",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Pygmalion",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Bertolt Brecht",
+                        "region":  "German",
+                        "literary_period":  "Modern Drama",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Galileo",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Mother Courage and Her Children",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Henrik Ibsen",
+                        "region":  "Norwegian",
+                        "literary_period":  "Modern Drama",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "A Dollâ€™s House",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "J. M. Synge",
+                        "region":  "Irish",
+                        "literary_period":  "Modern Drama",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Playboy of the Western World",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Oliver Goldsmith",
+                        "region":  "Irish",
+                        "literary_period":  "Neoclassicism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "She Stoops to Conquer",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Oscar Wilde",
+                        "region":  "Irish",
+                        "literary_period":  "Victorian",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Importance of Being Earnest",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Luigi Pirandello",
+                        "region":  "Italian",
+                        "literary_period":  "Modern Drama",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Six Characters in Search of an Author",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "R. B. Sheridan",
+                        "region":  "Irish",
+                        "literary_period":  "Neoclassicism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Rivals",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Samuel Beckett",
+                        "region":  "Irish",
+                        "literary_period":  "Postmodernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Waiting for Godot",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Sophocles",
+                        "region":  "Greek",
+                        "literary_period":  "Classical",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Oedipus Rex",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Albert Camus",
+                        "region":  "French",
+                        "literary_period":  "Existentialism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Outsider",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Anton Chekhov",
+                        "region":  "Russian",
+                        "literary_period":  "Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Lady with the Pet Dog",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Balzac",
+                        "region":  "French",
+                        "literary_period":  "Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Eugenie Grandet",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Beatrice Culleton",
+                        "region":  "Canadian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "In Search of April Raintree",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Fyodor Dostoevsky",
+                        "region":  "Russian",
+                        "literary_period":  "Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Brothers Karamazov",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Crime and Punishment",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Franz Kafka",
+                        "region":  "Czech",
+                        "literary_period":  "Modernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Castle",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Gabriel GarcÃ­a MÃ¡rquez",
+                        "region":  "Colombian",
+                        "literary_period":  "Magical Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Balthazarâ€™s Marvelous Afternoon",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "George Lamming",
+                        "region":  "Caribbean",
+                        "literary_period":  "Postcolonial",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "In the Castle of My Skin",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Gregory David Roberts",
+                        "region":  "Australian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Shantaram",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Gustave Flaubert",
+                        "region":  "French",
+                        "literary_period":  "Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Madame Bovary",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Guy de Maupassant",
+                        "region":  "French",
+                        "literary_period":  "Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Vendetta",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Herman Hesse",
+                        "region":  "German",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Siddhartha",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "James Joyce",
+                        "region":  "Irish",
+                        "literary_period":  "Modernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "A Portrait of the Artist as a Young Man",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Jonathan Swift",
+                        "region":  "Irish",
+                        "literary_period":  "Neoclassicism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Battle of the Books",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Gulliverâ€™s Travels (Chapters 1 \u0026 2)",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Katherine Mansfield",
+                        "region":  "New Zealand",
+                        "literary_period":  "Modernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Dollâ€™s House",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Leo Tolstoy",
+                        "region":  "Russian",
+                        "literary_period":  "Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Anna Karenina",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "War and Peace",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Maria Campbell",
+                        "region":  "Indigenous Canadian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Half Breed",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Mudrooroo",
+                        "region":  "Australian Indigenous",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Wild Cat Screaming",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Oodgeroo (Kath Walker)",
+                        "region":  "Australian Indigenous",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "My People",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Oscar Wilde",
+                        "region":  "Irish",
+                        "literary_period":  "Victorian",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Selfish Giant",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Sally Morgan",
+                        "region":  "Australian Indigenous",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "My Place",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Stendhal",
+                        "region":  "French",
+                        "literary_period":  "Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Red and the Black",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Thomas King",
+                        "region":  "Canadian Indigenous",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Green Grass Running Water",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Medicine River",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Ivan Turgenev",
+                        "region":  "Russian",
+                        "literary_period":  "Realism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Fathers and Sons",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "A. D. Hope",
+                        "region":  "Australian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Australia",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "The Death of the Bird",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Douglas Stewart",
+                        "region":  "Australian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Ned Kelly",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "E. J. Pratt",
+                        "region":  "Canadian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "BrÃ©beuf and His Brethren",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "The Dying Eagle",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Margaret Atwood",
+                        "region":  "Canadian",
+                        "literary_period":  "Postmodernism",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Surfacing",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "The Penelopiad",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Margaret Laurence",
+                        "region":  "Canadian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Stone Angel",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Patrick White",
+                        "region":  "Australian",
+                        "literary_period":  "Modern",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "Voss",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Rita Joe",
+                        "region":  "Indigenous Canadian",
+                        "literary_period":  "Contemporary",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "The Ecstasy of Rita Joe",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    },
+                    {
+                        "author":  "Derek Walcott",
+                        "region":  "Caribbean",
+                        "literary_period":  "Postcolonial",
+                        "movements":  [
+
+                                      ],
+                        "genreTags":  [
+
+                                      ],
+                        "works":  [
+                                      {
+                                          "title":  "A Far Cry from Africa",
+                                          "year":  "",
+                                          "type":  ""
+                                      },
+                                      {
+                                          "title":  "Ruins of a Great House",
+                                          "year":  "",
+                                          "type":  ""
+                                      }
+                                  ],
+                        "nodes":  [
+
+                                  ]
+                    }
+                ]
 }

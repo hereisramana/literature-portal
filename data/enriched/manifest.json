@@ -1,18 +1,78 @@
-{
-  "version": 1,
-  "generatedFrom": "data/data.json",
-  "categories": [
-    { "id": "british-poetry", "label": "British Poetry", "status": "pilot" },
-    { "id": "british-drama", "label": "British Drama", "status": "pending" },
-    { "id": "british-prose-fiction", "label": "British Prose & Fiction", "status": "pending" },
-    { "id": "american", "label": "American", "status": "pending" },
-    { "id": "indian", "label": "Indian", "status": "pending" },
-    { "id": "african", "label": "African", "status": "pending" },
-    { "id": "other-regions", "label": "Other Regions", "status": "pending" },
-    { "id": "women", "label": "Women", "status": "pending" },
-    { "id": "dalit", "label": "Dalit", "status": "pending" },
-    { "id": "cultural", "label": "Cultural", "status": "pending" },
-    { "id": "comparative", "label": "Comparative", "status": "pending" },
-    { "id": "criticism", "label": "Criticism", "status": "pending" }
-  ]
+﻿{
+    "version":  1,
+    "generatedFrom":  "data/data.json",
+    "categories":  [
+                       {
+                           "id":  "british-poetry",
+                           "label":  "British Poetry",
+                           "status":  "pilot",
+                           "authorCount":  21
+                       },
+                       {
+                           "id":  "british-drama",
+                           "label":  "British Drama",
+                           "status":  "inventory-seeded",
+                           "authorCount":  11
+                       },
+                       {
+                           "id":  "british-prose-fiction",
+                           "label":  "British Prose \u0026 Fiction",
+                           "status":  "inventory-seeded",
+                           "authorCount":  32
+                       },
+                       {
+                           "id":  "american",
+                           "label":  "American",
+                           "status":  "inventory-seeded",
+                           "authorCount":  22
+                       },
+                       {
+                           "id":  "indian",
+                           "label":  "Indian",
+                           "status":  "inventory-seeded",
+                           "authorCount":  40
+                       },
+                       {
+                           "id":  "african",
+                           "label":  "African",
+                           "status":  "inventory-seeded",
+                           "authorCount":  11
+                       },
+                       {
+                           "id":  "other-regions",
+                           "label":  "Other Regions",
+                           "status":  "inventory-seeded",
+                           "authorCount":  52
+                       },
+                       {
+                           "id":  "women",
+                           "label":  "Women",
+                           "status":  "inventory-seeded",
+                           "authorCount":  29
+                       },
+                       {
+                           "id":  "dalit",
+                           "label":  "Dalit",
+                           "status":  "inventory-seeded",
+                           "authorCount":  16
+                       },
+                       {
+                           "id":  "cultural",
+                           "label":  "Cultural",
+                           "status":  "inventory-seeded",
+                           "authorCount":  18
+                       },
+                       {
+                           "id":  "comparative",
+                           "label":  "Comparative",
+                           "status":  "inventory-seeded",
+                           "authorCount":  11
+                       },
+                       {
+                           "id":  "criticism",
+                           "label":  "Criticism",
+                           "status":  "inventory-seeded",
+                           "authorCount":  28
+                       }
+                   ]
 }
