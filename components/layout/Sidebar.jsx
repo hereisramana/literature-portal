@@ -11,7 +11,7 @@ export default function Sidebar({
   tagline = "exam revision portal",
 }) {
   return (
-    <aside className={`flex h-full flex-col transition-all duration-500 ${collapsed ? "bg-transparent" : "bg-[#f8f6f2]/60 backdrop-blur-xl border-r border-white/20 shadow-2xl"}`}>
+    <aside className={`flex h-full flex-col transition-all duration-500 ${collapsed ? "bg-transparent" : "bg-[#2d332e]/10 backdrop-blur-xl border-r border-white/10 shadow-2xl"}`}>
       <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-6 md:px-8 md:py-8"}`}>
         {collapsed ? (
             <motion.button
