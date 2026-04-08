@@ -13,6 +13,8 @@ export default function AuthorFocusShell({
   guideContent = null,
   onCloseGuide = null,
   hideTabsInHeader = false,
+  guideCtaLabel = "Okay",
+  showGuideSkip = true,
 }) {
   return (
     <>
@@ -26,7 +28,6 @@ export default function AuthorFocusShell({
                 {title}
               </h2>
 
-              {/* Tabs below title if requested */}
               {hideTabsInHeader && (
                 <div className="mt-4 flex justify-start">
                   <div
@@ -134,14 +135,16 @@ export default function AuthorFocusShell({
                       onClick={onCloseGuide}
                       className="flex-1 rounded-full bg-[var(--button-primary-bg)] py-3 text-sm font-bold uppercase tracking-wider text-[var(--button-primary-text)] shadow-lg"
                     >
-                      Okay
+                      {guideCtaLabel}
                     </motion.button>
-                    <button
-                      onClick={onCloseGuide}
-                      className="px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)]"
-                    >
-                      Skip
-                    </button>
+                    {showGuideSkip && (
+                      <button
+                        onClick={onCloseGuide}
+                        className="px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)]"
+                      >
+                        Skip
+                      </button>
+                    )}
                   </div>
                 </motion.div>
               </motion.div>

@@ -149,7 +149,7 @@ export default function TestFocusView({
   const [interleaved, setInterleaved] = useState(false);
   const [hasSeenGuide, setHasSeenGuide] = useState(() => {
     if (typeof window === "undefined") return false;
-    return localStorage.getItem(`seenGuide_${author.author}`) === "true";
+    return localStorage.getItem(`seenTestGuide_${author.author}`) === "true";
   });
   const [showGuide, setShowGuide] = useState(!hasSeenGuide);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -160,7 +160,6 @@ export default function TestFocusView({
   const [confidenceFlow, setConfidenceFlow] = useState(false);
   const [confidence, setConfidence] = useState(storedConfidence || "");
 
-  // Timer State
   const [timer, setTimer] = useState(15);
 
   const activeQuestions = interleaved ? session.interleaveQuestions : session.verifyQuestions;
@@ -230,10 +229,12 @@ export default function TestFocusView({
         onTabChange={() => {}}
         onClose={handleCloseAttempt}
         showGuide={showGuide}
+        guideCtaLabel="Got it, start the test"
+        showGuideSkip={false}
         onCloseGuide={() => {
           setShowGuide(false);
           setHasSeenGuide(true);
-          localStorage.setItem(`seenGuide_${author.author}`, "true");
+          localStorage.setItem(`seenTestGuide_${author.author}`, "true");
         }}
         guideContent={
           <p>

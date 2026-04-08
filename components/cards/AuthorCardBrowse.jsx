@@ -17,22 +17,22 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
         )}
       </div>
 
-      <ul className="scrollbar-thin mt-4 flex-1 space-y-2 overflow-y-auto pr-1">
-        {author.works?.map((work, index) => (
-          <li key={index}>
-            <div className="w-full rounded-2xl bg-[var(--color-bg-raised)] px-4 py-2.5 text-left text-[14px] leading-tight text-[var(--text-body-color)] md:text-[15px]">
+      <div className="scrollbar-thin mt-4 flex-1 overflow-y-auto pr-1">
+        <ul className="space-y-2 list-disc list-inside text-[var(--text-muted-color)] opacity-80">
+          {author.works?.map((work, index) => (
+            <li key={index} className="text-[14px] leading-tight md:text-[15px] marker:text-[var(--color-accent)]">
               {work.title || work}
-            </div>
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div className="mt-5 grid grid-cols-2 gap-3">
         <motion.button
           whileHover={{ backgroundColor: "rgba(58, 64, 59, 0.05)" }}
           whileTap={{ scale: 0.96 }}
           onClick={() => onOpenStudy?.(author)}
-          className="rounded-full bg-[var(--color-bg-inset)] px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--color-text-primary)] transition shadow-sm hover:shadow-md"
+          className="rounded-full bg-[var(--color-bg-inset)] px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--color-text-primary)] transition shadow-sm hover:shadow-md border border-white/20"
         >
           Study
         </motion.button>

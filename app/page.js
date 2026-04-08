@@ -307,10 +307,10 @@ export default function Page() {
             ) : (
               <motion.div
                 key="empty"
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                className="pt-16"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="pt-4 md:pt-16"
               >
                 <EmptyState
                   suggestions={searchSuggestions}
