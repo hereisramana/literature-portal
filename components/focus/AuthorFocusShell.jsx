@@ -8,7 +8,7 @@ export default function AuthorFocusShell({
   onTabChange,
   onClose,
   main,
-  sidebar,
+  sidebar = null,
   showGuide = false,
   guideContent = null,
   onCloseGuide = null,
@@ -67,9 +67,11 @@ export default function AuthorFocusShell({
 
           {/* Content Area */}
           <div className="scrollbar-thin flex-1 overflow-y-auto px-6 py-4 md:px-10">
-            <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
+            <div className={`grid gap-8 ${sidebar ? "lg:grid-cols-[1fr_320px]" : "grid-cols-1"}`}>
               <div className="min-w-0">{main}</div>
-              <aside className="hidden space-y-6 lg:block">{sidebar}</aside>
+              {sidebar && (
+                <aside className="hidden space-y-6 lg:block">{sidebar}</aside>
+              )}
             </div>
           </div>
 

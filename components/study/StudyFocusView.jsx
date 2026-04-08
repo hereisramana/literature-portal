@@ -4,17 +4,6 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import AuthorFocusShell from "../focus/AuthorFocusShell.jsx";
 
-function StudyPanel({ title, children }) {
-  return (
-    <div className="rounded-[28px] bg-[var(--color-bg-raised)] p-6 shadow-sm border border-white/20">
-      <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-60">
-        {title}
-      </p>
-      <div className="mt-4">{children}</div>
-    </div>
-  );
-}
-
 function ExternalLinks({ title }) {
   const searchTitle = encodeURIComponent(title);
   return (
@@ -57,8 +46,15 @@ export default function StudyFocusView({
   inferTheme,
   onClose,
 }) {
-  const [activeTab, setActiveTab] = useState(selectedWork ? "works" : "notes");
+  const tabs = [
+    { id: "works", label: "Works" },
+    { id: "themes", label: "Themes" },
+    { id: "notes", label: "Notes" },
+  ];
+
+  const [activeTab, setActiveTab] = useState("works");
   const [showGuide, setShowGuide] = useState(true);
+  const [hasSeenGuide, setHasSeenGuide] = useState(false);
 
   const workTitles = useMemo(
     () => (author.works || []).map((work) => work.title || work),
@@ -81,12 +77,6 @@ export default function StudyFocusView({
     return groups;
   }, [author]);
 
-  const tabs = [
-    { id: "notes", label: "Notes" },
-    { id: "works", label: "Works" },
-    { id: "themes", label: "Themes" },
-  ];
-
   return (
     <AuthorFocusShell
       title={author.author}
@@ -94,15 +84,28 @@ export default function StudyFocusView({
       activeTab={activeTab}
       onTabChange={setActiveTab}
       onClose={onClose}
-      showGuide={showGuide}
-      onCloseGuide={() => setShowGuide(false)}
+      showGuide={showGuide && !hasSeenGuide}
+      onCloseGuide={() => {
+        setShowGuide(false);
+        setHasSeenGuide(true);
+      }}
       guideContent={
         <p>
-          Dive deep into the literary profile. Move from <strong>Notes</strong> to <strong>Works</strong>, then explore <strong>Themes</strong>. When you're ready, reach the end of any section to find additional external references.
+          Dive deep into the literary profile. Move from <strong>Works</strong> to <strong>Themes</strong>, then explore <strong>Notes</strong>. When you're ready, reach the end of any section to find additional external references.
         </p>
       }
       main={
         <div className="pb-10">
+          {/* Navigation Banner */}
+          <div className="mb-8 p-4 bg-[var(--color-bg-inset)] rounded-2xl border border-white/20 shadow-inner flex items-center gap-3">
+            <svg className="h-5 w-5 text-[var(--color-accent)] opacity-60 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M13 16l4-4-4-4M7 16l4-4-4-4" />
+            </svg>
+            <p className="text-[13px] font-semibold text-[var(--text-body-color)] opacity-80">
+              Scroll to the end of any content section to reveal External Resources.
+            </p>
+          </div>
+
           {activeTab === "works" && (
             <ul className="space-y-3">
               {(author.works || []).map((work) => (
@@ -181,15 +184,6 @@ export default function StudyFocusView({
           )}
 
           <ExternalLinks title={selectedWork || author.author} />
-        </div>
-      }
-      sidebar={
-        <div className="space-y-6">
-          <StudyPanel title="Navigation Tips">
-            <p className="text-[14px] leading-relaxed text-[var(--text-body-color)]">
-              Scroll to the end of any content section to reveal <strong>External Resources</strong>. Links are dynamically generated to provide direct access to scholarly databases and archives.
-            </p>
-          </StudyPanel>
         </div>
       }
     />

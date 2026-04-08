@@ -7,7 +7,8 @@ import AuthorFocusShell from "../focus/AuthorFocusShell.jsx";
 import ConfidenceStrip from "./ConfidenceStrip.jsx";
 import { createTestSession } from "../../utils/testEngine.js";
 
-function ResultNote({ children, success = false }) {
+function ResultNote({ children, success = false, checked = false }) {
+  if (!checked) return null;
   return (
     <div
       className={`rounded-2xl px-6 py-4 text-[15px] leading-relaxed shadow-sm border border-white/40 ${
@@ -32,7 +33,9 @@ function McqPanel({
   onNext,
 }) {
   if (!question) {
-    return <ResultNote success>No more questions available for this session.</ResultNote>;
+    return <div className="p-8 text-center bg-[var(--color-bg-inset)] rounded-3xl border border-white/20 shadow-inner">
+      <p className="text-[15px] font-bold text-[var(--text-muted-color)]">No more questions available for this session.</p>
+    </div>;
   }
 
   const success = submitted && selected === question.answer;
@@ -40,9 +43,6 @@ function McqPanel({
   return (
     <div className="space-y-6">
       <div className="space-y-3">
-        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-60">
-          {question.layer} · {question.subType}
-        </p>
         <p className="text-[18px] font-bold leading-snug text-[var(--text-body-color)]">{question.prompt}</p>
       </div>
 
@@ -82,14 +82,14 @@ function McqPanel({
         </div>
       )}
 
-      {submitted && (
-        <ResultNote success={success}>
-          <p className="font-bold">
-            {success ? "Correct." : `Correct answer: ${question.answer}.`}
-          </p>{" "}
-          <p className="mt-1 opacity-90">{question.explanation}</p>
-        </ResultNote>
-      )}
+      <ResultNote checked={submitted} success={success}>
+        <p className="font-bold mb-1">
+          {success ? "You're correct!" : "You missed it."}
+        </p>
+        <p className="text-sm opacity-90">
+          <strong>Answer:</strong> {question.answer}. {question.explanation}
+        </p>
+      </ResultNote>
 
       <div className="flex flex-wrap gap-3 pt-4">
         {!submitted ? (
@@ -117,17 +117,6 @@ function McqPanel({
   );
 }
 
-function SidePanel({ title, children }) {
-  return (
-    <div className="rounded-[28px] bg-[var(--color-bg-raised)] p-6 shadow-sm border border-white/20">
-      <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-60">
-        {title}
-      </p>
-      <div className="mt-4 text-[14px] leading-relaxed text-[var(--text-body-color)]">{children}</div>
-    </div>
-  );
-}
-
 export default function TestFocusView({
   author,
   category,
@@ -143,6 +132,8 @@ export default function TestFocusView({
   );
 
   const [interleaved, setInterleaved] = useState(false);
+  const [hasSeenGuide, setHasSeenGuide] = useState(false);
+  const [hasSeenInterleaveGuide, setHasSeenInterleaveGuide] = useState(false);
   const [showGuide, setShowGuide] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -167,10 +158,13 @@ export default function TestFocusView({
   }
 
   function handleInterleaveToggle() {
-    setInterleaved(!interleaved);
+    const nextValue = !interleaved;
+    setInterleaved(nextValue);
     setCurrentIndex(0);
     resetQuestion();
-    setShowGuide(true);
+    if (nextValue && !hasSeenInterleaveGuide) {
+      setShowGuide(true);
+    }
   }
 
   function handleCloseAttempt() {
@@ -196,12 +190,16 @@ export default function TestFocusView({
     <>
       <AuthorFocusShell
         title={author.author}
-        tabs={[{ id: "verify", label: "Verify Exercise" }]}
+        tabs={[{ id: "verify", label: "Exercise" }]}
         activeTab="verify"
         onTabChange={() => {}}
         onClose={handleCloseAttempt}
         showGuide={showGuide}
-        onCloseGuide={() => setShowGuide(false)}
+        onCloseGuide={() => {
+          setShowGuide(false);
+          if (interleaved) setHasSeenInterleaveGuide(true);
+          else setHasSeenGuide(true);
+        }}
         guideContent={
           interleaved ? (
             <p>
@@ -209,7 +207,7 @@ export default function TestFocusView({
             </p>
           ) : (
             <p>
-              Focus on direct recall and discrimination. Use <strong>Verify</strong> questions to sharpen your understanding of this author's specific contributions and contexts.
+              Focus on direct recall and discrimination. Use questions to sharpen your understanding of this author's specific contributions and contexts.
             </p>
           )
         }
@@ -217,26 +215,25 @@ export default function TestFocusView({
           <div className="pb-10">
             <div className="mb-10 flex items-center justify-between p-6 bg-[var(--color-bg-inset)] rounded-[28px] shadow-inner border border-white/20">
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted-color)] opacity-60">
-                  Mode: {interleaved ? "Interleaved challenge" : "Focused practice"}
-                </p>
                 <h4 className="text-sm font-bold text-[var(--text-heading-color)] mt-1">
                   Question {currentIndex + 1} of {activeQuestions.length}
                 </h4>
               </div>
 
-              <div className="flex items-center gap-3">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted-color)]">
-                  Interleave
-                </span>
-                <button
-                  onClick={handleInterleaveToggle}
-                  className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${interleaved ? "bg-[var(--color-accent-strong)]" : "bg-[var(--color-border-strong)]"}`}
-                >
-                  <span
-                    className={`inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${interleaved ? "translate-x-5" : "translate-x-0"}`}
-                  />
-                </button>
+              <div className="flex flex-col items-end gap-1">
+                <div className="flex items-center gap-3">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted-color)]">
+                    Interleave <span className="opacity-60">(mix other authors)</span>
+                  </span>
+                  <button
+                    onClick={handleInterleaveToggle}
+                    className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${interleaved ? "bg-[var(--color-accent-strong)]" : "bg-[var(--color-border-strong)]"}`}
+                  >
+                    <span
+                      className={`inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${interleaved ? "translate-x-5" : "translate-x-0"}`}
+                    />
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -253,13 +250,6 @@ export default function TestFocusView({
               }}
               onNext={handleNext}
             />
-          </div>
-        }
-        sidebar={
-          <div className="space-y-6">
-            <SidePanel title="Test Strategy">
-              Use <strong>Verify</strong> section to sharpen discrimination with strong distractors. Toggle <strong>Interleave</strong> to mix in adjacent authors for realistic exam preparation.
-            </SidePanel>
           </div>
         }
       />
