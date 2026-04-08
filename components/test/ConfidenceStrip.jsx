@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 
 const LEVELS = [
   { id: "weak", label: "Weak" },
@@ -14,69 +15,76 @@ export default function ConfidenceStrip({
   provider,
   onConnect,
   onDisconnect,
+  embedded = false,
 }) {
   if (!visible) {
     return null;
   }
 
-  return (
-    <div className="safe-bottom-lg fixed inset-x-0 bottom-0 z-[70] bg-[rgba(255,255,255,0.88)] px-4 py-3 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="text-sm font-semibold text-[var(--text-heading-color)]">
-            Confidence check
-          </p>
-          <p className="text-xs text-[var(--text-muted-color)]">
-            Save how secure this answer felt so future review can adapt.
-          </p>
-        </div>
+  const content = (
+    <div className="mx-auto flex flex-col gap-6 items-center">
+      <div className="flex flex-wrap justify-center gap-3">
+        {LEVELS.map((level) => (
+          <motion.button
+            key={level.id}
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => onSelect(level.id)}
+            className={`rounded-full px-6 py-3 text-sm font-bold uppercase tracking-wider transition-all border border-white/20 shadow-sm ${
+              currentValue === level.id
+                ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-md scale-105"
+                : "bg-[var(--color-bg-raised)] text-[var(--color-text-primary)] hover:bg-[var(--color-interaction-hover)] hover:shadow-md"
+            }`}
+          >
+            {level.label}
+          </motion.button>
+        ))}
+      </div>
 
-        <div className="flex flex-wrap gap-2">
-          {LEVELS.map((level) => (
+      <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-widest opacity-60">
+        {provider ? (
+          <div className="flex items-center gap-3">
+            <span className="rounded-full bg-[var(--color-bg-raised)] px-4 py-2 border border-white/40">
+              {provider} active
+            </span>
             <button
-              key={level.id}
-              onClick={() => onSelect(level.id)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                currentValue === level.id
-                  ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)]"
-                  : "bg-[var(--button-secondary-bg)] text-[var(--button-secondary-text)] hover:bg-[var(--color-interaction-hover)]"
-              }`}
+              onClick={onDisconnect}
+              className="text-[var(--color-text-primary)] hover:underline"
             >
-              {level.label}
+              Disconnect
             </button>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => onConnect("Google")}
+              className="rounded-full bg-white/40 px-4 py-2 hover:bg-white/60 transition border border-white/60"
+            >
+              Sync with Google
+            </button>
+            <button
+              onClick={() => onConnect("OneDrive")}
+              className="rounded-full bg-white/40 px-4 py-2 hover:bg-white/60 transition border border-white/60"
+            >
+              Sync with OneDrive
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 
-        <div className="flex flex-wrap items-center gap-2 text-xs">
-          {provider ? (
-            <>
-              <span className="rounded-full bg-[var(--color-bg-raised)] px-3 py-1 font-semibold text-[var(--text-muted-color)]">
-                {provider} connected
-              </span>
-              <button
-                onClick={onDisconnect}
-                className="rounded-full bg-white px-3 py-1.5 font-semibold text-[var(--button-secondary-text)]"
-              >
-                Disconnect
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                onClick={() => onConnect("Google")}
-                className="rounded-full bg-white px-3 py-1.5 font-semibold text-[var(--button-secondary-text)]"
-              >
-                Connect Google
-              </button>
-              <button
-                onClick={() => onConnect("OneDrive")}
-                className="rounded-full bg-white px-3 py-1.5 font-semibold text-[var(--button-secondary-text)]"
-              >
-                Connect OneDrive
-              </button>
-            </>
-          )}
-        </div>
+  if (embedded) {
+    return content;
+  }
+
+  return (
+    <div className="safe-bottom-lg fixed inset-x-0 bottom-0 z-[70] bg-[rgba(255,255,255,0.88)] px-4 py-6 backdrop-blur-md border-t border-white/20 shadow-2xl">
+      <div className="max-w-4xl mx-auto">
+        <p className="text-center mb-6 text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-60">
+          Confidence check
+        </p>
+        {content}
       </div>
     </div>
   );

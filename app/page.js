@@ -49,16 +49,37 @@ export default function Page() {
     return activeCategory.authors
       .map((author) => mergeAuthorWithEnriched(author, activeCategory.id))
       .filter((author) => {
-      const matchesQuery =
-        !query ||
-        author.author?.toLowerCase().includes(query.toLowerCase()) ||
-        author.works?.some((work) =>
-          (work.title || work).toLowerCase().includes(query.toLowerCase())
-        );
+        const matchesQuery =
+          !query ||
+          author.author?.toLowerCase().includes(query.toLowerCase()) ||
+          author.works?.some((work) =>
+            (work.title || work).toLowerCase().includes(query.toLowerCase())
+          );
 
-      return matchesQuery;
+        return matchesQuery;
       });
   }, [activeCategory, query]);
+
+  const searchSuggestions = useMemo(() => {
+    if (!query || filteredAuthors.length > 0) return [];
+
+    return categories
+      .map((cat) => {
+        const matches = cat.authors.filter((author) => {
+          const merged = mergeAuthorWithEnriched(author, cat.id);
+          return (
+            merged.author?.toLowerCase().includes(query.toLowerCase()) ||
+            merged.works?.some((work) =>
+              (work.title || work).toLowerCase().includes(query.toLowerCase())
+            )
+          );
+        });
+        return matches.length > 0
+          ? { id: cat.id, label: cat.label, count: matches.length }
+          : null;
+      })
+      .filter(Boolean);
+  }, [categories, query, filteredAuthors]);
 
   function handleCategoryChange(nextCategory) {
     setCategory(nextCategory);
@@ -291,7 +312,10 @@ export default function Page() {
                 exit={{ opacity: 0, scale: 0.98 }}
                 className="pt-16"
               >
-                <EmptyState />
+                <EmptyState
+                  suggestions={searchSuggestions}
+                  onSelectSuggestion={handleCategoryChange}
+                />
               </motion.div>
             )}
           </AnimatePresence>

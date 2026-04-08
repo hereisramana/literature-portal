@@ -1,4 +1,6 @@
-export default function EmptyState() {
+import { motion } from "framer-motion";
+
+export default function EmptyState({ suggestions = [], onSelectSuggestion }) {
   return (
     <div className="card mx-auto max-w-lg px-10 py-16 text-center shadow-[var(--shadow-medium)]">
       <div className="mb-6 flex justify-center text-[var(--text-muted-color)] opacity-40">
@@ -20,6 +22,27 @@ export default function EmptyState() {
       <p className="mt-4 text-[15px] leading-relaxed text-[var(--text-muted-color)]">
         Try a broader search term or reset the category to see more literary works.
       </p>
+
+      {suggestions.length > 0 && (
+        <div className="mt-10">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted-color)] opacity-60">
+            Found in other categories:
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {suggestions.map((s) => (
+              <motion.button
+                key={s.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => onSelectSuggestion?.(s.id)}
+                className="rounded-full bg-[var(--color-bg-inset)] px-4 py-2 text-xs font-bold text-[var(--color-text-primary)] shadow-sm transition hover:shadow-md"
+              >
+                {s.label} ({s.count})
+              </motion.button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
