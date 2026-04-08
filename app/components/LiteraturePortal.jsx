@@ -126,9 +126,9 @@ export default function LiteraturePortal({ data }) {
 
       {/* Sidebar */}
       <div
-        className={`fixed md:static z-40 top-0 left-0 h-full w-64 bg-gray-900 text-white p-4 overflow-y-auto transform ${
+        className={`fixed md:static z-40 top-0 left-0 h-full w-64 bg-lit-dark text-white p-4 overflow-y-auto transform ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 transition-transform`}
+        } md:translate-x-0 transition-transform shadow-xl`}
       >
         <button className="md:hidden mb-4" onClick={() => setSidebarOpen(false)}>
           Close
@@ -142,7 +142,7 @@ export default function LiteraturePortal({ data }) {
               setCategory(cat);
               setSidebarOpen(false);
             }}
-            className={`cursor-pointer p-2 rounded ${category === cat ? "bg-gray-700" : ""}`}
+            className={`cursor-pointer p-2 rounded transition-colors ${category === cat ? "bg-lit-medium" : "hover:bg-lit-medium/50"}`}
           >
             {cat}
           </div>
@@ -155,7 +155,7 @@ export default function LiteraturePortal({ data }) {
       </div>
 
       {/* Main */}
-      <div className="flex-1 p-4 md:p-6 mt-12 md:mt-0 overflow-y-auto">
+      <div className="flex-1 p-4 md:p-6 mt-12 md:mt-0 overflow-y-auto bg-lit-bg">
         {/* Controls */}
         <div className="flex flex-col md:flex-row gap-3 mb-6">
           <input
@@ -197,14 +197,14 @@ export default function LiteraturePortal({ data }) {
         {/* Cards */}
         {Object.keys(grouped).map((group) => (
           <div key={group} className="mb-6">
-            <h2 className="text-lg md:text-xl font-bold mb-3">{group}</h2>
+            <h2 className="text-lg md:text-xl font-bold mb-3 text-lit-dark">{group}</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {grouped[group].map((a, i) => (
-                <div key={i} className="p-5 border rounded-xl shadow hover:shadow-lg transition">
+                <div key={i} className="p-5 border-none bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                      <a href={a.author_link} target="_blank" className="font-semibold text-sm md:text-base">
+                      <a href={a.author_link} target="_blank" className="font-bold text-sm md:text-base text-lit-dark hover:text-blue-700 transition-colors">
                         {a.author}
                       </a>
                       <button
