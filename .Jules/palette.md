@@ -1,0 +1,3 @@
+## 2024-04-08 - [Modal Accessibility and Interactions]
+**Learning:** Standard interactive patterns like "Escape to close" and "backdrop click to close" are essential for a polished UX. Additionally, descriptive ARIA labels on buttons that only use generic text (like "info") or icons provide necessary context for screen reader users. Redundant ARIA labels (e.g., adding `aria-label="Close modal"` to a button that already says "Close") should be avoided to prevent screen reader noise.
+**Action:** Always implement keyboard listeners and backdrop clicks for modals. Use descriptive ARIA labels for buttons lacking specific context, but ensure they don't redundantly repeat visible text.

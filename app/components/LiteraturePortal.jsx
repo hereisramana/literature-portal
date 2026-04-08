@@ -100,11 +100,27 @@ export default function LiteraturePortal({ data }) {
     setLoading(false);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setModal(null);
+    };
+    if (modal) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [modal]);
+
   return (
     <div className="flex h-screen">
       {/* Mobile Top Bar */}
       <div className="fixed top-0 left-0 right-0 bg-white border-b p-3 flex justify-between items-center md:hidden z-50">
-        <button onClick={() => setSidebarOpen(true)} className="text-lg">☰</button>
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="text-lg"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
         <span className="font-semibold">Literature Portal</span>
       </div>
 
@@ -194,6 +210,7 @@ export default function LiteraturePortal({ data }) {
                       <button
                         onClick={() => openModal(a.author, "")}
                         className="text-xs text-blue-600 underline"
+                        aria-label={`More info about ${a.author}`}
                       >
                         info
                       </button>
@@ -214,6 +231,7 @@ export default function LiteraturePortal({ data }) {
                         [a.author]: !prev[a.author]
                       }))
                     }
+                    aria-label={`${expanded[a.author] ? 'Hide' : 'Show'} works by ${a.author}`}
                   >
                     {expanded[a.author] ? "Hide" : "Show"}
                   </button>
@@ -226,6 +244,7 @@ export default function LiteraturePortal({ data }) {
                           <button
                             onClick={() => openModal(w, a.author)}
                             className="ml-2 text-xs text-blue-600 underline"
+                            aria-label={`More info about ${w}`}
                           >
                             info
                           </button>
@@ -237,6 +256,7 @@ export default function LiteraturePortal({ data }) {
                   <button
                     onClick={() => toggleBookmark(a.author)}
                     className="mt-3 text-xs border px-2 py-1 rounded"
+                    aria-label={`${bookmarks.includes(a.author) ? 'Remove' : 'Save'} ${a.author} to bookmarks`}
                   >
                     {bookmarks.includes(a.author) ? "Saved" : "Save"}
                   </button>
@@ -249,8 +269,16 @@ export default function LiteraturePortal({ data }) {
 
       {/* Modal */}
       {modal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl p-5">
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+          onClick={() => setModal(null)}
+        >
+          <div
+            className="bg-white w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl p-5"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+          >
             <h2 className="font-bold text-lg mb-2">
               {modal.title} {modal.author && `— ${modal.author}`}
             </h2>
@@ -268,7 +296,10 @@ export default function LiteraturePortal({ data }) {
               <a href={`https://www.google.com/search?q=${encodeURIComponent(modal.title)}`} target="_blank" className="underline text-blue-700">Google</a>
             </div>
 
-            <button onClick={() => setModal(null)} className="mt-4 border px-3 py-1 rounded">
+            <button
+              onClick={() => setModal(null)}
+              className="mt-4 border px-3 py-1 rounded"
+            >
               Close
             </button>
           </div>
