@@ -31,6 +31,7 @@ function McqPanel({
   onSelect,
   onSubmit,
   onNext,
+  timer,
 }) {
   if (!question) {
     return <div className="p-8 text-center bg-[var(--color-bg-inset)] rounded-3xl border border-white/20 shadow-inner">
@@ -42,8 +43,22 @@ function McqPanel({
 
   return (
     <div className="space-y-6">
-      <div className="space-y-3">
-        <p className="text-[18px] font-bold leading-snug text-[var(--text-body-color)]">{question.prompt}</p>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+           <p className="text-[18px] font-bold leading-snug text-[var(--text-body-color)] flex-1 pr-4">{question.prompt}</p>
+           {!submitted && (
+             <div className="flex flex-col items-center shrink-0">
+               <div className="h-10 w-10 rounded-full border-2 border-[var(--color-accent)] flex items-center justify-center relative overflow-hidden">
+                 <span className="text-xs font-bold text-[var(--color-accent)] z-10">{timer}s</span>
+                 <motion.div
+                   className="absolute bottom-0 left-0 right-0 bg-[var(--color-accent)]/10"
+                   initial={{ height: "0%" }}
+                   animate={{ height: `${(15 - timer) / 15 * 100}%` }}
+                 />
+               </div>
+             </div>
+           )}
+        </div>
       </div>
 
       {!revealed ? (
@@ -83,11 +98,11 @@ function McqPanel({
       )}
 
       <ResultNote checked={submitted} success={success}>
-        <p className="font-bold mb-1">
+        <p className="font-bold mb-1 uppercase tracking-tight text-xs">
           {success ? "You're correct!" : "You missed it."}
         </p>
-        <p className="text-sm opacity-90">
-          <strong>Answer:</strong> {question.answer}. {question.explanation}
+        <p className="text-[15px]">
+          <strong>Answer:</strong> {question.answer} — {question.explanation}
         </p>
       </ResultNote>
 
@@ -132,9 +147,11 @@ export default function TestFocusView({
   );
 
   const [interleaved, setInterleaved] = useState(false);
-  const [hasSeenGuide, setHasSeenGuide] = useState(false);
-  const [hasSeenInterleaveGuide, setHasSeenInterleaveGuide] = useState(false);
-  const [showGuide, setShowGuide] = useState(true);
+  const [hasSeenGuide, setHasSeenGuide] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem(`seenGuide_${author.author}`) === "true";
+  });
+  const [showGuide, setShowGuide] = useState(!hasSeenGuide);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [selected, setSelected] = useState("");
@@ -143,13 +160,34 @@ export default function TestFocusView({
   const [confidenceFlow, setConfidenceFlow] = useState(false);
   const [confidence, setConfidence] = useState(storedConfidence || "");
 
+  // Timer State
+  const [timer, setTimer] = useState(15);
+
   const activeQuestions = interleaved ? session.interleaveQuestions : session.verifyQuestions;
   const currentQuestion = activeQuestions[currentIndex] || null;
+
+  useEffect(() => {
+    if (showGuide || submitted || !currentQuestion) return;
+
+    const interval = setInterval(() => {
+      setTimer((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setRevealed(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, showGuide, submitted, currentQuestion]);
 
   function resetQuestion() {
     setRevealed(false);
     setSelected("");
     setSubmitted(false);
+    setTimer(15);
   }
 
   function handleNext() {
@@ -162,9 +200,6 @@ export default function TestFocusView({
     setInterleaved(nextValue);
     setCurrentIndex(0);
     resetQuestion();
-    if (nextValue && !hasSeenInterleaveGuide) {
-      setShowGuide(true);
-    }
   }
 
   function handleCloseAttempt() {
@@ -190,26 +225,20 @@ export default function TestFocusView({
     <>
       <AuthorFocusShell
         title={author.author}
-        tabs={[{ id: "verify", label: "Exercise" }]}
+        tabs={[{ id: "verify", label: "Verification" }]}
         activeTab="verify"
         onTabChange={() => {}}
         onClose={handleCloseAttempt}
         showGuide={showGuide}
         onCloseGuide={() => {
           setShowGuide(false);
-          if (interleaved) setHasSeenInterleaveGuide(true);
-          else setHasSeenGuide(true);
+          setHasSeenGuide(true);
+          localStorage.setItem(`seenGuide_${author.author}`, "true");
         }}
         guideContent={
-          interleaved ? (
-            <p>
-              <strong>Interleaving Activated.</strong> You are now testing across related authors and periods. This increases difficulty but significantly improves long-term recognition.
-            </p>
-          ) : (
-            <p>
-              Focus on direct recall and discrimination. Use questions to sharpen your understanding of this author's specific contributions and contexts.
-            </p>
-          )
+          <p>
+            Try to recall the answer before the timer ends — options will appear automatically after.
+          </p>
         }
         main={
           <div className="pb-10">
@@ -242,6 +271,7 @@ export default function TestFocusView({
               revealed={revealed}
               selected={selected}
               submitted={submitted}
+              timer={timer}
               onReveal={() => setRevealed(true)}
               onSelect={setSelected}
               onSubmit={() => {
@@ -291,7 +321,6 @@ export default function TestFocusView({
                 </div>
               </div>
 
-              {/* Background Glass Decor */}
               <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-[var(--color-accent)]/5 rounded-full blur-3xl" />
             </motion.div>
           </div>

@@ -53,8 +53,6 @@ export default function StudyFocusView({
   ];
 
   const [activeTab, setActiveTab] = useState("works");
-  const [showGuide, setShowGuide] = useState(true);
-  const [hasSeenGuide, setHasSeenGuide] = useState(false);
 
   const workTitles = useMemo(
     () => (author.works || []).map((work) => work.title || work),
@@ -84,28 +82,9 @@ export default function StudyFocusView({
       activeTab={activeTab}
       onTabChange={setActiveTab}
       onClose={onClose}
-      showGuide={showGuide && !hasSeenGuide}
-      onCloseGuide={() => {
-        setShowGuide(false);
-        setHasSeenGuide(true);
-      }}
-      guideContent={
-        <p>
-          Dive deep into the literary profile. Move from <strong>Works</strong> to <strong>Themes</strong>, then explore <strong>Notes</strong>. When you're ready, reach the end of any section to find additional external references.
-        </p>
-      }
+      hideTabsInHeader={true}
       main={
         <div className="pb-10">
-          {/* Navigation Banner */}
-          <div className="mb-8 p-4 bg-[var(--color-bg-inset)] rounded-2xl border border-white/20 shadow-inner flex items-center gap-3">
-            <svg className="h-5 w-5 text-[var(--color-accent)] opacity-60 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M13 16l4-4-4-4M7 16l4-4-4-4" />
-            </svg>
-            <p className="text-[13px] font-semibold text-[var(--text-body-color)] opacity-80">
-              Scroll to the end of any content section to reveal External Resources.
-            </p>
-          </div>
-
           {activeTab === "works" && (
             <ul className="space-y-3">
               {(author.works || []).map((work) => (
@@ -175,7 +154,7 @@ export default function StudyFocusView({
                     </ul>
                   ) : (
                     <p className="text-[14px] leading-relaxed text-[var(--text-body-color)] opacity-60">
-                      Enriched academic nodes for this layer will appear as the category batches are completed.
+                      Enriched academic notes for this layer will appear as the category batches are completed.
                     </p>
                   )}
                 </div>
