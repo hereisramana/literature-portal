@@ -41,7 +41,8 @@ export default function SearchBar({ onSearch }) {
         </svg>
       </span>
       {value && (
-        <button
+        <motion.button
+          whileTap={{ scale: 0.9 }}
           onClick={handleClear}
           className="absolute inset-y-0 right-4 flex items-center text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)] transition"
           aria-label="Clear search"
@@ -55,7 +56,7 @@ export default function SearchBar({ onSearch }) {
           >
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
-        </button>
+        </motion.button>
       )}
     </div>
   );

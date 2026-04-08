@@ -34,18 +34,20 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
       </ul>
 
       <div className="mt-5 grid grid-cols-2 gap-3">
-        <button
+        <motion.button
+          whileTap={{ scale: 0.96 }}
           onClick={() => onOpenStudy?.(author)}
           className="rounded-full bg-[var(--color-bg-inset)] px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--color-text-primary)] transition hover:bg-[var(--color-interaction-hover)]"
         >
           Study
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+          whileTap={{ scale: 0.96 }}
           onClick={() => onStartTest?.(author)}
-          className="rounded-full bg-[var(--button-primary-bg)] px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--button-primary-text)] shadow-sm transition hover:scale-[0.98] hover:shadow-md"
+          className="rounded-full bg-[var(--button-primary-bg)] px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--button-primary-text)] shadow-sm transition hover:shadow-md"
         >
           Test
-        </button>
+        </motion.button>
       </div>
     </article>
   );

@@ -194,7 +194,7 @@ export default function Page() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-[rgba(24,32,47,0.18)] backdrop-blur-sm"
+              className="absolute inset-0 bg-[rgba(24,32,47,0.12)]"
               onClick={() => setMobileMenuOpen(false)}
             />
             <motion.div
@@ -202,7 +202,7 @@ export default function Page() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="h-full w-[86%] max-w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)]"
+              className="h-full w-[86%] max-w-[320px]"
             >
               <Sidebar
                 categories={categories}
@@ -221,7 +221,8 @@ export default function Page() {
         <div className="sticky top-0 z-10 bg-[var(--color-bg-primary)]/80 backdrop-blur-md">
           <div className="shell-width px-4 py-4 md:px-8 lg:px-10">
             <div className="flex items-center gap-3">
-              <button
+              <motion.button
+                whileTap={{ scale: 0.92 }}
                 aria-label="Open categories"
                 className="rounded-2xl p-2 text-[var(--text-heading-color)] transition hover:bg-[var(--color-interaction-hover)] lg:hidden"
                 onClick={() => setMobileMenuOpen(true)}
@@ -236,7 +237,7 @@ export default function Page() {
                 >
                   <path d="M3 6h18M3 12h18M3 18h18" />
                 </svg>
-              </button>
+              </motion.button>
 
               <div className="flex-1 flex justify-center">
                 <div className="w-full max-w-[560px] transform transition-all duration-300">
