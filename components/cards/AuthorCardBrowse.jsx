@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, confidence }) {
   return (
-    <article className="card flex aspect-[3/2] min-h-0 flex-col overflow-hidden px-6 py-5 border border-[var(--color-border-subtle)] shadow-sm hover:shadow-md transition-shadow duration-300">
+    <article className="card flex aspect-[3/2] min-h-0 flex-col overflow-hidden px-6 py-5 border border-[var(--color-border-subtle)] shadow-sm hover:shadow-md transition:transform,opacity duration-300">
       <div className="flex items-start justify-between">
         <div className="w-fit text-left">
           <h2 className="text-[24px] leading-[1.15] text-[var(--text-heading-color)] md:text-[26px]">
@@ -37,7 +37,7 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
           whileHover={{ scale: 1.02, backgroundColor: "var(--color-bg-surface)" }}
           whileTap={{ scale: 0.96 }}
           onClick={() => onOpenStudy?.(author)}
-          className="rounded-full bg-[var(--color-bg-inset)] px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--color-text-primary)] transition-all shadow-sm active:shadow-inner border border-black/5"
+          className="rounded-full bg-[var(--color-bg-inset)] px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--color-text-primary)] transition:transform duration-300 shadow-sm active:shadow-inner border border-black/5"
         >
           Study
         </motion.button>
@@ -45,7 +45,7 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
           whileHover={{ scale: 1.02, opacity: 0.9 }}
           whileTap={{ scale: 0.96 }}
           onClick={() => onStartTest?.(author)}
-          className="rounded-full bg-[var(--color-text-strong)] px-4 py-3 text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-sm transition-all active:shadow-inner"
+          className="rounded-full bg-[var(--color-text-strong)] px-4 py-3 text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-sm transition:transform duration-300 active:shadow-inner"
         >
           Test
         </motion.button>

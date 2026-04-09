@@ -89,6 +89,7 @@ p, button, input, li, span, a, select, option {
   background: var(--card-bg);
   box-shadow: var(--card-shadow), var(--highlight-soft);
   border-radius: 24px;
+  will-change: transform, opacity;
 }
 
 .inset {
@@ -147,6 +148,16 @@ p, button, input, li, span, a, select, option {
 .ease-figma {
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-smart: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gpu-transition {
+  transition: transform 0.3s var(--ease-smart), opacity 0.3s var(--ease-smart);
+  will-change: transform, opacity;
+}
+
+.content-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 300px;
 }
 
 .text-depth {

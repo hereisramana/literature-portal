@@ -22,6 +22,23 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${manrope.variable} ${nunito.variable}`}>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: `
+          :root {
+            --color-bg-primary: #F8F7F4;
+            --color-text-strong: #1C2621;
+          }
+          body {
+            background-color: var(--color-bg-primary);
+            margin: 0;
+          }
+          .lcp-brand {
+            font-family: var(--font-display);
+            color: var(--color-text-strong);
+            visibility: hidden; /* Prevent FOUC if font is loading */
+          }
+        `}} />
+      </head>
       <body>{children}</body>
     </html>
   );

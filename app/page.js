@@ -297,12 +297,14 @@ export default function Page() {
                       ease: [0.4, 0, 0.2, 1],
                     }}
                   >
-                    <AuthorCard
-                      author={author}
-                      onOpenStudy={openStudy}
-                      onStartTest={setFocusedAuthor}
-                      confidence={confidenceMap[author.author]}
-                    />
+                    <div className="content-lazy">
+                      <AuthorCard
+                        author={author}
+                        onOpenStudy={openStudy}
+                        onStartTest={setFocusedAuthor}
+                        confidence={confidenceMap[author.author]}
+                      />
+                    </div>
                   </motion.div>
                 ))}
               </motion.div>
