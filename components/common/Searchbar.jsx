@@ -21,21 +21,21 @@ export default function SearchBar({ onSearch }) {
         placeholder="Ex: metaphysical poets"
         className="
           h-12 w-full rounded-full
-          bg-[var(--input-bg)] pl-12 pr-12 text-[15px] font-semibold text-[var(--text-body-color)]
-          shadow-[var(--input-shadow)] outline-none transition
-          focus:bg-white focus:shadow-[var(--shadow-soft)]
-          placeholder:font-medium placeholder:text-[var(--text-muted-color)]
+          bg-[var(--color-bg-surface)] pl-12 pr-12 text-[14px] font-bold text-[var(--text-body-color)]
+          shadow-sm border border-[var(--color-border-subtle)] outline-none transition-all
+          focus:border-[var(--color-border-strong)] focus:shadow-md
+          placeholder:font-bold placeholder:opacity-30 placeholder:text-[var(--text-muted-color)]
           md:h-14
         "
       />
-      <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[var(--text-muted-color)]">
+      <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[var(--text-muted-color)] opacity-40">
         <svg
           aria-hidden="true"
           className="h-5 w-5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="3"
         >
           <circle cx="11" cy="11" r="7" />
           <path d="m20 20-3.5-3.5" />

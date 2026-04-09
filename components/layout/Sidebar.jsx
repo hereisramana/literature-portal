@@ -12,7 +12,7 @@ export default function Sidebar({
 }) {
   return (
     <aside className={`flex h-full flex-col transition-all duration-500 ${collapsed ? "bg-transparent" : "bg-[#2d332e]/10 backdrop-blur-xl border-r border-white/10 shadow-2xl"}`}>
-      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-6 md:px-8 md:py-8"}`}>
+      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-8 md:px-8 md:py-10"}`}>
         {collapsed ? (
             <motion.button
               whileTap={{ scale: 0.95 }}
@@ -34,10 +34,10 @@ export default function Sidebar({
         ) : (
           <>
             <div className="max-w-[240px] pt-1">
-              <h1 className="text-[32px] font-bold leading-[1.05] text-[var(--text-body-color)]">
+              <h1 className="text-[28px] font-black leading-[1.05] tracking-tight text-[var(--text-heading-color)]">
                 {title}
               </h1>
-              <p className="mt-1 text-xs font-bold uppercase tracking-widest text-[var(--text-muted-color)] opacity-60">
+              <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-40">
                 {tagline}
               </p>
             </div>
@@ -45,7 +45,7 @@ export default function Sidebar({
               whileTap={{ scale: 0.92 }}
               aria-label="Collapse categories panel"
               onClick={onToggle}
-              className="ease-figma flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-text-strong)]/10 text-[var(--color-text-strong)] transition duration-300 hover:bg-[var(--color-text-strong)]/20"
+              className="ease-figma flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-text-strong)]/5 text-[var(--text-heading-color)] transition duration-300 hover:bg-[var(--color-text-strong)]/10"
             >
               <svg
                 aria-hidden="true"
@@ -78,7 +78,7 @@ export default function Sidebar({
                   onSelect?.();
                 }}
                 className={`
-                  ease-figma relative w-full rounded-[24px] px-5 py-4 text-left transition duration-300
+                  ease-figma relative w-full rounded-xl px-5 py-5 text-left transition duration-300
                   ${
                     isActive
                     ? "bg-white/40 shadow-sm ring-1 ring-white/50"
@@ -88,14 +88,14 @@ export default function Sidebar({
               >
                 <div className="relative z-10 flex items-start justify-between gap-3">
                   <div>
-                    <p className={`text-[15px] transition-colors ${isActive ? "font-bold text-[var(--text-heading-color)]" : "font-semibold text-[var(--text-body-color)] opacity-80"}`}>
+                    <p className={`text-[14px] leading-none transition-colors ${isActive ? "font-black text-[var(--text-heading-color)]" : "font-bold text-[var(--text-body-color)] opacity-70"}`}>
                       {category.label}
                     </p>
-                    <p className="mt-1 text-xs leading-5 text-[var(--text-muted-color)] opacity-70">
+                    <p className="mt-2 text-[12px] leading-tight text-[var(--text-muted-color)] opacity-50">
                       {category.description}
                     </p>
                   </div>
-                  <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold transition-colors ${isActive ? "bg-white/60 text-[var(--text-heading-color)]" : "bg-[rgba(58,64,59,0.05)] text-[var(--text-muted-color)] opacity-70"}`}>
+                  <span className={`rounded-full px-2 py-0.5 text-[9px] font-black transition-colors ${isActive ? "bg-white/60 text-[var(--text-heading-color)]" : "bg-[rgba(58,64,59,0.05)] text-[var(--text-muted-color)] opacity-70"}`}>
                     {category.authors.length}
                   </span>
                 </div>

@@ -158,7 +158,7 @@ export default function Page() {
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
       <div className="fixed inset-y-0 left-0 z-20 hidden lg:block">
-        <div className="h-full w-[72px] bg-[var(--color-bg-primary)]">
+        <div className="h-full w-[72px] bg-[var(--color-bg-surface)] border-r border-[var(--color-border-subtle)]">
           <Sidebar
             categories={categories}
             active={activeCategory?.id}
@@ -181,7 +181,7 @@ export default function Page() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-[rgba(24,32,47,0.12)]"
+              className="absolute inset-0 bg-black/5 backdrop-blur-sm"
               onClick={() => setDesktopSidebarCollapsed(true)}
             />
             <motion.div
@@ -189,7 +189,7 @@ export default function Page() {
               animate={{ x: 0 }}
               exit={{ x: -320 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="absolute inset-y-0 left-0 w-[320px] bg-[var(--color-bg-primary)] shadow-[var(--shadow-medium)]"
+              className="absolute inset-y-0 left-0 w-[320px] bg-white shadow-2xl"
             >
               <Sidebar
                 categories={categories}
@@ -215,7 +215,7 @@ export default function Page() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-[rgba(24,32,47,0.12)]"
+              className="absolute inset-0 bg-black/20 backdrop-blur-sm"
               onClick={() => setMobileMenuOpen(false)}
             />
             <motion.div
@@ -223,7 +223,7 @@ export default function Page() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="h-full w-[86%] max-w-[320px]"
+              className="relative h-full w-[85%] max-w-[320px] shadow-2xl"
             >
               <Sidebar
                 categories={categories}
@@ -239,13 +239,13 @@ export default function Page() {
       </AnimatePresence>
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden lg:pl-[72px]">
-        <div className="sticky top-0 z-10 bg-[var(--color-bg-primary)]/80 backdrop-blur-md">
+        <div className="sticky top-0 z-10 bg-[var(--color-bg-primary)]/80 backdrop-blur-xl">
           <div className="shell-width px-4 py-4 md:px-8 lg:px-10">
             <div className="flex items-center gap-3">
               <motion.button
                 whileTap={{ scale: 0.92 }}
                 aria-label="Open categories"
-                className="rounded-2xl p-2 text-[var(--text-heading-color)] transition hover:bg-[var(--color-interaction-hover)] lg:hidden"
+                className="rounded-xl p-2 text-[var(--text-heading-color)] transition hover:bg-[var(--color-bg-inset)] lg:hidden"
                 onClick={() => setMobileMenuOpen(true)}
               >
                 <svg
@@ -287,11 +287,13 @@ export default function Page() {
                 {filteredAuthors.map((author, index) => (
                   <motion.div
                     key={`${author.author}-${index}`}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    layout
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
                     transition={{
                       duration: 0.4,
-                      delay: index * 0.03,
+                      delay: index * 0.02,
                       ease: [0.22, 1, 0.36, 1],
                     }}
                   >
@@ -324,27 +326,31 @@ export default function Page() {
 
       </main>
 
-      {studyContext && (
-        <StudyFocusView
-          author={studyContext.author}
-          category={activeCategory}
-          allAuthors={allAuthors}
-          selectedWork={studyContext.selectedWork}
-          inferTheme={inferTheme}
-          onClose={() => setStudyContext(null)}
-        />
-      )}
-      {focusedAuthor && (
-        <TestFocusView
-          author={focusedAuthor}
-          category={activeCategory}
-          allAuthors={allAuthors}
-          storedConfidence={confidenceMap[focusedAuthor.author]}
-          onSaveConfidence={handleConfidenceSave}
-          cloud={cloud}
-          onClose={() => setFocusedAuthor(null)}
-        />
-      )}
+      <AnimatePresence>
+        {studyContext && (
+          <StudyFocusView
+            author={studyContext.author}
+            category={activeCategory}
+            allAuthors={allAuthors}
+            selectedWork={studyContext.selectedWork}
+            inferTheme={inferTheme}
+            onClose={() => setStudyContext(null)}
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {focusedAuthor && (
+          <TestFocusView
+            author={focusedAuthor}
+            category={activeCategory}
+            allAuthors={allAuthors}
+            storedConfidence={confidenceMap[focusedAuthor.author]}
+            onSaveConfidence={handleConfidenceSave}
+            cloud={cloud}
+            onClose={() => setFocusedAuthor(null)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

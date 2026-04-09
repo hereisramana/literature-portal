@@ -17,19 +17,30 @@ export default function AuthorFocusShell({
   showGuideSkip = true,
 }) {
   return (
-    <>
-      <div className="fixed inset-0 z-40 bg-black/10 backdrop-blur-sm" />
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="card relative flex h-[min(92vh,900px)] w-full max-w-5xl flex-col overflow-hidden rounded-[32px] shadow-2xl">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-40"
+    >
+      <div className="absolute inset-0 bg-black/10 backdrop-blur-sm" onClick={onClose} />
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, y: 20, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 20, scale: 0.98 }}
+          transition={{ type: "spring", damping: 30, stiffness: 300 }}
+          className="card relative flex h-[min(92vh,900px)] w-full max-w-5xl flex-col overflow-hidden rounded-[32px] shadow-2xl pointer-events-auto"
+        >
           {/* Header */}
-          <div className="flex flex-col gap-4 px-6 pb-4 pt-6 md:flex-row md:items-start md:justify-between md:px-10">
+          <div className="flex flex-col gap-4 px-6 pb-2 pt-6 md:flex-row md:items-start md:justify-between md:px-10">
             <div className="flex-1 min-w-0">
-              <h2 className="text-3xl font-bold leading-tight tracking-tight text-[var(--text-heading-color)] md:text-4xl">
+              <h2 className="text-2xl font-black leading-tight tracking-tight text-[var(--text-heading-color)] md:text-3xl">
                 {title}
               </h2>
 
               {hideTabsInHeader && (
-                <div className="mt-4 flex justify-start">
+                <div className="mt-4 flex justify-end">
                   <div
                     className="grid gap-1 rounded-full bg-[var(--color-bg-inset)] p-1 shadow-inner"
                     style={{ gridTemplateColumns: `repeat(${tabs.length}, minmax(0, 1fr))` }}
@@ -39,9 +50,9 @@ export default function AuthorFocusShell({
                         key={tab.id}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => onTabChange(tab.id)}
-                        className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                        className={`rounded-full px-4 py-1.5 text-[11px] font-black uppercase tracking-wider transition-all duration-300 ${
                           activeTab === tab.id
-                            ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-md"
+                            ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-sm"
                             : "text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)]"
                         }`}
                       >
@@ -150,8 +161,8 @@ export default function AuthorFocusShell({
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
-    </>
+    </motion.div>
   );
 }

@@ -86,18 +86,20 @@ export default function StudyFocusView({
       main={
         <div className="pb-10">
           {activeTab === "works" && (
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {(author.works || []).map((work) => (
                 <li
                   key={work.title || work}
-                  className={`rounded-2xl px-6 py-5 text-[15px] leading-relaxed shadow-sm border border-white/40 ${
-                    selectedWork === (work.title || work) ? "bg-[var(--color-bg-accent-soft)]" : "bg-[var(--color-bg-raised)]"
+                  className={`rounded-xl px-5 py-4 text-[14px] leading-relaxed transition-all ${
+                    selectedWork === (work.title || work)
+                    ? "bg-[var(--color-bg-accent-soft)] border-l-4 border-[var(--color-accent)]"
+                    : "bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-inset)] border border-[var(--color-border-subtle)]"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <span className="font-semibold">{work.title || work}</span>
+                    <span className="font-bold text-[var(--text-heading-color)]">{work.title || work}</span>
                     {(work.year || work.type) && (
-                      <span className="text-xs font-bold text-[var(--text-muted-color)] opacity-60">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted-color)] opacity-50">
                         {[work.year, work.type].filter(Boolean).join(" · ")}
                       </span>
                     )}
@@ -113,14 +115,14 @@ export default function StudyFocusView({
                 {themeSet.map((theme) => (
                   <span
                     key={theme}
-                    className="rounded-full bg-[var(--color-bg-raised)] border border-white/60 px-4 py-2.5 text-[14px] font-bold text-[var(--color-text-primary)] shadow-sm"
+                    className="rounded-full bg-[var(--color-bg-surface)] border border-[var(--color-border-subtle)] px-4 py-2 text-[13px] font-bold text-[var(--color-text-primary)] shadow-sm"
                   >
                     {theme}
                   </span>
                 ))}
               </div>
-              <div className="rounded-2xl bg-[var(--color-bg-raised)] px-6 py-6 border border-white/40">
-                <p className="text-[15px] leading-relaxed text-[var(--text-body-color)] italic opacity-80">
+              <div className="rounded-xl bg-[var(--color-bg-inset)] px-5 py-5 border border-[var(--color-border-subtle)]">
+                <p className="text-[14px] leading-relaxed text-[var(--text-body-color)] italic opacity-70">
                   Recurring concerns are the key to comparative success. Mastery of these themes allows for seamless interleaving between different periods.
                 </p>
               </div>
@@ -128,24 +130,24 @@ export default function StudyFocusView({
           )}
 
           {activeTab === "notes" && (
-            <div className="grid gap-6">
+            <div className="grid gap-4">
               {["factual", "textual", "critical", "comparative"].map((layer) => (
-                <div key={layer} className="rounded-2xl bg-[var(--color-bg-raised)] px-6 py-6 shadow-sm border border-white/40">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-60 mb-4">
+                <div key={layer} className="rounded-xl bg-[var(--color-bg-surface)] px-5 py-5 shadow-sm border border-[var(--color-border-subtle)]">
+                  <p className="text-[9px] font-black uppercase tracking-[0.25em] text-[var(--text-muted-color)] opacity-40 mb-4">
                     {layer} context
                   </p>
                   {nodeGroups[layer].length > 0 ? (
-                    <ul className="space-y-4">
+                    <ul className="space-y-5">
                       {nodeGroups[layer].slice(0, 4).map((node) => (
-                        <li key={node.id}>
-                          <p className="text-[15px] font-bold text-[var(--text-heading-color)]">
+                        <li key={node.id} className="group">
+                          <p className="text-[14px] font-bold text-[var(--text-heading-color)] mb-1">
                             {node.prompt}
                           </p>
-                          <p className="mt-2 text-[15px] leading-relaxed text-[var(--text-body-color)]">
+                          <p className="text-[14px] leading-relaxed text-[var(--text-body-color)] opacity-90">
                             {node.answer}
                           </p>
                           {node.explanation && (
-                            <p className="mt-2 text-xs leading-relaxed text-[var(--text-muted-color)] opacity-70">
+                            <p className="mt-2 text-[12px] leading-relaxed text-[var(--text-muted-color)] opacity-60 border-l-2 border-[var(--color-border-subtle)] pl-3">
                               {node.explanation}
                             </p>
                           )}
@@ -153,7 +155,7 @@ export default function StudyFocusView({
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-[14px] leading-relaxed text-[var(--text-body-color)] opacity-60">
+                    <p className="text-[13px] leading-relaxed text-[var(--text-body-color)] opacity-40">
                       Enriched academic notes for this layer will appear as the category batches are completed.
                     </p>
                   )}

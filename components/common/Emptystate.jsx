@@ -18,7 +18,7 @@ export default function EmptyState({ suggestions = [], onSelectSuggestion }) {
         </svg>
       </div>
 
-      <h2 className="text-xl md:text-2xl leading-tight font-bold text-[var(--text-heading-color)] mb-4">
+      <h2 className="text-[18px] md:text-[20px] leading-tight font-black tracking-tight text-[var(--text-heading-color)] mb-4">
         {hasSuggestions
           ? "No matches here — but we found some in other categories."
           : "Nothing surfaced."
@@ -26,23 +26,25 @@ export default function EmptyState({ suggestions = [], onSelectSuggestion }) {
       </h2>
 
       {!hasSuggestions && (
-        <p className="text-[14px] leading-relaxed text-[var(--text-muted-color)] mb-8">
-          Try a broader search term or reset the category to see more literary works.
+        <p className="text-[13px] leading-relaxed text-[var(--text-muted-color)] opacity-60 mb-8">
+          Try a broader search term or explore another literary movement.
         </p>
       )}
 
       {hasSuggestions && (
         <div className="mt-8">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-40 mb-4">
+            Try these categories
+          </p>
           <div className="flex flex-wrap justify-center gap-2">
             {suggestions.map((s) => (
               <motion.button
                 key={s.id}
-                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => onSelectSuggestion?.(s.id)}
-                className="rounded-full bg-[var(--color-bg-inset)] px-4 py-2 text-xs font-bold text-[var(--color-text-primary)] shadow-sm transition border border-white/40 hover:shadow-md"
+                className="rounded-full bg-[var(--color-bg-surface)] px-4 py-2 text-[11px] font-black uppercase tracking-wider text-[var(--color-text-primary)] shadow-sm transition border border-[var(--color-border-subtle)] hover:bg-[var(--color-bg-inset)]"
               >
-                {s.label} ({s.count})
+                {s.label} <span className="opacity-40 ml-1">{s.count}</span>
               </motion.button>
             ))}
           </div>

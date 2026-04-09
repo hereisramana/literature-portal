@@ -11,10 +11,10 @@ function ResultNote({ children, success = false, checked = false }) {
   if (!checked) return null;
   return (
     <div
-      className={`rounded-2xl px-6 py-4 text-[15px] leading-relaxed shadow-sm border border-white/40 ${
+      className={`rounded-xl px-5 py-4 text-[14px] leading-relaxed shadow-sm border ${
         success
-          ? "success-surface"
-          : "bg-[var(--color-bg-raised)] text-[var(--text-body-color)]"
+          ? "success-surface border-[var(--color-success-border)]"
+          : "bg-[var(--color-bg-surface)] text-[var(--text-body-color)] border-[var(--color-border-subtle)]"
       }`}
     >
       {children}
@@ -34,8 +34,8 @@ function McqPanel({
   timer,
 }) {
   if (!question) {
-    return <div className="p-8 text-center bg-[var(--color-bg-inset)] rounded-3xl border border-white/20 shadow-inner">
-      <p className="text-[15px] font-bold text-[var(--text-muted-color)]">No more questions available for this session.</p>
+    return <div className="p-8 text-center bg-[var(--color-bg-inset)] rounded-2xl border border-[var(--color-border-subtle)] shadow-inner">
+      <p className="text-[14px] font-bold text-[var(--text-muted-color)] opacity-60">No more questions available for this session.</p>
     </div>;
   }
 
@@ -44,14 +44,14 @@ function McqPanel({
   return (
     <div className="space-y-6">
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-           <p className="text-[18px] font-bold leading-snug text-[var(--text-body-color)] flex-1 pr-4">{question.prompt}</p>
+        <div className="flex items-center justify-between gap-6">
+           <p className="text-[16px] font-bold leading-relaxed text-[var(--text-body-color)] flex-1">{question.prompt}</p>
            {!submitted && (
              <div className="flex flex-col items-center shrink-0">
-               <div className="h-10 w-10 rounded-full border-2 border-[var(--color-accent)] flex items-center justify-center relative overflow-hidden">
-                 <span className="text-xs font-bold text-[var(--color-accent)] z-10">{timer}s</span>
+               <div className="h-10 w-10 rounded-full border border-[var(--color-border-strong)] flex items-center justify-center relative overflow-hidden">
+                 <span className="text-[11px] font-black text-[var(--color-text-primary)] z-10">{timer}</span>
                  <motion.div
-                   className="absolute bottom-0 left-0 right-0 bg-[var(--color-accent)]/10"
+                   className="absolute bottom-0 left-0 right-0 bg-[var(--color-text-strong)] opacity-5"
                    initial={{ height: "0%" }}
                    animate={{ height: `${(15 - timer) / 15 * 100}%` }}
                  />
@@ -63,15 +63,14 @@ function McqPanel({
 
       {!revealed ? (
         <motion.button
-          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={onReveal}
-          className="rounded-full bg-[var(--button-primary-bg)] px-6 py-3 text-sm font-bold uppercase tracking-wider text-[var(--button-primary-text)] shadow-lg"
+          className="rounded-full bg-[var(--color-text-strong)] px-8 py-3 text-[11px] font-black uppercase tracking-[0.15em] text-white shadow-sm"
         >
           Reveal Options
         </motion.button>
       ) : (
-        <div className="grid gap-3">
+        <div className="grid gap-2">
           {question.mcqOptions.map((option) => {
             const active = selected === option;
             const correct = submitted && option === question.answer;
@@ -79,15 +78,15 @@ function McqPanel({
             return (
               <motion.button
                 key={option}
-                whileTap={{ scale: 0.99 }}
+                whileTap={{ scale: 0.995 }}
                 onClick={() => onSelect(option)}
                 disabled={submitted}
-                className={`rounded-2xl px-6 py-4 text-left text-[15px] transition-all border border-white/40 ${
+                className={`rounded-xl px-5 py-3.5 text-left text-[14px] transition-all border ${
                   correct
-                    ? "success-surface shadow-md"
+                    ? "success-surface border-[var(--color-success-border)] shadow-sm"
                     : active
-                    ? "bg-[var(--color-bg-accent-soft)] ring-2 ring-[var(--color-accent-strong)]/10 shadow-inner"
-                    : "bg-[var(--color-bg-raised)] hover:bg-[var(--color-interaction-hover)] shadow-sm"
+                    ? "bg-[var(--color-bg-accent-soft)] border-[var(--color-border-strong)] shadow-inner"
+                    : "bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-inset)] border-[var(--color-border-subtle)] shadow-sm"
                 }`}
               >
                 {option}
@@ -109,20 +108,18 @@ function McqPanel({
       <div className="flex flex-wrap gap-3 pt-4">
         {!submitted ? (
           <motion.button
-            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={onSubmit}
             disabled={!revealed || !selected || submitted}
-            className="rounded-full bg-[var(--button-primary-bg)] px-8 py-3 text-sm font-bold uppercase tracking-wider text-[var(--button-primary-text)] shadow-lg disabled:opacity-30 disabled:cursor-not-allowed"
+            className="rounded-full bg-[var(--color-text-strong)] px-10 py-3.5 text-[11px] font-black uppercase tracking-[0.15em] text-white shadow-md disabled:opacity-20 disabled:cursor-not-allowed transition-all"
           >
             Check Answer
           </motion.button>
         ) : (
           <motion.button
-            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={onNext}
-            className="rounded-full bg-[var(--button-secondary-bg)] px-8 py-3 text-sm font-bold uppercase tracking-wider text-[var(--button-primary-text)] bg-[var(--color-text-strong)] shadow-md"
+            className="rounded-full bg-[var(--color-bg-inset)] border border-[var(--color-border-subtle)] px-10 py-3.5 text-[11px] font-black uppercase tracking-[0.15em] text-[var(--text-heading-color)] shadow-sm hover:bg-[var(--color-bg-surface)] transition-all"
           >
             Next Question
           </motion.button>
