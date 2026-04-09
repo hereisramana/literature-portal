@@ -63,6 +63,7 @@ function McqPanel({
 
       {!revealed ? (
         <motion.button
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
           onClick={onReveal}
           className="rounded-full bg-[var(--color-text-strong)] px-8 py-3 text-[11px] font-black uppercase tracking-[0.15em] text-white shadow-sm"
@@ -78,6 +79,7 @@ function McqPanel({
             return (
               <motion.button
                 key={option}
+                whileHover={!submitted ? { x: 4, backgroundColor: "rgba(0,0,0,0.02)" } : {}}
                 whileTap={{ scale: 0.995 }}
                 onClick={() => onSelect(option)}
                 disabled={submitted}
@@ -108,6 +110,7 @@ function McqPanel({
       <div className="flex flex-wrap gap-3 pt-4">
         {!submitted ? (
           <motion.button
+            whileHover={!(!revealed || !selected || submitted) ? { scale: 1.02 } : {}}
             whileTap={{ scale: 0.98 }}
             onClick={onSubmit}
             disabled={!revealed || !selected || submitted}
@@ -117,9 +120,10 @@ function McqPanel({
           </motion.button>
         ) : (
           <motion.button
+            whileHover={{ scale: 1.02, backgroundColor: "var(--color-bg-surface)" }}
             whileTap={{ scale: 0.98 }}
             onClick={onNext}
-            className="rounded-full bg-[var(--color-bg-inset)] border border-[var(--color-border-subtle)] px-10 py-3.5 text-[11px] font-black uppercase tracking-[0.15em] text-[var(--text-heading-color)] shadow-sm hover:bg-[var(--color-bg-surface)] transition-all"
+            className="rounded-full bg-[var(--color-bg-inset)] border border-[var(--color-border-subtle)] px-10 py-3.5 text-[11px] font-black uppercase tracking-[0.15em] text-[var(--text-heading-color)] shadow-sm transition-all"
           >
             Next Question
           </motion.button>

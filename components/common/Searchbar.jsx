@@ -43,6 +43,7 @@ export default function SearchBar({ onSearch }) {
       </span>
       {value && (
         <motion.button
+          whileHover={{ scale: 1.1, color: "var(--color-text-strong)" }}
           whileTap={{ scale: 0.9 }}
           onClick={handleClear}
           className="absolute inset-y-0 right-4 flex items-center text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)] transition"

@@ -15,6 +15,7 @@ export default function Sidebar({
       <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-8 md:px-8 md:py-10"}`}>
         {collapsed ? (
             <motion.button
+                whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Open categories panel"
               onClick={onToggle}
@@ -37,11 +38,12 @@ export default function Sidebar({
               <h1 className="text-[28px] font-black leading-[1.05] tracking-tight text-[var(--text-heading-color)]">
                 {title}
               </h1>
-              <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-40">
+              <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-40 text-depth">
                 {tagline}
               </p>
             </div>
             <motion.button
+              whileHover={{ scale: 1.1, rotate: -90 }}
               whileTap={{ scale: 0.92 }}
               aria-label="Collapse categories panel"
               onClick={onToggle}
@@ -71,6 +73,7 @@ export default function Sidebar({
 
             return (
               <motion.button
+                whileHover={{ x: 4, backgroundColor: "rgba(255, 255, 255, 0.5)" }}
                 whileTap={{ x: 2 }}
                 key={category.id}
                 onClick={() => {
@@ -91,7 +94,7 @@ export default function Sidebar({
                     <p className={`text-[14px] leading-none transition-colors ${isActive ? "font-black text-[var(--text-heading-color)]" : "font-bold text-[var(--text-body-color)] opacity-70"}`}>
                       {category.label}
                     </p>
-                    <p className="mt-2 text-[12px] leading-tight text-[var(--text-muted-color)] opacity-50">
+                    <p className="mt-2 text-[12px] leading-tight text-[var(--text-muted-color)] opacity-50 text-depth">
                       {category.description}
                     </p>
                   </div>

@@ -18,14 +18,14 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
       </div>
 
       <div className="scrollbar-thin mt-4 flex-1 overflow-y-auto pr-1">
-        <ul className="space-y-1 text-[var(--text-muted-color)] opacity-70 list-disc list-inside">
+        <ul className="space-y-1 text-[var(--text-muted-color)] opacity-70 list-disc list-inside text-depth">
           {author.works?.slice(0, 3).map((work, index) => (
             <li key={index} className="text-[13px] leading-tight md:text-[14px] truncate marker:text-[var(--color-accent)]">
               {work.title || work}
             </li>
           ))}
           {author.works?.length > 3 && (
-            <li className="text-[11px] font-bold uppercase tracking-wider opacity-50">
+            <li className="text-[11px] font-bold uppercase tracking-wider opacity-50 text-depth">
               + {author.works.length - 3} more
             </li>
           )}
@@ -34,6 +34,7 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
 
       <div className="mt-5 grid grid-cols-2 gap-3">
         <motion.button
+          whileHover={{ scale: 1.02, backgroundColor: "var(--color-bg-surface)" }}
           whileTap={{ scale: 0.96 }}
           onClick={() => onOpenStudy?.(author)}
           className="rounded-full bg-[var(--color-bg-inset)] px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--color-text-primary)] transition-all shadow-sm active:shadow-inner border border-black/5"
@@ -41,6 +42,7 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
           Study
         </motion.button>
         <motion.button
+          whileHover={{ scale: 1.02, opacity: 0.9 }}
           whileTap={{ scale: 0.96 }}
           onClick={() => onStartTest?.(author)}
           className="rounded-full bg-[var(--color-text-strong)] px-4 py-3 text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-sm transition-all active:shadow-inner"

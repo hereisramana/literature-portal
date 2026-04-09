@@ -7,11 +7,11 @@ import AuthorFocusShell from "../focus/AuthorFocusShell.jsx";
 function ExternalLinks({ title }) {
   const searchTitle = encodeURIComponent(title);
   return (
-    <div className="mt-16 pt-10 border-t border-[var(--color-border-subtle)]">
-      <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-60 mb-6">
-        External Resources
-      </p>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="mt-8 pt-6 border-t border-[var(--color-border-subtle)]">
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-40">
+          Resources
+        </span>
         {[
           { label: "Wikipedia", url: `https://en.wikipedia.org/wiki/Special:Search?search=${searchTitle}` },
           { label: "Britannica", url: `https://www.britannica.com/search?query=${searchTitle}` },
@@ -20,15 +20,15 @@ function ExternalLinks({ title }) {
         ].map((link) => (
           <motion.a
             key={link.label}
-            whileHover={{ y: -2, backgroundColor: "rgba(58, 64, 59, 0.05)" }}
+            whileHover={{ opacity: 1, x: 2 }}
             whileTap={{ scale: 0.98 }}
             href={link.url}
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl bg-[var(--color-bg-raised)] px-5 py-4 text-[13px] font-bold text-[var(--color-text-primary)] no-underline transition shadow-sm border border-white/40 flex items-center justify-center gap-2"
+            className="text-[11px] font-bold text-[var(--color-text-primary)] opacity-60 no-underline transition-all flex items-center gap-1.5"
           >
             {link.label}
-            <svg className="h-3 w-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+            <svg className="h-2.5 w-2.5 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
             </svg>
           </motion.a>
@@ -53,6 +53,8 @@ export default function StudyFocusView({
   ];
 
   const [activeTab, setActiveTab] = useState("works");
+  const [expandedWork, setExpandedWork] = useState(selectedWork || null);
+  const [expandedTheme, setExpandedTheme] = useState(null);
 
   const workTitles = useMemo(
     () => (author.works || []).map((work) => work.title || work),
@@ -87,42 +89,99 @@ export default function StudyFocusView({
         <div className="pb-10">
           {activeTab === "works" && (
             <ul className="space-y-2">
-              {(author.works || []).map((work) => (
-                <li
-                  key={work.title || work}
-                  className={`rounded-xl px-5 py-4 text-[14px] leading-relaxed transition-all ${
-                    selectedWork === (work.title || work)
-                    ? "bg-[var(--color-bg-accent-soft)] border-l-4 border-[var(--color-accent)]"
-                    : "bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-inset)] border border-[var(--color-border-subtle)]"
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="font-bold text-[var(--text-heading-color)]">{work.title || work}</span>
-                    {(work.year || work.type) && (
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted-color)] opacity-50">
-                        {[work.year, work.type].filter(Boolean).join(" · ")}
-                      </span>
+              {(author.works || []).map((work) => {
+                const title = work.title || work;
+                const isExpanded = expandedWork === title;
+                return (
+                  <motion.li
+                    key={title}
+                    layout
+                    onClick={() => setExpandedWork(isExpanded ? null : title)}
+                    className={`cursor-pointer rounded-xl px-5 py-4 text-[14px] leading-relaxed transition-all ${
+                      isExpanded
+                      ? "bg-[var(--color-bg-accent-soft)] border-l-4 border-[var(--color-accent)] shadow-md"
+                      : "bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-inset)] border border-[var(--color-border-subtle)]"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="font-bold text-[var(--text-heading-color)]">{title}</span>
+                      <div className="flex items-center gap-3">
+                        {(work.year || work.type) && (
+                          <span className="text-[10px] font-black uppercase tracking-wider text-[var(--text-muted-color)] opacity-40 text-depth">
+                            {[work.year, work.type].filter(Boolean).join(" · ")}
+                          </span>
+                        )}
+                        <svg className={`h-4 w-4 opacity-30 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                          <path d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-4 pt-4 border-t border-black/5"
+                      >
+                        <p className="text-[13px] leading-relaxed text-[var(--text-body-color)] opacity-80">
+                          {work.notes || `Academic overview for "${title}" including structural analysis, contextual background, and critical reception.`}
+                        </p>
+                      </motion.div>
                     )}
-                  </div>
-                </li>
-              ))}
+                  </motion.li>
+                );
+              })}
             </ul>
           )}
 
           {activeTab === "themes" && (
             <div className="space-y-6">
-              <div className="flex flex-wrap gap-2">
-                {themeSet.map((theme) => (
-                  <span
-                    key={theme}
-                    className="rounded-full bg-[var(--color-bg-surface)] border border-[var(--color-border-subtle)] px-4 py-2 text-[13px] font-bold text-[var(--color-text-primary)] shadow-sm"
-                  >
-                    {theme}
-                  </span>
-                ))}
+              <div className="grid gap-2">
+                {themeSet.map((theme) => {
+                  const isExpanded = expandedTheme === theme;
+                  return (
+                    <motion.div
+                      key={theme}
+                      layout
+                      onClick={() => setExpandedTheme(isExpanded ? null : theme)}
+                      className={`cursor-pointer rounded-xl px-5 py-4 transition-all border ${
+                        isExpanded
+                        ? "bg-[var(--color-bg-surface)] border-[var(--color-border-strong)] shadow-md"
+                        : "bg-[var(--color-bg-surface)] border-[var(--color-border-subtle)] hover:bg-[var(--color-bg-inset)]"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-[14px] font-bold text-[var(--color-text-primary)]">{theme}</span>
+                        <svg className={`h-4 w-4 opacity-30 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                          <path d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="mt-4 pt-4 border-t border-black/5 space-y-3"
+                        >
+                          <p className="text-[13px] leading-relaxed text-[var(--text-body-color)] opacity-70 text-depth">
+                            Evidence of <strong>{theme}</strong> is primarily observed in:
+                          </p>
+                          <ul className="space-y-2">
+                            {workTitles.slice(0, 2).map((title, i) => (
+                              <li key={i} className="flex items-start gap-3">
+                                <div className="mt-1.5 h-1 w-1 rounded-full bg-[var(--color-accent)] shrink-0" />
+                                <p className="text-[13px] leading-tight text-[var(--text-body-color)]">
+                                  <span className="font-bold">{title}</span> — Observed through key character trajectories and pivotal narrative events.
+                                </p>
+                              </li>
+                            ))}
+                          </ul>
+                        </motion.div>
+                      )}
+                    </motion.div>
+                  );
+                })}
               </div>
               <div className="rounded-xl bg-[var(--color-bg-inset)] px-5 py-5 border border-[var(--color-border-subtle)]">
-                <p className="text-[14px] leading-relaxed text-[var(--text-body-color)] italic opacity-70">
+                <p className="text-[13px] leading-relaxed text-[var(--text-body-color)] italic opacity-50">
                   Recurring concerns are the key to comparative success. Mastery of these themes allows for seamless interleaving between different periods.
                 </p>
               </div>

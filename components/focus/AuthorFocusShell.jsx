@@ -29,7 +29,7 @@ export default function AuthorFocusShell({
           initial={{ opacity: 0, y: 20, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.98 }}
-          transition={{ type: "spring", damping: 30, stiffness: 300 }}
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className="card relative flex h-[min(92vh,900px)] w-full max-w-5xl flex-col overflow-hidden rounded-[32px] shadow-2xl pointer-events-auto"
         >
           {/* Header */}
@@ -48,6 +48,7 @@ export default function AuthorFocusShell({
                     {tabs.map((tab) => (
                       <motion.button
                         key={tab.id}
+                        whileHover={activeTab !== tab.id ? { backgroundColor: "rgba(0,0,0,0.05)" } : {}}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => onTabChange(tab.id)}
                         className={`rounded-full px-4 py-1.5 text-[11px] font-black uppercase tracking-wider transition-all duration-300 ${
@@ -88,6 +89,7 @@ export default function AuthorFocusShell({
               )}
 
               <motion.button
+                whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.92 }}
                 onClick={onClose}
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-text-strong)]/10 text-[var(--color-text-strong)] transition hover:bg-[var(--color-text-strong)]/20"
