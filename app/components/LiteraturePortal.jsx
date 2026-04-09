@@ -46,6 +46,16 @@ export default function LiteraturePortal({ data }) {
     }
   }, [bookmarks]);
 
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape") setModal(null);
+    };
+    if (modal) {
+      window.addEventListener("keydown", handleEscape);
+    }
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [modal]);
+
   const authors = data[category] || [];
 
   const filtered = useMemo(() => {
@@ -249,8 +259,16 @@ export default function LiteraturePortal({ data }) {
 
       {/* Modal */}
       {modal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl p-5">
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+          onClick={() => setModal(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="bg-white w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl p-5"
+            onClick={(e) => e.stopPropagation()}
+          >
             <h2 className="font-bold text-lg mb-2">
               {modal.title} {modal.author && `— ${modal.author}`}
             </h2>
@@ -268,7 +286,11 @@ export default function LiteraturePortal({ data }) {
               <a href={`https://www.google.com/search?q=${encodeURIComponent(modal.title)}`} target="_blank" className="underline text-blue-700">Google</a>
             </div>
 
-            <button onClick={() => setModal(null)} className="mt-4 border px-3 py-1 rounded">
+            <button
+              onClick={() => setModal(null)}
+              className="mt-4 border px-3 py-1 rounded hover:bg-gray-100 transition-colors"
+              aria-label="Close modal"
+            >
               Close
             </button>
           </div>
