@@ -157,51 +157,20 @@ export default function Page() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
-      <div className="fixed inset-y-0 left-0 z-20 hidden lg:block">
-        <div className="h-full w-[72px] bg-[var(--color-bg-surface)] border-r border-[var(--color-border-subtle)]">
-          <Sidebar
-            categories={categories}
-            active={activeCategory?.id}
-            setActive={handleCategoryChange}
-            collapsed={true}
-            onToggle={() => setDesktopSidebarCollapsed(false)}
-          />
-        </div>
+      {/* Desktop Sidebar: Static and Flex-based */}
+      <div
+        className={`hidden lg:block h-full border-r border-[var(--color-border-subtle)] bg-white transition-[width] duration-300 ease-in-out overflow-hidden flex-shrink-0 ${
+          desktopSidebarCollapsed ? "w-[72px]" : "w-[320px]"
+        }`}
+      >
+        <Sidebar
+          categories={categories}
+          active={activeCategory?.id}
+          setActive={handleCategoryChange}
+          collapsed={desktopSidebarCollapsed}
+          onToggle={() => setDesktopSidebarCollapsed(!desktopSidebarCollapsed)}
+        />
       </div>
-
-      <AnimatePresence>
-        {!desktopSidebarCollapsed && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-30 hidden lg:block"
-          >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/5 backdrop-blur-sm"
-              onClick={() => setDesktopSidebarCollapsed(true)}
-            />
-            <motion.div
-              initial={{ x: -320 }}
-              animate={{ x: 0 }}
-              exit={{ x: -320 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="absolute inset-y-0 left-0 w-[320px] bg-white shadow-2xl"
-            >
-              <Sidebar
-                categories={categories}
-                active={activeCategory?.id}
-                setActive={handleCategoryChange}
-                collapsed={false}
-                onToggle={() => setDesktopSidebarCollapsed(true)}
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -238,7 +207,7 @@ export default function Page() {
         )}
       </AnimatePresence>
 
-      <main className="flex min-w-0 flex-1 flex-col overflow-hidden lg:pl-[72px]">
+      <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
         <div className="sticky top-0 z-10 bg-[var(--color-bg-primary)]/80 backdrop-blur-xl">
           <div className="shell-width px-4 py-4 md:px-8 lg:px-10">
             <div className="flex items-center gap-3">

@@ -92,7 +92,7 @@ export default function AuthorFocusShell({
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.92 }}
                 onClick={onClose}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-text-strong)]/10 text-[var(--color-text-strong)] transition hover:bg-[var(--color-text-strong)]/20"
+                className="absolute right-6 top-6 z-[70] flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-text-strong)]/10 text-[var(--text-heading-color)] transition-all hover:bg-[var(--color-text-strong)]/20 md:right-10 md:top-8"
               >
                 <svg
                   className="h-5 w-5"

@@ -225,7 +225,7 @@ export default function TestFocusView({
     <>
       <AuthorFocusShell
         title={author.author}
-        tabs={[{ id: "verify", label: "Verification" }]}
+        tabs={[{ id: "verify", label: "Recall and Recognise" }]}
         activeTab="verify"
         onTabChange={() => {}}
         onClose={handleCloseAttempt}
