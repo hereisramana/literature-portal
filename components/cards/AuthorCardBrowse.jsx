@@ -3,49 +3,49 @@ import { motion } from "framer-motion";
 
 export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, confidence }) {
   return (
-    <article className="card flex aspect-[3/2] min-h-0 flex-col overflow-hidden px-6 py-5 border border-[var(--color-border-subtle)] shadow-sm hover:shadow-md transition:transform,opacity duration-300">
+    <article className="card flex flex-col px-6 py-6 border border-[var(--color-border-subtle)] transition-shadow duration-300 hover:shadow-md bg-white h-full">
       <div className="flex items-start justify-between">
         <div className="w-fit text-left">
-          <h2 className="text-[24px] leading-[1.15] text-[var(--text-heading-color)] md:text-[26px]">
+          <h2 className="text-[22px] font-semibold leading-[1.2] text-[var(--text-heading-color)] md:text-[24px]">
             {author.author}
           </h2>
         </div>
         {confidence && (
-          <span className="rounded-full bg-[var(--color-success-soft)] px-2.5 py-1 text-[10px] font-bold text-[var(--color-success-text)]">
+          <span className="rounded-full bg-[var(--color-success-soft)] px-2.5 py-1 text-[11px] font-medium text-[var(--color-success-text)] ml-4 shrink-0">
             {confidence}
           </span>
         )}
       </div>
 
-      <div className="scrollbar-thin mt-4 flex-1 overflow-y-auto pr-1">
-        <ul className="space-y-1 text-[var(--text-muted-color)] opacity-70 list-disc list-inside text-depth">
+      <div className="mt-4 flex-1">
+        <ul className="space-y-1.5 text-[var(--text-muted-color)] list-disc list-inside">
           {author.works?.slice(0, 3).map((work, index) => (
-            <li key={index} className="text-[13px] leading-tight md:text-[14px] truncate marker:text-[var(--color-accent)]">
+            <li key={index} className="text-[14px] leading-relaxed truncate marker:text-[var(--color-accent)]">
               {work.title || work}
             </li>
           ))}
           {author.works?.length > 3 && (
-            <li className="text-[11px] font-bold uppercase tracking-wider opacity-50 text-depth">
-              + {author.works.length - 3} more
+            <li className="text-[12px] font-medium text-[var(--color-border-strong)] list-none pl-1 mt-2">
+              + {author.works.length - 3} more works
             </li>
           )}
         </ul>
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-3">
+      <div className="mt-6 flex flex-col sm:flex-row gap-3">
         <motion.button
-          whileHover={{ scale: 1.02, backgroundColor: "var(--color-bg-surface)" }}
-          whileTap={{ scale: 0.96 }}
+          whileHover={{ opacity: 0.8 }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => onOpenStudy?.(author)}
-          className="rounded-full bg-[var(--color-bg-inset)] px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--color-text-primary)] transition:transform duration-300 shadow-sm active:shadow-inner border border-black/5"
+          className="flex-1 rounded-full bg-[var(--color-bg-inset)] px-4 py-2.5 text-[13px] font-medium text-[var(--color-text-strong)] transition-opacity"
         >
           Study
         </motion.button>
         <motion.button
-          whileHover={{ scale: 1.02, opacity: 0.9 }}
-          whileTap={{ scale: 0.96 }}
+          whileHover={{ opacity: 0.9 }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => onStartTest?.(author)}
-          className="rounded-full bg-[var(--color-text-strong)] px-4 py-3 text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-sm transition:transform duration-300 active:shadow-inner"
+          className="flex-1 rounded-full bg-[var(--color-accent)] px-4 py-2.5 text-[13px] font-medium text-white transition-opacity shadow-sm"
         >
           Test
         </motion.button>

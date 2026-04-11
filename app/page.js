@@ -160,7 +160,7 @@ export default function Page() {
       {/* Desktop Sidebar: Static and Flex-based */}
       <div
         className={`hidden lg:block h-full border-r border-[var(--color-border-subtle)] bg-white transition-[width] duration-300 ease-in-out overflow-hidden flex-shrink-0 ${
-          desktopSidebarCollapsed ? "w-[72px]" : "w-[320px]"
+          desktopSidebarCollapsed ? "w-[72px]" : "w-[260px]"
         }`}
       >
         <Sidebar
