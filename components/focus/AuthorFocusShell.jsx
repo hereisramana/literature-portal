@@ -14,7 +14,6 @@ export default function AuthorFocusShell({
   onCloseGuide = null,
   hideTabsInHeader = false,
   guideCtaLabel = "Okay",
-  showGuideSkip = true,
 }) {
   return (
     <motion.div
@@ -150,14 +149,6 @@ export default function AuthorFocusShell({
                     >
                       {guideCtaLabel}
                     </motion.button>
-                    {showGuideSkip && (
-                      <button
-                        onClick={onCloseGuide}
-                        className="px-4 py-3 text-xs font-bold uppercase tracking-wider text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)]"
-                      >
-                        Skip
-                      </button>
-                    )}
                   </div>
                 </motion.div>
               </motion.div>

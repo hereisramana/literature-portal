@@ -414,7 +414,6 @@ export default function TestFocusView({
               <div className="mb-14">
                 <ConfidenceStrip visible={true} currentValue={confidence} onSelect={(val) => { setConfidence(val); onSaveConfidence?.({ author: author.author, exercise: "verify", confidence: val, timestamp: Date.now() }); setTimeout(onClose, 800); }} embedded={true} />
               </div>
-              <button onClick={onClose} className="text-[12px] font-bold uppercase tracking-widest opacity-30 hover:opacity-100 transition">Skip for now</button>
             </motion.div>
           </div>
         )}
