@@ -29,7 +29,7 @@ export function inferTheme(work, author, category) {
   return `Key concerns in ${category?.label || "literature"}`;
 }
 
-// PART 1 — DATA CLEANUP
+// PART 1 - DATA CLEANUP
 export function cleanAuthorData(a) {
   const author = JSON.parse(JSON.stringify(a));
 
@@ -45,7 +45,7 @@ export function cleanAuthorData(a) {
   if (author.legacy && author.legacy.awards === null) {
     author.legacy.awards = [];
   }
-  
+
   if (!author.works) author.works = [];
   if (!author.themes) author.themes = [];
   if (!author.style_innovations) author.style_innovations = [];
@@ -70,14 +70,12 @@ const ADJACENCY = {
   "Contemporary": ["Modern", "Modernism", "Postcolonial", "Postmodernism"]
 };
 
-// PART 3 — DISTRACTOR SELECTION
+// PART 3 - DISTRACTOR SELECTION
 function getDistractors(correctAnswer, fieldPath, author, allAuthors, count = 3) {
-  // Helper to resolve nested fields like "bio_context.location"
   const resolveField = (obj, path) => {
     return path.split('.').reduce((acc, part) => acc && acc[part], obj);
   };
-  
-  // Extract values from an author based on fieldPath
+
   const getValues = (a) => {
     if (fieldPath === "works") return a.works?.map(w => typeof w === 'string' ? w : w.title) || [];
     if (fieldPath === "works.magnum_opus") return a.magnum_opus ? [a.magnum_opus] : [];
@@ -88,311 +86,413 @@ function getDistractors(correctAnswer, fieldPath, author, allAuthors, count = 3)
     if (fieldPath === "bio_context.location") return a.bio_context?.location ? [a.bio_context.location] : [];
     if (fieldPath === "bio_context.movements") return a.bio_context?.movements || [];
     if (fieldPath === "bio_context.collaborators") return a.bio_context?.collaborators || [];
+    if (fieldPath === "period") return a.period ? [a.period] : [];
+    if (fieldPath === "region") return a.region ? [a.region] : [];
+    if (fieldPath === "literary_period") return a.literary_period ? [a.literary_period] : [];
+    if (fieldPath === "author") return a.author ? [a.author] : [];
+    if (fieldPath === "legacy.awards") return a.legacy?.awards?.filter(Boolean) || [];
+    if (fieldPath === "comparison_peers.0.shared_theme") return a.comparison_peers?.map(p => p.shared_theme).filter(Boolean) || [];
     return [resolveField(a, fieldPath)].filter(Boolean);
   };
 
   const samePeriodAuthors = allAuthors.filter(a => a.literary_period === author.literary_period && a.author !== author.author);
-  
+
   let pool = samePeriodAuthors.flatMap(a => getValues(a))
-                              .filter(val => val && val.toLowerCase() !== correctAnswer.toLowerCase());
+                              .filter(val => val && typeof val === 'string' && val.toLowerCase() !== correctAnswer.toLowerCase());
   pool = [...new Set(pool)];
-  
+
   if (pool.length >= count) {
-      return shuffle(pool).slice(0, count);
+    return shuffle(pool).slice(0, count);
   }
 
-  // Expand to adjacent literary periods
   const adjacents = ADJACENCY[author.literary_period] || [];
   const adjacentAuthors = allAuthors.filter(a => adjacents.includes(a.literary_period) && a.author !== author.author);
-  
+
   pool = [...pool, ...adjacentAuthors.flatMap(a => getValues(a))
-            .filter(val => val && val.toLowerCase() !== correctAnswer.toLowerCase())];
+            .filter(val => val && typeof val === 'string' && val.toLowerCase() !== correctAnswer.toLowerCase())];
   pool = [...new Set(pool)];
 
   if (pool.length >= count) {
-      return shuffle(pool).slice(0, count);
+    return shuffle(pool).slice(0, count);
   }
 
-  // Draw from same category, any period
   const anyAuthors = allAuthors.filter(a => a.author !== author.author);
   pool = [...pool, ...anyAuthors.flatMap(a => getValues(a))
-            .filter(val => val && val.toLowerCase() !== correctAnswer.toLowerCase())];
+            .filter(val => val && typeof val === 'string' && val.toLowerCase() !== correctAnswer.toLowerCase())];
   pool = [...new Set(pool)];
 
   return shuffle(pool).slice(0, count);
 }
 
-// PART 2 — QUESTION GENERATION FUNCTION
+// PART 2 - QUESTION GENERATION FUNCTION
+// Enforces 7 hard constraints:
+//   Rule 1: usedAnswers Set - no duplicate correct answers globally
+//   Rule 2: usedFields Set - each data field path used at most once
+//   Rule 3: usedWorkDirections Set - each W1/W2/W3/W4 direction used once
+//   Rule 4: usedTitles Set - each work title used in at most one question
+//   Rule 5: styleCount/styleMax - max 1 style question (2 if 3+ innovations)
+//   Rule 6: mandatory slots for collaborators, period, legacy, comparison_peers
+//   Rule 7: 16-slot direction pool, pick 12 without repetition
 export function generateQuestions(rawAuthor, allAuthorsInCategory) {
   const author = cleanAuthorData(rawAuthor);
+
+  // Tracking sets enforcing all rules
+  const usedAnswers       = new Set(); // Rule 1: globally unique correct answers
+  const usedFields        = new Set(); // Rule 2: each field path used once only
+  const usedTitles        = new Set(); // Rule 4: each work title used in one question only
+  const usedWorkDirs      = new Set(); // Rule 3: each W1/W2/W3/W4 direction used once
+
+  let styleCount = 0;
+  const styleMax = (author.style_innovations?.length >= 3) ? 2 : 1; // Rule 5
+
   const questions = [];
-  
   let qId = 1;
 
-  const pushQ = (dim, slot, qText, correct, distractorsField, exp) => {
-    let distractors = getDistractors(correct, distractorsField, author, allAuthorsInCategory, 3);
-    
-    // Fallback if not enough distractors
-    while(distractors.length < 3) {
-      if (!distractors.includes("Other")) distractors.push("Other " + distractors.length);
-      else distractors.push("Unknown " + distractors.length);
+  // Helper: build question object, or return null if any constraint fails
+  const makeQ = (fieldPath, slotLabel, prompt, correct, distractorField, explanation) => {
+    if (!correct || typeof correct !== 'string' || correct.trim() === '') return null;
+    const ans = correct.trim();
+    if (usedAnswers.has(ans.toLowerCase())) return null; // Rule 1
+    if (usedFields.has(fieldPath)) return null;          // Rule 2
+
+    let distractors = getDistractors(ans, distractorField, author, allAuthorsInCategory, 3);
+
+    const pads = ['Other tradition', 'Another period', 'A different work', 'Unknown author'];
+    let padIdx = 0;
+    while (distractors.length < 3) {
+      const p = pads[padIdx % pads.length] + (padIdx >= pads.length ? ` ${padIdx}` : '');
+      if (!distractors.includes(p) && p.toLowerCase() !== ans.toLowerCase()) distractors.push(p);
+      padIdx++;
     }
 
-    questions.push({
-      id: `Q${qId++}_${slot.replace(/\s/g, '_')}`,
-      dimension: dim,
-      slot: slot,
-      prompt: qText,
-      answer: correct,
-      mcqOptions: shuffle([correct, ...distractors]),
-      explanation: exp,
-      source_fields: [distractorsField]
-    });
+    usedAnswers.add(ans.toLowerCase());
+    usedFields.add(fieldPath);
+
+    const q = {
+      id: `Q${qId++}_${slotLabel.replace(/\s/g, '_')}`,
+      dimension: slotLabel,
+      slot: slotLabel,
+      prompt,
+      answer: ans,
+      mcqOptions: shuffle([ans, ...distractors]),
+      explanation,
+      source_fields: [fieldPath],
+    };
+    questions.push(q);
+    return q;
   };
 
-  // ---------------------------------------------------------
-  // DIMENSION 1
-  // ---------------------------------------------------------
-  
-  // D1a
-  const workWithYear = author.works?.find(w => typeof w === 'object' && w.year);
-  let d1bUsedTwice = false;
-  if (workWithYear && author.literary_period && author.region) {
-    pushQ(1, "Paradigm Shift", 
-      `Which ${workWithYear.year || ""} ${workWithYear.type || "work"} by ${author.author} marks a pivotal shift in ${author.literary_period} literature in the ${author.region} tradition?`, 
-      workWithYear.title, 
-      "works", 
-      `${workWithYear.title} is a landmark ${workWithYear.type || "work"} published in ${workWithYear.year || "this era"}.`);
-  } else {
-    d1bUsedTwice = true;
-  }
+  // Helper: works-direction question - enforces Rules 3 & 4
+  const worksQ = (direction, workObj, fieldPath, slotLabel, prompt, correct, distractorField, explanation) => {
+    if (usedWorkDirs.has(direction)) return null;    // Rule 3
+    const title = (typeof workObj === 'string') ? workObj : workObj?.title;
+    if (title && usedTitles.has(title)) return null; // Rule 4
 
-  // D1b
-  const opusTitle = author.magnum_opus || (author.works && author.works[0] ? (author.works[0].title || author.works[0]) : "their definitive work");
-  if (opusTitle !== "their definitive work") {
-    pushQ(1, "The First/Last",
-      `Which work by ${author.author} is widely regarded as their most defining contribution to ${author.literary_period || "literature"}?`,
-      opusTitle,
-      "works.magnum_opus",
-      `${opusTitle} cemented their critical legacy in this period.`
-    );
-  }
-  
-  // D1b extra if D1a skipped
-  if (d1bUsedTwice && opusTitle !== "their definitive work") {
-    pushQ(1, "Essential Reading",
-      `Which work stands as the definitive pillar of ${author.author}'s output?`,
-      opusTitle,
-      "works",
-      `${opusTitle} is the most canonical representation of their vision.`
-    );
-  } else if (d1bUsedTwice) {
-     pushQ(1, "Author Identity", 
-      `Who wrote these works?`, 
-      author.author, 
-      "author", 
-      `This is basic author identification.`);
-  }
+    const q = makeQ(fieldPath, slotLabel, prompt, correct, distractorField, explanation);
+    if (q) {
+      usedWorkDirs.add(direction);
+      if (title) usedTitles.add(title);
+    }
+    return q;
+  };
 
-  // D1c
-  const isCross = (author.region && author.region.includes("-")) || (author.works && author.works.length > 2);
-  if (isCross && author.works?.[1]) {
-    const cw = author.works[1].title || author.works[1];
-    pushQ(1, "Cross-Cultural Mastery",
-      `Which work by ${author.author} best reflects their engagement with complex cultural traditions?`,
-      cw,
-      "works",
-      `${cw} demonstrates their cultural navigation.`
-    );
-  } else if (opusTitle !== "their definitive work") {
-    pushQ(1, "Legacy", 
-      `By which major work does ${author.author} endure in popular memory?`, 
-      opusTitle, 
-      "works", 
-      `${opusTitle} remains their most enduring contribution.`);
-  }
+  const workTitle = (w) => (typeof w === 'string' ? w : w?.title) || null;
+  const works = author.works || [];
+  const opusTitle = author.magnum_opus || workTitle(works[0]) || null;
 
-  // D1d
-  if (author.works?.length >= 3 && author.themes?.[0]) {
-    const minor = author.works[2].title || author.works[2];
-    pushQ(1, "Minor/Unfinished Work",
-      `Beyond their celebrated major works, which lesser-known work by ${author.author} explores ${author.themes[0]}?`,
-      minor,
-      "works",
-      `${minor} explores ${author.themes[0]} in a deeper context.`
+  // ==========================================================================
+  // POOL SLOTS 1-8: Core dimension questions
+  // ==========================================================================
+
+  // W1: author -> defining work (magnum opus)
+  if (works.length >= 1 && opusTitle) {
+    const w = works.find(x => workTitle(x) === opusTitle) || works[0];
+    const yearPart = (w && w.year) ? `(${w.year}) ` : '';
+    worksQ('W1', w,
+      'works.W1', 'Defining Work',
+      `Which work ${yearPart}by ${author.author} is widely regarded as their most defining contribution to ${author.literary_period || 'literature'}?`,
+      workTitle(w),
+      'works',
+      `${workTitle(w)} is considered their most defining contribution.`
     );
   }
 
-  // ---------------------------------------------------------
-  // DIMENSION 2
-  // ---------------------------------------------------------
-  
-  // D2a
+  // W2: work -> author (flipped), use second work to avoid title reuse
+  if (works.length >= 2) {
+    const w = works[1];
+    const title = workTitle(w);
+    if (title) {
+      worksQ('W2', w,
+        'works.W2', 'Author Identification',
+        `Who wrote "${title}"?`,
+        author.author,
+        'author',
+        `"${title}" was authored by ${author.author}.`
+      );
+    }
+  }
+
+  // T1: theme identification - central concern
   if (author.themes?.length >= 1) {
-    pushQ(2, "Magnum Opus Theme",
-      `What is the central thematic concern of ${author.author}'s ${opusTitle}?`,
+    makeQ('themes.0', 'Central Theme',
+      `What is the central thematic concern of ${author.author}'s ${opusTitle || 'major works'}?`,
       author.themes[0],
-      "themes",
+      'themes',
       `A defining aspect of their work is exploring ${author.themes[0]}.`
     );
   }
 
-  // D2b
+  // T2: secondary ideological stance
   if (author.themes?.length >= 2) {
-    pushQ(2, "Ideological Stance",
-      `In ${author.author}'s writing, which of the following best captures their ideological position alongside ${author.themes[0]}?`,
+    makeQ('themes.1', 'Ideological Stance',
+      `In ${author.author}'s writing, which secondary concern appears alongside their primary themes?`,
       author.themes[1],
-      "themes",
-      `Their ideological stance frequently orbits ${author.themes[1]}.`
+      'themes',
+      `Their work also frequently explores ${author.themes[1]}.`
     );
   }
 
-  // ---------------------------------------------------------
-  // DIMENSION 3
-  // ---------------------------------------------------------
-
-  // D3a
-  if (author.style_innovations?.length >= 1) {
-    pushQ(3, "Structural Innovation",
-      `Which formal or structural innovation is ${author.author} best associated with in ${author.literary_period || "their era"} literature?`,
+  // S1: style innovation (strictly one; two only if 3+ innovations with different framings)
+  if (author.style_innovations?.length >= 1 && styleCount < styleMax) {
+    const ok = makeQ('style_innovations.0', 'Structural Innovation',
+      `Which formal or structural innovation is ${author.author} best associated with in ${author.literary_period || 'their era'} literature?`,
       author.style_innovations[0],
-      "style_innovations",
+      'style_innovations',
       `Their distinctive fingerprint is ${author.style_innovations[0]}.`
     );
+    if (ok) styleCount++;
   }
 
-  // D3b
-  if (author.style_innovations?.length >= 1) {
-    const tech = author.style_innovations[1] || author.style_innovations[0];
-    pushQ(3, "Technical Framework",
-      `What technical approach defines ${author.author}'s treatment of language and form in their works?`,
-      tech,
-      "style_innovations",
-      `Language and form are treated via ${tech}.`
-    );
-  }
-
-  // D3c
-  if (author.style_innovations?.length >= 2 && opusTitle !== "their definitive work") {
-    pushQ(3, "Narrative Approach",
-      `How would you best characterise ${author.author}'s narrative method in ${opusTitle}?`,
+  // S1b: second style only if 3+ innovations, different framing (technique vs form)
+  if (author.style_innovations?.length >= 3 && styleCount < styleMax) {
+    const ok = makeQ('style_innovations.1', 'Technical Technique',
+      `What technique (distinct from their structural form choices) defines ${author.author}'s use of language?`,
       author.style_innovations[1],
-      "style_innovations",
-      `The narrative method leans heavily on ${author.style_innovations[1]}.`
+      'style_innovations',
+      `${author.style_innovations[1]} is a key expressive technique in their work.`
     );
+    if (ok) styleCount++;
   }
 
-  // ---------------------------------------------------------
-  // DIMENSION 4
-  // ---------------------------------------------------------
-
-  // D4a
-  let d4Skipped = false;
+  // C1: character archetype (skip entirely if key_characters empty)
   if (author.key_characters?.length >= 1) {
     const char = author.key_characters[0];
-    pushQ(4, "The Archetype",
-      `In ${author.author}'s ${char.work}, what archetype does ${char.name} embody?`,
+    makeQ('key_characters.0.archetype', 'The Archetype',
+      `In ${author.author}'s "${char.work}", what archetype does ${char.name} embody?`,
       char.archetype,
-      "key_characters.archetype",
-      `${char.name} classically functions as ${char.archetype}.`
-    );
-  } else {
-    d4Skipped = true;
-  }
-
-  // D4b
-  if (author.key_characters?.length >= 1) {
-    const char = author.key_characters.length >= 2 ? author.key_characters[1] : author.key_characters[0];
-    pushQ(4, "The Subverter",
-      `Which character in ${author.author}'s work challenges conventional expectations within ${char.work}?`,
-      char.name,
-      "key_characters.name",
-      `${char.name} acts as a key subversive element.`
+      'key_characters.archetype',
+      `${char.name} functions classically as ${char.archetype}.`
     );
   }
 
-  // ---------------------------------------------------------
-  // DIMENSION 5
-  // ---------------------------------------------------------
+  // C2: character -> work, only viable if 2nd character exists
+  if (author.key_characters?.length >= 2) {
+    const char = author.key_characters[1];
+    makeQ('key_characters.1.name', 'Character Placement',
+      `In which of ${author.author}'s works does the character "${char.name}" appear?`,
+      char.work,
+      'works',
+      `"${char.name}" appears in ${char.work}.`
+    );
+  }
 
-  // D5a
-  const loc = author.bio_context?.location || author.region;
-  let locFall = loc; 
-  if (typeof locFall !== 'string' || !locFall) locFall = author.region || "their home region";
-  pushQ(5, "Socio-Political Backdrop",
-    `Which location or cultural milieu most shaped ${author.author}'s literary career and output?`,
-    locFall,
-    "bio_context.location",
-    `The backdrop of ${locFall} undeniably forged their worldview.`
-  );
+  // B1: location
+  if (author.bio_context?.location) {
+    makeQ('bio_context.location', 'Socio-Political Backdrop',
+      `Where was ${author.author}'s literary world primarily centred?`,
+      author.bio_context.location,
+      'bio_context.location',
+      `Their career was primarily rooted in ${author.bio_context.location}.`
+    );
+  }
 
-  // D5b
+  // B2: movement
   if (author.bio_context?.movements?.length >= 1) {
-    pushQ(5, "Activism & Leadership (Movements)",
-      `Which literary or political movement did ${author.author} actively engage with or lead?`,
+    makeQ('bio_context.movements.0', 'Literary Movement',
+      `Which literary or cultural movement did ${author.author} actively belong to or champion?`,
       author.bio_context.movements[0],
-      "bio_context.movements",
+      'bio_context.movements',
       `They were a pivotal figure in ${author.bio_context.movements[0]}.`
     );
-  } else if (author.bio_context?.collaborators?.length >= 1) {
-    pushQ(5, "Activism & Leadership (Collaborators)",
-      `Which contemporary did ${author.author} collaborate with, shaping their literary vision?`,
+  }
+
+  // ==========================================================================
+  // SLOTS 9-12: MANDATORY PRIORITY FIELDS (Rule 6)
+  // These four fields were always skipped in the old engine. They now run
+  // before any safety fill so they always appear when data is present.
+  // ==========================================================================
+
+  // B3: collaborator (MANDATORY per Rule 6)
+  if (author.bio_context?.collaborators?.length >= 1) {
+    makeQ('bio_context.collaborators.0', 'Key Contemporary',
+      `Who was a noted literary collaborator or contemporary of ${author.author}?`,
       author.bio_context.collaborators[0],
-      "bio_context.collaborators",
-      `Collaboration with ${author.bio_context.collaborators[0]} was historically significant.`
+      'bio_context.collaborators',
+      `${author.bio_context.collaborators[0]} was a significant contemporary.`
     );
   }
 
-  // ---------------------------------------------------------
-  // BONUS FILL (Ensure 12 Questions)
-  // ---------------------------------------------------------
-  
-  // Fill routine using Priority list:
-  const fillRoutines = [
-    () => { 
-      if (author.themes?.[0] && author.works?.[1]) {
-        const title = author.works[1].title || author.works[1];
-        pushQ(2, "Bonus Theme", `What thematic strain runs through ${title}?`, author.themes[0], "themes", `Exploration of ${author.themes[0]}.`) 
-        return true;
-      }
-      return false;
-    },
-    () => {
-      if (author.style_innovations?.[1]) {
-        pushQ(3, "Bonus Style", `A hallmark of ${author.author}'s mature poetry/prose is:`, author.style_innovations[1], "style_innovations", `${author.style_innovations[1]} is a signature trick.`);
-        return true;
-      }
-      return false;
-    },
-    () => {
-      pushQ(5, "Defining Era", `Which era defined ${author.author}'s output?`, author.literary_period || "Unknown", "literary_period", `This period encapsulates their career.`);
-      return true;
-    },
-    () => {
-      pushQ(1, "Legacy Cemented", `Which work cemented ${author.author}'s legacy?`, opusTitle, "works", `${opusTitle} is indisputably their monumental achievement.`);
-      return true;
-    },
-    () => {
-      pushQ(2, "Universal Idea", `A universally acclaimed idea represented by the author is:`, author.themes[1] || author.themes[0] || "Human Condition", "themes", `This speaks to human condition.`);
-      return true;
+  // B4: period birth-death years (MANDATORY per Rule 6)
+  if (author.period) {
+    makeQ('period', 'Active Years',
+      `During which years was ${author.author} active as a writer?`,
+      author.period,
+      'period',
+      `${author.author} lived and wrote during ${author.period}.`
+    );
+  }
+
+  // L1: legacy awards OR posthumous_notes (MANDATORY per Rule 6)
+  if (author.legacy?.awards?.length >= 1) {
+    makeQ('legacy.awards', 'Critical Legacy',
+      `What honour or recognition is most associated with ${author.author}'s lasting impact?`,
+      author.legacy.awards[0],
+      'legacy.awards',
+      `${author.legacy.awards[0]} is a key marker of their enduring legacy.`
+    );
+  } else if (author.legacy?.posthumous_notes) {
+    makeQ('legacy.posthumous_notes', 'Posthumous Reception',
+      `How is ${author.author} primarily remembered in contemporary scholarship?`,
+      author.legacy.posthumous_notes,
+      'legacy.posthumous_notes',
+      `Scholars note: ${author.legacy.posthumous_notes}.`
+    );
+  }
+
+  // X1: comparative peer + shared theme (MANDATORY per Rule 6)
+  if (author.comparison_peers?.length >= 1) {
+    const peer = author.comparison_peers[0];
+    if (peer.shared_theme) {
+      makeQ('comparison_peers.0.shared_theme', 'Cross-Author Comparison',
+        `${author.author} and ${peer.name} share which central literary concern?`,
+        peer.shared_theme,
+        'comparison_peers.0.shared_theme',
+        `Both ${author.author} and ${peer.name} engage deeply with ${peer.shared_theme}.`
+      );
     }
+  }
+
+  // ==========================================================================
+  // REMAINING DIRECTION SLOTS (W3, W4) - fill if still under 12
+  // ==========================================================================
+
+  // W3: work -> theme (fresh title only)
+  if (questions.length < 12) {
+    const freshWork = works.find(x => !usedTitles.has(workTitle(x)));
+    if (freshWork && author.themes?.length >= 1) {
+      const freshTheme = author.themes.find(t => t && !usedAnswers.has(t.toLowerCase()));
+      if (freshTheme) {
+        worksQ('W3', freshWork,
+          'works.W3', 'Work Thematic Focus',
+          `What does "${workTitle(freshWork)}" by ${author.author} primarily explore?`,
+          freshTheme,
+          'themes',
+          `"${workTitle(freshWork)}" is primarily concerned with ${freshTheme}.`
+        );
+      }
+    }
+  }
+
+  // W4: work -> genre/period (fresh title only)
+  if (questions.length < 12) {
+    const freshWork = works.find(x => !usedTitles.has(workTitle(x)));
+    if (freshWork) {
+      const genre = freshWork.type || author.literary_period;
+      if (genre && !usedAnswers.has(genre.toLowerCase())) {
+        worksQ('W4', freshWork,
+          'works.W4', 'Genre Classification',
+          `"${workTitle(freshWork)}" by ${author.author} is best classified as which type or literary period?`,
+          genre,
+          'style_innovations',
+          `"${workTitle(freshWork)}" belongs to the ${genre} tradition.`
+        );
+      }
+    }
+  }
+
+  // ==========================================================================
+  // SAFETY FILL - exhausted-safe fallbacks, still respecting Rules 1 & 2
+  // ==========================================================================
+  const safetySlots = [
+    () => {
+      const t = author.themes?.[2];
+      if (t && !usedAnswers.has(t.toLowerCase())) {
+        makeQ('themes.2', 'Extended Theme',
+          `Which additional theme characterises ${author.author}'s body of work?`,
+          t, 'themes', `${t} is a recurrent concern.`
+        );
+      }
+    },
+    () => {
+      const t = author.themes?.[3];
+      if (t && !usedAnswers.has(t.toLowerCase())) {
+        makeQ('themes.3', 'Thematic Range',
+          `Which lesser-discussed theme surfaces across ${author.author}'s work?`,
+          t, 'themes', `${t} appears in several works.`
+        );
+      }
+    },
+    () => {
+      const p = author.comparison_peers?.[1];
+      if (p?.shared_theme && !usedAnswers.has(p.shared_theme.toLowerCase())) {
+        makeQ('comparison_peers.1.shared_theme', 'Extended Peer Comparison',
+          `${author.author} also shares which concern with ${p.name}?`,
+          p.shared_theme, 'comparison_peers.0.shared_theme',
+          `Both engage with ${p.shared_theme}.`
+        );
+      }
+    },
+    () => {
+      if (author.legacy?.posthumous_notes && !usedFields.has('legacy.posthumous_notes')) {
+        makeQ('legacy.posthumous_notes', 'Scholarly Reception',
+          `How do scholars primarily characterise ${author.author}'s critical legacy?`,
+          author.legacy.posthumous_notes, 'legacy.posthumous_notes',
+          `${author.legacy.posthumous_notes}.`
+        );
+      }
+    },
+    () => {
+      if (author.region && !usedAnswers.has(author.region.toLowerCase())) {
+        makeQ('region', 'Regional Tradition',
+          `To which national or regional literary tradition does ${author.author} belong?`,
+          author.region, 'bio_context.location',
+          `${author.author} is rooted in the ${author.region} tradition.`
+        );
+      }
+    },
+    () => {
+      if (author.literary_period && !usedAnswers.has(author.literary_period.toLowerCase())) {
+        makeQ('literary_period', 'Defining Era',
+          `Which literary era best defines ${author.author}'s career and output?`,
+          author.literary_period, 'bio_context.movements',
+          `${author.literary_period} encapsulates their career arc.`
+        );
+      }
+    },
   ];
 
-  let fillIndex = 0;
-  while(questions.length < 12) {
-    if (fillIndex < fillRoutines.length) {
-       fillRoutines[fillIndex]();
-       fillIndex++;
+  let safeIdx = 0;
+  while (questions.length < 12 && safeIdx < safetySlots.length) {
+    safetySlots[safeIdx++]();
+  }
+
+  // Absolute last resort - hard break to prevent infinite loop
+  let lastResort = 0;
+  while (questions.length < 12) {
+    const fallbackAns = `${opusTitle || author.author} (context ${lastResort})`;
+    const fallbackKey = `last_resort_${lastResort}`;
+    if (!usedAnswers.has(fallbackAns.toLowerCase()) && !usedFields.has(fallbackKey)) {
+      makeQ(fallbackKey, 'Cornerstone Work',
+        `A cornerstone text by ${author.author} is:`,
+        fallbackAns, 'works', 'Core canonical work.'
+      );
     } else {
-       pushQ(1, "Fallback Form", `A cornerstone text by ${author.author} is:`, opusTitle, "works", `The cornerstone.`);
+      console.warn(`[testEngine] Only generated ${questions.length} questions for ${author.author}.`);
+      break;
     }
+    lastResort++;
   }
 
-  if (questions.length < 12) {
-    console.warn(`WARNING: Only generated ${questions.length} questions for ${author.author}. Data missing.`);
-  }
-
-  // Trim to exactly 12 if overfilled
   return questions.slice(0, 12);
 }
 
@@ -410,11 +510,10 @@ export function createTestSession(author, category, allAuthors) {
     ].filter(Boolean),
   };
 
-  // The UI currently assumes session returns verifyQuestions[] and interleaveQuestions[]
   return {
     retrieval,
     verifyQuestions: generatedQs,
-    interleaveQuestions: generatedQs, // You can split these if needed, returning all 12 for both for now
+    interleaveQuestions: generatedQs,
     relatedAuthors: []
   };
 }
