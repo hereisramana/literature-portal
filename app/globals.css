@@ -1,117 +1,70 @@
 @import "tailwindcss";
 
-@theme {
-  /* Override Tailwind core colors to enforce the 5-color palette entirely */
-  --color-white: #D7D7D9;
-  --color-black: #736D62;
-}
-
 :root {
-  /* The Muted Mountain Palette - STRICT 5 COLORS ONLY */
-  /* 1. Light Grey */
-  --color-bg-primary: #D7D7D9;     
-  --color-bg-surface: #D7D7D9;     
+  /* DARK ACADEMIC CORE PALETTE */
+  --clr-bg: #12111A;      /* App Background (Void) */
+  --clr-surface: #1C1A30; /* Card / Panel Background (Depth) */
+  --clr-recall: #2E2960;  /* Recall Phase BG (Dusk) */
+  --clr-focus: #534AB7;   /* Primary Action / Timer Ring (Focus) */
+  --clr-pulse: #7F77DD;   /* Recognise Phase Accent (Pulse) */
+  --clr-correct: #1D9E75; /* Correct Answer (Confirm) */
+  --clr-wrong: #D85A30;   /* Wrong Answer (Alert) */
+  --clr-warn: #EF9F27;    /* Timer Warning < 5s (Gold) */
+  --clr-dim: #444441;     /* Unchosen Options (Slate) */
+  --clr-ink: #EBEAF0;     /* Primary Text (Parchment) */
   
-  /* 4. Warm Sand */
-  --color-bg-inset: #D9CCB4;       
-  --color-bg-accent-soft: #D9CCB4; 
-
-  /* 2. Muted Blue */
-  --color-border-subtle: #7C92A6;  
-  --color-border-strong: #7C92A6;  
-
-  /* 3. Muted Green */
-  --color-accent: #557359;         
-  --color-accent-strong: #557359;  
-  --color-success-soft: #D7D7D9;
-  --color-success-border: #557359;
-  --color-success-text: #557359;
-  --color-focus-ring: #557359;
-
-  /* 5. Warm Dark Grey */
-  --color-text-primary: #736D62;   
-  --color-text-secondary: #736D62; 
-  --color-text-strong: #736D62;    
-
-  /* Text on Accent uses Light Grey for contrast */
-  --text-on-accent: #D7D7D9;
-
-  /* Mappings */
+  /* Semantic Mappings */
+  --color-bg-primary: var(--clr-bg);
+  --color-bg-surface: var(--clr-surface);
+  --color-bg-inset: #12111A; 
+  
+  --color-text-primary: var(--clr-ink);
+  --color-text-secondary: rgba(235, 234, 240, 0.7);
+  --color-text-strong: #FFFFFF;
+  
+  --color-border-subtle: rgba(235, 234, 240, 0.1);
+  --color-border-strong: var(--clr-focus);
+  --color-accent: var(--clr-focus);
+  --color-accent-strong: var(--clr-pulse);
+  
+  --text-on-accent: var(--clr-ink);
   --text-body-color: var(--color-text-primary);
-  --text-muted-color: var(--color-text-primary); /* Forced to dark grey */
-  --text-heading-color: var(--color-text-primary);
+  --text-heading-color: var(--color-text-strong);
 
-  --card-bg: var(--color-bg-inset); /* Cards are Warm Sand */
-  --card-shadow: none; /* No shadow, fully flat */
-
-  --input-bg: var(--color-bg-primary);
-  --input-border: var(--color-border-subtle);
-  --input-shadow: none;
-
-  --button-primary-bg: var(--color-accent);
-  --button-primary-text: var(--text-on-accent);
-  --button-secondary-bg: var(--color-bg-surface);
-  --button-secondary-text: var(--color-text-primary);
-
-  --divider-color: var(--color-border-subtle);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.4);
   --page-max-width: 1440px;
 }
 
+/* Force dark mode behavior as this is a dark theme */
 html, body {
   height: 100%;
+  background-color: var(--clr-bg);
+  color: var(--clr-ink);
 }
 
 body {
   margin: 0;
-  background: var(--color-bg-primary);
-  color: var(--text-body-color);
   font-family: var(--font-body), "Nunito", sans-serif;
-  overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: var(--font-display), "Manrope", sans-serif;
-  color: var(--text-heading-color);
+  color: #FFFFFF;
   margin: 0;
-  letter-spacing: -0.02em; 
-}
-
-p, button, input, li, span, a, select, option {
-  font-family: var(--font-body), "Nunito", sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-::selection {
-  background: var(--color-bg-inset); 
 }
 
 .card {
-  background: var(--card-bg);
-  box-shadow: none;
-  border-radius: 16px; 
-  border: 1px solid var(--color-border-strong);
-  will-change: transform, opacity;
-}
-
-.inset {
-  background: var(--input-bg);
-  box-shadow: none;
+  background: var(--clr-surface);
   border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
 }
 
-.accent {
-  background: var(--button-primary-bg);
-  color: var(--button-primary-text);
-  border: none;
-}
-
+/* Custom Scrollbar for Dark Theme */
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border-subtle) transparent;
+  scrollbar-color: var(--clr-dim) transparent;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
@@ -123,14 +76,20 @@ p, button, input, li, span, a, select, option {
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: var(--color-border-subtle);
-  border-radius: 999px;
+  background: var(--clr-dim);
+  border-radius: 10px;
 }
 
 .success-surface {
-  background: var(--color-success-soft);
-  color: var(--color-success-text);
-  border: 1px solid var(--color-success-border);
+  background: rgba(29, 158, 117, 0.15);
+  color: #1D9E75;
+  border: 1px solid #1D9E75;
+}
+
+.error-surface {
+  background: rgba(216, 90, 48, 0.15);
+  color: #D85A30;
+  border: 1px solid #D85A30;
 }
 
 .shell-width {
@@ -139,33 +98,7 @@ p, button, input, li, span, a, select, option {
   width: 100%;
 }
 
-.safe-bottom {
-  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px) + 14px);
-}
-
-.safe-bottom-lg {
-  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px) + 14px);
-}
-
-.ease-figma {
-  transition-timing-function: ease-out;
-  --ease-smart: ease-out;
-}
-
-.gpu-transition {
-  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
-  will-change: transform, opacity;
-}
-
-.content-lazy {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 300px;
-}
-
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--color-focus-ring);
+button:focus-visible {
+  outline: 2px solid var(--clr-focus);
   outline-offset: 3px;
 }

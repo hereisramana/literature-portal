@@ -13,8 +13,8 @@ function ResultNote({ children, success = false, checked = false }) {
     <div
       className={`rounded-xl px-5 py-4 text-[14px] leading-relaxed shadow-sm border ${
         success
-          ? "success-surface border-[var(--color-success-border)]"
-          : "bg-[var(--color-bg-surface)] text-[var(--text-body-color)] border-[var(--color-border-subtle)]"
+          ? "success-surface"
+          : "error-surface"
       }`}
     >
       {children}
@@ -34,11 +34,7 @@ function McqPanel({
   onNext,
   timer,
 }) {
-  if (!question) {
-    return <div className="p-8 text-center bg-[var(--color-bg-inset)] rounded-2xl border border-[var(--color-border-subtle)] shadow-inner">
-      <p className="text-[14px] font-bold text-[var(--text-muted-color)] opacity-60">No more questions available for this session.</p>
-    </div>;
-  }
+  if (!question) return null;
 
   const success = submitted && selected === question.answer;
 
@@ -47,18 +43,28 @@ function McqPanel({
       <div className="space-y-4">
         <div className="flex items-center justify-between gap-6">
            <div className="flex-1">
-             <span className="inline-block mb-2 text-[10px] font-bold uppercase tracking-widest text-[var(--color-accent-strong)]">{question.slot}</span>
-             <p className="text-[16px] font-bold leading-relaxed text-[var(--text-body-color)]">{question.prompt}</p>
+             <span className="inline-block mb-2 text-[10px] font-bold uppercase tracking-widest text-[var(--clr-pulse)]">{question.slot}</span>
+             <p className="text-[18px] font-semibold leading-relaxed text-[var(--clr-ink)]">{question.prompt}</p>
            </div>
            {!submitted && (
              <div className="flex flex-col items-center shrink-0">
-               <div className="h-10 w-10 rounded-full border border-[var(--color-border-strong)] flex items-center justify-center relative overflow-hidden bg-[var(--color-bg-surface)]">
-                 <span className="text-[11px] font-black text-[var(--color-text-primary)] z-10">{timer}</span>
+               <div className="h-12 w-12 rounded-full border-2 border-[var(--clr-dim)] flex items-center justify-center relative overflow-hidden bg-transparent">
+                 <span className="text-[12px] font-black text-[var(--clr-ink)] z-10">{timer}</span>
                  <motion.div
-                   className="absolute bottom-0 left-0 right-0 bg-[var(--color-text-strong)] opacity-10"
+                   className={`absolute bottom-0 left-0 right-0 ${timer < 5 ? 'bg-[var(--clr-warn)]' : 'bg-[var(--clr-focus)]'} opacity-20`}
                    initial={{ height: "0%" }}
                    animate={{ height: `${(15 - timer) / 15 * 100}%` }}
                  />
+                 <svg className="absolute inset-0 w-full h-full -rotate-90">
+                    <circle
+                      cx="24" cy="24" r="22"
+                      fill="none"
+                      stroke={timer < 5 ? "var(--clr-warn)" : "var(--clr-focus)"}
+                      strokeWidth="2"
+                      strokeDasharray="138"
+                      strokeDashoffset={138 - (timer / 15) * 138}
+                    />
+                 </svg>
                </div>
              </div>
            )}
@@ -66,42 +72,55 @@ function McqPanel({
       </div>
 
       {!revealed ? (
-        <div className="flex gap-4">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
+        <div className="flex flex-col items-center gap-6 py-8 bg-[var(--clr-recall)] rounded-2xl border border-white/5">
+           <p className="text-[13px] text-[var(--clr-ink)] opacity-60 italic">Hold the answer in mind — options appear in {timer}s</p>
+           <motion.button
+            whileHover={{ scale: 1.05, backgroundColor: "var(--clr-pulse)" }}
             whileTap={{ scale: 0.98 }}
             onClick={() => { onIRecallIt(); onReveal(); }}
-            className="rounded-full bg-[var(--color-accent-strong)] px-8 py-3 text-[11px] font-black uppercase tracking-[0.15em] text-white shadow-sm"
+            className="rounded-full bg-[var(--clr-focus)] px-10 py-4 text-[13px] font-bold uppercase tracking-[0.1em] text-white shadow-lg transition-colors"
           >
             I recall it
           </motion.button>
         </div>
       ) : (
-        <div className="grid gap-2 mt-4">
+        <div className="grid gap-3 mt-4">
           {question.mcqOptions.map((option) => {
-            const active = selected === option;
-            const correct = submitted && option === question.answer;
-            const wrongSelection = submitted && active && !correct;
+            const isCorrect = option === question.answer;
+            const isSelected = selected === option;
+            const showCorrect = submitted && isCorrect;
+            const showWrong = submitted && isSelected && !isCorrect;
+            const dim = submitted && !isCorrect && !isSelected;
 
-            let btnClass = "bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-inset)] border-[var(--color-border-subtle)] shadow-sm";
-            if (correct) {
-              btnClass = "success-surface border-[var(--color-success-border)] shadow-sm z-10 scale-[1.02]";
-            } else if (wrongSelection) {
-              btnClass = "error-surface border-[var(--color-error-border)] shadow-sm";
-            } else if (active && !submitted) {
-              btnClass = "bg-[var(--color-bg-accent-soft)] border-[var(--color-border-strong)] shadow-inner";
-            } else if (submitted) {
-              btnClass = "bg-[var(--color-bg-surface)] opacity-60 border-[var(--color-border-subtle)]";
+            let bgColor = "bg-[var(--clr-surface)]";
+            let borderColor = "border-white/10";
+            let textColor = "text-[var(--clr-ink)]";
+
+            if (showCorrect) {
+              bgColor = "bg-[var(--clr-correct)]";
+              borderColor = "border-[var(--clr-correct)]";
+              textColor = "text-white";
+            } else if (showWrong) {
+              bgColor = "bg-[var(--clr-wrong)]";
+              borderColor = "border-[var(--clr-wrong)]";
+              textColor = "text-white";
+            } else if (dim) {
+              bgColor = "bg-transparent";
+              borderColor = "border-[var(--clr-dim)]";
+              textColor = "text-[var(--clr-dim)]";
+            } else if (isSelected && !submitted) {
+              borderColor = "border-[var(--clr-pulse)]";
+              bgColor = "bg-[var(--clr-recall)]";
             }
 
             return (
               <motion.button
                 key={option}
-                whileHover={!submitted ? { x: 4, backgroundColor: "rgba(0,0,0,0.02)" } : {}}
+                whileHover={!submitted ? { scale: 1.01, borderColor: "var(--clr-pulse)" } : {}}
                 whileTap={{ scale: 0.995 }}
                 onClick={() => onSelect(option)}
                 disabled={submitted}
-                className={`rounded-xl px-5 py-3.5 text-left text-[14px] transition-all border ${btnClass}`}
+                className={`rounded-xl px-6 py-4 text-left text-[15px] transition-all border-2 ${bgColor} ${borderColor} ${textColor}`}
               >
                 {option}
               </motion.button>
@@ -112,37 +131,33 @@ function McqPanel({
 
       {submitted && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="pt-2">
-          <ResultNote checked={submitted} success={success}>
-            <p className="font-bold mb-1 uppercase tracking-tight text-xs">
-              {success ? "You're correct!" : "You missed it."}
-            </p>
-            <p className="text-[14px]">
-               {question.explanation}
-            </p>
-          </ResultNote>
+           <div className={`p-5 rounded-xl border ${success ? 'bg-[var(--clr-correct)]/10 border-[var(--clr-correct)] text-[var(--clr-correct)]' : 'bg-[var(--clr-wrong)]/10 border-[var(--clr-wrong)] text-[var(--clr-wrong)]'}`}>
+              <p className="font-bold text-xs uppercase tracking-widest mb-2">{success ? `Correct +${selected ? '2' : '0'} pts` : 'Incorrect'}</p>
+              <p className="text-[14px] leading-relaxed text-[var(--clr-ink)]">{question.explanation}</p>
+           </div>
         </motion.div>
       )}
 
-      <div className="flex flex-wrap gap-3 pt-4">
+      <div className="flex justify-end pt-4">
         {!submitted ? (
           <motion.button
-            whileHover={!(!revealed || !selected || submitted) ? { scale: 1.02 } : {}}
+            whileHover={!(!revealed || !selected || submitted) ? { scale: 1.02, backgroundColor: "var(--clr-pulse)" } : {}}
             whileTap={{ scale: 0.98 }}
             onClick={onSubmit}
             disabled={!revealed || !selected || submitted}
-            className="rounded-full bg-[var(--color-text-strong)] px-10 py-3.5 text-[11px] font-black uppercase tracking-[0.15em] text-white shadow-md disabled:opacity-20 disabled:cursor-not-allowed transition-all"
+            className="rounded-full bg-[var(--clr-focus)] px-12 py-4 text-[13px] font-bold uppercase tracking-widest text-white shadow-xl disabled:opacity-20 transition-all"
           >
-            Check Answer
+            Confirm
           </motion.button>
         ) : (
           <motion.button
-             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            whileHover={{ scale: 1.02, backgroundColor: "var(--color-bg-surface)" }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             onClick={onNext}
-            className="rounded-full bg-[var(--color-bg-inset)] border border-[var(--color-border-subtle)] px-10 py-3.5 text-[11px] font-black uppercase tracking-[0.15em] text-[var(--text-heading-color)] shadow-sm transition-all"
+            className="rounded-full bg-[var(--clr-surface)] border-2 border-[var(--clr-dim)] px-12 py-4 text-[13px] font-bold uppercase tracking-widest text-[var(--clr-ink)] transition-all"
           >
-            Next
+            Next Question
           </motion.button>
         )}
       </div>
@@ -157,28 +172,27 @@ function SummaryScreen({ score, maxScore, resultsLog, onRetry, onDashboard }) {
   else if (score >= 18) label = "Good grasp";
 
   return (
-    <div className="p-8 pb-12 bg-[var(--color-bg-inset)] rounded-[32px] border border-[var(--color-border-subtle)] space-y-8 animate-in fade-in slide-in-from-bottom-4">
+    <div className="p-10 bg-[var(--clr-surface)] rounded-[32px] border border-white/5 space-y-8 animate-in fade-in slide-in-from-bottom-4 shadow-2xl">
       <div className="text-center space-y-2">
-         <h2 className="text-3xl font-black text-[var(--text-heading-color)]">{score} / {maxScore}</h2>
-         <p className="text-[14px] font-bold uppercase tracking-widest text-[var(--color-accent-strong)]">{label}</p>
+         <h2 className="text-5xl font-black text-white">{score} <span className="text-2xl opacity-30">/ {maxScore}</span></h2>
+         <p className="text-[14px] font-bold uppercase tracking-[0.3em] text-[var(--clr-pulse)]">{label}</p>
       </div>
 
-      <div className="space-y-3 max-w-sm mx-auto">
-        <h4 className="text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted-color)] mb-4 border-b border-[var(--color-border-subtle)] pb-2">Breakdown</h4>
+      <div className="space-y-3 max-w-md mx-auto">
         {resultsLog.map((log, i) => (
-          <div key={i} className="flex justify-between items-center text-[13px] bg-[var(--color-bg-surface)] p-3 rounded-lg border border-[var(--color-border-subtle)]">
-             <span className="font-medium text-[var(--text-body-color)] truncate pr-4">{i + 1}. {log.dimension}</span>
-             <div className="flex gap-3 items-center shrink-0">
-               <span className={`font-black ${log.isCorrect ? 'text-green-600' : 'text-red-500'}`}>{log.isCorrect ? '✓' : '✗'}</span>
-               <span className="text-[11px] font-bold text-[var(--text-muted-color)] w-8 text-right">+{log.points}</span>
+          <div key={i} className="flex justify-between items-center text-[13px] bg-[var(--clr-bg)] p-4 rounded-xl border border-white/5">
+             <span className="font-medium text-[var(--clr-ink)] opacity-70 truncate pr-4">{i + 1}. {log.dimension}</span>
+             <div className="flex gap-4 items-center shrink-0">
+               <span className={`text-lg ${log.isCorrect ? 'text-[var(--clr-correct)]' : 'text-[var(--clr-wrong)]'}`}>{log.isCorrect ? '●' : '○'}</span>
+               <span className="text-[12px] font-bold text-white w-8 text-right">+{log.points}</span>
              </div>
           </div>
         ))}
       </div>
 
-      <div className="flex flex-col gap-3 max-w-sm mx-auto pt-6">
-         <button onClick={onRetry} className="rounded-full bg-[var(--color-text-strong)] px-8 py-3.5 text-[12px] font-black uppercase tracking-widest text-white hover:scale-[1.02] transition-transform">Try same author</button>
-         <button onClick={onDashboard} className="rounded-full bg-[var(--color-bg-surface)] border border-[var(--color-border-strong)] px-8 py-3.5 text-[12px] font-black uppercase tracking-widest text-[var(--text-body-color)] hover:bg-[var(--color-bg-inset)] transition-colors">Back to Dashboard</button>
+      <div className="flex flex-col gap-4 max-w-md mx-auto pt-8">
+         <button onClick={onRetry} className="rounded-full bg-[var(--clr-focus)] py-4 text-[13px] font-bold uppercase tracking-widest text-white hover:bg-[var(--clr-pulse)] transition-colors shadow-lg">Try same author</button>
+         <button onClick={onDashboard} className="rounded-full bg-transparent border-2 border-[var(--clr-dim)] py-4 text-[13px] font-bold uppercase tracking-widest text-[var(--clr-ink)] hover:bg-white/5 transition-colors">Back to Dashboard</button>
       </div>
     </div>
   );
@@ -247,9 +261,6 @@ export default function TestFocusView({
   }
 
   function handleNext() {
-    if (sessionComplete) return;
-    
-    // Auto-advance checks result if not already done, but the user must click 'Check Answer' first so it's always submitted
     if (currentIndex >= activeQuestions.length - 1) {
       setSessionComplete(true);
     } else {
@@ -276,10 +287,6 @@ export default function TestFocusView({
     }]);
 
     setSessionScore(prev => prev + pts);
-
-    setTimeout(() => {
-      handleNext();
-    }, 2000); // 2 second automatic move to next
   }
 
   function handleCloseAttempt() {
@@ -320,7 +327,7 @@ export default function TestFocusView({
         onTabChange={() => {}}
         onClose={handleCloseAttempt}
         showGuide={showGuide}
-        guideCtaLabel="Got it, start the test"
+        guideCtaLabel="Enter Challenge"
         showGuideSkip={false}
         onCloseGuide={() => {
           setShowGuide(false);
@@ -328,33 +335,32 @@ export default function TestFocusView({
           localStorage.setItem(`seenTestGuide_${author.author}`, "true");
         }}
         guideContent={
-          <p>
-            You will see 12 questions across 5 dimensions. Try to <strong>Recall</strong> it before the timer ends for 3 pts. If you wait, you can <strong>Recognise</strong> from options for 2 pts. Good luck!
-          </p>
+          <div className="space-y-4">
+             <p className="text-lg font-medium">Dimension Testing Sequence</p>
+             <ul className="space-y-2 opacity-70 text-sm">
+                <li>• 12 Questions across 5 specific analytic dimensions</li>
+                <li>• <span className="text-[var(--clr-pulse)] font-bold">RECALL Phase:</span> Recall early for 3 points</li>
+                <li>• <span className="text-[var(--clr-pulse)] font-bold">RECOGNISE Phase:</span> Identify from options for 2 points</li>
+             </ul>
+          </div>
         }
         main={
           <div className="pb-10">
             {!sessionComplete && (
-               <div className="mb-10 flex items-center justify-between p-6 bg-[var(--color-bg-inset)] rounded-[28px] shadow-inner border border-white/20">
-                 <div>
-                   <h4 className="text-sm font-bold text-[var(--text-heading-color)] mt-1">
-                     Question {currentIndex + 1} of 12
-                   </h4>
+               <div className="mb-8 flex items-center justify-between p-6 bg-[var(--clr-surface)] rounded-2xl border border-white/5 shadow-xl">
+                 <div className="flex gap-2">
+                    {[...Array(12)].map((_, i) => (
+                      <div key={i} className={`h-1.5 w-6 rounded-full ${i === currentIndex ? 'bg-[var(--clr-focus)]' : i < currentIndex ? 'bg-[var(--clr-correct)]' : 'bg-[var(--clr-dim)]'}`} />
+                    ))}
                  </div>
-                 <div className="text-[12px] font-black tracking-widest uppercase text-[var(--color-accent-strong)]">
-                   Score: {sessionScore}
+                 <div className="text-[13px] font-black tracking-[0.2em] uppercase text-white/40">
+                   {sessionScore} <span className="opacity-40">pts</span>
                  </div>
                </div>
             )}
 
             {sessionComplete ? (
-               <SummaryScreen 
-                 score={sessionScore} 
-                 maxScore={36} 
-                 resultsLog={resultsLog} 
-                 onRetry={restartTest} 
-                 onDashboard={handleCloseAttempt} 
-               />
+               <SummaryScreen score={sessionScore} maxScore={36} resultsLog={resultsLog} onRetry={restartTest} onDashboard={handleCloseAttempt} />
             ) : (
               <McqPanel
                 question={currentQuestion}
@@ -375,42 +381,23 @@ export default function TestFocusView({
 
       <AnimatePresence>
         {confidenceFlow && (
-          <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/40 backdrop-blur-md p-4">
+          <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 backdrop-blur-xl p-4">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="card w-full max-w-lg p-10 text-center shadow-2xl relative overflow-hidden"
+              className="bg-[var(--clr-surface)] w-full max-w-lg p-10 text-center shadow-2xl rounded-3xl border border-white/5"
             >
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-2">Reflect on Mastery</h3>
-                <p className="text-[15px] leading-relaxed text-[var(--text-muted-color)] mb-10">
-                  How confident do you feel about <strong>{author.author}</strong> after this session? This updates your dashboard progress.
-                </p>
+              <h3 className="text-2xl font-bold mb-2">Academic Mastery</h3>
+              <p className="text-[15px] leading-relaxed text-[var(--clr-ink)] opacity-60 mb-10">
+                Rate your confidence in <strong>{author.author}</strong> to update your research trajectory.
+              </p>
 
-                <div className="mb-10">
-                  <ConfidenceStrip
-                    visible={true}
-                    currentValue={confidence}
-                    onSelect={handleConfidence}
-                    provider={cloud?.provider}
-                    onConnect={cloud?.connect}
-                    onDisconnect={cloud?.disconnect}
-                    embedded={true}
-                  />
-                </div>
-
-                <div className="flex gap-4">
-                  <button
-                    onClick={onClose}
-                    className="flex-1 rounded-full bg-[var(--color-bg-inset)] py-3 text-sm font-bold uppercase tracking-wider text-[var(--color-text-primary)] shadow-sm hover:shadow-md transition"
-                  >
-                    Skip for Now
-                  </button>
-                </div>
+              <div className="mb-10">
+                <ConfidenceStrip visible={true} currentValue={confidence} onSelect={handleConfidence} provider={cloud?.provider} onConnect={cloud?.connect} onDisconnect={cloud?.disconnect} embedded={true} />
               </div>
 
-              <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-[var(--color-accent)]/5 rounded-full blur-3xl" />
+              <button onClick={onClose} className="w-full rounded-full bg-white/5 py-4 text-sm font-bold uppercase tracking-widest text-white hover:bg-white/10 transition">Skip for Now</button>
             </motion.div>
           </div>
         )}
