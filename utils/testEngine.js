@@ -533,3 +533,29 @@ export function createTestSession(author, category, allAuthors) {
     relatedAuthors: []
   };
 }
+
+// ─── Mix-Test Session (Interleaving Principle) ────────────────────────────────
+// Picks 5 random authors + the primary author (6 total).
+// Takes 2 questions from each → 12 questions.
+// Fisher-Yates shuffles the merged set so authors interleave.
+// Each question is tagged with authorName for display in the UI.
+// Based on: Rohrer & Taylor (2007), Kornell & Bjork (2008).
+export function generateMixSession(primaryAuthor, allAuthors, mixCount = 6) {
+  const clean = cleanAuthorData(primaryAuthor);
+
+  // Pool: exclude primary, shuffle, pick (mixCount - 1) peers
+  const pool = shuffle(
+    allAuthors.filter(a => a.author !== primaryAuthor.author)
+  );
+  const peers = pool.slice(0, mixCount - 1);
+  const authors = [clean, ...peers.map(a => cleanAuthorData(a))];
+
+  // 2 questions per author, tagged with authorName
+  const allQs = authors.flatMap(author => {
+    const qs = generateQuestions(author, allAuthors).slice(0, 2);
+    return qs.map(q => ({ ...q, authorName: author.author }));
+  });
+
+  // Interleave via Fisher-Yates shuffle (utils/shuffle.js)
+  return shuffle(allQs).slice(0, 12);
+}

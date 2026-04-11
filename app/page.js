@@ -330,6 +330,11 @@ export default function Page() {
             onSaveConfidence={handleConfidenceSave}
             cloud={cloud}
             onClose={() => setFocusedAuthor(null)}
+            onNextAuthor={() => {
+              const idx = filteredAuthors.findIndex(a => a.author === focusedAuthor.author);
+              const next = filteredAuthors[idx + 1];
+              setFocusedAuthor(next || null);
+            }}
           />
         )}
       </AnimatePresence>

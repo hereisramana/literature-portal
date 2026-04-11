@@ -39,7 +39,7 @@ export default function AuthorFocusShell({
                 {title}
               </h2>
 
-              {hideTabsInHeader && (
+              {hideTabsInHeader && tabs.length > 0 && (
                 <div className="mt-4 flex justify-end">
                   <div
                     className="grid gap-1 rounded-full bg-[var(--color-bg-inset)] p-1 shadow-inner"
@@ -66,7 +66,7 @@ export default function AuthorFocusShell({
             </div>
 
             <div className="flex items-center gap-3">
-              {!hideTabsInHeader && (
+              {!hideTabsInHeader && tabs.length > 0 && (
                 <div
                   className="grid gap-1 rounded-full bg-[var(--color-bg-inset)] p-1 shadow-inner"
                   style={{ gridTemplateColumns: `repeat(${tabs.length}, minmax(0, 1fr))` }}
