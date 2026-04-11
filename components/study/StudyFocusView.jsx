@@ -25,6 +25,7 @@ export function sanitiseAuthor(raw) {
   if (!a.themes) a.themes = [];
   if (!a.style_innovations) a.style_innovations = [];
   if (!a.key_characters) a.key_characters = [];
+  if (!a.genreTags) a.genreTags = [];
   if (!a.comparison_peers) a.comparison_peers = [];
 
   return a;
@@ -54,6 +55,7 @@ function Tag({ label, color = "theme" }) {
     theme: "bg-[var(--clr-focus)]/15 text-[var(--clr-pulse)] border border-[var(--clr-focus)]/25",
     style: "bg-[var(--clr-correct)]/12 text-[var(--clr-correct)] border border-[var(--clr-correct)]/25",
     move:  "bg-[#7C92A6]/15 text-[#aec4d6] border border-[#7C92A6]/25",
+    tag:   "bg-[var(--clr-recall)]/30 text-[var(--clr-ink)] border border-[var(--clr-recall)]/50",
   };
   return (
     <span className={`inline-flex items-center rounded-lg px-3 py-1.5 text-[12px] font-medium leading-none ${cls[color]}`}>
@@ -110,6 +112,16 @@ function StudySidebar({ author, allAuthors, onNavigatePeer }) {
           <SectionLabel>Movements</SectionLabel>
           <div className="flex flex-wrap gap-2">
             {author.bio_context.movements.map((m, i) => <Tag key={i} label={m} color="move" />)}
+          </div>
+        </div>
+      )}
+
+      {/* GENRE TAGS (aligned with Test Engine Hints) */}
+      {author.genreTags?.length > 0 && (
+        <div>
+          <SectionLabel>Genre Tags</SectionLabel>
+          <div className="flex flex-wrap gap-2">
+            {author.genreTags.map((t, i) => <Tag key={i} label={t} color="tag" />)}
           </div>
         </div>
       )}

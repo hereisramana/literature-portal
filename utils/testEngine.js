@@ -36,8 +36,12 @@ export function cleanAuthorData(a) {
   if (author.legacy && author.legacy.posthumous_notes === "null") {
     author.legacy.posthumous_notes = null;
   }
-  if (author.bio_context && (author.bio_context.collaborators === null || (Array.isArray(author.bio_context.collaborators) && author.bio_context.collaborators[0] === null))) {
-    author.bio_context.collaborators = [];
+  if (author.bio_context) {
+    if (author.bio_context.collaborators === null) {
+      author.bio_context.collaborators = [];
+    } else if (Array.isArray(author.bio_context.collaborators)) {
+      author.bio_context.collaborators = author.bio_context.collaborators.filter(Boolean);
+    }
   }
   if (author.legacy && author.legacy.translations === null) {
     author.legacy.translations = [];
@@ -50,6 +54,7 @@ export function cleanAuthorData(a) {
   if (!author.themes) author.themes = [];
   if (!author.style_innovations) author.style_innovations = [];
   if (!author.key_characters) author.key_characters = [];
+  if (!author.genreTags) author.genreTags = [];
   if (!author.bio_context) author.bio_context = { location: null, movements: [], collaborators: [] };
   if (!author.legacy) author.legacy = { translations: [], awards: [], posthumous_notes: null };
 
@@ -89,6 +94,7 @@ function getDistractors(correctAnswer, fieldPath, author, allAuthors, count = 3)
     if (fieldPath === "period") return a.period ? [a.period] : [];
     if (fieldPath === "region") return a.region ? [a.region] : [];
     if (fieldPath === "literary_period") return a.literary_period ? [a.literary_period] : [];
+    if (fieldPath === "theory_type") return a.theory_type ? [a.theory_type] : [];
     if (fieldPath === "author") return a.author ? [a.author] : [];
     if (fieldPath === "legacy.awards") return a.legacy?.awards?.filter(Boolean) || [];
     if (fieldPath === "comparison_peers.0.shared_theme") return a.comparison_peers?.map(p => p.shared_theme).filter(Boolean) || [];
@@ -293,6 +299,16 @@ export function generateQuestions(rawAuthor, allAuthorsInCategory) {
       char.work,
       'works',
       `"${char.name}" appears in ${char.work}.`
+    );
+  }
+
+  // T3: theory type (mostly for Criticism/Theory authors)
+  if (author.theory_type) {
+    makeQ('theory_type', 'Theoretical Framework',
+      `Which theoretical framework or critical approach is most fundamentally associated with ${author.author}'s scholarship?`,
+      author.theory_type,
+      'theory_type',
+      `Their work is traditionally categorised under ${author.theory_type}.`
     );
   }
 
