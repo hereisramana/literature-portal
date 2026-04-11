@@ -1,45 +1,79 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════
+   DARK MODE (default) — Focus Academic
+   ═══════════════════════════════════════════════════════ */
 :root {
-  /* DARK ACADEMIC CORE PALETTE */
-  --clr-bg: #12111A;      /* App Background (Void) */
-  --clr-surface: #1C1A30; /* Card / Panel Background (Depth) */
-  --clr-recall: #2E2960;  /* Recall Phase BG (Dusk) */
-  --clr-focus: #534AB7;   /* Primary Action / Timer Ring (Focus) */
-  --clr-pulse: #7F77DD;   /* Recognise Phase Accent (Pulse) */
-  --clr-correct: #1D9E75; /* Correct Answer (Confirm) */
-  --clr-wrong: #D85A30;   /* Wrong Answer (Alert) */
-  --clr-warn: #EF9F27;    /* Timer Warning < 5s (Gold) */
-  --clr-dim: #444441;     /* Unchosen Options (Slate) */
-  --clr-ink: #EBEAF0;     /* Primary Text (Parchment) */
-  
-  /* Semantic Mappings */
-  --color-bg-primary: var(--clr-bg);
-  --color-bg-surface: var(--clr-surface);
-  --color-bg-inset: #12111A; 
-  
+  --clr-bg:      #12111A;   /* Void — app background */
+  --clr-surface: #1C1A30;   /* Depth — card/panel */
+  --clr-recall:  #2E2960;   /* Dusk — recall phase bg */
+  --clr-focus:   #534AB7;   /* Primary action, timer ring */
+  --clr-pulse:   #7F77DD;   /* Recognise accent */
+  --clr-correct: #1D9E75;
+  --clr-wrong:   #D85A30;
+  --clr-warn:    #EF9F27;
+  --clr-dim:     #444441;
+  --clr-ink:     #EBEAF0;   /* Parchment text */
+
+  /* Semantic aliases (referenced throughout components) */
+  --color-bg-primary:   var(--clr-bg);
+  --color-bg-surface:   var(--clr-surface);
+  --color-bg-inset:     #12111A;
   --color-text-primary: var(--clr-ink);
   --color-text-secondary: rgba(235, 234, 240, 0.7);
-  --color-text-strong: #FFFFFF;
-  
-  --color-border-subtle: rgba(235, 234, 240, 0.1);
+  --color-text-strong:  #FFFFFF;
+  --color-border-subtle: rgba(235, 234, 240, 0.08);
   --color-border-strong: var(--clr-focus);
-  --color-accent: var(--clr-focus);
+  --color-accent:        var(--clr-focus);
   --color-accent-strong: var(--clr-pulse);
-  
-  --text-on-accent: var(--clr-ink);
-  --text-body-color: var(--color-text-primary);
-  --text-heading-color: var(--color-text-strong);
-
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --text-on-accent:      var(--clr-ink);
+  --text-body-color:     var(--color-text-primary);
+  --text-heading-color:  var(--color-text-strong);
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.45);
   --page-max-width: 1440px;
 }
 
-/* Force dark mode behavior as this is a dark theme */
+/* ═══════════════════════════════════════════════════════
+   LIGHT MODE — Pale Study (same hue family, low chroma)
+   ═══════════════════════════════════════════════════════ */
+[data-theme="light"] {
+  /* Core palette — desaturated purple-family, warm paper whites */
+  --clr-bg:      #F2F1F8;   /* Parchment — pale lavender-white canvas */
+  --clr-surface: #FFFFFF;   /* Clean white surfaces */
+  --clr-recall:  #EAE8F5;   /* Whisper lavender — recall bg */
+  --clr-focus:   #4A42A8;   /* Deeper purple — AA compliant on white (6.2:1) */
+  --clr-pulse:   #5D55C0;   /* Mid purple — accent text */
+  --clr-correct: #1A7A5A;   /* Deeper teal for AA on white */
+  --clr-wrong:   #BF4A22;   /* Deeper coral for AA on white */
+  --clr-warn:    #9B6800;   /* Deep amber for AA on white */
+  --clr-dim:     #9B97B8;   /* Muted gray-purple — unchosen */
+  --clr-ink:     #1A1829;   /* Deep near-black with purple undertone */
+
+  /* Semantic aliases — light overrides */
+  --color-bg-primary:    var(--clr-bg);
+  --color-bg-surface:    var(--clr-surface);
+  --color-bg-inset:      #ECEAF5;
+  --color-text-primary:  var(--clr-ink);
+  --color-text-secondary: rgba(26, 24, 41, 0.60);
+  --color-text-strong:   #0D0C18;
+  --color-border-subtle: rgba(74, 66, 168, 0.10);
+  --color-border-strong: var(--clr-focus);
+  --color-accent:        var(--clr-focus);
+  --color-accent-strong: var(--clr-pulse);
+  --text-on-accent:      #FFFFFF;
+  --text-body-color:     var(--color-text-primary);
+  --text-heading-color:  var(--color-text-strong);
+  --shadow-soft: 0 4px 24px rgba(74, 66, 168, 0.08);
+}
+
+/* ═══════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════ */
 html, body {
   height: 100%;
   background-color: var(--clr-bg);
   color: var(--clr-ink);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 body {
@@ -50,10 +84,13 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-display), "Manrope", sans-serif;
-  color: #FFFFFF;
+  color: var(--color-text-strong);
   margin: 0;
 }
 
+/* ═══════════════════════════════════════════════════════
+   COMPONENT CLASSES
+   ═══════════════════════════════════════════════════════ */
 .card {
   background: var(--clr-surface);
   border: 1px solid var(--color-border-subtle);
@@ -61,41 +98,53 @@ h1, h2, h3, h4 {
   box-shadow: var(--shadow-soft);
 }
 
-/* Custom Scrollbar for Dark Theme */
+/* Light mode card gets a hairline border for definition */
+[data-theme="light"] .card {
+  border: 1px solid rgba(74, 66, 168, 0.12);
+  box-shadow: 0 2px 16px rgba(74, 66, 168, 0.06);
+}
+
 .scrollbar-thin {
   scrollbar-width: thin;
   scrollbar-color: var(--clr-dim) transparent;
 }
 
-.scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-}
-
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: transparent;
-}
-
+.scrollbar-thin::-webkit-scrollbar { width: 6px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
 .scrollbar-thin::-webkit-scrollbar-thumb {
   background: var(--clr-dim);
   border-radius: 10px;
+  opacity: 0.4;
 }
 
 .success-surface {
-  background: rgba(29, 158, 117, 0.15);
-  color: #1D9E75;
-  border: 1px solid #1D9E75;
+  background: rgba(29, 158, 117, 0.12);
+  color: var(--clr-correct);
+  border: 1px solid var(--clr-correct);
 }
 
 .error-surface {
-  background: rgba(216, 90, 48, 0.15);
-  color: #D85A30;
-  border: 1px solid #D85A30;
+  background: rgba(216, 90, 48, 0.12);
+  color: var(--clr-wrong);
+  border: 1px solid var(--clr-wrong);
 }
 
 .shell-width {
   max-width: var(--page-max-width);
   margin-inline: auto;
   width: 100%;
+}
+
+/* Smooth theme transition on interactive elements */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+/* Prevent transition flash on page load */
+.no-transition, .no-transition * {
+  transition: none !important;
 }
 
 button:focus-visible {

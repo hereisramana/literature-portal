@@ -1,5 +1,4 @@
 import { Manrope, Nunito } from "next/font/google";
-
 import "./globals.css";
 
 const manrope = Manrope({
@@ -23,21 +22,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${manrope.variable} ${nunito.variable}`}>
       <head>
-        <style dangerouslySetInnerHTML={{ __html: `
-          :root {
-            --color-bg-primary: #F8F7F4;
-            --color-text-strong: #1C2621;
-          }
-          body {
-            background-color: var(--color-bg-primary);
-            margin: 0;
-          }
-          .lcp-brand {
-            font-family: var(--font-display);
-            color: var(--color-text-strong);
-            visibility: hidden; /* Prevent FOUC if font is loading */
-          }
-        `}} />
+        {/* Blocking script: reads saved theme before first paint to prevent flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var t = localStorage.getItem('enlit-theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', t);
+              } catch(e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+              }
+            `,
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>

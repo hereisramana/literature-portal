@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import Sidebar from "../components/layout/Sidebar.jsx";
 import AuthorCard from "../components/cards/AuthorCard.jsx";
 import ModeToggle from "../components/layout/ModeToggle.jsx";
+import ThemeToggle, { useTheme } from "../components/layout/ThemeToggle.jsx";
 import SearchBar from "../components/common/Searchbar.jsx";
 import EmptyState from "../components/common/Emptystate.jsx";
 import StudyFocusView from "../components/study/StudyFocusView.jsx";
@@ -28,6 +29,7 @@ export default function Page() {
   const [confidenceMap, setConfidenceMap] = useState({});
   const { get, save, ready } = useProgress();
   const cloud = useCloudSync();
+  const { theme, toggle, mounted } = useTheme();
 
   const activeCategory =
     categories.find((entry) => entry.id === category) || categories[0];
@@ -235,8 +237,8 @@ export default function Page() {
                 </div>
               </div>
 
-              {/* Spacer for desktop to keep search centered when lg:pl-[72px] is active */}
-              <div className="hidden w-11 lg:block" aria-hidden="true" />
+              {/* Theme toggle — top right */}
+              <ThemeToggle theme={theme} toggle={toggle} mounted={mounted} />
             </div>
           </div>
         </div>
