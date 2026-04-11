@@ -2,9 +2,9 @@
 import { motion } from "framer-motion";
 
 const RATING_STEPS = [
-  { value: "1", label: "I'm struggling", color: "bg-[var(--clr-wrong)]" },
+  { value: "1", label: "Still learning", color: "bg-[var(--clr-wrong)]" },
   { value: "2", label: "Improving", color: "bg-[var(--clr-warn)]" },
-  { value: "3", label: "Foundational", color: "bg-[var(--clr-pulse)]" },
+  { value: "3", label: "Getting there", color: "bg-[var(--clr-pulse)]" },
   { value: "4", label: "Confident", color: "bg-[var(--clr-focus)]" },
   { value: "5", label: "Mastered", color: "bg-[var(--clr-correct)]" },
 ];
@@ -53,7 +53,7 @@ export default function ConfidenceStrip({
             animate={{ opacity: 1, y: 0 }}
             className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)]"
           >
-            {RATING_STEPS.find(s => s.value === currentValue)?.label || "Select your level"}
+            {RATING_STEPS.find(s => s.value === currentValue)?.label || "Check your understanding"}
           </motion.p>
         </div>
       </div>

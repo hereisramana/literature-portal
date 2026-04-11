@@ -92,14 +92,14 @@ function StudySidebar({ author, allAuthors, onNavigatePeer }) {
             {author.themes.map((t, i) => <Tag key={i} label={t} color="theme" />)}
           </div>
         ) : (
-          <EmptyNote>themes not yet enriched</EmptyNote>
+          <EmptyNote>Researching themes for this author...</EmptyNote>
         )}
       </div>
 
       {/* STYLE INNOVATIONS */}
       {author.style_innovations.length > 0 && (
         <div>
-          <SectionLabel>Style Innovations</SectionLabel>
+          <SectionLabel>Signature Style</SectionLabel>
           <div className="flex flex-wrap gap-2">
             {author.style_innovations.map((s, i) => <Tag key={i} label={s} color="style" />)}
           </div>
@@ -129,7 +129,7 @@ function StudySidebar({ author, allAuthors, onNavigatePeer }) {
       {/* COMPARISON PEERS */}
       {author.comparison_peers.length > 0 && (
         <div>
-          <SectionLabel>Comparison Peers</SectionLabel>
+          <SectionLabel>Similar Authors</SectionLabel>
           <div className="space-y-3">
             {author.comparison_peers.map((peer, i) => {
               const peerAuthor = allAuthors?.find(a => a.author === peer.name);
@@ -194,7 +194,10 @@ function WorksTab({ author }) {
             }`}
           >
             <div className="min-w-0">
-              <p className="text-[15px] font-semibold text-white leading-snug">{title}</p>
+              <div className="flex items-center gap-2 mb-1">
+                <p className="text-[15px] font-semibold text-white leading-snug">{title}</p>
+                {isMagnum && <Pill label="Defining Work" color="accent" />}
+              </div>
               {genre && (
                 <p className="mt-1 text-[12px] text-[var(--clr-ink)] opacity-45">{genre}</p>
               )}
@@ -324,7 +327,7 @@ function BiographyTab({ author }) {
       {/* Theory type (criticism authors) */}
       {author.theory_type && (
         <div className="rounded-xl bg-white/5 border border-white/8 px-5 py-4">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-1">Theory Type</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-1">Approach</p>
           <p className="text-[14px] text-[var(--clr-ink)] opacity-80">{author.theory_type}</p>
         </div>
       )}
@@ -383,7 +386,7 @@ function LegacyTab({ author }) {
       {/* Posthumous notes */}
       {posthumous && (
         <div className="rounded-xl bg-[var(--clr-recall)] border-l-4 border-[var(--clr-focus)] px-5 py-4">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-pulse)] opacity-70 mb-2">Posthumous Reception</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-pulse)] opacity-70 mb-2">After their time</p>
           <p className="text-[14px] leading-relaxed text-[var(--clr-ink)] opacity-85 italic">{posthumous}</p>
         </div>
       )}
@@ -474,7 +477,7 @@ function BottomBar({ onTestMe, onNextAuthor, onClose }) {
 const TABS = [
   { id: "works",      label: "Works"      },
   { id: "characters", label: "Characters" },
-  { id: "biography",  label: "Biography"  },
+  { id: "biography",  label: "Life & Times"  },
   { id: "legacy",     label: "Legacy"     },
 ];
 

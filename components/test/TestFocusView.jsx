@@ -89,7 +89,7 @@ function McqPanel({ question, revealed, selected, submitted, onReveal, onSelect,
       {!revealed ? (
         <div className="flex flex-col items-center py-10 bg-[var(--clr-recall)] rounded-2xl border border-white/5">
           <p className="text-[13px] text-[var(--clr-ink)] opacity-40 italic">
-            Retrieving... options reveal in {timer}s
+            {(timer > 7) ? "Think back..." : "What do you remember?"} choices appear in {timer}s
           </p>
         </div>
       ) : (
@@ -134,7 +134,7 @@ function McqPanel({ question, revealed, selected, submitted, onReveal, onSelect,
               : "bg-[var(--clr-wrong)]/10 border-[var(--clr-wrong)] text-[var(--clr-wrong)]"
           }`}>
             <p className="font-bold text-[10px] uppercase tracking-widest mb-2">
-              {success ? "Cognitive Match" : "Interference Detected"}
+              {success ? "That’s right" : "Almost—mixed up with another idea"}
             </p>
             <p className="text-[14px] leading-relaxed text-[var(--clr-ink)]">
               {question.explanation}
@@ -182,7 +182,7 @@ function SummaryScreen({ resultsLog, onNextAuthor, onToggleMix, showMixCTA }) {
           <span className="text-2xl opacity-25 ml-2">/ {total}</span>
         </h2>
         <p className="text-[12px] font-bold uppercase tracking-[0.3em] text-[var(--clr-pulse)]">
-          Diagnostic Score
+          Your results
         </p>
       </div>
 
@@ -309,22 +309,21 @@ export default function TestFocusView({
       {!hasPriorAttempt ? (
         <>
           <p className="text-[15px] leading-relaxed opacity-70">
-            Initial diagnostic session: Try to identify the correct answer from memory before the options are revealed.
+            Initial check: Try to identify the correct answer from memory before the choices appear.
           </p>
           <p className="text-[11px] uppercase tracking-[0.2em] font-bold opacity-30">
-            12 questions · 5 Analytic dimensions
+            12 questions · 5 Aspects
           </p>
         </>
       ) : (
         <div className="flex flex-col gap-6">
-          <p className="text-[16px] font-bold">Ready to drill?</p>
+          <p className="text-[16px] font-bold">Ready to practice?</p>
           <div className="rounded-xl border border-[var(--clr-focus)]/25 bg-[var(--clr-recall)]/40 p-5">
             <div className="flex items-start justify-between gap-6">
               <div className="min-w-0">
-                <p className="font-bold text-[15px] text-white">Mixed Interleaving</p>
+                <p className="font-bold text-[15px] text-white">Mixed Practice</p>
                 <p className="text-[12px] opacity-50 mt-1 leading-relaxed">
-                  Based on the <span className="text-[var(--clr-pulse)]">interleaving principle</span>: 
-                  switching authors mid-session builds significantly stronger retrieval strength than blocked study.
+                  Switching authors mid-session builds significantly stronger memory than practicing one at a time.
                 </p>
               </div>
               <ToggleSwitch enabled={mixMode} onToggle={() => setMixMode(v => !v)} />
@@ -342,7 +341,7 @@ export default function TestFocusView({
         tabs={[]} hideTabsInHeader={true} activeTab="verify"
         onClose={handleCloseAttempt}
         showGuide={showGuide}
-        guideCtaLabel={hasPriorAttempt ? "Start Drill" : "Begin Diagnostic"}
+        guideCtaLabel={hasPriorAttempt ? "Practice again" : "Start Check"}
         onCloseGuide={() => { setCommittedMixMode(mixMode); setShowGuide(false); }}
         guideContent={guideContent}
         main={
@@ -357,8 +356,8 @@ export default function TestFocusView({
                   ))}
                 </div>
                 <div className="flex items-center gap-4">
-                   {committedMixMode && <span className="text-[10px] font-bold text-[var(--clr-warn)] uppercase tracking-widest pl-4">Interleaved</span>}
-                   <span className="text-[10px] font-bold opacity-30">{baseTimer}s Threshold</span>
+                   {committedMixMode && <span className="text-[10px] font-bold text-[var(--clr-warn)] uppercase tracking-widest pl-4">Mixed Authors</span>}
+                   <span className="text-[10px] font-bold opacity-30">{baseTimer}s Thinking time</span>
                 </div>
               </div>
             )}
@@ -398,9 +397,9 @@ export default function TestFocusView({
         {confidenceFlow && (
           <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/90 backdrop-blur-xl p-4">
             <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-[var(--clr-surface)] w-full max-w-lg p-12 text-center shadow-2xl rounded-[40px] border border-white/10">
-              <h3 className="text-2xl font-black mb-4">Academic Calibration</h3>
+              <h2 className="text-2xl font-black mb-4">Adjusting to your level</h2>
               <p className="text-[15px] leading-relaxed text-[var(--clr-ink)] opacity-50 mb-12 px-6">
-                Your rating dictates the <strong>recall threshold</strong> (timer) for future sessions on <strong>{author.author}</strong>.
+                Your rating sets the <strong>thinking time</strong> (timer) for future sessions on <strong>{author.author}</strong>.
               </p>
               <div className="mb-14">
                 <ConfidenceStrip visible={true} currentValue={confidence} onSelect={(val) => { setConfidence(val); onSaveConfidence?.({ author: author.author, exercise: "verify", confidence: val, timestamp: Date.now() }); setTimeout(onClose, 800); }} embedded={true} />
