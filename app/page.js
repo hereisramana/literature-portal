@@ -156,10 +156,10 @@ export default function Page() {
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[var(--color-bg-primary)]">
+    <div className="flex h-screen overflow-hidden bg-[var(--clr-bg)]">
       {/* Desktop Sidebar: Static and Flex-based */}
       <div
-        className={`hidden lg:block h-full border-r border-[var(--color-border-subtle)] bg-white transition-[width] duration-300 ease-in-out overflow-hidden flex-shrink-0 ${
+        className={`hidden lg:block h-full transition-[width] duration-300 ease-in-out overflow-hidden flex-shrink-0 ${
           desktopSidebarCollapsed ? "w-[72px]" : "w-[260px]"
         }`}
       >
@@ -208,7 +208,7 @@ export default function Page() {
       </AnimatePresence>
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
-        <div className="sticky top-0 z-10 bg-[var(--color-bg-primary)]/80 backdrop-blur-xl">
+        <div className="sticky top-0 z-10 bg-[var(--clr-bg)]/90 backdrop-blur-xl border-b border-white/5">
           <div className="shell-width px-4 py-4 md:px-8 lg:px-10">
             <div className="flex items-center gap-3">
               <motion.button
