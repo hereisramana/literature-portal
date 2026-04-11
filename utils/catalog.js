@@ -43,6 +43,24 @@ function buildBritishSubcategories(authors) {
     .map(([label, count]) => ({ label, count }));
 }
 
+// Extracts birth year from period strings like:
+//   "1688–1744"  → 1688
+//   "c. 1343–1400" → 1343
+//   "1907–2000"  → 1907
+//   "1959–"      → 1959
+//   null / missing → Infinity (sorts to end)
+function getBirthYear(author) {
+  const period = author.period || "";
+  // Strip non-numeric prefix (e.g. "c.", "c ", "fl.")
+  const cleaned = period.replace(/^[^0-9]*/g, "");
+  const match = cleaned.match(/\d{3,4}/);
+  return match ? parseInt(match[0], 10) : Infinity;
+}
+
+function sortChronologically(authors) {
+  return [...authors].sort((a, b) => getBirthYear(a) - getBirthYear(b));
+}
+
 export function buildCatalog(data) {
   const poetry = getSource(data, (key) => key === "poetry");
   const drama = getSource(data, (key) => key === "drama");
@@ -80,84 +98,84 @@ export function buildCatalog(data) {
       label: "British Poetry",
       shortLabel: "Poetry",
       description: "Core British poets and movements",
-      authors: britishPoetry,
+      authors: sortChronologically(britishPoetry),
     },
     {
       id: "british-drama",
       label: "British Drama",
       shortLabel: "Drama",
       description: "Stage texts from Renaissance to modern drama",
-      authors: britishDrama,
+      authors: sortChronologically(britishDrama),
     },
     {
       id: "british-prose-fiction",
       label: "British Prose & Fiction",
       shortLabel: "Prose/Fiction",
       description: "Novels, essays, and prose with period filters",
-      authors: britishProse,
+      authors: sortChronologically(britishProse),
     },
     {
       id: "american",
       label: "American",
       shortLabel: "American",
       description: "American literature selections",
-      authors: american,
+      authors: sortChronologically(american),
     },
     {
       id: "indian",
       label: "Indian",
       shortLabel: "Indian",
       description: "Indian writing in English",
-      authors: indian,
+      authors: sortChronologically(indian),
     },
     {
       id: "african",
       label: "African",
       shortLabel: "African",
       description: "African and Afro literature",
-      authors: african,
+      authors: sortChronologically(african),
     },
     {
       id: "other-regions",
       label: "Other Regions",
       shortLabel: "Other",
       description: "Global literature beyond the core regional buckets",
-      authors: otherRegions,
+      authors: sortChronologically(otherRegions),
     },
     {
       id: "women",
       label: "Women",
       shortLabel: "Women",
-      description: "Women’s writing",
-      authors: women,
+      description: "Women's writing",
+      authors: sortChronologically(women),
     },
     {
       id: "dalit",
       label: "Dalit",
       shortLabel: "Dalit",
       description: "Dalit literature and criticism",
-      authors: dalit,
+      authors: sortChronologically(dalit),
     },
     {
       id: "cultural",
       label: "Cultural",
       shortLabel: "Cultural",
       description: "Cultural studies and theory",
-      authors: cultural,
+      authors: sortChronologically(cultural),
     },
     {
       id: "comparative",
       label: "Comparative",
       shortLabel: "Comparative",
       description: "Comparative literature",
-      authors: comparative,
+      authors: sortChronologically(comparative),
     },
     {
       id: "criticism",
       label: "Criticism",
       shortLabel: "Criticism",
       description: "Literary criticism and aesthetics",
-      authors: criticism,
+      authors: sortChronologically(criticism),
     },
     {
       id: "award-winners",

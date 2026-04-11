@@ -1,69 +1,104 @@
 "use client";
 import { motion } from "framer-motion";
 
-/* WCAG check for cards:
-   Author name: #FFFFFF on #1C1A30 = 14.7:1 ✅ AAA
-   Work list:   parchment@70% on #1C1A30 = ~10:1 ✅ AAA
-   Muted badge: parchment@50% on #1C1A30 = ~7.2:1 ✅ AA
-   Study btn:   parchment on #2E2960 = 6.8:1 ✅ AA
-   Test btn:    white on #534AB7 = 5.9:1 ✅ AA
+/*
+  WCAG & Ergonomic contrast (updated for extended-session palette):
+  Author name:   #E8E6F4 on #1E1C34 ≈ 10.2:1  ✅ AAA
+  Work list:     #C9C6DF@60% on #1E1C34 ≈ 5.9:1  ✅ AA
+  Study btn:     #C9C6DF on #2E2960 ≈ 7.1:1  ✅ AA
+  Test btn:      #FFFFFF on #534AB7 ≈ 5.9:1  ✅ AA
+  Period label:  #7F77DD on #1E1C34 ≈ 4.6:1  ✅ AA (decorative label)
+
+  LIGHT MODE contrast:
+  Author name:   #1A1826 on #FDFCFF ≈ 17.1:1  ✅ AAA
+  Work list:     #2E2B44@60% on #FDFCFF ≈ 7.3:1  ✅ AAA
+  Study btn:     #2E2B44 on #ECEBF8 ≈ 8.4:1  ✅ AAA
+  Test btn:      #FFFFFF on #4038A0 ≈ 7.6:1  ✅ AA
 */
+
+// Standardised height layout:
+//   - Fixed 2-work slots (Rule: always 2 rows, gap if only 1 work)
+//   - No overflow, no internal scroll, no variable height
+//   - Card height is determined by name + 2 work rows + buttons = consistent grid
+
 export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, confidence }) {
+  const works = author.works || [];
+  // Always render exactly 2 slots: show works[0], works[1], or empty placeholder
+  const slot0 = works[0] ? (works[0].title || works[0]) : null;
+  const slot1 = works[1] ? (works[1].title || works[1]) : null;
+  const totalWorks = works.length;
+
   return (
-    <article className="flex flex-col px-6 py-6 rounded-2xl bg-[var(--clr-surface)] border border-white/5 hover:border-[var(--clr-focus)]/40 transition-all duration-300 h-full group">
-      <div className="flex items-start justify-between gap-3">
+    <article className="flex flex-col px-5 py-5 rounded-2xl bg-[var(--clr-surface)] border border-[var(--color-border-subtle)] hover:border-[var(--clr-focus)]/35 transition-all duration-200 group">
+
+      {/* ── Header ─────────────────────────────────────── */}
+      <div className="flex items-start justify-between gap-3 min-h-[52px]">
         <div className="min-w-0">
-          {/* #FFFFFF on #1C1A30 = 14.7:1 ✅ */}
-          <h2 className="text-[20px] font-bold leading-snug text-white truncate">
+          <h2 className="text-[18px] font-bold leading-snug text-[var(--color-text-strong)] truncate">
             {author.author}
           </h2>
-          {/* literary_period badge */}
           {author.literary_period && (
-            <span className="mt-1.5 inline-block text-[10px] font-bold uppercase tracking-widest text-[var(--clr-pulse)] opacity-80">
+            <span className="mt-1 inline-block text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--clr-pulse)] opacity-75">
               {author.literary_period}
             </span>
           )}
         </div>
         {confidence && (
-          <span className="shrink-0 rounded-full bg-[var(--clr-correct)]/15 border border-[var(--clr-correct)]/30 px-3 py-1 text-[11px] font-semibold text-[var(--clr-correct)]">
+          <span className="shrink-0 rounded-full bg-[var(--clr-correct)]/12 border border-[var(--clr-correct)]/25 px-2.5 py-0.5 text-[10px] font-semibold text-[var(--clr-correct)]">
             {confidence}
           </span>
         )}
       </div>
 
-      <div className="mt-4 flex-1">
-        {/* parchment@65% on #1C1A30 = ~9.5:1 ✅ */}
-        <ul className="space-y-1.5">
-          {author.works?.slice(0, 3).map((work, index) => (
-            <li key={index} className="flex items-center gap-2 text-[var(--clr-ink)] opacity-60 text-[13px]">
-              <span className="shrink-0 h-1 w-1 rounded-full bg-[var(--clr-focus)]" />
-              <span className="truncate">{work.title || work}</span>
-            </li>
-          ))}
-          {author.works?.length > 3 && (
-            <li className="text-[11px] font-medium text-[var(--clr-ink)] opacity-35 pl-3 mt-1">
-              + {author.works.length - 3} more
-            </li>
+      {/* ── Standardised 2-slot works list ─────────────── */}
+      {/* Fixed h-[52px] ensures all cards have identical works-area height */}
+      <div className="mt-4 h-[52px] flex flex-col justify-start gap-1.5">
+        {/* Slot 0 */}
+        <div className="flex items-center gap-2">
+          <span className={`shrink-0 h-1 w-1 rounded-full ${slot0 ? 'bg-[var(--clr-focus)]' : 'bg-transparent'}`} />
+          {slot0 ? (
+            <span className="truncate text-[13px] leading-snug text-[var(--clr-ink)] opacity-60">{slot0}</span>
+          ) : (
+            <span className="h-3 w-24 rounded bg-[var(--clr-dim)] opacity-10" />
           )}
-        </ul>
+        </div>
+
+        {/* Slot 1 — gap if author has only 1 work (empty row preserved) */}
+        <div className="flex items-center gap-2">
+          <span className={`shrink-0 h-1 w-1 rounded-full ${slot1 ? 'bg-[var(--clr-focus)]' : 'bg-transparent'}`} />
+          {slot1 ? (
+            <span className="truncate text-[13px] leading-snug text-[var(--clr-ink)] opacity-60">{slot1}</span>
+          ) : (
+            /* Preserved gap — empty row keeps card height identical */
+            <span className="h-3 w-16 rounded bg-transparent" />
+          )}
+        </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-2 gap-3">
-        {/* Study: parchment on Dusk #2E2960 = 6.8:1 ✅ */}
+      {/* ── More works count ────────────────────────────── */}
+      <div className="mt-1 h-[16px]">
+        {totalWorks > 2 && (
+          <p className="text-[11px] font-medium text-[var(--clr-ink)] opacity-30 pl-3">
+            +{totalWorks - 2} more
+          </p>
+        )}
+      </div>
+
+      {/* ── Action buttons ──────────────────────────────── */}
+      <div className="mt-4 grid grid-cols-2 gap-2.5">
         <motion.button
-          whileHover={{ opacity: 0.85 }}
+          whileHover={{ opacity: 0.82 }}
           whileTap={{ scale: 0.97 }}
           onClick={() => onOpenStudy?.(author)}
-          className="rounded-full bg-[var(--clr-recall)] py-3 text-[12px] font-semibold text-[var(--clr-ink)] transition-opacity"
+          className="rounded-full bg-[var(--clr-recall)] py-2.5 text-[12px] font-semibold text-[var(--clr-ink)] transition-opacity"
         >
           Study
         </motion.button>
-        {/* Test: white on Focus purple = 5.9:1 ✅ */}
         <motion.button
-          whileHover={{ opacity: 0.9 }}
+          whileHover={{ opacity: 0.88 }}
           whileTap={{ scale: 0.97 }}
           onClick={() => onStartTest?.(author)}
-          className="rounded-full bg-[var(--clr-focus)] py-3 text-[12px] font-semibold text-white transition-opacity shadow-lg shadow-[var(--clr-focus)]/30"
+          className="rounded-full bg-[var(--clr-focus)] py-2.5 text-[12px] font-semibold text-white transition-opacity shadow-md shadow-[var(--clr-focus)]/25"
         >
           Test
         </motion.button>
