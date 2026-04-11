@@ -1,36 +1,48 @@
 @import "tailwindcss";
 
+@theme {
+  /* Override Tailwind core colors to enforce the 5-color palette entirely */
+  --color-white: #D7D7D9;
+  --color-black: #736D62;
+}
+
 :root {
-  /* New Muted Mountain Palette */
-  --color-bg-primary: #FAFAFA;     /* Very Light Canvas */
-  --color-bg-surface: #FFFFFF;     /* Pure White Surfaces/Cards */
-  --color-bg-inset: #D7D7D9;       /* Light Grey (from palette) */
-  --color-bg-accent-soft: #D9CCB4; /* Warm Sand (from palette) */
-
-  --color-text-primary: #736D62;   /* Warm Dark Grey (from palette) */
-  --color-text-secondary: rgba(115, 109, 98, 0.7); /* Muted form of text-primary */
-  --color-text-strong: #111111;    /* Sharp headings if needed, mostly use text-primary */
-
-  --color-border-subtle: rgba(215, 215, 217, 0.6);  
-  --color-border-strong: #7C92A6;  /* Muted Blue (from palette) */
-  --color-accent: #557359;         /* Muted Green (from palette) */
-  --color-accent-strong: #3A503D;  /* Darker Green for hover */
-
-  /* Modern Flat Shadows */
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.03);
-  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.05);
-
-  --color-interaction-hover: rgba(217, 204, 180, 0.2);
-  --color-interaction-active: rgba(217, 204, 180, 0.4);
-  --color-focus-ring: #557359;
+  /* The Muted Mountain Palette - STRICT 5 COLORS ONLY */
+  /* 1. Light Grey */
+  --color-bg-primary: #D7D7D9;     
+  --color-bg-surface: #D7D7D9;     
   
-  --text-body-color: var(--color-text-primary);
-  --text-muted-color: var(--color-text-secondary);
-  --text-heading-color: var(--color-text-strong);
-  --text-on-accent: #FFFFFF;
+  /* 4. Warm Sand */
+  --color-bg-inset: #D9CCB4;       
+  --color-bg-accent-soft: #D9CCB4; 
 
-  --card-bg: var(--color-bg-surface);
-  --card-shadow: var(--shadow-soft);
+  /* 2. Muted Blue */
+  --color-border-subtle: #7C92A6;  
+  --color-border-strong: #7C92A6;  
+
+  /* 3. Muted Green */
+  --color-accent: #557359;         
+  --color-accent-strong: #557359;  
+  --color-success-soft: #D7D7D9;
+  --color-success-border: #557359;
+  --color-success-text: #557359;
+  --color-focus-ring: #557359;
+
+  /* 5. Warm Dark Grey */
+  --color-text-primary: #736D62;   
+  --color-text-secondary: #736D62; 
+  --color-text-strong: #736D62;    
+
+  /* Text on Accent uses Light Grey for contrast */
+  --text-on-accent: #D7D7D9;
+
+  /* Mappings */
+  --text-body-color: var(--color-text-primary);
+  --text-muted-color: var(--color-text-primary); /* Forced to dark grey */
+  --text-heading-color: var(--color-text-primary);
+
+  --card-bg: var(--color-bg-inset); /* Cards are Warm Sand */
+  --card-shadow: none; /* No shadow, fully flat */
 
   --input-bg: var(--color-bg-primary);
   --input-border: var(--color-border-subtle);
@@ -42,9 +54,6 @@
   --button-secondary-text: var(--color-text-primary);
 
   --divider-color: var(--color-border-subtle);
-  --color-success-soft: #ebf2ec;
-  --color-success-border: #557359;
-  --color-success-text: #557359;
   --page-max-width: 1440px;
 }
 
@@ -65,7 +74,7 @@ h1, h2, h3 {
   font-family: var(--font-display), "Manrope", sans-serif;
   color: var(--text-heading-color);
   margin: 0;
-  letter-spacing: -0.02em; /* Softer letter spacing */
+  letter-spacing: -0.02em; 
 }
 
 p, button, input, li, span, a, select, option {
@@ -77,14 +86,14 @@ p, button, input, li, span, a, select, option {
 }
 
 ::selection {
-  background: rgba(85, 115, 89, 0.2); 
+  background: var(--color-bg-inset); 
 }
 
 .card {
   background: var(--card-bg);
-  box-shadow: var(--card-shadow);
-  border-radius: 16px; /* Softer, slightly smaller corners */
-  border: 1px solid var(--color-border-subtle);
+  box-shadow: none;
+  border-radius: 16px; 
+  border: 1px solid var(--color-border-strong);
   will-change: transform, opacity;
 }
 
@@ -102,7 +111,7 @@ p, button, input, li, span, a, select, option {
 
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: #D7D7D9 transparent;
+  scrollbar-color: var(--color-border-subtle) transparent;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
@@ -114,7 +123,7 @@ p, button, input, li, span, a, select, option {
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: #D7D7D9;
+  background: var(--color-border-subtle);
   border-radius: 999px;
 }
 
