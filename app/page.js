@@ -171,6 +171,8 @@ export default function Page() {
           setActive={handleCategoryChange}
           collapsed={desktopSidebarCollapsed}
           onToggle={() => setDesktopSidebarCollapsed(!desktopSidebarCollapsed)}
+          theme={theme}
+          mounted={mounted}
         />
       </div>
 
@@ -203,6 +205,8 @@ export default function Page() {
                 onSelect={() => setMobileMenuOpen(false)}
                 collapsed={false}
                 onToggle={() => setMobileMenuOpen(false)}
+                theme={theme}
+                mounted={mounted}
               />
             </motion.div>
           </motion.div>

@@ -9,7 +9,14 @@ export default function Sidebar({
   onToggle,
   title = "EnLit",
   tagline = "exam revision portal",
+  theme = "dark",
+  mounted = true,
 }) {
+  const isDark = theme === "dark";
+  const logoSrc = mounted 
+    ? (isDark ? "/assets/logo-light.png" : "/assets/logo-dark.png")
+    : "/assets/logo-light.png"; // Default to light logo for SSR if default theme is dark
+
   return (
     <aside className={`flex h-full flex-col bg-[var(--clr-surface)] border-r border-white/5 transition-all duration-300`}>
       <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-8"}`}>
@@ -21,21 +28,30 @@ export default function Sidebar({
             onClick={onToggle}
             className="mt-1 flex h-10 w-10 items-center justify-center rounded-xl text-[var(--clr-ink)] opacity-60 hover:opacity-100 transition"
           >
-            <svg aria-hidden="true" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-              <path d="M3 6h18M3 12h18M3 18h18" />
-            </svg>
+            <img 
+              src={logoSrc} 
+              alt="Logo" 
+              className="h-8 w-8 object-contain"
+            />
           </motion.button>
         ) : (
           <>
             <div className="max-w-[200px] pt-1">
-              {/* WCAG AAA: #FFFFFF on #1C1A30 = 14.7:1 */}
-              <h1 className="text-[26px] font-black leading-tight tracking-tight text-white">
-                {title}
-              </h1>
-              {/* WCAG AA: parchment@50% on #1C1A30 = ~7.5:1 */}
-              <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.25em] text-[var(--clr-ink)] opacity-50">
-                {tagline}
-              </p>
+              <div className="flex items-center gap-3">
+                <img 
+                  src={logoSrc} 
+                  alt="EnLit Logo" 
+                  className="h-10 w-10 object-contain"
+                />
+                <div>
+                  <h1 className="text-[22px] font-black leading-none tracking-tight text-[var(--clr-ink)]">
+                    {title}
+                  </h1>
+                  <p className="mt-1 text-[8px] font-bold uppercase tracking-[0.2em] text-[var(--clr-ink)] opacity-50">
+                    {tagline}
+                  </p>
+                </div>
+              </div>
             </div>
             <motion.button
               whileHover={{ scale: 1.1 }}

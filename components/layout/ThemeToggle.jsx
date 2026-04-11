@@ -19,6 +19,12 @@ export function useTheme() {
     setTheme(next);
     localStorage.setItem("enlit-theme", next);
     document.documentElement.setAttribute("data-theme", next);
+    
+    // Update favicon
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) {
+      link.href = next === "dark" ? "/assets/logo-light.png" : "/assets/logo-dark.png";
+    }
   }
 
   return { theme, toggle, mounted };

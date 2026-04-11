@@ -16,6 +16,12 @@ const nunito = Nunito({
 export const metadata = {
   title: "EnLit | Exam Revision Portal",
   description: "A comprehensive literature exam revision portal",
+  icons: {
+    icon: [
+      { url: "/assets/logo-dark.png", media: "(prefers-color-scheme: light)" },
+      { url: "/assets/logo-light.png", media: "(prefers-color-scheme: dark)" },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -29,6 +35,15 @@ export default function RootLayout({ children }) {
               try {
                 var t = localStorage.getItem('enlit-theme') || 'dark';
                 document.documentElement.setAttribute('data-theme', t);
+                
+                // Dynamic favicon based on theme
+                var link = document.querySelector("link[rel~='icon']");
+                if (!link) {
+                  link = document.createElement('link');
+                  link.rel = 'icon';
+                  document.getElementsByTagName('head')[0].appendChild(link);
+                }
+                link.href = t === 'dark' ? '/assets/logo-light.png' : '/assets/logo-dark.png';
               } catch(e) {
                 document.documentElement.setAttribute('data-theme', 'dark');
               }
