@@ -1,5 +1,34 @@
 import { shuffle } from "./shuffle.js";
 
+// Exported for StudyFocusView
+export function inferTheme(work, author, category) {
+  const text = `${work} ${author.literary_period || ""} ${category?.label || category?.id || ""}`.toLowerCase();
+
+  if (/(love|daughter|heart|bride|wife|morrow|valediction)/.test(text)) {
+    return "Love and intimacy";
+  }
+  if (/(death|funeral|grave|war|punishment|dark|waste|barbarian)/.test(text)) {
+    return "Mortality and conflict";
+  }
+  if (/(wind|bird|fox|jaguar|nature|autumn|nightingale|skylark|potato)/.test(text)) {
+    return "Nature and imagination";
+  }
+  if (/(history|tradition|culture|language|mind|identity|tongue|colony)/.test(text)) {
+    return "Identity and cultural memory";
+  }
+  if (/(hamlet|godot|faustus|playboy|duchess|tempest|party)/.test(text)) {
+    return "Power, performance, and conflict";
+  }
+
+  const period = (author.literary_period || "").toLowerCase();
+  if (period.includes("modern")) return "Fragmentation and modern anxiety";
+  if (period.includes("romantic")) return "Emotion and imagination";
+  if (period.includes("victorian")) return "Society, morality, and change";
+  if (category?.id?.includes("criticism")) return "Interpretation and literary method";
+
+  return `Key concerns in ${category?.label || "literature"}`;
+}
+
 // PART 1 — DATA CLEANUP
 export function cleanAuthorData(a) {
   const author = JSON.parse(JSON.stringify(a));
