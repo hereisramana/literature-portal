@@ -1,58 +1,23 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import AuthorFocusShell from "../focus/AuthorFocusShell.jsx";
 import ConfidenceStrip from "./ConfidenceStrip.jsx";
 import { createTestSession } from "../../utils/testEngine.js";
 
-function ResultNote({ children, success = false }) {
+function ResultNote({ children, success = false, checked = false }) {
+  if (!checked) return null;
   return (
     <div
-      className={`rounded-2xl px-4 py-3 text-sm leading-7 ${
+      className={`rounded-xl px-5 py-4 text-[14px] leading-relaxed shadow-sm border ${
         success
-          ? "success-surface"
-          : "bg-[var(--color-bg-raised)] text-[var(--text-body-color)]"
+          ? "success-surface border-[var(--color-success-border)]"
+          : "bg-[var(--color-bg-surface)] text-[var(--text-body-color)] border-[var(--color-border-subtle)]"
       }`}
     >
       {children}
-    </div>
-  );
-}
-
-function RetrievalPanel({ retrieval, revealed, onReveal }) {
-  return (
-    <div className="space-y-4">
-      <p className="text-sm leading-7 text-[var(--text-muted-color)]">{retrieval.prompt}</p>
-      {retrieval.hints.length > 0 && (
-        <div className="flex flex-wrap gap-2">
-          {retrieval.hints.map((hint) => (
-            <span
-              key={hint}
-              className="rounded-full bg-[var(--color-bg-raised)] px-3 py-2 text-xs font-semibold text-[var(--text-muted-color)]"
-            >
-              {hint}
-            </span>
-          ))}
-        </div>
-      )}
-      {!revealed ? (
-        <button
-          onClick={onReveal}
-          className="rounded-full bg-[var(--button-primary-bg)] px-4 py-2 text-sm font-semibold text-[var(--button-primary-text)]"
-        >
-          Reveal Support
-        </button>
-      ) : (
-        <ul className="space-y-2">
-          {retrieval.works.map((work, index) => (
-            <li key={work} className="success-surface rounded-2xl px-4 py-3 text-sm">
-              <span className="mr-2 font-semibold">{index + 1}.</span>
-              {work}
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 }
@@ -66,105 +31,107 @@ function McqPanel({
   onSelect,
   onSubmit,
   onNext,
+  timer,
 }) {
   if (!question) {
-    return <ResultNote success>No more questions in this section yet.</ResultNote>;
+    return <div className="p-8 text-center bg-[var(--color-bg-inset)] rounded-2xl border border-[var(--color-border-subtle)] shadow-inner">
+      <p className="text-[14px] font-bold text-[var(--text-muted-color)] opacity-60">No more questions available for this session.</p>
+    </div>;
   }
 
   const success = submitted && selected === question.answer;
 
   return (
-    <div className="space-y-4">
-      <div className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--text-muted-color)]">
-          {question.layer} · {question.subType}
-        </p>
-        <p className="text-sm leading-7 text-[var(--text-body-color)]">{question.prompt}</p>
+    <div className="space-y-6">
+      <div className="space-y-4">
+        <div className="flex items-center justify-between gap-6">
+           <p className="text-[16px] font-bold leading-relaxed text-[var(--text-body-color)] flex-1">{question.prompt}</p>
+           {!submitted && (
+             <div className="flex flex-col items-center shrink-0">
+               <div className="h-10 w-10 rounded-full border border-[var(--color-border-strong)] flex items-center justify-center relative overflow-hidden">
+                 <span className="text-[11px] font-black text-[var(--color-text-primary)] z-10">{timer}</span>
+                 <motion.div
+                   className="absolute bottom-0 left-0 right-0 bg-[var(--color-text-strong)] opacity-5"
+                   initial={{ height: "0%" }}
+                   animate={{ height: `${(15 - timer) / 15 * 100}%` }}
+                 />
+               </div>
+             </div>
+           )}
+        </div>
       </div>
 
       {!revealed ? (
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
           onClick={onReveal}
-          className="rounded-full bg-[var(--button-primary-bg)] px-4 py-2 text-sm font-semibold text-[var(--button-primary-text)]"
+          className="rounded-full bg-[var(--color-text-strong)] px-8 py-3 text-[11px] font-black uppercase tracking-[0.15em] text-white shadow-sm"
         >
           Reveal Options
-        </button>
+        </motion.button>
       ) : (
-        <div className="grid gap-3">
+        <div className="grid gap-2">
           {question.mcqOptions.map((option) => {
             const active = selected === option;
             const correct = submitted && option === question.answer;
 
             return (
-              <button
+              <motion.button
                 key={option}
+                whileHover={!submitted ? { x: 4, backgroundColor: "rgba(0,0,0,0.02)" } : {}}
+                whileTap={{ scale: 0.995 }}
                 onClick={() => onSelect(option)}
                 disabled={submitted}
-                className={`rounded-2xl px-4 py-3 text-left text-sm transition ${
+                className={`rounded-xl px-5 py-3.5 text-left text-[14px] transition-all border ${
                   correct
-                    ? "success-surface"
+                    ? "success-surface border-[var(--color-success-border)] shadow-sm"
                     : active
-                    ? "bg-[var(--color-bg-accent-soft)]"
-                    : "bg-[var(--color-bg-raised)] hover:bg-[var(--color-interaction-hover)]"
+                    ? "bg-[var(--color-bg-accent-soft)] border-[var(--color-border-strong)] shadow-inner"
+                    : "bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-inset)] border-[var(--color-border-subtle)] shadow-sm"
                 }`}
               >
                 {option}
-              </button>
+              </motion.button>
             );
           })}
         </div>
       )}
 
-      {submitted && (
-        <ResultNote success={success}>
-          <span className="font-semibold">
-            {success ? "Correct." : `Correct answer: ${question.answer}.`}
-          </span>{" "}
-          {question.explanation}
-        </ResultNote>
-      )}
+      <ResultNote checked={submitted} success={success}>
+        <p className="font-bold mb-1 uppercase tracking-tight text-xs">
+          {success ? "You're correct!" : "You missed it."}
+        </p>
+        <p className="text-[15px]">
+          <strong>Answer:</strong> {question.answer} — {question.explanation}
+        </p>
+      </ResultNote>
 
-      <div className="flex flex-wrap gap-2">
-        <button
-          onClick={onSubmit}
-          disabled={!revealed || !selected || submitted}
-          className="rounded-full bg-[var(--button-primary-bg)] px-4 py-2 text-sm font-semibold text-[var(--button-primary-text)] disabled:cursor-not-allowed disabled:bg-[var(--color-disabled-bg)] disabled:text-[var(--color-disabled-text)]"
-        >
-          {submitted ? "Checked" : "Check Answer"}
-        </button>
-
-        {submitted && (
-          <button
+      <div className="flex flex-wrap gap-3 pt-4">
+        {!submitted ? (
+          <motion.button
+            whileHover={!(!revealed || !selected || submitted) ? { scale: 1.02 } : {}}
+            whileTap={{ scale: 0.98 }}
+            onClick={onSubmit}
+            disabled={!revealed || !selected || submitted}
+            className="rounded-full bg-[var(--color-text-strong)] px-10 py-3.5 text-[11px] font-black uppercase tracking-[0.15em] text-white shadow-md disabled:opacity-20 disabled:cursor-not-allowed transition-all"
+          >
+            Check Answer
+          </motion.button>
+        ) : (
+          <motion.button
+            whileHover={{ scale: 1.02, backgroundColor: "var(--color-bg-surface)" }}
+            whileTap={{ scale: 0.98 }}
             onClick={onNext}
-            className="rounded-full bg-[var(--button-secondary-bg)] px-4 py-2 text-sm font-semibold text-[var(--button-secondary-text)]"
+            className="rounded-full bg-[var(--color-bg-inset)] border border-[var(--color-border-subtle)] px-10 py-3.5 text-[11px] font-black uppercase tracking-[0.15em] text-[var(--text-heading-color)] shadow-sm transition-all"
           >
             Next Question
-          </button>
+          </motion.button>
         )}
       </div>
     </div>
   );
 }
-
-function SidePanel({ title, children }) {
-  return (
-    <div className="rounded-[28px] bg-[var(--color-bg-raised)] p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted-color)]">
-        {title}
-      </p>
-      <div className="mt-3 text-sm leading-7 text-[var(--text-body-color)]">{children}</div>
-    </div>
-  );
-}
-
-const GUIDES = {
-  retrieve:
-    "Start with pure retrieval before support appears. This is the memory-first pass for the author you chose.",
-  verify:
-    "Reveal the options only after recall. These questions use stronger distractors and explanations to sharpen discrimination.",
-  interleave:
-    "Mix adjacent or related authors so recognition does not become too context-bound. This is where comparison and transfer improve.",
-};
 
 export default function TestFocusView({
   author,
@@ -180,71 +147,64 @@ export default function TestFocusView({
     [author, category, allAuthors]
   );
 
-  const tabs = [
-    { id: "retrieve", label: "Retrieve" },
-    { id: "verify", label: "Verify" },
-    { id: "interleave", label: "Interleave" },
-  ];
-
-  const [activeTab, setActiveTab] = useState("retrieve");
-  const [retrievalRevealed, setRetrievalRevealed] = useState(false);
-  const [verifyIndex, setVerifyIndex] = useState(0);
-  const [interleaveIndex, setInterleaveIndex] = useState(0);
-  const [revealedByTab, setRevealedByTab] = useState({ verify: false, interleave: false });
-  const [selectedByTab, setSelectedByTab] = useState({ verify: "", interleave: "" });
-  const [submittedByTab, setSubmittedByTab] = useState({ verify: false, interleave: false });
-  const [completed, setCompleted] = useState({});
+  const [interleaved, setInterleaved] = useState(false);
+  const [hasSeenGuide, setHasSeenGuide] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem(`seenTestGuide_${author.author}`) === "true";
+  });
+  const [showGuide, setShowGuide] = useState(!hasSeenGuide);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [revealed, setRevealed] = useState(false);
+  const [selected, setSelected] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [questionsAttempted, setQuestionsAttempted] = useState(0);
+  const [confidenceFlow, setConfidenceFlow] = useState(false);
   const [confidence, setConfidence] = useState(storedConfidence || "");
-  const [closingFlow, setClosingFlow] = useState(false);
+
+  const [timer, setTimer] = useState(15);
+
+  const activeQuestions = interleaved ? session.interleaveQuestions : session.verifyQuestions;
+  const currentQuestion = activeQuestions[currentIndex] || null;
 
   useEffect(() => {
-    setActiveTab("retrieve");
-    setRetrievalRevealed(false);
-    setVerifyIndex(0);
-    setInterleaveIndex(0);
-    setRevealedByTab({ verify: false, interleave: false });
-    setSelectedByTab({ verify: "", interleave: "" });
-    setSubmittedByTab({ verify: false, interleave: false });
-    setCompleted({});
-    setConfidence(storedConfidence || "");
-    setClosingFlow(false);
-  }, [author, storedConfidence]);
+    if (showGuide || submitted || !currentQuestion) return;
 
-  const verifyQuestion = session.verifyQuestions[verifyIndex] || null;
-  const interleaveQuestion = session.interleaveQuestions[interleaveIndex] || null;
-  const anyCompleted = Object.keys(completed).length > 0;
+    const interval = setInterval(() => {
+      setTimer((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setRevealed(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
-  function markTabComplete(tab) {
-    setCompleted((current) => ({ ...current, [tab]: true }));
+    return () => clearInterval(interval);
+  }, [currentIndex, showGuide, submitted, currentQuestion]);
+
+  function resetQuestion() {
+    setRevealed(false);
+    setSelected("");
+    setSubmitted(false);
+    setTimer(15);
   }
 
-  function resetQuestionState(tab) {
-    setRevealedByTab((current) => ({ ...current, [tab]: false }));
-    setSelectedByTab((current) => ({ ...current, [tab]: "" }));
-    setSubmittedByTab((current) => ({ ...current, [tab]: false }));
+  function handleNext() {
+    setCurrentIndex((prev) => Math.min(prev + 1, activeQuestions.length - 1));
+    resetQuestion();
   }
 
-  function handleMcqSubmit(tab) {
-    setSubmittedByTab((current) => ({ ...current, [tab]: true }));
-    markTabComplete(tab);
-  }
-
-  function handleNextQuestion(tab) {
-    if (tab === "verify") {
-      setVerifyIndex((current) =>
-        Math.min(current + 1, Math.max(session.verifyQuestions.length - 1, 0))
-      );
-    } else {
-      setInterleaveIndex((current) =>
-        Math.min(current + 1, Math.max(session.interleaveQuestions.length - 1, 0))
-      );
-    }
-    resetQuestionState(tab);
+  function handleInterleaveToggle() {
+    const nextValue = !interleaved;
+    setInterleaved(nextValue);
+    setCurrentIndex(0);
+    resetQuestion();
   }
 
   function handleCloseAttempt() {
-    if (anyCompleted) {
-      setClosingFlow(true);
+    if (questionsAttempted > 0) {
+      setConfidenceFlow(true);
       return;
     }
     onClose();
@@ -254,109 +214,120 @@ export default function TestFocusView({
     setConfidence(value);
     await onSaveConfidence({
       author: author.author,
-      exercise: activeTab,
+      exercise: "verify",
       confidence: value,
       timestamp: Date.now(),
     });
     onClose();
   }
 
-  const notes = {
-    retrieve: retrievalRevealed
-      ? "The support list is visible now. Use it to compare against your own recall before moving into MCQ verification."
-      : "Pause before revealing support. Try to reconstruct the works, movements, and themes mentally first.",
-    verify: submittedByTab.verify && verifyQuestion
-      ? `${selectedByTab.verify === verifyQuestion.answer ? "Correct." : "Checked."} ${verifyQuestion.explanation}`
-      : "This section checks the chosen author directly using revealed-option questions with stronger distractors.",
-    interleave: submittedByTab.interleave && interleaveQuestion
-      ? `${selectedByTab.interleave === interleaveQuestion.answer ? "Correct." : "Checked."} ${interleaveQuestion.explanation}`
-      : "This section mixes in related authors so the practice is less predictable and more exam-like.",
-  };
-
-  const relatedLabel =
-    session.relatedAuthors.length > 0
-      ? session.relatedAuthors.map((entry) => entry.author).slice(0, 3).join(", ")
-      : "No related authors available yet for interleaving.";
-
-  const meta = `${category.label} | ${author.region || "Unknown region"} | ${
-    author.literary_period || "Reference"
-  }`;
-
   return (
     <>
       <AuthorFocusShell
-        modeLabel="Test Mode"
         title={author.author}
-        meta={meta}
-        tabs={tabs}
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
+        tabs={[{ id: "verify", label: "Recall and Recognise" }]}
+        activeTab="verify"
+        onTabChange={() => {}}
         onClose={handleCloseAttempt}
+        showGuide={showGuide}
+        guideCtaLabel="Got it, start the test"
+        showGuideSkip={false}
+        onCloseGuide={() => {
+          setShowGuide(false);
+          setHasSeenGuide(true);
+          localStorage.setItem(`seenTestGuide_${author.author}`, "true");
+        }}
+        guideContent={
+          <p>
+            Try to recall the answer before the timer ends — options will appear automatically after.
+          </p>
+        }
         main={
-          <>
-            {activeTab === "retrieve" && (
-              <RetrievalPanel
-                retrieval={session.retrieval}
-                revealed={retrievalRevealed}
-                onReveal={() => {
-                  setRetrievalRevealed(true);
-                  markTabComplete("retrieve");
-                }}
-              />
-            )}
+          <div className="pb-10">
+            <div className="mb-10 flex items-center justify-between p-6 bg-[var(--color-bg-inset)] rounded-[28px] shadow-inner border border-white/20">
+              <div>
+                <h4 className="text-sm font-bold text-[var(--text-heading-color)] mt-1">
+                  Question {currentIndex + 1} of {activeQuestions.length}
+                </h4>
+              </div>
 
-            {activeTab === "verify" && (
-              <McqPanel
-                question={verifyQuestion}
-                revealed={revealedByTab.verify}
-                selected={selectedByTab.verify}
-                submitted={submittedByTab.verify}
-                onReveal={() =>
-                  setRevealedByTab((current) => ({ ...current, verify: true }))
-                }
-                onSelect={(value) =>
-                  setSelectedByTab((current) => ({ ...current, verify: value }))
-                }
-                onSubmit={() => handleMcqSubmit("verify")}
-                onNext={() => handleNextQuestion("verify")}
-              />
-            )}
+              <div className="flex flex-col items-end gap-1">
+                <div className="flex items-center gap-3">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted-color)]">
+                    Interleave <span className="opacity-60">(mix other authors)</span>
+                  </span>
+                  <button
+                    onClick={handleInterleaveToggle}
+                    className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${interleaved ? "bg-[var(--color-accent-strong)]" : "bg-[var(--color-border-strong)]"}`}
+                  >
+                    <span
+                      className={`inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${interleaved ? "translate-x-5" : "translate-x-0"}`}
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
 
-            {activeTab === "interleave" && (
-              <McqPanel
-                question={interleaveQuestion}
-                revealed={revealedByTab.interleave}
-                selected={selectedByTab.interleave}
-                submitted={submittedByTab.interleave}
-                onReveal={() =>
-                  setRevealedByTab((current) => ({ ...current, interleave: true }))
-                }
-                onSelect={(value) =>
-                  setSelectedByTab((current) => ({ ...current, interleave: value }))
-                }
-                onSubmit={() => handleMcqSubmit("interleave")}
-                onNext={() => handleNextQuestion("interleave")}
-              />
-            )}
-          </>
-        }
-        sidebar={
-          <>
-            <SidePanel title="Exercise Guide">{GUIDES[activeTab]}</SidePanel>
-            <SidePanel title="Session Notes">{notes[activeTab]}</SidePanel>
-            <SidePanel title="Interleaving Pool">{relatedLabel}</SidePanel>
-          </>
+            <McqPanel
+              question={currentQuestion}
+              revealed={revealed}
+              selected={selected}
+              submitted={submitted}
+              timer={timer}
+              onReveal={() => setRevealed(true)}
+              onSelect={setSelected}
+              onSubmit={() => {
+                setSubmitted(true);
+                setQuestionsAttempted((v) => v + 1);
+              }}
+              onNext={handleNext}
+            />
+          </div>
         }
       />
 
-      <ConfidenceStrip
-        visible={closingFlow}
-        currentValue={confidence}
-        onSelect={handleConfidence}
-        provider={cloud.provider}
-        onConnect={cloud.connect}
-        onDisconnect={cloud.disconnect}
-      />
+      <AnimatePresence>
+        {confidenceFlow && (
+          <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/40 backdrop-blur-md p-4">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="card w-full max-w-lg p-10 text-center shadow-2xl relative overflow-hidden"
+            >
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold mb-2">Reflect on Mastery</h3>
+                <p className="text-[15px] leading-relaxed text-[var(--text-muted-color)] mb-10">
+                  How confident do you feel about <strong>{author.author}</strong> after this session? This updates your dashboard progress.
+                </p>
+
+                <div className="mb-10">
+                  <ConfidenceStrip
+                    visible={true}
+                    currentValue={confidence}
+                    onSelect={handleConfidence}
+                    provider={cloud.provider}
+                    onConnect={cloud.connect}
+                    onDisconnect={cloud.disconnect}
+                    embedded={true}
+                  />
+                </div>
+
+                <div className="flex gap-4">
+                  <button
+                    onClick={onClose}
+                    className="flex-1 rounded-full bg-[var(--color-bg-inset)] py-3 text-sm font-bold uppercase tracking-wider text-[var(--color-text-primary)] shadow-sm hover:shadow-md transition"
+                  >
+                    Skip for Now
+                  </button>
+                </div>
+              </div>
+
+              <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-[var(--color-accent)]/5 rounded-full blur-3xl" />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

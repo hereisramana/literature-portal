@@ -1,24 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --color-bg-primary: #f2ede4;
-  --color-bg-surface: #f2ede4;
-  --color-bg-raised: #f2ede4;
-  --color-bg-inset: #f2ede4;
-  --color-bg-accent-soft: #e8e4da;
+  /* Paper-derived "Contrast First" Palette */
+  --color-bg-primary: #F8F7F4;   /* Canvas */
+  --color-bg-surface: #FFFFFF;   /* Surfaces/Cards */
+  --color-bg-raised: #FFFFFF;
+  --color-bg-inset: #F0EFEA;     /* Subtly darker than canvas for insets */
+  --color-bg-accent-soft: #EAE9E2;
 
-  --color-text-primary: #3a403b;
-  --color-text-secondary: #666b66;
-  --color-text-strong: #1c2621;
+  --color-text-primary: #3A403B;   /* Main functional text */
+  --color-text-secondary: #5D635E; /* Muted but accessible */
+  --color-text-strong: #1C2621;    /* Headings */
 
-  --color-border-subtle: #d7d1c7;
-  --color-border-strong: #bfbcb4;
-  --color-accent: #3a403b;
-  --color-accent-strong: #1c2621;
-  --color-neutral-cool: #bfbcb4;
+  --color-border-subtle: #E0DFD8;  /* Light dividers */
+  --color-border-strong: #8C8C87;  /* Structural borders */
+  --color-accent: #3A403B;         /* Primary CTA Color */
+  --color-accent-strong: #1C2621;
+  --color-neutral-cool: #8C8C87;
 
-  --shadow-soft: 0 10px 24px rgba(58, 64, 59, 0.08);
-  --shadow-medium: 0 18px 40px rgba(58, 64, 59, 0.14);
+  --shadow-soft: 0 4px 20px rgba(58, 64, 59, 0.04);
+  --shadow-medium: 0 12px 32px rgba(58, 64, 59, 0.08);
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.82);
   --highlight-soft: inset 0 1px 0 rgba(255, 255, 255, 0.62);
 
@@ -33,7 +34,7 @@
   --text-heading-color: var(--color-text-strong);
   --text-on-accent: #f2ede4;
 
-  --card-bg: #fcfaf5;
+  --card-bg: var(--color-bg-surface);
   --card-shadow: var(--shadow-soft);
 
   --input-bg: var(--color-bg-primary);
@@ -58,11 +59,7 @@ html, body {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at 12% 18%, rgba(191, 188, 180, 0.08) 0 1px, transparent 1.2px),
-    radial-gradient(circle at 78% 32%, rgba(191, 188, 180, 0.06) 0 1px, transparent 1.2px),
-    linear-gradient(180deg, #f4efe7 0%, #f2ede4 100%);
-  background-size: 18px 18px, 22px 22px, auto;
+  background: var(--color-bg-primary);
   color: var(--text-body-color);
   font-family: var(--font-body), "Nunito", sans-serif;
   overflow: hidden;
@@ -92,6 +89,7 @@ p, button, input, li, span, a, select, option {
   background: var(--card-bg);
   box-shadow: var(--card-shadow), var(--highlight-soft);
   border-radius: 24px;
+  will-change: transform, opacity;
 }
 
 .inset {
@@ -149,6 +147,21 @@ p, button, input, li, span, a, select, option {
 
 .ease-figma {
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smart: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gpu-transition {
+  transition: transform 0.3s var(--ease-smart), opacity 0.3s var(--ease-smart);
+  will-change: transform, opacity;
+}
+
+.content-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 300px;
+}
+
+.text-depth {
+  text-shadow: 0 1px 2px rgba(28, 38, 33, 0.05);
 }
 
 button:focus-visible,
