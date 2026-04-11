@@ -306,6 +306,15 @@ export default function Page() {
             selectedWork={studyContext.selectedWork}
             inferTheme={inferTheme}
             onClose={() => setStudyContext(null)}
+            onStartTest={(author) => {
+              setStudyContext(null);
+              setFocusedAuthor(author);
+            }}
+            onNextAuthor={() => {
+              const currentIdx = filteredAuthors.findIndex(a => a.author === studyContext.author.author);
+              const nextAuthor = filteredAuthors[currentIdx + 1];
+              if (nextAuthor) setStudyContext({ author: nextAuthor, selectedWork: "" });
+            }}
           />
         )}
       </AnimatePresence>
