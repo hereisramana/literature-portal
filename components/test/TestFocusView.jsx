@@ -6,14 +6,31 @@ import AuthorFocusShell from "../focus/AuthorFocusShell.jsx";
 import ConfidenceStrip from "./ConfidenceStrip.jsx";
 import { createTestSession, generateMixSession } from "../../utils/testEngine.js";
 
-// ─── Spring toggle (reused pattern from ThemeToggle) ─────────────────────────
+// ─── Adaptive Helpers ────────────────────────────────────────────────────────
+function getAdaptiveTimer(confidence) {
+  const map = {
+    // New Rating logic
+    "1": 15, // I'm struggling
+    "2": 14, // Improving
+    "3": 12, // Foundational
+    "4": 11, // Confident
+    "5": 9,  // Mastered
+    // Legacy support
+    "weak": 15,
+    "moderate": 13,
+    "good": 11,
+    "excellent": 9
+  };
+  return map[confidence] || 12; // Default to 12s
+}
+
+// ─── Spring toggle ───────────────────────────────────────────────────────────
 function ToggleSwitch({ enabled, onToggle }) {
   return (
     <motion.button
       onClick={onToggle}
       whileTap={{ scale: 0.92 }}
-      aria-pressed={enabled}
-      className="relative flex h-7 w-[52px] shrink-0 items-center rounded-full border transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--clr-focus)] focus-visible:ring-offset-2"
+      className="relative flex h-7 w-[52px] shrink-0 items-center rounded-full border transition-colors duration-200"
       style={{
         background: enabled ? "rgba(83,74,183,0.35)" : "rgba(255,255,255,0.07)",
         borderColor: enabled ? "rgba(127,119,221,0.45)" : "rgba(255,255,255,0.12)",
@@ -32,7 +49,6 @@ function ToggleSwitch({ enabled, onToggle }) {
 // ─── MCQ Panel ───────────────────────────────────────────────────────────────
 function McqPanel({ question, revealed, selected, submitted, onReveal, onSelect, onSubmit, onNext, timer }) {
   if (!question) return null;
-
   const success = submitted && selected === question.answer;
 
   return (
@@ -40,7 +56,6 @@ function McqPanel({ question, revealed, selected, submitted, onReveal, onSelect,
       <div className="space-y-2">
         <div className="flex items-start justify-between gap-6">
           <div className="flex-1 min-w-0">
-            {/* Author attribution — only shown in mix mode */}
             {question.authorName && (
               <span className="inline-block mb-1.5 rounded-full bg-[var(--clr-warn)]/15 border border-[var(--clr-warn)]/30 px-3 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[var(--clr-warn)]">
                 {question.authorName}
@@ -56,37 +71,25 @@ function McqPanel({ question, revealed, selected, submitted, onReveal, onSelect,
             </p>
           </div>
 
-          {/* Timer ring */}
           {!submitted && (
             <div className="shrink-0">
-              <div className="h-12 w-12 rounded-full border-2 border-[var(--clr-dim)] flex items-center justify-center relative overflow-hidden bg-transparent">
+              <div className="h-12 w-12 rounded-full border-2 border-white/5 flex items-center justify-center relative overflow-hidden bg-transparent">
                 <span className="text-[12px] font-black text-[var(--clr-ink)] z-10">{timer}</span>
                 <motion.div
-                  className={`absolute bottom-0 left-0 right-0 ${timer < 5 ? "bg-[var(--clr-warn)]" : "bg-[var(--clr-focus)]"} opacity-20`}
+                  className={`absolute bottom-0 left-0 right-0 ${timer < 5 ? "bg-[var(--clr-wrong)]" : "bg-[var(--clr-focus)]"} opacity-20`}
                   initial={{ height: "0%" }}
                   animate={{ height: `${((15 - timer) / 15) * 100}%` }}
                 />
-                <svg className="absolute inset-0 w-full h-full -rotate-90">
-                  <circle
-                    cx="24" cy="24" r="22"
-                    fill="none"
-                    stroke={timer < 5 ? "var(--clr-warn)" : "var(--clr-focus)"}
-                    strokeWidth="2"
-                    strokeDasharray="138"
-                    strokeDashoffset={138 - (timer / 15) * 138}
-                  />
-                </svg>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Waiting state — no button, just message */}
       {!revealed ? (
         <div className="flex flex-col items-center py-10 bg-[var(--clr-recall)] rounded-2xl border border-white/5">
-          <p className="text-[13px] text-[var(--clr-ink)] opacity-55 italic">
-            Hold the answer in mind — options appear in {timer}s
+          <p className="text-[13px] text-[var(--clr-ink)] opacity-40 italic">
+            Retrieving... options reveal in {timer}s
           </p>
         </div>
       ) : (
@@ -104,7 +107,7 @@ function McqPanel({ question, revealed, selected, submitted, onReveal, onSelect,
 
             if (showCorrect) { bg = "bg-[var(--clr-correct)]"; border = "border-[var(--clr-correct)]"; text = "text-white"; }
             else if (showWrong) { bg = "bg-[var(--clr-wrong)]"; border = "border-[var(--clr-wrong)]"; text = "text-white"; }
-            else if (dim) { bg = "bg-transparent"; border = "border-[var(--clr-dim)]"; text = "text-[var(--clr-dim)]"; }
+            else if (dim) { bg = "bg-transparent"; border = "border-white/5"; text = "text-[var(--clr-ink)] opacity-30"; }
             else if (isSelected && !submitted) { border = "border-[var(--clr-pulse)]"; bg = "bg-[var(--clr-recall)]"; }
 
             return (
@@ -123,7 +126,6 @@ function McqPanel({ question, revealed, selected, submitted, onReveal, onSelect,
         </div>
       )}
 
-      {/* Feedback card after submission */}
       {submitted && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="pt-2">
           <div className={`p-5 rounded-xl border ${
@@ -131,8 +133,8 @@ function McqPanel({ question, revealed, selected, submitted, onReveal, onSelect,
               ? "bg-[var(--clr-correct)]/10 border-[var(--clr-correct)] text-[var(--clr-correct)]"
               : "bg-[var(--clr-wrong)]/10 border-[var(--clr-wrong)] text-[var(--clr-wrong)]"
           }`}>
-            <p className="font-bold text-xs uppercase tracking-widest mb-2">
-              {success ? "Correct" : "Incorrect"}
+            <p className="font-bold text-[10px] uppercase tracking-widest mb-2">
+              {success ? "Cognitive Match" : "Interference Detected"}
             </p>
             <p className="text-[14px] leading-relaxed text-[var(--clr-ink)]">
               {question.explanation}
@@ -141,11 +143,10 @@ function McqPanel({ question, revealed, selected, submitted, onReveal, onSelect,
         </motion.div>
       )}
 
-      {/* Action buttons */}
       <div className="flex justify-end pt-4">
         {!submitted ? (
           <motion.button
-            whileHover={revealed && selected ? { scale: 1.02, backgroundColor: "var(--clr-pulse)" } : {}}
+            whileHover={revealed && selected ? { scale: 1.02 } : {}}
             whileTap={{ scale: 0.98 }}
             onClick={onSubmit}
             disabled={!revealed || !selected}
@@ -155,12 +156,10 @@ function McqPanel({ question, revealed, selected, submitted, onReveal, onSelect,
           </motion.button>
         ) : (
           <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={onNext}
-            className="rounded-full bg-[var(--clr-surface)] border-2 border-[var(--clr-dim)] px-12 py-4 text-[13px] font-bold uppercase tracking-widest text-[var(--clr-ink)] transition-all"
+             whileHover={{ scale: 1.05 }}
+             whileTap={{ scale: 0.98 }}
+             onClick={onNext}
+             className="rounded-full bg-[var(--clr-surface)] border-2 border-white/10 px-12 py-4 text-[13px] font-bold uppercase tracking-widest text-[var(--clr-ink)] transition-all"
           >
             Next Question
           </motion.button>
@@ -171,62 +170,54 @@ function McqPanel({ question, revealed, selected, submitted, onReveal, onSelect,
 }
 
 // ─── Summary Screen ───────────────────────────────────────────────────────────
-function SummaryScreen({ resultsLog, onNextAuthor }) {
+function SummaryScreen({ resultsLog, onNextAuthor, onToggleMix, showMixCTA }) {
   const correct = resultsLog.filter(r => r.isCorrect).length;
   const total = resultsLog.length;
 
-  const label =
-    correct === total ? "Perfect Recall" :
-    correct >= Math.ceil(total * 0.75) ? "Strong Command" :
-    correct >= Math.ceil(total * 0.5) ? "Good Grasp" :
-    "Keep Reading";
-
   return (
     <div className="p-8 bg-[var(--clr-surface)] rounded-[28px] border border-white/5 space-y-8 shadow-2xl">
-      {/* Score header */}
       <div className="text-center space-y-2 pt-2">
         <h2 className="text-5xl font-black text-white">
           {correct}
           <span className="text-2xl opacity-25 ml-2">/ {total}</span>
         </h2>
-        <p className="text-[13px] font-bold uppercase tracking-[0.3em] text-[var(--clr-pulse)]">
-          {label}
+        <p className="text-[12px] font-bold uppercase tracking-[0.3em] text-[var(--clr-pulse)]">
+          Diagnostic Score
         </p>
       </div>
 
-      {/* Per-question result list */}
       <div className="space-y-2 max-w-md mx-auto">
         {resultsLog.map((log, i) => (
-          <div
-            key={i}
-            className="flex items-center justify-between gap-4 bg-[var(--clr-bg)] px-4 py-3 rounded-xl border border-white/5 text-[13px]"
-          >
+          <div key={i} className="flex items-center justify-between gap-4 bg-[var(--clr-bg)] px-4 py-3 rounded-xl border border-white/5 text-[13px]">
             <span className="font-medium text-[var(--clr-ink)] opacity-65 truncate">
-              {log.authorName && (
-                <span className="text-[var(--clr-warn)] opacity-80 mr-1.5 text-[10px] font-bold uppercase tracking-wide">
-                  [{log.authorName}]
-                </span>
-              )}
+              {log.authorName && <span className="text-[var(--clr-warn)] text-[10px] font-bold mr-2">[{log.authorName}]</span>}
               {i + 1}. {log.dimension}
             </span>
-            <span
-              className={`shrink-0 text-[16px] font-bold ${log.isCorrect ? "text-[var(--clr-correct)]" : "text-[var(--clr-wrong)]"}`}
-            >
+            <span className={`font-bold ${log.isCorrect ? "text-[var(--clr-correct)]" : "text-[var(--clr-wrong)]"}`}>
               {log.isCorrect ? "✓" : "✗"}
             </span>
           </div>
         ))}
       </div>
 
-      {/* Single CTA */}
-      <div className="max-w-md mx-auto pt-2">
+      <div className="max-w-md mx-auto space-y-3 pt-2">
+        {showMixCTA && (
+          <motion.button
+            whileHover={{ scale: 1.02, backgroundColor: "rgba(127,119,221,0.1)" }}
+            whileTap={{ scale: 0.98 }}
+            onClick={onToggleMix}
+            className="w-full rounded-full border-2 border-[var(--clr-pulse)]/30 py-4 text-[12px] font-bold uppercase tracking-widest text-[var(--clr-pulse)] transition-all"
+          >
+            ⚡ Try a Mix-Test
+          </motion.button>
+        )}
         <motion.button
           whileHover={{ opacity: 0.9 }}
           whileTap={{ scale: 0.97 }}
           onClick={onNextAuthor}
-          className="w-full rounded-full bg-[var(--clr-focus)] py-4 text-[13px] font-bold uppercase tracking-widest text-white shadow-lg transition-opacity"
+          className="w-full rounded-full bg-[var(--clr-focus)] py-4 text-[12px] font-bold uppercase tracking-widest text-white shadow-lg"
         >
-          Test me on next author
+          Test next author
         </motion.button>
       </div>
     </div>
@@ -244,10 +235,10 @@ export default function TestFocusView({
   cloud,
   onNextAuthor,
 }) {
-  // mixMode is toggled inside the guide; committedMixMode is frozen at guide close
+  const hasPriorAttempt = !!storedConfidence;
+  
   const [mixMode, setMixMode] = useState(false);
   const [committedMixMode, setCommittedMixMode] = useState(false);
-
   const [showGuide, setShowGuide] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [sessionComplete, setSessionComplete] = useState(false);
@@ -259,19 +250,18 @@ export default function TestFocusView({
   const [questionsAttempted, setQuestionsAttempted] = useState(0);
   const [confidenceFlow, setConfidenceFlow] = useState(false);
   const [confidence, setConfidence] = useState(storedConfidence || "");
-  const [timer, setTimer] = useState(15);
 
-  // Questions are generated once when the guide closes (committedMixMode frozen)
+  // Adaptive timer baseline
+  const baseTimer = useMemo(() => getAdaptiveTimer(storedConfidence), [storedConfidence]);
+  const [timer, setTimer] = useState(baseTimer);
+
   const activeQuestions = useMemo(() => {
-    if (committedMixMode) {
-      return generateMixSession(author, allAuthors);
-    }
+    if (committedMixMode) return generateMixSession(author, allAuthors);
     return createTestSession(author, category, allAuthors).verifyQuestions;
   }, [author, category, allAuthors, committedMixMode]);
 
   const currentQuestion = activeQuestions[currentIndex] || null;
 
-  // Auto-reveal timer
   useEffect(() => {
     if (showGuide || submitted || revealed || !currentQuestion || sessionComplete) return;
     const interval = setInterval(() => {
@@ -287,26 +277,21 @@ export default function TestFocusView({
     setRevealed(false);
     setSelected("");
     setSubmitted(false);
-    setTimer(15);
+    setTimer(baseTimer);
   }
 
   function handleNext() {
-    if (currentIndex >= activeQuestions.length - 1) {
-      setSessionComplete(true);
-    } else {
-      setCurrentIndex((prev) => prev + 1);
-      resetQuestion();
-    }
+    if (currentIndex >= activeQuestions.length - 1) setSessionComplete(true);
+    else { setCurrentIndex(v => v + 1); resetQuestion(); }
   }
 
   function handleSubmitAnswer() {
     setSubmitted(true);
-    setQuestionsAttempted((v) => v + 1);
-    const isCorrect = selected === currentQuestion.answer;
+    setQuestionsAttempted(v => v + 1);
     setResultsLog(prev => [...prev, {
-      dimension: currentQuestion.slot || "Question",
+      dimension: currentQuestion.slot || "Q",
       authorName: currentQuestion.authorName || null,
-      isCorrect,
+      isCorrect: selected === currentQuestion.answer,
     }]);
   }
 
@@ -315,55 +300,38 @@ export default function TestFocusView({
     onClose();
   }
 
-  async function handleConfidence(value) {
-    setConfidence(value);
-    await onSaveConfidence?.({
-      author: author.author,
-      exercise: "verify",
-      confidence: value,
-      timestamp: Date.now(),
-    });
-    onClose();
-  }
-
   function handleNextAuthor() {
-    // Reset all local state, then ask parent to advance
-    setSessionComplete(false);
-    setResultsLog([]);
-    setCurrentIndex(0);
-    setQuestionsAttempted(0);
-    setMixMode(false);
-    setCommittedMixMode(false);
-    setShowGuide(true);
-    resetQuestion();
     onNextAuthor?.();
   }
 
-  // Guide overlay content — mixMode toggle lives here
   const guideContent = (
-    <div className="space-y-5 text-left">
-      <p className="text-[15px] leading-relaxed text-[var(--clr-ink)] opacity-80">
-        Try to guess the answer before the automatic reveal of the options.
-      </p>
-      <p className="text-[11px] uppercase tracking-[0.2em] font-bold text-[var(--clr-ink)] opacity-30">
-        12 questions · 5 academic dimensions
-      </p>
-
-      {/* Mix-test toggle */}
-      <div className="rounded-xl border border-[var(--clr-focus)]/25 bg-[var(--clr-recall)]/40 p-4 mt-2">
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <p className="font-bold text-[15px] text-white">Mix-test Mode</p>
-            <p className="text-[12px] leading-relaxed mt-1.5 text-[var(--clr-ink)] opacity-50">
-              Mixes 2 questions each from 6 randomly chosen authors.{" "}
-              Based on the{" "}
-              <span className="text-[var(--clr-pulse)] font-semibold">interleaving principle</span>{" "}
-              — switching topics forces deeper retrieval and builds stronger long-term memory than studying one author at a time. Every mix is unique.
-            </p>
+    <div className="space-y-6 text-left">
+      {!hasPriorAttempt ? (
+        <>
+          <p className="text-[15px] leading-relaxed opacity-70">
+            Initial diagnostic session: Try to identify the correct answer from memory before the options are revealed.
+          </p>
+          <p className="text-[11px] uppercase tracking-[0.2em] font-bold opacity-30">
+            12 questions · 5 Analytic dimensions
+          </p>
+        </>
+      ) : (
+        <div className="flex flex-col gap-6">
+          <p className="text-[16px] font-bold">Ready to drill?</p>
+          <div className="rounded-xl border border-[var(--clr-focus)]/25 bg-[var(--clr-recall)]/40 p-5">
+            <div className="flex items-start justify-between gap-6">
+              <div className="min-w-0">
+                <p className="font-bold text-[15px] text-white">Mixed Interleaving</p>
+                <p className="text-[12px] opacity-50 mt-1 leading-relaxed">
+                  Based on the <span className="text-[var(--clr-pulse)]">interleaving principle</span>: 
+                  switching authors mid-session builds significantly stronger retrieval strength than blocked study.
+                </p>
+              </div>
+              <ToggleSwitch enabled={mixMode} onToggle={() => setMixMode(v => !v)} />
+            </div>
           </div>
-          <ToggleSwitch enabled={mixMode} onToggle={() => setMixMode(v => !v)} />
         </div>
-      </div>
+      )}
     </div>
   );
 
@@ -371,51 +339,43 @@ export default function TestFocusView({
     <>
       <AuthorFocusShell
         title={author.author}
-        tabs={[]}
-        hideTabsInHeader={true}
-        activeTab="verify"
-        onTabChange={() => {}}
+        tabs={[]} hideTabsInHeader={true} activeTab="verify"
         onClose={handleCloseAttempt}
         showGuide={showGuide}
-        guideCtaLabel="Start Test"
-        showGuideSkip={false}
-        onCloseGuide={() => {
-          setCommittedMixMode(mixMode); // freeze choice
-          setShowGuide(false);
-        }}
+        guideCtaLabel={hasPriorAttempt ? "Start Drill" : "Begin Diagnostic"}
+        onCloseGuide={() => { setCommittedMixMode(mixMode); setShowGuide(false); }}
         guideContent={guideContent}
         main={
           <div className="pb-10">
-            {/* Progress strip */}
             {!sessionComplete && (
               <div className="mb-8 flex items-center justify-between px-5 py-4 bg-[var(--clr-surface)] rounded-2xl border border-white/5 shadow-lg">
                 <div className="flex gap-1.5">
-                  {[...Array(activeQuestions.length || 12)].map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-1.5 w-5 rounded-full transition-colors ${
-                        i === currentIndex
-                          ? "bg-[var(--clr-focus)]"
-                          : i < currentIndex
-                          ? "bg-[var(--clr-correct)]"
-                          : "bg-[var(--clr-dim)] opacity-40"
-                      }`}
-                    />
+                  {[...Array(activeQuestions.length)].map((_, i) => (
+                    <div key={i} className={`h-1.5 w-6 rounded-full transition-all ${
+                      i === currentIndex ? "bg-[var(--clr-focus)]" : i < currentIndex ? "bg-[var(--clr-correct)]" : "bg-white/5"
+                    }`} />
                   ))}
                 </div>
-                {committedMixMode && (
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-warn)] opacity-60">
-                    Mix-test
-                  </span>
-                )}
+                <div className="flex items-center gap-4">
+                   {committedMixMode && <span className="text-[10px] font-bold text-[var(--clr-warn)] uppercase tracking-widest pl-4">Interleaved</span>}
+                   <span className="text-[10px] font-bold opacity-30">{baseTimer}s Threshold</span>
+                </div>
               </div>
             )}
 
-            {/* Session view */}
             {sessionComplete ? (
-              <SummaryScreen
-                resultsLog={resultsLog}
+              <SummaryScreen 
+                resultsLog={resultsLog} 
                 onNextAuthor={handleNextAuthor}
+                showMixCTA={!mixMode && !hasPriorAttempt}
+                onToggleMix={() => {
+                   setMixMode(true);
+                   setCommittedMixMode(true);
+                   setSessionComplete(false);
+                   setResultsLog([]);
+                   setCurrentIndex(0);
+                   resetQuestion();
+                }}
               />
             ) : (
               <McqPanel
@@ -434,37 +394,18 @@ export default function TestFocusView({
         }
       />
 
-      {/* Confidence flow overlay */}
       <AnimatePresence>
         {confidenceFlow && (
-          <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 backdrop-blur-xl p-4">
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-[var(--clr-surface)] w-full max-w-lg p-10 text-center shadow-2xl rounded-3xl border border-white/5"
-            >
-              <h3 className="text-2xl font-bold mb-2">Academic Mastery</h3>
-              <p className="text-[15px] leading-relaxed text-[var(--clr-ink)] opacity-60 mb-10">
-                Rate your confidence in <strong>{author.author}</strong> to update your research trajectory.
+          <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/90 backdrop-blur-xl p-4">
+            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-[var(--clr-surface)] w-full max-w-lg p-12 text-center shadow-2xl rounded-[40px] border border-white/10">
+              <h3 className="text-2xl font-black mb-4">Academic Calibration</h3>
+              <p className="text-[15px] leading-relaxed text-[var(--clr-ink)] opacity-50 mb-12 px-6">
+                Your rating dictates the <strong>recall threshold</strong> (timer) for future sessions on <strong>{author.author}</strong>.
               </p>
-              <div className="mb-10">
-                <ConfidenceStrip
-                  visible={true}
-                  currentValue={confidence}
-                  onSelect={handleConfidence}
-                  provider={cloud?.provider}
-                  onConnect={cloud?.connect}
-                  onDisconnect={cloud?.disconnect}
-                  embedded={true}
-                />
+              <div className="mb-14">
+                <ConfidenceStrip visible={true} currentValue={confidence} onSelect={(val) => { setConfidence(val); onSaveConfidence?.({ author: author.author, exercise: "verify", confidence: val, timestamp: Date.now() }); setTimeout(onClose, 800); }} embedded={true} />
               </div>
-              <button
-                onClick={onClose}
-                className="w-full rounded-full bg-white/5 py-4 text-sm font-bold uppercase tracking-widest text-white hover:bg-white/10 transition"
-              >
-                Skip for Now
-              </button>
+              <button onClick={onClose} className="text-[12px] font-bold uppercase tracking-widest opacity-30 hover:opacity-100 transition">Skip for now</button>
             </motion.div>
           </div>
         )}

@@ -1,11 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 
-const LEVELS = [
-  { id: "weak", label: "Weak" },
-  { id: "moderate", label: "Moderate" },
-  { id: "good", label: "Good" },
-  { id: "excellent", label: "Excellent" },
+const RATING_STEPS = [
+  { value: "1", label: "I'm struggling", color: "bg-[var(--clr-wrong)]" },
+  { value: "2", label: "Improving", color: "bg-[var(--clr-warn)]" },
+  { value: "3", label: "Foundational", color: "bg-[var(--clr-pulse)]" },
+  { value: "4", label: "Confident", color: "bg-[var(--clr-focus)]" },
+  { value: "5", label: "Mastered", color: "bg-[var(--clr-correct)]" },
 ];
 
 export default function ConfidenceStrip({
@@ -17,72 +18,70 @@ export default function ConfidenceStrip({
   onDisconnect,
   embedded = false,
 }) {
-  if (!visible) {
-    return null;
-  }
+  if (!visible) return null;
 
   const content = (
-    <div className="mx-auto flex flex-col gap-6 items-center">
-      <div className="flex flex-wrap justify-center gap-3">
-        {LEVELS.map((level) => (
-          <motion.button
-            key={level.id}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => onSelect(level.id)}
-            className={`rounded-full px-6 py-3 text-sm font-bold uppercase tracking-wider transition-all border border-white/20 shadow-sm ${
-              currentValue === level.id
-                ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-md scale-105"
-                : "bg-[var(--color-bg-raised)] text-[var(--color-text-primary)] hover:bg-[var(--color-interaction-hover)] hover:shadow-md"
-            }`}
+    <div className="mx-auto flex flex-col gap-8 items-center w-full">
+      <div className="flex flex-col items-center gap-4 w-full">
+        <div className="flex justify-between w-full max-w-sm px-2">
+          {RATING_STEPS.map((step) => {
+            const isSelected = currentValue === step.value;
+            return (
+              <div key={step.value} className="flex flex-col items-center gap-3">
+                <motion.button
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => onSelect(step.value)}
+                  className={`h-12 w-12 rounded-full flex items-center justify-center text-sm font-black transition-all border-2 ${
+                    isSelected
+                      ? `${step.color} border-white text-white shadow-xl scale-125 z-10`
+                      : "bg-white/5 border-white/10 text-white/40 hover:border-white/30 hover:text-white"
+                  }`}
+                >
+                  {step.value}
+                </motion.button>
+              </div>
+            );
+          })}
+        </div>
+        
+        {/* Selected Label */}
+        <div className="h-6">
+          <motion.p 
+            key={currentValue}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)]"
           >
-            {level.label}
-          </motion.button>
-        ))}
+            {RATING_STEPS.find(s => s.value === currentValue)?.label || "Select your level"}
+          </motion.p>
+        </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-widest opacity-60">
+      <div className="flex flex-wrap items-center justify-center gap-4 text-[10px] font-bold uppercase tracking-widest opacity-40">
         {provider ? (
           <div className="flex items-center gap-3">
-            <span className="rounded-full bg-[var(--color-bg-raised)] px-4 py-2 border border-white/40">
-              {provider} active
-            </span>
-            <button
-              onClick={onDisconnect}
-              className="text-[var(--color-text-primary)] hover:underline"
-            >
-              Disconnect
-            </button>
+            <span>{provider} active</span>
+            <button onClick={onDisconnect} className="hover:underline">Disconnect</button>
           </div>
         ) : (
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => onConnect("Google")}
-              className="rounded-full bg-white/40 px-4 py-2 hover:bg-white/60 transition border border-white/60"
-            >
-              Sync with Google
-            </button>
-            <button
-              onClick={() => onConnect("OneDrive")}
-              className="rounded-full bg-white/40 px-4 py-2 hover:bg-white/60 transition border border-white/60"
-            >
-              Sync with OneDrive
-            </button>
+            <button onClick={() => onConnect("Google")} className="hover:opacity-100 transition">Sync with Google</button>
+            <span className="opacity-30">|</span>
+            <button onClick={() => onConnect("OneDrive")} className="hover:opacity-100 transition">Sync with OneDrive</button>
           </div>
         )}
       </div>
     </div>
   );
 
-  if (embedded) {
-    return content;
-  }
+  if (embedded) return content;
 
   return (
-    <div className="safe-bottom-lg fixed inset-x-0 bottom-0 z-[70] bg-[rgba(255,255,255,0.88)] px-4 py-6 backdrop-blur-md border-t border-white/20 shadow-2xl">
-      <div className="max-w-4xl mx-auto">
-        <p className="text-center mb-6 text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted-color)] opacity-60">
-          Confidence check
+    <div className="safe-bottom-lg fixed inset-x-0 bottom-0 z-[70] bg-[var(--clr-surface)]/95 px-4 py-8 backdrop-blur-xl border-t border-white/10 shadow-2xl">
+      <div className="max-w-2xl mx-auto">
+        <p className="text-center mb-10 text-[10px] font-bold uppercase tracking-[0.3em] opacity-40">
+          Self-Correction check
         </p>
         {content}
       </div>
