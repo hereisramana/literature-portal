@@ -18,7 +18,7 @@ export default function Sidebar({
     : "/assets/logo-light.png"; // Default to light logo for SSR if default theme is dark
 
   return (
-    <aside className={`flex h-full flex-col bg-[var(--clr-surface)] border-r border-white/5 transition-all duration-300`}>
+    <aside className={`flex h-full flex-col bg-[var(--clr-surface)] border-r border-[var(--clr-ink)]/5 transition-all duration-300`}>
       <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-8"}`}>
         {collapsed ? (
           <motion.button
@@ -58,7 +58,7 @@ export default function Sidebar({
               whileTap={{ scale: 0.92 }}
               aria-label="Collapse categories panel"
               onClick={onToggle}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-[var(--clr-ink)] opacity-60 hover:opacity-100 transition"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--clr-ink)]/5 text-[var(--clr-ink)] opacity-60 hover:opacity-100 transition"
             >
               <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M15 18l-6-6 6-6" />
@@ -87,7 +87,7 @@ export default function Sidebar({
                     /* Active: Focus purple bg, white text — WCAG AA (5.9:1) */
                     ? "bg-[var(--clr-focus)] shadow-lg shadow-[var(--clr-focus)]/20"
                     /* Inactive: subtle hover on Void bg */
-                    : "bg-transparent hover:bg-white/5"
+                    : "bg-transparent hover:bg-[var(--clr-ink)]/5"
                   }
                 `}
               >
@@ -103,7 +103,7 @@ export default function Sidebar({
                     </p>
                   </div>
                   {/* Badge */}
-                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold ${isActive ? "bg-white/20 text-white" : "bg-white/5 text-[var(--clr-ink)] opacity-50"}`}>
+                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold ${isActive ? "bg-[var(--clr-ink)]/20 text-white" : "bg-[var(--clr-ink)]/5 text-[var(--clr-ink)] opacity-50"}`}>
                     {category.authors.length}
                   </span>
                 </div>

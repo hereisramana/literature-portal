@@ -13,6 +13,7 @@ export function sanitiseAuthor(raw) {
 
   if (a.legacy.posthumous_notes === "null") a.legacy.posthumous_notes = null;
   if (a.legacy.awards === null) a.legacy.awards = [];
+  if (a.legacy.titles === null || !a.legacy.titles) a.legacy.titles = [];
   if (a.legacy.translations === null) a.legacy.translations = [];
 
   if (a.bio_context.collaborators === null) {
@@ -93,7 +94,7 @@ function AuthorTab({ author, category }) {
       {/* Quick Profile */}
       <div className="grid gap-4 sm:grid-cols-2">
         {location && (
-          <div className="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/8 px-6 py-4">
+          <div className="flex items-center gap-4 rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 px-6 py-4">
             <div className="h-10 w-10 flex items-center justify-center rounded-full bg-[var(--clr-pulse)]/10 text-[var(--clr-pulse)]">
               <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
@@ -106,7 +107,7 @@ function AuthorTab({ author, category }) {
           </div>
         )}
         {author.period && (
-          <div className="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/8 px-6 py-4">
+          <div className="flex items-center gap-4 rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 px-6 py-4">
             <div className="h-10 w-10 flex items-center justify-center rounded-full bg-[var(--clr-pulse)]/10 text-[var(--clr-pulse)]">
               <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
@@ -159,7 +160,16 @@ function AuthorTab({ author, category }) {
       <div className="space-y-4">
         <SectionLabel>Legacy & Recognition</SectionLabel>
         <div className="grid gap-4 sm:grid-cols-2">
-           <div className="rounded-2xl bg-white/5 border border-white/8 p-5">
+           {/* Honors & Titles Section */}
+           {author.legacy.titles?.length > 0 && (
+             <div className="rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 p-5">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-3">Honors & Titles</p>
+                <div className="flex flex-wrap gap-2">
+                  {author.legacy.titles.map((t, i) => <Pill key={i} label={t} color="blue" />)}
+                </div>
+             </div>
+           )}
+           <div className="rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 p-5">
               <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-3">Awards</p>
               {awards.length > 0 ? (
                 <div className="flex flex-wrap gap-2">
@@ -167,7 +177,7 @@ function AuthorTab({ author, category }) {
                 </div>
               ) : <EmptyNote>No awards listed</EmptyNote>}
            </div>
-           <div className="rounded-2xl bg-white/5 border border-white/8 p-5">
+           <div className="rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 p-5">
               <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-3">Global Reach</p>
               <p className="text-[13px] text-[var(--clr-ink)] opacity-70 leading-relaxed">
                 {translations || "Information on translations coming soon."}
@@ -213,13 +223,13 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
   const characters = author.key_characters.filter(c => c.work === title);
 
   return (
-    <div className={`overflow-hidden rounded-2xl border transition-all duration-300 ${isOpen ? 'bg-white/[0.04] border-white/15' : 'bg-white/[0.02] border-white/6 hover:border-white/12'}`}>
+    <div className={`overflow-hidden rounded-2xl border transition-all duration-300 ${isOpen ? 'bg-[var(--clr-ink)]/[0.06] border-[var(--clr-ink)]/20' : 'bg-[var(--clr-ink)]/[0.03] border-[var(--clr-ink)]/10 hover:border-[var(--clr-ink)]/15'}`}>
       <button 
         onClick={onToggle}
         className="flex w-full items-center justify-between px-6 py-5 text-left"
       >
         <div className="flex items-center gap-4 min-w-0">
-          <div className={`h-2 w-2 rounded-full shrink-0 ${isOpen ? 'bg-[var(--clr-pulse)]' : 'bg-white/20'}`} />
+          <div className={`h-2 w-2 rounded-full shrink-0 ${isOpen ? 'bg-[var(--clr-pulse)]' : 'bg-[var(--clr-ink)]/20'}`} />
           <div className="min-w-0">
             <div className="flex items-center gap-3">
               <h3 className={`text-[16px] font-bold leading-none text-white transition-colors ${isOpen ? 'text-[var(--clr-pulse)]' : ''}`}>
@@ -229,7 +239,7 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
             </div>
             <div className="mt-2 flex items-center gap-3 opacity-40">
               {year && <span className="text-[11px] font-bold">{year}</span>}
-              {year && genre && <span className="h-1 w-1 rounded-full bg-white/40" />}
+              {year && genre && <span className="h-1 w-1 rounded-full bg-[var(--clr-ink)]/40" />}
               {genre && <span className="text-[11px] font-medium">{genre}</span>}
             </div>
           </div>
@@ -252,14 +262,14 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
-            <div className="px-6 pb-6 pt-2 space-y-7 border-t border-white/5">
+            <div className="px-6 pb-6 pt-2 space-y-7 border-t border-[var(--clr-ink)]/5">
               {/* Internal Work Themes */}
               <div>
                  <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)] opacity-60">Thematic Focus</p>
                  { (work.themes?.length > 0 || author.themes?.length > 0) ? (
                    <div className="flex flex-wrap gap-2">
                       {(work.themes || author.themes).map((t, i) => (
-                        <span key={i} className="text-[11px] border border-white/10 bg-white/5 px-2.5 py-1 rounded-lg text-[var(--clr-ink)] opacity-70 italic">
+                        <span key={i} className="text-[11px] border border-[var(--clr-ink)]/10 bg-[var(--clr-ink)]/[0.04] px-2.5 py-1 rounded-lg text-[var(--clr-ink)] opacity-70 italic">
                           {t}
                         </span>
                       ))}
@@ -275,7 +285,7 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
                    <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)] opacity-60">Key Characters</p>
                    <div className="grid gap-3 sm:grid-cols-2">
                       {characters.map((char, i) => (
-                        <div key={i} className="flex items-center gap-3 bg-white/5 rounded-xl p-3 border border-white/5">
+                        <div key={i} className="flex items-center gap-3 bg-[var(--clr-ink)]/[0.04] rounded-xl p-3 border border-[var(--clr-ink)]/8">
                           <div className="h-7 w-7 rounded-full bg-[var(--clr-focus)]/20 flex items-center justify-center text-[10px] font-bold text-[var(--clr-pulse)]">
                             {char.name[0]}
                           </div>
