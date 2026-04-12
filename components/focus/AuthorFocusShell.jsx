@@ -32,66 +32,17 @@ export default function AuthorFocusShell({
           className="card relative flex h-[min(92vh,900px)] w-full max-w-5xl flex-col overflow-hidden rounded-[32px] shadow-2xl pointer-events-auto"
         >
           {/* Header */}
-          <div className="flex flex-col gap-4 px-6 pb-2 pt-6 md:flex-row md:items-start md:justify-between md:px-10">
-            <div className="flex-1 min-w-0">
-              <h2 className="text-2xl font-black leading-tight tracking-tight text-[var(--text-heading-color)] md:text-3xl">
+          <div className="relative border-b border-white/5 bg-white/[0.02] px-6 py-8 md:px-10">
+            <div className="flex items-center justify-between gap-4 mb-8">
+              <h2 className="text-[28px] font-black leading-tight tracking-tight text-[var(--clr-ink)] md:text-[34px]">
                 {title}
               </h2>
-
-              {hideTabsInHeader && tabs.length > 0 && (
-                <div className="mt-4 flex justify-end">
-                  <div
-                    className="grid gap-1 rounded-full bg-[var(--color-bg-inset)] p-1 shadow-inner"
-                    style={{ gridTemplateColumns: `repeat(${tabs.length}, minmax(0, 1fr))` }}
-                  >
-                    {tabs.map((tab) => (
-                      <motion.button
-                        key={tab.id}
-                        whileHover={activeTab !== tab.id ? { backgroundColor: "rgba(0,0,0,0.05)" } : {}}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => onTabChange(tab.id)}
-                        className={`rounded-full px-4 py-1.5 text-[11px] font-black uppercase tracking-wider transition-all duration-300 ${
-                          activeTab === tab.id
-                            ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-sm"
-                            : "text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)]"
-                        }`}
-                      >
-                        {tab.label}
-                      </motion.button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="flex items-center gap-3">
-              {!hideTabsInHeader && tabs.length > 0 && (
-                <div
-                  className="grid gap-1 rounded-full bg-[var(--color-bg-inset)] p-1 shadow-inner"
-                  style={{ gridTemplateColumns: `repeat(${tabs.length}, minmax(0, 1fr))` }}
-                >
-                  {tabs.map((tab) => (
-                    <motion.button
-                      key={tab.id}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => onTabChange(tab.id)}
-                      className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
-                        activeTab === tab.id
-                          ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-md"
-                          : "text-[var(--text-muted-color)] hover:text-[var(--text-heading-color)]"
-                      }`}
-                    >
-                      {tab.label}
-                    </motion.button>
-                  ))}
-                </div>
-              )}
 
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.92 }}
                 onClick={onClose}
-                className="absolute right-6 top-6 z-[70] flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-text-strong)]/10 text-[var(--text-heading-color)] transition-all hover:bg-[var(--color-text-strong)]/20 md:right-10 md:top-8"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--clr-ink)]/5 text-[var(--clr-ink)] transition-all hover:bg-[var(--clr-ink)]/10"
               >
                 <svg
                   className="h-5 w-5"
@@ -104,6 +55,29 @@ export default function AuthorFocusShell({
                 </svg>
               </motion.button>
             </div>
+
+            {tabs.length > 0 && (
+              <div className="flex justify-center">
+                <div
+                  className="flex gap-1 rounded-full bg-white/5 p-1.5 border border-white/8 shadow-inner"
+                >
+                  {tabs.map((tab) => (
+                    <motion.button
+                      key={tab.id}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => onTabChange?.(tab.id)}
+                      className={`rounded-full px-6 py-2 text-[12px] font-bold uppercase tracking-wider transition-all duration-300 ${
+                        activeTab === tab.id
+                          ? "bg-[var(--clr-focus)] text-white shadow-lg"
+                          : "text-[var(--clr-ink)] opacity-40 hover:opacity-80"
+                      }`}
+                    >
+                      {tab.label}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Content Area */}

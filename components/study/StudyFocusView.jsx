@@ -79,81 +79,108 @@ function EmptyNote({ children }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SIDEBAR
+// TAB 1 — AUTHOR (Merged Profile, Styles, Legacy)
 // ─────────────────────────────────────────────────────────────────────────────
-function StudySidebar({ author, allAuthors, onNavigatePeer }) {
+function AuthorTab({ author, category }) {
+  const location = author.bio_context?.location || author.region || null;
+  const legacy = author.legacy || {};
+  const awards = (legacy.awards || []).filter(a => a && a !== "null");
+  const translations = legacy.translations;
+
   return (
-    <div className="space-y-8 py-2">
-      {/* THEMES */}
-      <div>
-        <SectionLabel>Themes</SectionLabel>
+    <div className="space-y-8 pb-8">
+      {/* Quick Profile */}
+      <div className="grid gap-4 sm:grid-cols-2">
+        {location && (
+          <div className="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/8 px-6 py-4">
+            <div className="h-10 w-10 flex items-center justify-center rounded-full bg-[var(--clr-pulse)]/10 text-[var(--clr-pulse)]">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div className="min-w-0">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-0.5">Origin</p>
+              <p className="text-[15px] font-semibold text-white truncate">{location}</p>
+            </div>
+          </div>
+        )}
+        {author.period && (
+          <div className="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/8 px-6 py-4">
+            <div className="h-10 w-10 flex items-center justify-center rounded-full bg-[var(--clr-pulse)]/10 text-[var(--clr-pulse)]">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <div className="min-w-0">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-0.5">Active Period</p>
+              <p className="text-[15px] font-semibold text-white truncate">{author.period}</p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Signature & Movements */}
+      <div className="space-y-4">
+        <SectionLabel>Signature Styles & Movements</SectionLabel>
+        <div className="flex flex-wrap gap-2">
+          {author.bio_context.movements?.map((m, i) => <Tag key={i} label={m} color="move" />)}
+          {author.style_innovations.map((s, i) => <Tag key={i} label={s} color="style" />)}
+          {author.literary_period && <Tag label={author.literary_period} color="theme" />}
+        </div>
+      </div>
+
+      {/* Global Themes */}
+      <div className="space-y-4">
+        <SectionLabel>Core Intellectual Themes</SectionLabel>
         {author.themes.length > 0 ? (
           <div className="flex flex-wrap gap-2">
             {author.themes.map((t, i) => <Tag key={i} label={t} color="theme" />)}
           </div>
         ) : (
-          <EmptyNote>Researching themes for this author...</EmptyNote>
+          <EmptyNote>No central themes recorded yet.</EmptyNote>
         )}
       </div>
 
-      {/* STYLE INNOVATIONS */}
-      {author.style_innovations.length > 0 && (
-        <div>
-          <SectionLabel>Signature Style</SectionLabel>
-          <div className="flex flex-wrap gap-2">
-            {author.style_innovations.map((s, i) => <Tag key={i} label={s} color="style" />)}
-          </div>
+      {/* Recognition & Impact */}
+      <div className="space-y-4">
+        <SectionLabel>Legacy & Recognition</SectionLabel>
+        <div className="grid gap-4 sm:grid-cols-2">
+           <div className="rounded-2xl bg-white/5 border border-white/8 p-5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-3">Awards</p>
+              {awards.length > 0 ? (
+                <div className="flex flex-wrap gap-2">
+                  {awards.map((a, i) => <Pill key={i} label={a} color="warn" />)}
+                </div>
+              ) : <EmptyNote>No awards listed</EmptyNote>}
+           </div>
+           <div className="rounded-2xl bg-white/5 border border-white/8 p-5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-3">Global Reach</p>
+              <p className="text-[13px] text-[var(--clr-ink)] opacity-70 leading-relaxed">
+                {translations || "Information on translations coming soon."}
+              </p>
+           </div>
         </div>
-      )}
-
-      {/* MOVEMENTS */}
-      {author.bio_context.movements?.length > 0 && (
-        <div>
-          <SectionLabel>Movements</SectionLabel>
-          <div className="flex flex-wrap gap-2">
-            {author.bio_context.movements.map((m, i) => <Tag key={i} label={m} color="move" />)}
+        {author.legacy?.posthumous_notes && (
+          <div className="rounded-2xl bg-[var(--clr-recall)]/20 border border-[var(--clr-focus)]/20 p-5 mt-4">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-pulse)] opacity-50 mb-2">Historical Context</p>
+            <p className="text-[14px] italic leading-relaxed text-[var(--clr-ink)] opacity-85">{author.legacy.posthumous_notes}</p>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
-      {/* GENRE TAGS (aligned with Test Engine Hints) */}
-      {author.genreTags?.length > 0 && (
-        <div>
-          <SectionLabel>Genre Tags</SectionLabel>
-          <div className="flex flex-wrap gap-2">
-            {author.genreTags.map((t, i) => <Tag key={i} label={t} color="tag" />)}
-          </div>
-        </div>
-      )}
-
-      {/* COMPARISON PEERS */}
-      {author.comparison_peers.length > 0 && (
-        <div>
-          <SectionLabel>Similar Authors</SectionLabel>
-          <div className="space-y-3">
-            {author.comparison_peers.map((peer, i) => {
-              const peerAuthor = allAuthors?.find(a => a.author === peer.name);
-              return (
-                <motion.button
-                  key={i}
-                  whileHover={{ x: 3 }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() => peerAuthor && onNavigatePeer?.(peerAuthor)}
-                  className={`w-full text-left p-3 rounded-xl bg-white/5 border border-white/8 transition-all ${peerAuthor ? 'cursor-pointer hover:bg-white/10 hover:border-[var(--clr-focus)]/30' : 'cursor-default'}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="shrink-0 h-8 w-8 rounded-full bg-[var(--clr-recall)] flex items-center justify-center text-[10px] font-bold text-[var(--clr-ink)] uppercase">
-                      {peer.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[13px] font-semibold text-white truncate">{peer.name}</p>
-                      <p className="text-[11px] text-[var(--clr-ink)] opacity-45 truncate">{peer.shared_theme}</p>
-                    </div>
-                  </div>
-                </motion.button>
-              );
-            })}
-          </div>
+      {author.author_link && (
+        <div className="pt-4">
+          <a
+            href={author.author_link}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--clr-focus)]/40 px-6 py-3 text-[12px] font-bold text-[var(--clr-pulse)] hover:bg-[var(--clr-focus)]/10 transition-colors"
+          >
+            Deep Dive on Britannica
+            <svg className="h-3 w-3 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+            </svg>
+          </a>
         </div>
       )}
     </div>
@@ -161,9 +188,95 @@ function StudySidebar({ author, allAuthors, onNavigatePeer }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TAB 1 — WORKS
+// TAB 2 — WORKS (Expandable Pills)
 // ─────────────────────────────────────────────────────────────────────────────
+function WorkExpandablePill({ work, author, isOpen, onToggle }) {
+  const title = typeof work === "string" ? work : work.title;
+  const year = typeof work === "object" ? work.year : null;
+  const genre = typeof work === "object" ? (work.genre || work.type) : null;
+  const isMagnum = author.magnum_opus && title === author.magnum_opus;
+  
+  const characters = author.key_characters.filter(c => c.work === title);
+
+  return (
+    <div className={`overflow-hidden rounded-2xl border transition-all duration-300 ${isOpen ? 'bg-white/[0.04] border-white/15' : 'bg-white/[0.02] border-white/6 hover:border-white/12'}`}>
+      <button 
+        onClick={onToggle}
+        className="flex w-full items-center justify-between px-6 py-5 text-left"
+      >
+        <div className="flex items-center gap-4 min-w-0">
+          <div className={`h-2 w-2 rounded-full shrink-0 ${isOpen ? 'bg-[var(--clr-pulse)]' : 'bg-white/20'}`} />
+          <div className="min-w-0">
+            <div className="flex items-center gap-3">
+              <h3 className={`text-[16px] font-bold leading-none text-white transition-colors ${isOpen ? 'text-[var(--clr-pulse)]' : ''}`}>
+                {title}
+              </h3>
+              {isMagnum && <span className="text-[9px] font-black uppercase tracking-wider text-[var(--clr-pulse)] bg-[var(--clr-focus)]/20 px-2 py-0.5 rounded">Magnum Opus</span>}
+            </div>
+            <div className="mt-2 flex items-center gap-3 opacity-40">
+              {year && <span className="text-[11px] font-bold">{year}</span>}
+              {year && genre && <span className="h-1 w-1 rounded-full bg-white/40" />}
+              {genre && <span className="text-[11px] font-medium">{genre}</span>}
+            </div>
+          </div>
+        </div>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          className="shrink-0 text-[var(--clr-ink)] opacity-30"
+        >
+          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </motion.div>
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          >
+            <div className="px-6 pb-6 pt-2 space-y-6 border-t border-white/5">
+              {/* Internal Work Themes Placeholder */}
+              <div>
+                 <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)] opacity-60">Specific Themes</p>
+                 <div className="flex flex-wrap gap-2">
+                    <span className="text-[12px] italic text-[var(--clr-ink)] opacity-30">Detailed themes for this work are being compiled...</span>
+                 </div>
+              </div>
+
+              {/* Characters */}
+              {characters.length > 0 && (
+                <div>
+                   <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)] opacity-60">Key Characters</p>
+                   <div className="grid gap-3 sm:grid-cols-2">
+                      {characters.map((char, i) => (
+                        <div key={i} className="flex items-center gap-3 bg-white/5 rounded-xl p-3 border border-white/5">
+                          <div className="h-7 w-7 rounded-full bg-[var(--clr-focus)]/20 flex items-center justify-center text-[10px] font-bold text-[var(--clr-pulse)]">
+                            {char.name[0]}
+                          </div>
+                          <div>
+                            <p className="text-[13px] font-bold text-white leading-tight">{char.name}</p>
+                            <p className="text-[11px] text-[var(--clr-ink)] opacity-40">{char.archetype}</p>
+                          </div>
+                        </div>
+                      ))}
+                   </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 function WorksTab({ author }) {
+  const [openId, setOpenId] = useState(null);
+  
   const sorted = useMemo(() => {
     return [...author.works].sort((a, b) => {
       const ya = a.year ? parseInt(a.year) : Infinity;
@@ -177,295 +290,53 @@ function WorksTab({ author }) {
   }
 
   return (
-    <div className="space-y-3">
-      {sorted.map((work, i) => {
-        const title = typeof work === "string" ? work : work.title;
-        const year = typeof work === "object" ? work.year : null;
-        const genre = typeof work === "object" ? work.genre || work.type : null;
-        const isMagnum = author.magnum_opus && title === author.magnum_opus;
-
-        return (
-          <div
-            key={i}
-            className={`flex items-start justify-between gap-4 rounded-xl px-5 py-4 border transition-all ${
-              isMagnum
-                ? "bg-[var(--clr-focus)]/10 border-[var(--clr-focus)]/30"
-                : "bg-white/5 border-white/8"
-            }`}
-          >
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 mb-1">
-                <p className="text-[15px] font-semibold text-white leading-snug">{title}</p>
-                {isMagnum && <Pill label="Defining Work" color="accent" />}
-              </div>
-              {genre && (
-                <p className="mt-1 text-[12px] text-[var(--clr-ink)] opacity-45">{genre}</p>
-              )}
-            </div>
-            <div className="shrink-0 flex flex-col items-end gap-2">
-              {year && (
-                <span className="rounded-full bg-white/8 border border-white/10 px-2.5 py-0.5 text-[10px] font-bold text-[var(--clr-ink)] opacity-70">
-                  {year}
-                </span>
-              )}
-              {isMagnum && (
-                <span className="rounded-full bg-[var(--clr-focus)]/25 border border-[var(--clr-focus)]/40 px-2.5 py-0.5 text-[10px] font-bold text-[var(--clr-pulse)] whitespace-nowrap">
-                  magnum opus
-                </span>
-              )}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// TAB 2 — CHARACTERS
-// ─────────────────────────────────────────────────────────────────────────────
-function CharactersTab({ author }) {
-  if (author.key_characters.length === 0) {
-    return (
-      <div className="py-10 text-center max-w-sm mx-auto">
-        <svg className="h-10 w-10 mx-auto mb-4 text-[var(--clr-ink)] opacity-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
-        </svg>
-        <p className="text-[14px] text-[var(--clr-ink)] opacity-40 leading-relaxed">
-          No named characters — this author's listed works are essays, criticism, or poetry without central characters.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="grid gap-4">
-      {author.key_characters.map((char, i) => (
-        <div key={i} className="rounded-xl bg-white/5 border border-white/8 px-5 py-4">
-          <div className="flex items-start gap-4">
-            <div className="shrink-0 h-10 w-10 rounded-full bg-[var(--clr-recall)] border border-[var(--clr-focus)]/20 flex items-center justify-center text-[11px] font-bold text-[var(--clr-ink)]">
-              {char.name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()}
-            </div>
-            <div className="min-w-0">
-              <p className="text-[16px] font-bold text-white">{char.name}</p>
-              <p className="mt-0.5 text-[12px] text-[var(--clr-ink)] opacity-50">in <span className="italic">{char.work}</span></p>
-              {char.archetype && (
-                <span className="mt-2 inline-block rounded-lg bg-[var(--clr-focus)]/15 border border-[var(--clr-focus)]/25 px-3 py-1 text-[11px] font-semibold text-[var(--clr-pulse)]">
-                  {char.archetype}
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
+    <div className="space-y-4 pb-12">
+      {sorted.map((work, i) => (
+        <WorkExpandablePill 
+          key={i} 
+          work={work} 
+          author={author} 
+          isOpen={openId === i} 
+          onToggle={() => setOpenId(openId === i ? null : i)}
+        />
       ))}
     </div>
   );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TAB 3 — BIOGRAPHY
+// MAIN SIDEBAR CONTENT (now just Peer Navi)
 // ─────────────────────────────────────────────────────────────────────────────
-function BiographyTab({ author }) {
-  const location = author.bio_context?.location || author.region || null;
-  const collaborators = author.bio_context?.collaborators || [];
-  const movements = author.bio_context?.movements || [];
+function StudySidebar({ author, allAuthors, onNavigatePeer }) {
+  const peers = author.comparison_peers || [];
+  if (peers.length === 0) return null;
 
   return (
     <div className="space-y-6">
-      {/* Location */}
-      {location && (
-        <div className="flex items-start gap-4 rounded-xl bg-white/5 border border-white/8 px-5 py-4">
-          <svg className="shrink-0 h-4 w-4 mt-0.5 text-[var(--clr-pulse)] opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-1">Location</p>
-            <p className="text-[15px] font-semibold text-white">{location}</p>
-          </div>
-        </div>
-      )}
-
-      {/* Active Years (period) */}
-      {author.period && (
-        <div className="flex items-start gap-4 rounded-xl bg-white/5 border border-white/8 px-5 py-4">
-          <svg className="shrink-0 h-4 w-4 mt-0.5 text-[var(--clr-pulse)] opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-          </svg>
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-1">Active Years</p>
-            <p className="text-[15px] font-semibold text-white">{author.period}</p>
-          </div>
-        </div>
-      )}
-
-      {/* Collaborators */}
-      <div className="rounded-xl bg-white/5 border border-white/8 px-5 py-4">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-3">Collaborators</p>
-        {collaborators.length > 0 ? (
-          <div className="flex flex-wrap gap-2">
-            {collaborators.map((c, i) => (
-              <span key={i} className="rounded-full bg-[var(--clr-recall)] border border-[var(--clr-focus)]/20 px-3 py-1.5 text-[12px] font-medium text-[var(--clr-ink)]">
-                {c}
-              </span>
-            ))}
-          </div>
-        ) : (
-          <EmptyNote>no collaborators recorded</EmptyNote>
-        )}
-      </div>
-
-      {/* Movements */}
-      {movements.length > 0 && (
-        <div className="rounded-xl bg-white/5 border border-white/8 px-5 py-4">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-3">Movements</p>
-          <div className="flex flex-wrap gap-2">
-            {movements.map((m, i) => <Tag key={i} label={m} color="move" />)}
-          </div>
-        </div>
-      )}
-
-      {/* Theory type (criticism authors) */}
-      {author.theory_type && (
-        <div className="rounded-xl bg-white/5 border border-white/8 px-5 py-4">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-1">Approach</p>
-          <p className="text-[14px] text-[var(--clr-ink)] opacity-80">{author.theory_type}</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// TAB 4 — LEGACY
-// ─────────────────────────────────────────────────────────────────────────────
-function LegacyTab({ author }) {
-  const legacy = author.legacy || {};
-  const awards = (legacy.awards || []).filter(a => a && a !== "null");
-  const translations = legacy.translations;
-  const posthumous = legacy.posthumous_notes;
-
-  const hasTranslations = translations && (
-    (Array.isArray(translations) && translations.length > 0) ||
-    (typeof translations === "string" && translations.trim().length > 0)
-  );
-
-  return (
-    <div className="space-y-6">
-      {/* Awards */}
-      <div className="rounded-xl bg-white/5 border border-white/8 px-5 py-4">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-3">Awards & Recognition</p>
-        {awards.length > 0 ? (
-          <div className="flex flex-wrap gap-2">
-            {awards.map((a, i) => (
-              <span key={i} className="rounded-full bg-[var(--clr-warn)]/15 border border-[var(--clr-warn)]/30 px-3 py-1 text-[12px] font-semibold text-[var(--clr-warn)]">
-                {a}
-              </span>
-            ))}
-          </div>
-        ) : (
-          <EmptyNote>no awards recorded</EmptyNote>
-        )}
-      </div>
-
-      {/* Translations */}
-      {hasTranslations && (
-        <div className="rounded-xl bg-white/5 border border-white/8 px-5 py-4">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-3">Translations</p>
-          {Array.isArray(translations) ? (
-            <div className="flex flex-wrap gap-2">
-              {translations.map((t, i) => (
-                <span key={i} className="rounded-full bg-[#7C92A6]/15 border border-[#7C92A6]/30 px-3 py-1 text-[12px] text-[#aec4d6]">{t}</span>
-              ))}
-            </div>
-          ) : (
-            <p className="text-[14px] text-[var(--clr-ink)] opacity-75">{translations}</p>
-          )}
-        </div>
-      )}
-
-      {/* Posthumous notes */}
-      {posthumous && (
-        <div className="rounded-xl bg-[var(--clr-recall)] border-l-4 border-[var(--clr-focus)] px-5 py-4">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-pulse)] opacity-70 mb-2">After their time</p>
-          <p className="text-[14px] leading-relaxed text-[var(--clr-ink)] opacity-85 italic">{posthumous}</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// AUTHOR HEADER
-// ─────────────────────────────────────────────────────────────────────────────
-function AuthorHeader({ author, category }) {
-  return (
-    <div className="mb-6 space-y-3">
-      {/* Name */}
-      <h2 className="text-[28px] md:text-[34px] font-black text-white leading-tight tracking-tight">
-        {author.author}
-      </h2>
-
-      {/* Period */}
-      {author.period && (
-        <p className="text-[14px] font-medium text-[var(--clr-ink)] opacity-50">{author.period}</p>
-      )}
-
-      {/* Pills row */}
-      <div className="flex flex-wrap gap-2">
-        {author.region && <Pill label={author.region} color="default" />}
-        {author.literary_period && <Pill label={author.literary_period} color="accent" />}
-        {category && <Pill label={category} color="sand" />}
-      </div>
-
-      {/* Author link */}
-      {author.author_link && (
-        <a
-          href={author.author_link}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full border border-[var(--clr-focus)]/40 px-4 py-2 text-[12px] font-semibold text-[var(--clr-pulse)] hover:bg-[var(--clr-focus)]/10 transition-colors"
-        >
-          View on Britannica
-          <svg className="h-3 w-3 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
-          </svg>
-        </a>
-      )}
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// BOTTOM ACTION BAR
-// ─────────────────────────────────────────────────────────────────────────────
-function BottomBar({ onTestMe, onNextAuthor, onClose }) {
-  return (
-    <div className="flex items-center justify-between gap-3 border-t border-white/5 bg-[var(--clr-surface)] px-6 py-4 md:px-10">
-      <button
-        onClick={onClose}
-        className="text-[12px] font-semibold text-[var(--clr-ink)] opacity-40 hover:opacity-70 transition-opacity"
-      >
-        Back to category
-      </button>
-      <div className="flex gap-3">
-        {onNextAuthor && (
-          <motion.button
-            whileHover={{ opacity: 0.85 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={onNextAuthor}
-            className="rounded-full bg-white/8 border border-white/12 px-5 py-2.5 text-[12px] font-semibold text-[var(--clr-ink)] transition-opacity"
-          >
-            Next author →
-          </motion.button>
-        )}
-        <motion.button
-          whileHover={{ opacity: 0.9 }}
-          whileTap={{ scale: 0.97 }}
-          onClick={onTestMe}
-          className="rounded-full bg-[var(--clr-focus)] px-6 py-2.5 text-[12px] font-bold text-white shadow-lg shadow-[var(--clr-focus)]/30 transition-opacity"
-        >
-          Test me on this author
-        </motion.button>
+      <SectionLabel>Compare & Context</SectionLabel>
+      <div className="space-y-3">
+        {peers.map((peer, i) => {
+          const peerAuthor = allAuthors?.find(a => a.author === peer.name);
+          return (
+            <motion.button
+              key={i}
+              whileHover={{ x: 3 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => peerAuthor && onNavigatePeer?.(peerAuthor)}
+              className={`w-full text-left p-4 rounded-2xl bg-white/5 border border-white/8 transition-all ${peerAuthor ? 'cursor-pointer hover:bg-white/10 hover:border-[var(--clr-focus)]/30' : 'cursor-default'}`}
+            >
+              <div className="flex items-center gap-4">
+                <div className="shrink-0 h-10 w-10 rounded-full bg-[var(--clr-recall)] flex items-center justify-center text-[11px] font-black text-[var(--clr-ink)] uppercase">
+                  {peer.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[14px] font-bold text-white truncate">{peer.name}</p>
+                  <p className="text-[11px] text-[var(--clr-ink)] opacity-45 truncate leading-tight mt-0.5">{peer.shared_theme}</p>
+                </div>
+              </div>
+            </motion.button>
+          );
+        })}
       </div>
     </div>
   );
@@ -475,10 +346,8 @@ function BottomBar({ onTestMe, onNextAuthor, onClose }) {
 // MAIN EXPORT: StudyFocusView
 // ─────────────────────────────────────────────────────────────────────────────
 const TABS = [
-  { id: "works",      label: "Works"      },
-  { id: "characters", label: "Characters" },
-  { id: "biography",  label: "Life & Times"  },
-  { id: "legacy",     label: "Legacy"     },
+  { id: "author", label: "Author Profile" },
+  { id: "works",  label: "Works & Canon"  },
 ];
 
 export default function StudyFocusView({
@@ -486,124 +355,48 @@ export default function StudyFocusView({
   category,
   allAuthors,
   selectedWork,
-  inferTheme,
   onClose,
   onStartTest,
   onNextAuthor,
 }) {
   const author = useMemo(() => sanitiseAuthor(rawAuthor), [rawAuthor]);
-
-  const [activeTab, setActiveTab] = useState(
-    selectedWork ? "works" : "works"
-  );
+  const [activeTab, setActiveTab] = useState("author");
 
   const categoryLabel = typeof category === "string"
     ? category
     : category?.label || category?.id || null;
 
-  // Peer navigation — find author in full dataset
-  function handleNavigatePeer(peerAuthor) {
-    // Re-open StudyFocusView for the peer by closing and re-triggering
-    // The parent controls this; we call onClose then openStudy if peer found
-    onClose?.();
-  }
-
-  const sidebarContent = (
-    <StudySidebar
-      author={author}
-      allAuthors={allAuthors}
-      onNavigatePeer={handleNavigatePeer}
-    />
-  );
-
-  const mainContent = (
-    <div className="pb-4">
-      <AuthorHeader author={author} category={categoryLabel} />
-
-      {/* Tab content */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeTab}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.18, ease: "easeOut" }}
-        >
-          {activeTab === "works"      && <WorksTab      author={author} />}
-          {activeTab === "characters" && <CharactersTab author={author} />}
-          {activeTab === "biography"  && <BiographyTab  author={author} />}
-          {activeTab === "legacy"     && <LegacyTab     author={author} />}
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-40"
-    >
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0, y: 24, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 24, scale: 0.97 }}
-          transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-          className="relative flex h-[min(94vh,920px)] w-full max-w-5xl flex-col overflow-hidden rounded-[28px] bg-[var(--clr-surface)] border border-white/6 shadow-2xl pointer-events-auto"
-        >
-          {/* Header with tabs */}
-          <div className="flex items-center justify-between gap-4 px-6 pt-5 pb-0 md:px-10 shrink-0">
-            <div
-              className="flex gap-1 bg-white/5 rounded-full p-1 border border-white/8"
-            >
-              {TABS.map(tab => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`rounded-full px-4 py-2 text-[12px] font-semibold transition-all duration-200 ${
-                    activeTab === tab.id
-                      ? "bg-[var(--clr-focus)] text-white shadow-md"
-                      : "text-[var(--clr-ink)] opacity-50 hover:opacity-80"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-
-            <button
-              onClick={onClose}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/8 text-[var(--clr-ink)] opacity-60 hover:opacity-100 transition"
-            >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Scrollable content area — two columns on lg */}
-          <div className="scrollbar-thin flex-1 overflow-y-auto px-6 py-6 md:px-10">
-            <div className="grid gap-8 lg:grid-cols-[1fr_280px]">
-              {/* Main */}
-              <div className="min-w-0">{mainContent}</div>
-              {/* Sidebar */}
-              <aside className="hidden lg:block">{sidebarContent}</aside>
-            </div>
-          </div>
-
-          {/* Bottom action bar */}
-          <div className="shrink-0">
-            <BottomBar
-              onTestMe={() => onStartTest?.(rawAuthor)}
-              onNextAuthor={onNextAuthor}
-              onClose={onClose}
-            />
-          </div>
-        </motion.div>
-      </div>
-    </motion.div>
+    <AuthorFocusShell
+      title={author.author}
+      tabs={TABS}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+      onClose={onClose}
+      sidebar={
+        <StudySidebar 
+          author={author} 
+          allAuthors={allAuthors} 
+          onNavigatePeer={() => onClose()} // Parent handles peer nav
+        />
+      }
+      main={
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
+            {activeTab === "author" ? (
+              <AuthorTab author={author} category={categoryLabel} />
+            ) : (
+              <WorksTab author={author} />
+            )}
+          </motion.div>
+        </AnimatePresence>
+      }
+    />
   );
 }

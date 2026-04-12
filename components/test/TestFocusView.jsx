@@ -323,7 +323,7 @@ export default function TestFocusView({
   }
 
   const guideContent = (
-    <div className="space-y-6 text-left">
+    <div className="space-y-6 text-center">
       {!hasPriorAttempt ? (
         <p className="text-[17px] leading-relaxed opacity-70">
           Try to recall the answer from memory. Don’t worry if you’re unsure—just give it a try.
@@ -331,7 +331,7 @@ export default function TestFocusView({
       ) : (
         <div className="flex flex-col gap-6">
           <p className="text-[16px] font-bold">Ready to practice?</p>
-          <div className="rounded-xl border border-[var(--clr-focus)]/25 bg-[var(--clr-recall)]/40 p-5">
+          <div className="rounded-xl border border-[var(--clr-focus)]/25 bg-[var(--clr-recall)]/40 p-5 text-left">
             <div className="flex items-start justify-between gap-6">
               <div className="min-w-0">
                 <p className="font-bold text-[15px] text-white">Mixed Practice</p>
@@ -339,7 +339,7 @@ export default function TestFocusView({
                   Switching authors mid-session builds significantly stronger memory than practicing one at a time.
                 </p>
               </div>
-              <ToggleSwitch enabled={mixMode} onToggle={() => setMixMode(v => v)} />
+              <ToggleSwitch enabled={mixMode} onToggle={() => setMixMode(v => !v)} />
             </div>
           </div>
         </div>
@@ -361,17 +361,14 @@ export default function TestFocusView({
           <div className="pb-10 max-w-2xl mx-auto">
             {!sessionComplete && (
               <div className="mb-10 flex items-center justify-between px-6 py-4 bg-[var(--clr-bg-inset)]/30 rounded-2xl border border-white/5">
-                <div className="flex gap-1.5">
+                <div className="flex gap-2">
                   {[...Array(activeQuestions.length)].map((_, i) => (
-                    <div key={i} className={`h-1.5 w-6 rounded-full transition-all ${
-                      i === currentIndex ? "bg-[var(--clr-focus)]" : i < currentIndex ? "bg-[var(--clr-correct)]" : "bg-white/10"
+                    <div key={i} className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                      i === currentIndex ? "bg-[var(--clr-focus)] scale-125 shadow-[0_0_10px_var(--clr-focus)]" : i < currentIndex ? "bg-[var(--clr-correct)]" : "bg-white/10"
                     }`} />
                   ))}
                 </div>
-                <div className="flex gap-4">
-                  {committedMixMode && <span className="text-[10px] font-bold text-[var(--clr-warn)] uppercase tracking-widest pl-4">Mixed Authors</span>}
-                  <span className="text-[10px] font-bold opacity-30">{baseTimer}s Thinking time</span>
-                </div>
+                {committedMixMode && <span className="text-[10px] font-bold text-[var(--clr-warn)] uppercase tracking-widest pl-4">Mixed Authors</span>}
               </div>
             )}
 
