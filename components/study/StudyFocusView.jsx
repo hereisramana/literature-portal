@@ -27,6 +27,7 @@ export function sanitiseAuthor(raw) {
   if (!a.key_characters) a.key_characters = [];
   if (!a.genreTags) a.genreTags = [];
   if (!a.comparison_peers) a.comparison_peers = [];
+  if (!a.theory_type) a.theory_type = null;
 
   return a;
 }
@@ -121,13 +122,26 @@ function AuthorTab({ author, category }) {
 
       {/* Signature & Movements */}
       <div className="space-y-4">
-        <SectionLabel>Signature Styles & Movements</SectionLabel>
+        <SectionLabel>Signature Styles & Context</SectionLabel>
         <div className="flex flex-wrap gap-2">
+          {author.theory_type && <Tag label={author.theory_type} color="theme" />}
           {author.bio_context.movements?.map((m, i) => <Tag key={i} label={m} color="move" />)}
           {author.style_innovations.map((s, i) => <Tag key={i} label={s} color="style" />)}
           {author.literary_period && <Tag label={author.literary_period} color="theme" />}
         </div>
       </div>
+
+      {/* Collaborators */}
+      {author.bio_context.collaborators?.length > 0 && (
+        <div className="space-y-4">
+          <SectionLabel>Notable Contemporaries</SectionLabel>
+          <div className="flex flex-wrap gap-2">
+            {author.bio_context.collaborators.map((c, i) => (
+              <Pill key={i} label={c} color="blue" />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Global Themes */}
       <div className="space-y-4">
@@ -238,13 +252,21 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
-            <div className="px-6 pb-6 pt-2 space-y-6 border-t border-white/5">
-              {/* Internal Work Themes Placeholder */}
+            <div className="px-6 pb-6 pt-2 space-y-7 border-t border-white/5">
+              {/* Internal Work Themes */}
               <div>
-                 <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)] opacity-60">Specific Themes</p>
-                 <div className="flex flex-wrap gap-2">
-                    <span className="text-[12px] italic text-[var(--clr-ink)] opacity-30">Detailed themes for this work are being compiled...</span>
-                 </div>
+                 <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)] opacity-60">Thematic Focus</p>
+                 { (work.themes?.length > 0 || author.themes?.length > 0) ? (
+                   <div className="flex flex-wrap gap-2">
+                      {(work.themes || author.themes).map((t, i) => (
+                        <span key={i} className="text-[11px] border border-white/10 bg-white/5 px-2.5 py-1 rounded-lg text-[var(--clr-ink)] opacity-70 italic">
+                          {t}
+                        </span>
+                      ))}
+                   </div>
+                 ) : (
+                   <EmptyNote>No specific themes recorded yet.</EmptyNote>
+                 )}
               </div>
 
               {/* Characters */}
@@ -264,6 +286,36 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
                         </div>
                       ))}
                    </div>
+                </div>
+              )}
+
+              {/* Quotes & Iconic Lines */}
+              {(work.quotes?.length > 0 || work.iconic_lines?.length > 0) ? (
+                <div>
+                   <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)] opacity-60">Memorable Lines</p>
+                   <div className="space-y-3">
+                      {(work.quotes || work.iconic_lines).map((q, i) => (
+                        <div key={i} className="relative pl-6 py-1">
+                          <div className="absolute left-0 top-0 h-full w-[3px] bg-[var(--clr-focus)]/30 rounded-full" />
+                          <p className="text-[14px] leading-relaxed text-[var(--clr-ink)] opacity-80 italic">"{q}"</p>
+                        </div>
+                      ))}
+                   </div>
+                </div>
+              ) : (
+                <div className="opacity-30 border-t border-white/5 pt-4">
+                  <p className="text-[9px] font-bold uppercase tracking-widest mb-1">Coming Soon</p>
+                  <p className="text-[11px] italic">Iconic quotes and textual excerpts are being curated for this work.</p>
+                </div>
+              )}
+
+              {/* Theoretical Depth */}
+              {work.theory_depth && (
+                <div className="bg-[var(--clr-focus)]/5 rounded-2xl p-5 border border-[var(--clr-focus)]/10">
+                  <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.3em] text-[var(--clr-pulse)]">Theoretical Context</p>
+                  <p className="text-[13px] leading-relaxed text-[var(--clr-ink)] opacity-70">
+                    {work.theory_depth}
+                  </p>
                 </div>
               )}
             </div>

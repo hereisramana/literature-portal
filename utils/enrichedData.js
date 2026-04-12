@@ -1,50 +1,39 @@
-import britishPoetry from "../data/enriched/british-poetry.json";
-import britishDrama from "../data/enriched/british-drama.json";
-import britishProseFiction from "../data/enriched/british-prose-fiction.json";
-import american from "../data/enriched/american.json";
-import indian from "../data/enriched/indian.json";
-import african from "../data/enriched/african.json";
-import otherRegions from "../data/enriched/other-regions.json";
-import women from "../data/enriched/women.json";
-import dalit from "../data/enriched/dalit.json";
-import cultural from "../data/enriched/cultural.json";
-import comparative from "../data/enriched/comparative.json";
-import criticism from "../data/enriched/criticism.json";
+import enrichedMaster from "../data/enriched_data.json";
 
-const categoryMap = {
-  "british-poetry": britishPoetry,
-  "british-drama": britishDrama,
-  "british-prose-fiction": britishProseFiction,
-  american,
-  indian,
-  african,
-  "other-regions": otherRegions,
-  women,
-  dalit,
-  cultural,
-  comparative,
-  criticism,
-};
+// The master file matches categories to arrays of authors
+const categoryMap = enrichedMaster;
 
 function normalizeWork(work) {
   if (typeof work === "string") {
-    return { title: work, year: "", type: "" };
+    return { 
+      title: work, 
+      year: "", 
+      type: "", 
+      themes: [], 
+      quotes: [], 
+      iconic_lines: [], 
+      theory_depth: null 
+    };
   }
 
   return {
     title: work.title || "",
     year: work.year || "",
     type: work.type || "",
+    themes: work.themes || [],
+    quotes: work.quotes || [],
+    iconic_lines: work.iconic_lines || [],
+    theory_depth: work.theory_depth || null,
   };
 }
 
-export function getEnrichedCategory(categoryId) {
-  return categoryMap[categoryId] || { authors: [] };
-}
-
 export function getEnrichedAuthor(categoryId, authorName) {
-  const category = getEnrichedCategory(categoryId);
-  return category.authors?.find((entry) => entry.author === authorName) || null;
+  // Search across all categories in the master file to handle mapping mismatches
+  for (const cat in categoryMap) {
+    const author = categoryMap[cat].find((entry) => entry.author === authorName);
+    if (author) return author;
+  }
+  return null;
 }
 
 export function mergeAuthorWithEnriched(author, categoryId) {

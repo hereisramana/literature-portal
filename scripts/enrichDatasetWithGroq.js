@@ -32,13 +32,23 @@ ${JSON.stringify({
     theory_type: authorData.theory_type
 })}
 
-Ground all claims primarily in the specific listed works rather than general knowledge about the author unless absolutely necessary.
+Ground all claims primarily in the specific listed works. 
 If you are uncertain about a field, use null rather than guessing.
 Provide exactly the following JSON structure:
 {
   "period": "exact birth–death years e.g. 1795–1821",
-  "themes": ["theme 1", "theme 2", "theme 3", "theme 4"],
+  "theory_type": "Specific critical school or theoretical framework (e.g. New Historicism), or null",
+  "themes": ["general theme 1", "general theme 2"],
   "style_innovations": ["innovation 1", "innovation 2"],
+  "works": [
+    {
+      "title": "MUST match one from input list",
+      "year": "YYYY",
+      "themes": ["specific work theme 1", "specific work theme 2"],
+      "quotes": ["short iconic quote 1", "short iconic quote 2"],
+      "theory_depth": "1-2 sentences on critical significance"
+    }
+  ],
   "key_characters": [ { "name": "string", "work": "string", "archetype": "string" } ],
   "bio_context": { "location": "string", "movements": ["movement 1"], "collaborators": ["collab 1"] },
   "magnum_opus": "single most significant work from their works list, or null",
@@ -126,7 +136,8 @@ async function main() {
     
     for (const [category, authors] of Object.entries(enrichedDataset)) {
         for (const author of authors) {
-            if (author.period !== undefined) {
+            // Only skip if the author has the new rich data (theory_depth check)
+            if (author.period !== undefined && author.works?.[0]?.theory_depth) {
                 authorStore.set(author.author, author);
             }
         }
