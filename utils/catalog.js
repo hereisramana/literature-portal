@@ -91,10 +91,10 @@ export function buildCatalog(data) {
         !region.includes("british") &&
         !region.includes("american") &&
         !region.includes("indian") &&
-        !region.includes("african")
-      );
     })
   );
+  
+  const allAuthors = dedupeAuthors(Object.values(data).flat());
 
   return [
     {
@@ -168,11 +168,26 @@ export function buildCatalog(data) {
       authors: sortChronologically(criticism),
     },
     {
-      id: "award-winners",
-      label: "Award Winners",
+      id: "award-winning-indians",
+      label: "Award Winning Indians",
       shortLabel: "Awards",
-      description: "Reserved for prize-winning writers and texts",
-      authors: [],
+      description: "Celebrating Nobel, Pulitzer, Booker, Jnanpith, and Sahitya Akademi laureates of Indian origin",
+      authors: sortChronologically(
+        allAuthors.filter((a) => {
+          const awards = a.legacy?.awards || [];
+          const awardStr = Array.isArray(awards) ? awards.join(" ").toLowerCase() : String(awards).toLowerCase();
+          const isIndian = normalize(a.region || "").includes("indian");
+          
+          const hasBigAward = 
+            awardStr.includes("nobel") || 
+            awardStr.includes("booker") || 
+            awardStr.includes("pulitzer") || 
+            awardStr.includes("jnanpith") || 
+            awardStr.includes("sahitya akademi");
+            
+          return isIndian && hasBigAward;
+        })
+      ),
     },
   ];
 }

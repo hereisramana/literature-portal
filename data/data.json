@@ -8299,7 +8299,10 @@
       "magnum_opus": "The Shadow Lines",
       "legacy": {
         "translations": "multiple languages",
-        "awards": [],
+        "awards": [
+          "Jnanpith Award (2018)",
+          "Sahitya Akademi Award (English) (1989)"
+        ],
         "posthumous_notes": null
       },
       "comparison_peers": [
@@ -9125,7 +9128,8 @@
       "legacy": {
         "translations": "Translated into multiple languages",
         "awards": [
-          "Booker Prize"
+          "Booker Prize",
+          "Booker Prize (2006)"
         ],
         "posthumous_notes": "null"
       },
@@ -9545,7 +9549,8 @@
       "legacy": {
         "translations": "Translated into over 15 languages",
         "awards": [
-          "Rajasthan Government Literary Award"
+          "Rajasthan Government Literary Award",
+          "Sahitya Akademi Award (English) (1960)"
         ],
         "posthumous_notes": "Posthumously awarded the Neustadt International Prize for Literature"
       },
@@ -9649,7 +9654,8 @@
       "legacy": {
         "translations": "Translated into over 40 languages",
         "awards": [
-          "Booker Prize"
+          "Booker Prize",
+          "Booker Prize (1981)"
         ],
         "posthumous_notes": "Continues to be a prominent figure in contemporary literature"
       },
@@ -15299,6 +15305,755 @@
           "shared_theme": "The role of nature in human life"
         }
       ]
+    }
+  ],
+  "Award Winners Placeholder": [
+    {
+      "author": "Gobind Behari Lal",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Pulitzer Prize (Reporting) (1937)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "V.S. Naipaul",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Booker Prize (1971)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Arundhati Roy",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Booker Prize (1997)",
+          "Sahitya Akademi Award (English) (2005)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Jhumpa Lahiri",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Pulitzer Prize (Fiction) (2000)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Geeta Anand",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Pulitzer Prize (Reporting) (2003)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Aravind Adiga",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Booker Prize (2008)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Siddhartha Mukherjee",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Pulitzer Prize (General Nonfiction) (2011)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Vijay Seshadri",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Pulitzer Prize (Poetry) (2014)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Geetanjali Shree",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "International Booker Prize (2022)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Banu Mushtaq",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "International Booker Prize (2025)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "G. Sankara Kurup",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Jnanpith Award (1965)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Ramdhari Singh 'Dinkar'",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Jnanpith Award (1972)",
+          "Sahitya Akademi Award (Hindi) (1959)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Ashapoorna Devi",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Jnanpith Award (1976)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Amrita Pritam",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Jnanpith Award (1981)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Gulzar",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Jnanpith Award (2023)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Jagadguru Rambhadracharya",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Jnanpith Award (2023)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Vinod Kumar Shukla",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Jnanpith Award (2024)",
+          "Sahitya Akademi Award (Hindi) (1999)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Vairamuthu",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Jnanpith Award (2025)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Vikram Seth",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (English) (1988)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Ruskin Bond",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (English) (1992)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Ramachandra Guha",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (English) (2011)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Shashi Tharoor",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (English) (2019)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Easterine Kire",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (English) (2024)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Navtej Sarna",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (English) (2025)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Makhanlal Chaturvedi",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (Hindi) (1955)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Harivansh Rai Bachchan",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (Hindi) (1968)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Bhisham Sahni",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (Hindi) (1975)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Krishna Sobti",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (Hindi) (1980)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Harishankar Parsai",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (Hindi) (1982)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Gagan Gill",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (Hindi) (2024)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
+    },
+    {
+      "author": "Mamta Kalia",
+      "works": [],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "period": null,
+      "themes": [],
+      "style_innovations": [],
+      "key_characters": [],
+      "bio_context": {
+        "location": "India",
+        "movements": [],
+        "collaborators": []
+      },
+      "magnum_opus": null,
+      "legacy": {
+        "translations": null,
+        "awards": [
+          "Sahitya Akademi Award (Hindi) (2025)"
+        ],
+        "posthumous_notes": null
+      },
+      "comparison_peers": []
     }
   ]
 }
