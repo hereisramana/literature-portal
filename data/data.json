@@ -7686,7 +7686,16 @@
     {
       "author": "Shashi Deshpande",
       "works": [
-        "That Long Silence"
+        {
+          "title": "That Long Silence",
+          "award": "Sahitya Akademi Award",
+          "award_year": "1990"
+        },
+        {
+          "title": "Shadow Play",
+          "award": "Shortlisted for The Hindu Literary Prize",
+          "award_year": "2014"
+        }
       ],
       "region": "Indian",
       "literary_period": "Contemporary",
@@ -7697,7 +7706,10 @@
         "Silence as a form of resistance",
         "Marriage and its societal expectations",
         "Self-discovery and identity",
-        "Patriarchal oppression"
+        "Patriarchal oppression",
+        "Feminist literature",
+        "Domestic claustrophobia",
+        "Interior life"
       ],
       "style_innovations": [
         "Stream-of-consciousness narrative",
@@ -7717,15 +7729,23 @@
         ],
         "collaborators": [
           "None noted in the specific work"
+        ],
+        "honors": [
+          "Major voice in contemporary Indian English fiction"
         ]
       },
       "magnum_opus": "That Long Silence",
       "legacy": {
         "translations": "Translated into several languages",
         "awards": [
-          "Sahitya Akademi Award"
+          "Sahitya Akademi Award (1990)",
+          "Padma Shri (2009)",
+          "The Hindu Literary Prize (2014 - Shortlisted)"
         ],
-        "posthumous_notes": "null"
+        "posthumous_notes": "null",
+        "titles": [
+          "Major voice in contemporary Indian English fiction"
+        ]
       },
       "comparison_peers": [
         {
@@ -9036,9 +9056,17 @@
     {
       "author": "Nissim Ezekiel",
       "works": [
-        "Enterprise",
-        "Night of the Scorpion",
-        "Goodbye Party for Miss Pushpa T. S"
+        {
+          "title": "Latter-Day Psalms",
+          "award": "Sahitya Akademi Award",
+          "award_year": "1983"
+        },
+        {
+          "title": "Night of the Scorpion",
+          "award": "Poetry Foundation Highlight"
+        },
+        "Goodbye Party for Miss Pushpa T. S",
+        "Enterprise"
       ],
       "region": "Indian",
       "literary_period": "Modern",
@@ -9048,7 +9076,10 @@
         "Social Justice",
         "Poverty",
         "Identity",
-        "Existentialism"
+        "Existentialism",
+        "Precision in verse",
+        "Modernist transition",
+        "Indian urban life"
       ],
       "style_innovations": [
         "Free Verse",
@@ -9066,15 +9097,22 @@
         "movements": [
           "Indian Modernism"
         ],
-        "collaborators": []
+        "collaborators": [],
+        "honors": [
+          "Father of Modern Indian English Poetry"
+        ]
       },
       "magnum_opus": "Night of the Scorpion",
       "legacy": {
         "translations": "Multiple languages",
         "awards": [
-          " Sahitya Akademi Award"
+          "Sahitya Akademi Award (1983)",
+          "Padma Shri (1988)"
         ],
-        "posthumous_notes": "Ezekiel's work continues to be widely read and studied in India and internationally."
+        "posthumous_notes": "Ezekiel's work continues to be widely read and studied in India and internationally.",
+        "titles": [
+          "Father of Modern Indian English Poetry"
+        ]
       },
       "comparison_peers": [
         {
@@ -9184,6 +9222,21 @@
     {
       "author": "Qurratulain Hyder",
       "works": [
+        {
+          "title": "River of Fire (Aag Ka Darya)",
+          "award": "Masterpiece"
+        },
+        {
+          "title": "Akhire Shab Ke Humsafar",
+          "award": "Jnanpith Award",
+          "award_year": "1989"
+        },
+        {
+          "title": "Patjhar Ki Awaz",
+          "award": "Sahitya Akademi Award",
+          "award_year": "1967",
+          "type": "Short Stories"
+        },
         "River of Fire",
         {
           "title": "Aakhir-e-Shab Ke Hamsafar (Travellers Unto the Night)",
@@ -9199,7 +9252,10 @@
         "national identity",
         "social change",
         "love",
-        "war"
+        "war",
+        "Epic timeline",
+        "Cultural memory",
+        "Partition trauma"
       ],
       "style_innovations": [
         "magical realism"
@@ -9210,15 +9266,23 @@
         "movements": [
           "Progressive Writers' Movement"
         ],
-        "collaborators": []
+        "collaborators": [],
+        "honors": [
+          "Grand Dame of Urdu literature"
+        ]
       },
       "magnum_opus": "River of Fire",
       "legacy": {
         "translations": "Multiple languages",
         "awards": [
-          "Jnanpith Award (1989)"
+          "Jnanpith Award (1989)",
+          "Sahitya Akademi Award (1967)",
+          "Padma Bhushan (2005)"
         ],
-        "posthumous_notes": "River of Fire is considered a classic of Urdu literature"
+        "posthumous_notes": "River of Fire is considered a classic of Urdu literature",
+        "titles": [
+          "Grand Dame of Urdu literature"
+        ]
       },
       "comparison_peers": [
         {
@@ -12398,6 +12462,16 @@
     {
       "author": "Narendra Jadhav",
       "works": [
+        {
+          "title": "Amcha Baap Aan Amhi (Our Father and Us)",
+          "award": "Sahitya Akademi Award (Punjabi version)",
+          "award_year": "2005"
+        },
+        {
+          "title": "Dr. Ambedkar: Economic Thoughts & Philosophy",
+          "award": "Maharashtra Sahitya Parishad Award",
+          "award_year": "1993"
+        },
         "Outcaste"
       ],
       "region": "Indian",
@@ -12409,7 +12483,10 @@
         "Caste system",
         "Social inequality",
         "Autobiographical narrative",
-        "Dalit experience"
+        "Dalit experience",
+        "Dalit empowerment",
+        "Economic philosophy",
+        "Autobiographical bestseller"
       ],
       "style_innovations": [
         "Autobiographical narrative style"
@@ -12422,15 +12499,23 @@
         ],
         "collaborators": [
           "Dalit writers"
+        ],
+        "honors": [
+          "Prominent economist and writer"
         ]
       },
       "magnum_opus": "Outcaste",
       "legacy": {
         "translations": "Multiple languages",
         "awards": [
-          "National Sahitya Akademi Award"
+          "Sahitya Akademi Award (2005)",
+          "Maharashtra Sahitya Parishad Award (1993)",
+          "Commander of the Order of Academic Palms (Government of France)"
         ],
-        "posthumous_notes": null
+        "posthumous_notes": null,
+        "titles": [
+          "Prominent economist and writer"
+        ]
       },
       "comparison_peers": [
         {
