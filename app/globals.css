@@ -1,112 +1,112 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
-/* ═══════════════════════════════════════════════════════════════════════╗
-   DARK MODE (default) — Focus Academic / Extended Session
-   
-   Evidence-based calibration (Piepenbrock 2013, Costin & Koops 2021,
-   Material Design dark guidelines, ISO 9241-303):
-   
-   • Background raised from pure-black-adjacent #12111A → #16141F
-     Eliminates halation—the "bleeding" of bright text into near-black BG.
-     Pure/near-pure black maximises the halo around white text pixels.
-   
-   • Ink reduced from 93% lightness (#EBEAF0) → 82% lightness (#C9C6DF)
-     Contrast target: ~10.8:1 on #16141F. 
-     Above 13:1 triggers Mach band illusion (text appears to vibrate).
-     80–88% brightness is the ergonomic optimum for extended dark reading.
-   
-   • Surface raised slightly: #1C1A30 → #1E1C34
-     Maintains hue family; slightly elevated lightness reduces harsh contrast
-     step between BG and cards.
-     
-   • All semantic colours unchanged — they are already low-chroma (Atchison
-     & Smith 2000), reducing chromatic aberration fatigue from the lens.
-   ╚══════════════════════════════════════════════════════════════════════ */
 :root {
-  --clr-bg:      #16141F;   /* Raised void — prevents halation vs pure black */
-  --clr-surface: #1E1C34;   /* Slightly elevated depth surface */
-  --clr-recall:  #2E2960;   /* Recall phase bg — unchanged */
-  --clr-focus:   #534AB7;   /* Primary action, timer ring */
-  --clr-pulse:   #7F77DD;   /* Recognise accent */
-  --clr-correct: #1D9E75;
-  --clr-wrong:   #D85A30;
-  --clr-warn:    #EF9F27;
-  --clr-dim:     #4A4760;   /* Slightly less grey, retains hue family */
-  --clr-ink:     #C9C6DF;   /* 82% lightness ink — contrast ≈10.8:1, within ergonomic range */
+  --clr-bg: #16141f;
+  --clr-surface: #1e1c34;
+  --clr-recall: #2e2960;
+  --clr-focus: #534ab7;
+  --clr-pulse: #7f77dd;
+  --clr-correct: #1d9e75;
+  --clr-wrong: #d85a30;
+  --clr-warn: #d18300;
+  --clr-dim: #6c688a;
+  --clr-ink: #c9c6df;
 
-  /* Semantic aliases */
-  --color-bg-primary:    var(--clr-bg);
-  --color-bg-surface:    var(--clr-surface);
-  --color-bg-inset:      #12101C;
-  --color-text-primary:  var(--clr-ink);
-  --color-text-secondary: rgba(201, 198, 223, 0.60);
-  --color-text-strong:   #E8E6F4;   /* Slightly dimmer than pure white */
-  --color-border-subtle: rgba(201, 198, 223, 0.08);
+  --color-bg-primary: var(--clr-bg);
+  --color-bg-surface: var(--clr-surface);
+  --color-bg-inset: #12101c;
+
+  --color-text-primary: var(--clr-ink);
+  --color-text-secondary: #a9a6c2;
+  --color-text-strong: #e8e6f4;
+
+  --text-body-color: var(--color-text-primary);
+  --text-muted-color: var(--color-text-secondary);
+  --text-heading-color: var(--color-text-strong);
+
+  --color-border-subtle: #726e99;
+  --color-border-ui: #726e99;
   --color-border-strong: var(--clr-focus);
-  --color-accent:        var(--clr-focus);
+
+  --color-accent: var(--clr-focus);
   --color-accent-strong: var(--clr-pulse);
-  --text-on-accent:      #FFFFFF;
-  --text-body-color:     var(--color-text-primary);
-  --text-heading-color:  var(--color-text-strong);
-  --shadow-soft:         0 4px 24px rgba(0, 0, 0, 0.40);
-  --page-max-width:      1440px;
+  --text-on-accent: #ffffff;
+
+  --button-primary-bg: var(--clr-focus);
+  --button-primary-text: var(--text-on-accent);
+  --button-secondary-bg: rgba(201, 198, 223, 0.12);
+  --button-secondary-text: var(--clr-ink);
+
+  --color-interaction-hover: rgba(127, 119, 221, 0.16);
+  --color-interaction-active: rgba(127, 119, 221, 0.24);
+  --color-bg-accent-soft: rgba(83, 74, 183, 0.22);
+
+  --color-success-text: #8de4c5;
+  --color-error-text: #ffb69f;
+  --color-warn-text: #ffd48a;
+
+  --color-disabled-bg: rgba(201, 198, 223, 0.1);
+  --color-disabled-text: #8f8ca6;
+  --color-focus-ring: #8b84e5;
+
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --page-max-width: 1440px;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════╗
-   LIGHT MODE — Pale Study / Extended Session
-   
-   Evidence-based calibration (Legge et al. 1990, Scharff et al. 1996,
-   f.lux research, ISO 9241-303):
-   
-   • Background: #F5F4FA (96% lightness, slight cool-lavender tint)
-     NOT pure white — #FFFFFF reflects max luminance at all wavelengths.
-     Causes glare especially in dim ambient lighting. A 96% warm-near-white
-     cuts specular reflections and reduces mean luminance entering the eye.
-   
-   • Surface: #FDFCFF — fractionally lighter than BG, not pure white.
-     This preserves the card/BG separation while avoiding harsh white glare.
-   
-   • Body ink: #2E2B44 (not pure black #000000)
-     Pure black on any light bg creates a maximum Mach band effect where
-     characters appear to vibrate at their edges. 
-     Contrast on #F5F4FA ≈ 11.2:1 — within ergonomic sweet spot 7–12:1.
-   
-   • Accent purple deepened to #4038A0 for 7.6:1 on surfaces (AA label
-     text on light bg requires deeper shade than on dark).
-   ╚══════════════════════════════════════════════════════════════════════ */
 [data-theme="light"] {
-  --clr-bg:      #F5F4FA;   /* Pale lavender-white — avoids full-white glare */
-  --clr-surface: #FDFCFF;   /* Near-white surfaces — fractionally lighter */
-  --clr-recall:  #ECEBF8;   /* Whisper recall phase bg */
-  --clr-focus:   #4038A0;   /* Deepened purple for 7.6:1 AA on light */
-  --clr-pulse:   #5850BB;   /* Mid purple accent */
-  --clr-correct: #1A7A5A;   /* Deepened teal — 4.9:1 AA on white */
-  --clr-wrong:   #BF4A22;   /* Deepened coral — 4.8:1 AA on white */
-  --clr-warn:    #9B6800;   /* Deep amber — 4.6:1 AA on white */
-  --clr-dim:     #9490B0;   /* Muted purple-gray */
-  --clr-ink:     #2E2B44;   /* Near-dark-purple — contrast ≈11.2:1, no Mach band */
+  --clr-bg: #f5f4fa;
+  --clr-surface: #fdfcff;
+  --clr-recall: #ecebf8;
+  --clr-focus: #4038a0;
+  --clr-pulse: #5850bb;
+  --clr-correct: #1a7a5a;
+  --clr-wrong: #bf4a22;
+  --clr-warn: #8a5900;
+  --clr-dim: #8f8aac;
+  --clr-ink: #2e2b44;
 
-  /* Semantic aliases — light overrides */
-  --color-bg-primary:    var(--clr-bg);
-  --color-bg-surface:    var(--clr-surface);
-  --color-bg-inset:      #EDEAF8;
-  --color-text-primary:  var(--clr-ink);
-  --color-text-secondary: rgba(46, 43, 68, 0.55);
-  --color-text-strong:   #1A1826;   /* Slightly off-black heading */
-  --color-border-subtle: rgba(64, 56, 160, 0.10);
+  --color-bg-primary: var(--clr-bg);
+  --color-bg-surface: var(--clr-surface);
+  --color-bg-inset: #edeaf8;
+
+  --color-text-primary: var(--clr-ink);
+  --color-text-secondary: #625e82;
+  --color-text-strong: #1a1826;
+
+  --text-body-color: var(--color-text-primary);
+  --text-muted-color: var(--color-text-secondary);
+  --text-heading-color: var(--color-text-strong);
+
+  --color-border-subtle: #837bb2;
+  --color-border-ui: #837bb2;
   --color-border-strong: var(--clr-focus);
-  --color-accent:        var(--clr-focus);
+
+  --color-accent: var(--clr-focus);
   --color-accent-strong: var(--clr-pulse);
-  --text-on-accent:      #FFFFFF;
-  --text-body-color:     var(--color-text-primary);
-  --text-heading-color:  var(--color-text-strong);
-  --shadow-soft:         0 4px 24px rgba(64, 56, 160, 0.07);
+  --text-on-accent: #ffffff;
+
+  --button-primary-bg: var(--clr-focus);
+  --button-primary-text: var(--text-on-accent);
+  --button-secondary-bg: rgba(64, 56, 160, 0.1);
+  --button-secondary-text: #2e2b44;
+
+  --color-interaction-hover: rgba(64, 56, 160, 0.12);
+  --color-interaction-active: rgba(64, 56, 160, 0.2);
+  --color-bg-accent-soft: rgba(64, 56, 160, 0.16);
+
+  --color-success-text: #145540;
+  --color-error-text: #8b2f14;
+  --color-warn-text: #7a5200;
+
+  --color-disabled-bg: rgba(46, 43, 68, 0.08);
+  --color-disabled-text: #5f5a83;
+  --color-focus-ring: #5e53cf;
+
+  --shadow-soft: 0 4px 24px rgba(64, 56, 160, 0.08);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   BASE STYLES
-   ═══════════════════════════════════════════════════════════════════════ */
-html, body {
+html,
+body {
   height: 100%;
   background-color: var(--clr-bg);
   color: var(--clr-ink);
@@ -117,22 +117,19 @@ body {
   margin: 0;
   font-family: var(--font-body), "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
-  /* Slightly increased letter-spacing for extended-session readability
-     (0.01em proven to reduce horizontal crowding — Malania et al. 2006) */
   letter-spacing: 0.01em;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-display), "Manrope", sans-serif;
   color: var(--color-text-strong);
   margin: 0;
-  /* Tighter tracking for display — headings use optical spacing */
   letter-spacing: -0.02em;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   COMPONENT CLASSES
-   ═══════════════════════════════════════════════════════════════════════ */
 .card {
   background: var(--clr-surface);
   border: 1px solid var(--color-border-subtle);
@@ -140,9 +137,9 @@ h1, h2, h3, h4 {
   box-shadow: var(--shadow-soft);
 }
 
-[data-theme="light"] .card {
-  border: 1px solid rgba(64, 56, 160, 0.10);
-  box-shadow: 0 2px 16px rgba(64, 56, 160, 0.05);
+.subtle-surface {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
 }
 
 .scrollbar-thin {
@@ -150,23 +147,29 @@ h1, h2, h3, h4 {
   scrollbar-color: var(--clr-dim) transparent;
 }
 
-.scrollbar-thin::-webkit-scrollbar { width: 5px; }
-.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 .scrollbar-thin::-webkit-scrollbar-thumb {
   background: var(--clr-dim);
   border-radius: 10px;
-  opacity: 0.35;
+  opacity: 0.45;
 }
 
 .success-surface {
-  background: rgba(29, 158, 117, 0.12);
-  color: var(--clr-correct);
+  background: rgba(29, 158, 117, 0.14);
+  color: var(--color-success-text);
   border: 1px solid var(--clr-correct);
 }
 
 .error-surface {
-  background: rgba(216, 90, 48, 0.12);
-  color: var(--clr-wrong);
+  background: rgba(216, 90, 48, 0.14);
+  color: var(--color-error-text);
   border: 1px solid var(--clr-wrong);
 }
 
@@ -176,14 +179,15 @@ h1, h2, h3, h4 {
   width: 100%;
 }
 
-/* Smooth theme transition */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   transition-property: background-color, border-color, color, box-shadow;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 button:focus-visible {
-  outline: 2px solid var(--clr-focus);
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 3px;
 }

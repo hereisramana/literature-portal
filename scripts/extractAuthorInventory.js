@@ -3,7 +3,7 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const sourcePath = path.join(root, "data", "data.json");
-const outputPath = path.join(root, "data", "enriched", "author-inventory.json");
+const outputPath = path.join(root, "data", "author-inventory.json");
 
 function normalizeCategoryLabel(label) {
   return label
@@ -32,6 +32,7 @@ function main() {
   const inventory = {
     version: 1,
     generatedFrom: "data/data.json",
+    notes: "Generated inventory only. Runtime enrichment source is data/enriched_data.json.",
     categories: buildInventory(raw),
   };
 

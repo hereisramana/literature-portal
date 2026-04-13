@@ -18,7 +18,7 @@ export default function Sidebar({
     : "/assets/logo-light.png"; // Default to light logo for SSR if default theme is dark
 
   return (
-    <aside className={`flex h-full flex-col bg-[var(--clr-surface)] border-r border-[var(--clr-ink)]/5 transition-all duration-300`}>
+    <aside className={`flex h-full flex-col bg-[var(--clr-surface)] border-r border-[var(--color-border-subtle)] transition-all duration-300`}>
       <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-8"}`}>
         {collapsed ? (
           <motion.button
@@ -26,7 +26,7 @@ export default function Sidebar({
             whileTap={{ scale: 0.95 }}
             aria-label="Open categories panel"
             onClick={onToggle}
-            className="mt-1 flex h-10 w-10 items-center justify-center rounded-xl text-[var(--clr-ink)] opacity-60 hover:opacity-100 transition"
+            className="mt-1 flex h-10 w-10 items-center justify-center rounded-xl text-[var(--text-muted-color)] hover:bg-[var(--color-interaction-hover)] hover:text-[var(--text-body-color)] transition"
           >
             <img 
               src={logoSrc} 
@@ -44,10 +44,10 @@ export default function Sidebar({
                   className="h-10 w-10 object-contain"
                 />
                 <div>
-                  <h1 className="text-[22px] font-black leading-none tracking-tight text-[var(--clr-ink)]">
+                  <h1 className="text-[22px] font-black leading-none tracking-tight text-[var(--color-text-strong)]">
                     {title}
                   </h1>
-                  <p className="mt-1 text-[8px] font-bold uppercase tracking-[0.2em] text-[var(--clr-ink)] opacity-50">
+                  <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--text-muted-color)]">
                     {tagline}
                   </p>
                 </div>
@@ -58,7 +58,7 @@ export default function Sidebar({
               whileTap={{ scale: 0.92 }}
               aria-label="Collapse categories panel"
               onClick={onToggle}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--clr-ink)]/5 text-[var(--clr-ink)] opacity-60 hover:opacity-100 transition"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-interaction-hover)] text-[var(--text-muted-color)] hover:text-[var(--text-body-color)] transition"
             >
               <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M15 18l-6-6 6-6" />
@@ -87,23 +87,23 @@ export default function Sidebar({
                     /* Active: Focus purple bg, white text — WCAG AA (5.9:1) */
                     ? "bg-[var(--clr-focus)] shadow-lg shadow-[var(--clr-focus)]/20"
                     /* Inactive: subtle hover on Void bg */
-                    : "bg-transparent hover:bg-[var(--clr-ink)]/5"
+                    : "bg-transparent hover:bg-[var(--color-interaction-hover)]"
                   }
                 `}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     {/* Active: white on Focus purple = 5.9:1 ✅  Inactive: parchment@90% on Depth = 14:1 ✅ */}
-                    <p className={`text-[14px] font-semibold leading-snug transition-colors ${isActive ? "text-white" : "text-[var(--clr-ink)] opacity-80"}`}>
+                    <p className={`text-[14px] font-semibold leading-snug transition-colors ${isActive ? "text-[var(--text-on-accent)]" : "text-[var(--text-body-color)]"}`}>
                       {category.label}
                     </p>
                     {/* Description: parchment@55% = sufficient ✅ */}
-                    <p className={`mt-1 text-[12px] leading-tight transition-colors ${isActive ? "text-white/70" : "text-[var(--clr-ink)] opacity-40"}`}>
+                    <p className={`mt-1 text-[12px] leading-tight transition-colors ${isActive ? "text-[var(--text-on-accent)]/90" : "text-[var(--text-muted-color)]"}`}>
                       {category.description}
                     </p>
                   </div>
                   {/* Badge */}
-                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold ${isActive ? "bg-[var(--clr-ink)]/20 text-white" : "bg-[var(--clr-ink)]/5 text-[var(--clr-ink)] opacity-50"}`}>
+                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold ${isActive ? "bg-[var(--text-on-accent)]/25 text-[var(--text-on-accent)]" : "bg-[var(--color-interaction-hover)] text-[var(--text-muted-color)]"}`}>
                     {category.authors.length}
                   </span>
                 </div>

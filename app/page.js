@@ -6,7 +6,6 @@ import { useEffect, useMemo, useState } from "react";
 
 import Sidebar from "../components/layout/Sidebar.jsx";
 import AuthorCard from "../components/cards/AuthorCard.jsx";
-import ModeToggle from "../components/layout/ModeToggle.jsx";
 import ThemeToggle, { useTheme } from "../components/layout/ThemeToggle.jsx";
 import SearchBar from "../components/common/Searchbar.jsx";
 import EmptyState from "../components/common/Emptystate.jsx";
@@ -214,7 +213,7 @@ export default function Page() {
       </AnimatePresence>
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
-        <div className="sticky top-0 z-10 bg-[var(--clr-bg)]/90 backdrop-blur-xl border-b border-white/5">
+        <div className="sticky top-0 z-10 bg-[var(--clr-bg)]/92 backdrop-blur-xl border-b border-[var(--color-border-subtle)]">
           <div className="shell-width px-4 py-4 md:px-8 lg:px-10">
             <div className="flex items-center gap-3">
               <motion.button

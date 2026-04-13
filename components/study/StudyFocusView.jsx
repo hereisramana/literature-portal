@@ -38,10 +38,10 @@ export function sanitiseAuthor(raw) {
 // ─────────────────────────────────────────────────────────────────────────────
 function Pill({ label, color = "default" }) {
   const colors = {
-    default:    "bg-white/10 text-[var(--clr-ink)] border border-white/10",
+    default:    "bg-[var(--color-interaction-hover)] text-[var(--text-body-color)] border border-[var(--color-border-subtle)]",
     accent:     "bg-[var(--clr-focus)]/20 text-[var(--clr-pulse)] border border-[var(--clr-focus)]/30",
     green:      "bg-[var(--clr-correct)]/15 text-[var(--clr-correct)] border border-[var(--clr-correct)]/30",
-    sand:       "bg-[var(--clr-recall)]/60 text-[var(--clr-ink)] border border-white/10",
+    sand:       "bg-[var(--clr-recall)]/60 text-[var(--text-body-color)] border border-[var(--color-border-subtle)]",
     warn:       "bg-[var(--clr-warn)]/15 text-[var(--clr-warn)] border border-[var(--clr-warn)]/30",
     blue:       "bg-[#7C92A6]/20 text-[#aec4d6] border border-[#7C92A6]/30",
   };
@@ -102,7 +102,7 @@ function AuthorTab({ author, category }) {
             </div>
             <div className="min-w-0">
               <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-0.5">Origin</p>
-              <p className="text-[15px] font-semibold text-white truncate">{location}</p>
+              <p className="text-[15px] font-semibold text-[var(--color-text-strong)] truncate">{location}</p>
             </div>
           </div>
         )}
@@ -115,7 +115,7 @@ function AuthorTab({ author, category }) {
             </div>
             <div className="min-w-0">
               <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-0.5">Active Period</p>
-              <p className="text-[15px] font-semibold text-white truncate">{author.period}</p>
+              <p className="text-[15px] font-semibold text-[var(--color-text-strong)] truncate">{author.period}</p>
             </div>
           </div>
         )}
@@ -232,7 +232,7 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
           <div className={`h-2 w-2 rounded-full shrink-0 ${isOpen ? 'bg-[var(--clr-pulse)]' : 'bg-[var(--clr-ink)]/20'}`} />
           <div className="min-w-0">
             <div className="flex items-center gap-3">
-              <h3 className={`text-[16px] font-bold leading-none text-white transition-colors ${isOpen ? 'text-[var(--clr-pulse)]' : ''}`}>
+              <h3 className={`text-[16px] font-bold leading-none text-[var(--color-text-strong)] transition-colors ${isOpen ? 'text-[var(--clr-pulse)]' : ''}`}>
                 {title}
               </h3>
               {isMagnum && <span className="text-[9px] font-black uppercase tracking-wider text-[var(--clr-pulse)] bg-[var(--clr-focus)]/20 px-2 py-0.5 rounded">Magnum Opus</span>}
@@ -290,8 +290,8 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
                             {char.name[0]}
                           </div>
                           <div>
-                            <p className="text-[13px] font-bold text-white leading-tight">{char.name}</p>
-                            <p className="text-[11px] text-[var(--clr-ink)] opacity-40">{char.archetype}</p>
+                            <p className="text-[13px] font-bold text-[var(--color-text-strong)] leading-tight">{char.name}</p>
+                            <p className="text-[11px] text-[var(--text-muted-color)]">{char.archetype}</p>
                           </div>
                         </div>
                       ))}
@@ -313,7 +313,7 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
                    </div>
                 </div>
               ) : (
-                <div className="opacity-30 border-t border-white/5 pt-4">
+                <div className="opacity-80 border-t border-[var(--color-border-subtle)] pt-4">
                   <p className="text-[9px] font-bold uppercase tracking-widest mb-1">Coming Soon</p>
                   <p className="text-[11px] italic">Iconic quotes and textual excerpts are being curated for this work.</p>
                 </div>
@@ -385,15 +385,15 @@ function StudySidebar({ author, allAuthors, onNavigatePeer }) {
               whileHover={{ x: 3 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => peerAuthor && onNavigatePeer?.(peerAuthor)}
-              className={`w-full text-left p-4 rounded-2xl bg-white/5 border border-white/8 transition-all ${peerAuthor ? 'cursor-pointer hover:bg-white/10 hover:border-[var(--clr-focus)]/30' : 'cursor-default'}`}
+              className={`w-full text-left p-4 rounded-2xl bg-[var(--color-interaction-hover)] border border-[var(--color-border-subtle)] transition-all ${peerAuthor ? 'cursor-pointer hover:bg-[var(--color-interaction-active)] hover:border-[var(--color-border-strong)]' : 'cursor-default'}`}
             >
               <div className="flex items-center gap-4">
                 <div className="shrink-0 h-10 w-10 rounded-full bg-[var(--clr-recall)] flex items-center justify-center text-[11px] font-black text-[var(--clr-ink)] uppercase">
                   {peer.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[14px] font-bold text-white truncate">{peer.name}</p>
-                  <p className="text-[11px] text-[var(--clr-ink)] opacity-45 truncate leading-tight mt-0.5">{peer.shared_theme}</p>
+                  <p className="text-[14px] font-bold text-[var(--color-text-strong)] truncate">{peer.name}</p>
+                  <p className="text-[11px] text-[var(--text-muted-color)] truncate leading-tight mt-0.5">{peer.shared_theme}</p>
                 </div>
               </div>
             </motion.button>

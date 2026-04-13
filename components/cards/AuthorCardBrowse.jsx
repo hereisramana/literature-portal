@@ -38,7 +38,7 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
             {author.author}
           </h2>
           {author.literary_period && (
-            <span className="mt-1 inline-block text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--clr-pulse)] opacity-75">
+            <span className="mt-1 inline-block text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted-color)]">
               {author.literary_period}
             </span>
           )}
@@ -57,7 +57,7 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
         <div className="flex items-center gap-2">
           <span className={`shrink-0 h-1 w-1 rounded-full ${slot0 ? 'bg-[var(--clr-focus)]' : 'bg-transparent'}`} />
           {slot0 ? (
-            <span className="truncate text-[13px] leading-snug text-[var(--clr-ink)] opacity-60">{slot0}</span>
+            <span className="truncate text-[13px] leading-snug text-[var(--text-muted-color)]">{slot0}</span>
           ) : (
             <span className="h-3 w-24 rounded bg-[var(--clr-dim)] opacity-10" />
           )}
@@ -67,7 +67,7 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
         <div className="flex items-center gap-2">
           <span className={`shrink-0 h-1 w-1 rounded-full ${slot1 ? 'bg-[var(--clr-focus)]' : 'bg-transparent'}`} />
           {slot1 ? (
-            <span className="truncate text-[13px] leading-snug text-[var(--clr-ink)] opacity-60">{slot1}</span>
+            <span className="truncate text-[13px] leading-snug text-[var(--text-muted-color)]">{slot1}</span>
           ) : (
             /* Preserved gap — empty row keeps card height identical */
             <span className="h-3 w-16 rounded bg-transparent" />
@@ -78,7 +78,7 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
       {/* ── More works count ────────────────────────────── */}
       <div className="mt-1 h-[16px]">
         {totalWorks > 2 && (
-          <p className="text-[11px] font-medium text-[var(--clr-ink)] opacity-30 pl-3">
+          <p className="text-[11px] font-medium text-[var(--text-muted-color)] pl-3">
             +{totalWorks - 2} more
           </p>
         )}
@@ -98,7 +98,7 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
           whileHover={{ opacity: 0.88 }}
           whileTap={{ scale: 0.97 }}
           onClick={() => onStartTest?.(author)}
-          className="rounded-full bg-[var(--clr-focus)] py-2.5 text-[12px] font-semibold text-white transition-opacity shadow-md shadow-[var(--clr-focus)]/25"
+          className="rounded-full bg-[var(--button-primary-bg)] py-2.5 text-[12px] font-semibold text-[var(--button-primary-text)] transition-opacity shadow-md shadow-[var(--clr-focus)]/25"
         >
           Test
         </motion.button>

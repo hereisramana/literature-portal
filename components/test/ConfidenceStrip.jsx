@@ -34,8 +34,8 @@ export default function ConfidenceStrip({
                   onClick={() => onSelect(step.value)}
                   className={`h-12 w-12 rounded-full flex items-center justify-center text-sm font-black transition-all border-2 ${
                     isSelected
-                      ? `${step.color} border-white text-white shadow-xl scale-125 z-10`
-                      : "bg-white/5 border-white/10 text-white/40 hover:border-white/30 hover:text-white"
+                    ? `${step.color} border-[var(--color-border-ui)] text-[var(--text-on-accent)] shadow-xl scale-125 z-10`
+                    : "bg-[var(--color-disabled-bg)] border-[var(--color-border-subtle)] text-[var(--text-muted-color)] hover:border-[var(--color-border-strong)] hover:text-[var(--text-body-color)]"
                   }`}
                 >
                   {step.value}
@@ -78,7 +78,7 @@ export default function ConfidenceStrip({
   if (embedded) return content;
 
   return (
-    <div className="safe-bottom-lg fixed inset-x-0 bottom-0 z-[70] bg-[var(--clr-surface)]/95 px-4 py-8 backdrop-blur-xl border-t border-white/10 shadow-2xl">
+    <div className="safe-bottom-lg fixed inset-x-0 bottom-0 z-[70] bg-[var(--clr-surface)]/95 px-4 py-8 backdrop-blur-xl border-t border-[var(--color-border-subtle)] shadow-2xl">
       <div className="max-w-2xl mx-auto">
         <p className="text-center mb-10 text-[10px] font-bold uppercase tracking-[0.3em] opacity-40">
           Self-Correction check

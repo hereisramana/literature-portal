@@ -2,10 +2,8 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
-const enrichedDir = path.join(root, "data", "enriched");
-const manifestPath = path.join(enrichedDir, "manifest.json");
+const enrichedPath = path.join(root, "data", "enriched_data.json");
 
-// Simple CSV parser that handles quotes and commas
 function parseCSV(csv) {
   const rows = [];
   let currentRow = [];
@@ -38,11 +36,33 @@ function parseCSV(csv) {
       currentVal += char;
     }
   }
+
   if (currentVal || currentRow.length > 0) {
     currentRow.push(currentVal.trim());
     rows.push(currentRow);
   }
+
   return rows;
+}
+
+function parseSemicolonList(value = "") {
+  return value
+    .split(";")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function uniq(values = []) {
+  return [...new Set(values.filter(Boolean))];
+}
+
+function getHeaderIndex(headers, key) {
+  return headers.findIndex((h) => h.toLowerCase() === key.toLowerCase());
+}
+
+function readCell(row, index) {
+  if (index < 0) return "";
+  return (row[index] || "").trim();
 }
 
 function main() {
@@ -58,89 +78,86 @@ function main() {
     process.exit(1);
   }
 
+  if (!fs.existsSync(enrichedPath)) {
+    console.error(`Missing enrichment source file: ${enrichedPath}`);
+    process.exit(1);
+  }
+
   const csvContent = fs.readFileSync(csvPath, "utf8");
-  const dataRows = parseCSV(csvContent);
-  const headers = dataRows.shift();
-  
-  const headerMap = {};
-  headers.forEach((h, i) => (headerMap[h.toLowerCase()] = i));
+  const rows = parseCSV(csvContent);
+  const headers = rows.shift() || [];
+  const data = JSON.parse(fs.readFileSync(enrichedPath, "utf8"));
 
-  // Group by category_id
-  const categories = {};
+  const index = {
+    category_id: getHeaderIndex(headers, "category_id"),
+    author: getHeaderIndex(headers, "author"),
+    region: getHeaderIndex(headers, "region"),
+    literary_period: getHeaderIndex(headers, "literary_period"),
+    movements: getHeaderIndex(headers, "movements"),
+    genre_tags: getHeaderIndex(headers, "genre_tags"),
+    work_title: getHeaderIndex(headers, "work_title"),
+    work_year: getHeaderIndex(headers, "work_year"),
+    work_type: getHeaderIndex(headers, "work_type"),
+    themes: getHeaderIndex(headers, "themes"),
+  };
 
-  dataRows.forEach((row) => {
-    const cid = row[headerMap["category_id"]];
-    if (!cid) return;
-    if (!categories[cid]) categories[cid] = [];
-    categories[cid].push(row);
-  });
-
-  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-
-  for (const [categoryId, rows] of Object.entries(categories)) {
-    const targetFile = path.join(enrichedDir, `${categoryId}.json`);
-    let categoryData;
-
-    if (fs.existsSync(targetFile)) {
-      categoryData = JSON.parse(fs.readFileSync(targetFile, "utf8"));
-    } else {
-      const manifestEntry = manifest.categories.find((c) => c.id === categoryId);
-      categoryData = {
-        categoryId: categoryId,
-        label: manifestEntry ? manifestEntry.label : categoryId,
-        authors: [],
-      };
+  for (const row of rows) {
+    const categoryId = readCell(row, index.category_id);
+    const authorName = readCell(row, index.author);
+    if (!categoryId || !authorName) {
+      continue;
     }
 
-    // Process rows for this category
-    rows.forEach((row) => {
-      const authorName = row[headerMap["author"]];
-      const workTitle = row[headerMap["work_title"]];
-      
-      let author = categoryData.authors.find((a) => a.author === authorName);
-      if (!author) {
-        author = {
-          author: authorName,
-          region: row[headerMap["region"]] || "",
-          literary_period: row[headerMap["literary_period"]] || "",
-          movements: [],
-          genreTags: [],
-          works: [],
-          nodes: [],
-        };
-        categoryData.authors.push(author);
-      }
+    if (!Array.isArray(data[categoryId])) {
+      data[categoryId] = [];
+    }
 
-      // Update author fields if they aren't empty in CSV
-      const moveStr = row[headerMap["movements"]];
-      if (moveStr) {
-        author.movements = [...new Set([...author.movements, ...moveStr.split(";").map((s) => s.trim()).filter(Boolean)])];
-      }
-      const genreStr = row[headerMap["genre_tags"]];
-      if (genreStr) {
-        author.genreTags = [...new Set([...author.genreTags, ...genreStr.split(";").map((s) => s.trim()).filter(Boolean)])];
-      }
+    let author = data[categoryId].find((entry) => entry.author === authorName);
+    if (!author) {
+      author = {
+        author: authorName,
+        region: "",
+        literary_period: "",
+        movements: [],
+        genreTags: [],
+        works: [],
+        themes: [],
+        nodes: [],
+      };
+      data[categoryId].push(author);
+    }
 
-      // Update or add work
-      let work = author.works.find((w) => w.title === workTitle);
+    const region = readCell(row, index.region);
+    const literaryPeriod = readCell(row, index.literary_period);
+    const movements = parseSemicolonList(readCell(row, index.movements));
+    const genreTags = parseSemicolonList(readCell(row, index.genre_tags));
+    const themes = parseSemicolonList(readCell(row, index.themes));
+
+    if (region) author.region = region;
+    if (literaryPeriod) author.literary_period = literaryPeriod;
+    author.movements = uniq([...(author.movements || []), ...movements]);
+    author.genreTags = uniq([...(author.genreTags || []), ...genreTags]);
+    author.themes = uniq([...(author.themes || []), ...themes]);
+
+    const workTitle = readCell(row, index.work_title);
+    if (workTitle) {
+      let work = (author.works || []).find((entry) => entry.title === workTitle);
       if (!work) {
-        work = { title: workTitle, year: "", type: "" };
-        author.works.push(work);
+        work = { title: workTitle, year: "", type: "", themes: [] };
+        author.works = [...(author.works || []), work];
       }
-      
-      const year = row[headerMap["work_year"]];
-      if (year) work.year = year;
-      
-      const type = row[headerMap["work_type"]];
-      if (type) work.type = type;
-      
-      // Themes and characters could be stored in a temporary notes field or used for node generation later
-      // For now, we focus on the core attributes.
-    });
 
-    fs.writeFileSync(targetFile, JSON.stringify(categoryData, null, 4), "utf8");
-    console.log(`Updated ${targetFile}`);
+      const workYear = readCell(row, index.work_year);
+      const workType = readCell(row, index.work_type);
+      if (workYear) work.year = workYear;
+      if (workType) work.type = workType;
+
+      work.themes = uniq([...(work.themes || []), ...themes]);
+    }
   }
+
+  fs.writeFileSync(enrichedPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
+  console.log(`Updated ${enrichedPath}`);
 }
 
 main();

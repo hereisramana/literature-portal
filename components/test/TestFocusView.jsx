@@ -80,7 +80,7 @@ function McqPanel({
 
           {/* Suble Thinking Bar (Phase 2 Guided) */}
           {!revealed && (
-            <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden mt-2 relative">
+          <div className="h-1 w-full bg-[var(--color-disabled-bg)] rounded-full overflow-hidden mt-2 relative">
               <motion.div
                 className="absolute inset-0 bg-[var(--clr-focus)] opacity-30"
                 initial={{ width: "0%" }}
@@ -93,7 +93,7 @@ function McqPanel({
       </div>
 
       {!revealed ? (
-        <div className="flex flex-col items-center py-12 bg-[var(--clr-recall)]/30 rounded-2xl border border-white/5 h-[240px] justify-center text-center px-8">
+        <div className="flex flex-col items-center py-12 bg-[var(--clr-recall)]/30 rounded-2xl border border-[var(--color-border-subtle)] h-[240px] justify-center text-center px-8">
           <AnimatePresence mode="wait">
             <motion.p
               key={getRecallMessage(timer, baseTimer, isExpert)}
@@ -116,13 +116,13 @@ function McqPanel({
             const showWrong = submitted && isSelected && !isCorrect;
             const dim = submitted && !isCorrect && !isSelected;
 
-            let border = "border-white/10";
+            let border = "border-[var(--color-border-subtle)]";
             let bg = "bg-[var(--clr-surface)]";
             let text = "text-[var(--clr-ink)]";
 
-            if (showCorrect) { bg = "bg-[var(--clr-correct)]"; border = "border-[var(--clr-correct)]"; text = "text-white"; }
-            else if (showWrong) { bg = "bg-[var(--clr-wrong)]"; border = "border-[var(--clr-wrong)]"; text = "text-white"; }
-            else if (dim) { bg = "bg-transparent"; border = "border-white/5"; text = "text-[var(--clr-ink)] opacity-30"; }
+            if (showCorrect) { bg = "bg-[var(--clr-correct)]"; border = "border-[var(--clr-correct)]"; text = "text-[var(--text-on-accent)]"; }
+            else if (showWrong) { bg = "bg-[var(--clr-wrong)]"; border = "border-[var(--clr-wrong)]"; text = "text-[var(--text-on-accent)]"; }
+            else if (dim) { bg = "bg-transparent"; border = "border-[var(--color-border-subtle)]"; text = "text-[var(--text-muted-color)]"; }
             else if (isSelected && !submitted) { border = "border-[var(--clr-pulse)]"; bg = "bg-[var(--clr-recall)]"; }
 
             return (
@@ -171,7 +171,7 @@ function McqPanel({
               whileTap={{ scale: 0.98 }}
               onClick={onSubmit}
               disabled={!revealed || !selected}
-              className="rounded-full bg-[var(--clr-focus)] px-12 py-4 text-[13px] font-bold uppercase tracking-widest text-white shadow-xl disabled:opacity-20 transition-all"
+              className="rounded-full bg-[var(--button-primary-bg)] px-12 py-4 text-[13px] font-bold uppercase tracking-widest text-[var(--button-primary-text)] shadow-xl disabled:opacity-30 transition-all"
             >
               Confirm
             </motion.button>
@@ -180,7 +180,7 @@ function McqPanel({
                whileHover={{ scale: 1.05 }}
                whileTap={{ scale: 0.98 }}
                onClick={onNext}
-               className="rounded-full bg-[var(--clr-surface)] border-2 border-white/10 px-12 py-4 text-[13px] font-bold uppercase tracking-widest text-[var(--clr-ink)] transition-all"
+               className="rounded-full bg-[var(--clr-surface)] border-2 border-[var(--color-border-subtle)] px-12 py-4 text-[13px] font-bold uppercase tracking-widest text-[var(--text-body-color)] transition-all"
             >
               Next Question
             </motion.button>
@@ -197,9 +197,9 @@ function SummaryScreen({ resultsLog, onNextAuthor, onToggleMix, showMixCTA }) {
   const total = resultsLog.length;
 
   return (
-    <div className="p-8 bg-[var(--clr-surface)] rounded-[32px] border border-white/5 space-y-10 shadow-2xl">
+    <div className="p-8 bg-[var(--clr-surface)] rounded-[32px] border border-[var(--color-border-subtle)] space-y-10 shadow-2xl">
       <div className="text-center space-y-2 pt-2">
-        <h2 className="text-5xl font-black text-white">
+        <h2 className="text-5xl font-black text-[var(--color-text-strong)]">
           {correct}
           <span className="text-2xl opacity-25 ml-2">/ {total}</span>
         </h2>
@@ -210,7 +210,7 @@ function SummaryScreen({ resultsLog, onNextAuthor, onToggleMix, showMixCTA }) {
 
       <div className="space-y-2.5 max-w-md mx-auto">
         {resultsLog.map((log, i) => (
-          <div key={i} className="flex items-center justify-between gap-4 bg-[var(--clr-bg)] px-5 py-3.5 rounded-xl border border-white/5 text-[13px]">
+          <div key={i} className="flex items-center justify-between gap-4 bg-[var(--clr-bg)] px-5 py-3.5 rounded-xl border border-[var(--color-border-subtle)] text-[13px]">
             <span className="font-medium text-[var(--clr-ink)] opacity-65 truncate">
               {log.authorName && <span className="text-[var(--clr-warn)] text-[10px] font-bold mr-2">[{log.authorName}]</span>}
               {i + 1}. {log.dimension}
@@ -237,7 +237,7 @@ function SummaryScreen({ resultsLog, onNextAuthor, onToggleMix, showMixCTA }) {
           whileHover={{ opacity: 0.9, scale: 1.01 }}
           whileTap={{ scale: 0.97 }}
           onClick={onNextAuthor}
-          className="w-full rounded-xl bg-[var(--clr-focus)] py-4 text-[12px] font-bold uppercase tracking-widest text-white shadow-lg"
+          className="w-full rounded-xl bg-[var(--button-primary-bg)] py-4 text-[12px] font-bold uppercase tracking-widest text-[var(--button-primary-text)] shadow-lg"
         >
           Test next author
         </motion.button>
@@ -334,7 +334,7 @@ export default function TestFocusView({
           <div className="rounded-xl border border-[var(--clr-focus)]/25 bg-[var(--clr-recall)]/40 p-5 text-left">
             <div className="flex items-start justify-between gap-6">
               <div className="min-w-0">
-                <p className="font-bold text-[15px] text-white">Mixed Practice</p>
+                <p className="font-bold text-[15px] text-[var(--color-text-strong)]">Mixed Practice</p>
                 <p className="text-[12px] opacity-50 mt-1 leading-relaxed">
                   Switching authors mid-session builds significantly stronger memory than practicing one at a time.
                 </p>
@@ -360,11 +360,11 @@ export default function TestFocusView({
         main={
           <div className="pb-10 max-w-2xl mx-auto">
             {!sessionComplete && (
-              <div className="mb-10 flex items-center justify-between px-6 py-4 bg-[var(--clr-bg-inset)]/30 rounded-2xl border border-white/5">
+              <div className="mb-10 flex items-center justify-between px-6 py-4 bg-[var(--color-bg-inset)]/40 rounded-2xl border border-[var(--color-border-subtle)]">
                 <div className="flex gap-2">
                   {[...Array(activeQuestions.length)].map((_, i) => (
                     <div key={i} className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
-                      i === currentIndex ? "bg-[var(--clr-focus)] scale-125 shadow-[0_0_10px_var(--clr-focus)]" : i < currentIndex ? "bg-[var(--clr-correct)]" : "bg-white/10"
+                      i === currentIndex ? "bg-[var(--clr-focus)] scale-125 shadow-[0_0_10px_var(--clr-focus)]" : i < currentIndex ? "bg-[var(--clr-correct)]" : "bg-[var(--color-disabled-bg)]"
                     }`} />
                   ))}
                 </div>
@@ -403,7 +403,7 @@ export default function TestFocusView({
       <AnimatePresence>
         {confidenceFlow && (
           <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/90 backdrop-blur-xl p-4">
-            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-[var(--clr-surface)] w-full max-w-lg p-12 text-center shadow-2xl rounded-[40px] border border-white/10">
+            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-[var(--clr-surface)] w-full max-w-lg p-12 text-center shadow-2xl rounded-[40px] border border-[var(--color-border-subtle)]">
               <h2 className="text-2xl font-black mb-4">Adjusting to your level</h2>
               <p className="text-[15px] leading-relaxed text-[var(--clr-ink)] opacity-50 mb-12 px-6">
                 Your rating sets the <strong>thinking time</strong> for future sessions on <strong>{author.author}</strong>.
