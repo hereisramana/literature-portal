@@ -34,17 +34,16 @@ function ToggleSwitch({ enabled, onToggle }) {
     <motion.button
       onClick={onToggle}
       whileTap={{ scale: 0.92 }}
-      className="relative flex h-7 w-[52px] shrink-0 items-center rounded-full border transition-colors duration-200"
+      className="relative flex h-7 w-[52px] shrink-0 items-center rounded-full shadow-[0_6px_14px_rgba(28,38,33,0.28)] transition-colors duration-200"
       style={{
-        background: enabled ? "rgba(83,74,183,0.35)" : "rgba(255,255,255,0.07)",
-        borderColor: enabled ? "rgba(127,119,221,0.45)" : "rgba(255,255,255,0.12)",
+        background: enabled ? "rgba(83,74,183,0.45)" : "rgba(127,127,127,0.2)",
       }}
     >
       <motion.span
         animate={{ x: enabled ? 28 : 2 }}
         transition={{ type: "spring", stiffness: 500, damping: 35 }}
         className="absolute h-5 w-5 rounded-full shadow-md"
-        style={{ background: enabled ? "#7F77DD" : "rgba(255,255,255,0.22)" }}
+        style={{ background: enabled ? "#7F77DD" : "rgba(235,235,235,0.9)" }}
       />
     </motion.button>
   );
@@ -331,7 +330,7 @@ export default function TestFocusView({
       ) : (
         <div className="flex flex-col gap-6">
           <p className="text-[16px] font-bold">Ready to practice?</p>
-          <div className="rounded-xl border border-[var(--clr-focus)]/25 bg-[var(--clr-recall)]/40 p-5 text-left">
+          <div className="rounded-xl bg-[var(--clr-recall)]/40 p-5 text-left">
             <div className="flex items-start justify-between gap-6">
               <div className="min-w-0">
                 <p className="font-bold text-[15px] text-[var(--color-text-strong)]">Mixed Practice</p>
@@ -360,15 +359,27 @@ export default function TestFocusView({
         main={
           <div className="pb-10 max-w-2xl mx-auto">
             {!sessionComplete && (
-              <div className="mb-10 flex items-center justify-between px-6 py-4 bg-[var(--color-bg-inset)]/40 rounded-2xl border border-[var(--color-border-subtle)]">
-                <div className="flex gap-2">
+              <div className="mb-10 px-2">
+                <div className="flex w-full items-center justify-between gap-2 sm:gap-3">
                   {[...Array(activeQuestions.length)].map((_, i) => (
-                    <div key={i} className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
-                      i === currentIndex ? "bg-[var(--clr-focus)] scale-125 shadow-[0_0_10px_var(--clr-focus)]" : i < currentIndex ? "bg-[var(--clr-correct)]" : "bg-[var(--color-disabled-bg)]"
-                    }`} />
+                    <div key={i} className="flex-1 flex justify-center">
+                      <div
+                        className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                          i === currentIndex
+                            ? "bg-[var(--clr-focus)] scale-125 shadow-[0_0_10px_var(--clr-focus)]"
+                            : i < currentIndex
+                              ? "bg-[var(--clr-correct)]"
+                              : "bg-[var(--color-disabled-bg)]"
+                        }`}
+                      />
+                    </div>
                   ))}
                 </div>
-                {committedMixMode && <span className="text-[10px] font-bold text-[var(--clr-warn)] uppercase tracking-widest pl-4">Mixed Authors</span>}
+                {committedMixMode && (
+                  <span className="mt-4 block text-center text-[10px] font-bold uppercase tracking-widest text-[var(--clr-warn)]">
+                    Mixed Authors
+                  </span>
+                )}
               </div>
             )}
 

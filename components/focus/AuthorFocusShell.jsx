@@ -103,7 +103,7 @@ export default function AuthorFocusShell({
                   initial={{ scale: 0.9, opacity: 0, y: 20 }}
                   animate={{ scale: 1, opacity: 1, y: 0 }}
                   exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                  className="card w-full max-w-md p-8 text-center shadow-2xl"
+                  className="w-full max-w-md rounded-3xl bg-[var(--clr-surface)] p-8 text-center shadow-2xl"
                 >
                   <div className="mb-6 flex justify-center text-[var(--color-accent)]">
                     <svg className="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

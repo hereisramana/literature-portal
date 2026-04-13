@@ -26,11 +26,11 @@ export default function SearchBar({ onSearch }) {
         placeholder="Search authors or works…"
         className="
           h-12 w-full rounded-full
-          bg-[var(--clr-surface)] border border-[var(--color-border-subtle)]
+          bg-[var(--clr-surface)] shadow-[0_10px_20px_rgba(30,28,52,0.12)]
           pl-12 pr-12
           text-[14px] font-medium text-[var(--text-body-color)]
           outline-none transition-all duration-200
-          focus:border-[var(--color-border-strong)] focus:ring-1 focus:ring-[var(--color-focus-ring)]
+          focus:ring-2 focus:ring-[var(--color-focus-ring)]
           placeholder:text-[var(--text-muted-color)]
           md:h-14
         "

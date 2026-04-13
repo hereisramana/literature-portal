@@ -18,7 +18,7 @@ export default function Sidebar({
     : "/assets/logo-light.png"; // Default to light logo for SSR if default theme is dark
 
   return (
-    <aside className={`flex h-full flex-col bg-[var(--clr-surface)] border-r border-[var(--color-border-subtle)] transition-all duration-300`}>
+    <aside className={`flex h-full flex-col bg-[var(--clr-surface)] transition-all duration-300`}>
       <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-8"}`}>
         {collapsed ? (
           <motion.button
