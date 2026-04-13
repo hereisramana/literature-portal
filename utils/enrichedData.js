@@ -26,6 +26,8 @@ function normalizeWork(work) {
     quotes: work.quotes || [],
     iconic_lines: work.iconic_lines || [],
     theory_depth: work.theory_depth || null,
+    award: work.award || "",
+    award_year: work.award_year || "",
     summary: work.summary || "",
     critical_notes: work.critical_notes || [],
   };

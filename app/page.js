@@ -321,6 +321,7 @@ export default function Page() {
               const nextAuthor = filteredAuthors[currentIdx + 1];
               if (nextAuthor) setStudyContext({ author: nextAuthor, selectedWork: "" });
             }}
+            onNavigateAuthor={(author) => setStudyContext({ author, selectedWork: "" })}
           />
         )}
       </AnimatePresence>

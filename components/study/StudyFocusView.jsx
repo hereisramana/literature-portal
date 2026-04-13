@@ -284,7 +284,7 @@ function AuthorTab({ author, category, allAuthors, onNavigateAuthor }) {
 // ─────────────────────────────────────────────────────────────────────────────
 function WorkExpandablePill({ work, author, isOpen, onToggle }) {
   const title = typeof work === "string" ? work : work.title;
-  const year = typeof work === "object" ? work.year : null;
+  const year = typeof work === "object" ? (work.year || work.award_year) : null;
   const genre = typeof work === "object" ? (work.genre || work.type) : null;
   const isMagnum = author.magnum_opus && title === author.magnum_opus;
   
@@ -303,7 +303,12 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
               <h3 className={`text-[16px] font-bold leading-none text-[var(--color-text-strong)] transition-colors ${isOpen ? 'text-[var(--clr-pulse)]' : ''}`}>
                 {title}
               </h3>
-              {isMagnum && <span className="text-[9px] font-black uppercase tracking-wider text-[var(--clr-pulse)] bg-[var(--clr-focus)]/20 px-2 py-0.5 rounded">Magnum Opus</span>}
+              {author.magnum_opus === title && <span className="text-[9px] font-black uppercase tracking-wider text-[var(--clr-pulse)] bg-[var(--clr-focus)]/20 px-2 py-0.5 rounded">Magnum Opus</span>}
+              {work.award && (
+                <span className="text-[9px] font-black uppercase tracking-wider text-[var(--clr-correct)] bg-[var(--clr-correct)]/12 border border-[var(--clr-correct)]/25 px-2 py-0.5 rounded transition-all">
+                  {work.award}{work.award_year ? ` (${work.award_year})` : ''}
+                </span>
+              )}
             </div>
             <div className="mt-2 flex items-center gap-3 opacity-40">
               {year && <span className="text-[11px] font-bold">{year}</span>}
@@ -422,8 +427,8 @@ function WorksTab({ author }) {
   
   const sorted = useMemo(() => {
     return [...author.works].sort((a, b) => {
-      const ya = a.year ? parseInt(a.year) : Infinity;
-      const yb = b.year ? parseInt(b.year) : Infinity;
+      const ya = parseInt(a.year || a.award_year || "9999");
+      const yb = parseInt(b.year || b.award_year || "9999");
       return ya - yb;
     });
   }, [author.works]);
@@ -450,7 +455,7 @@ function WorksTab({ author }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // MAIN SIDEBAR CONTENT (now just Peer Navi)
 // ─────────────────────────────────────────────────────────────────────────────
-function StudySidebar({ author, allAuthors, onNavigatePeer }) {
+function StudySidebar({ author, allAuthors, onNavigateAuthor }) {
   const peers = author.comparison_peers || [];
   if (peers.length === 0) return null;
 
@@ -465,7 +470,7 @@ function StudySidebar({ author, allAuthors, onNavigatePeer }) {
               key={i}
               whileHover={{ x: 3 }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => peerAuthor && onNavigatePeer?.(peerAuthor)}
+              onClick={() => peerAuthor && onNavigateAuthor?.(peerAuthor)}
               className={`w-full text-left p-4 rounded-2xl bg-[var(--color-interaction-hover)] border border-[var(--color-border-subtle)] transition-all ${peerAuthor ? 'cursor-pointer hover:bg-[var(--color-interaction-active)] hover:border-[var(--color-border-strong)]' : 'cursor-default'}`}
             >
               <div className="flex items-center gap-4">
@@ -501,6 +506,7 @@ export default function StudyFocusView({
   onClose,
   onStartTest,
   onNextAuthor,
+  onNavigateAuthor,
 }) {
   const author = useMemo(() => sanitiseAuthor(rawAuthor), [rawAuthor]);
   const [activeTab, setActiveTab] = useState("author");
@@ -533,7 +539,7 @@ export default function StudyFocusView({
         <StudySidebar 
           author={author} 
           allAuthors={allAuthors} 
-          onNavigatePeer={() => onClose()} // Parent handles peer nav
+          onNavigateAuthor={onNavigateAuthor} 
         />
       }
       main={
