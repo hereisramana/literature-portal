@@ -5,21 +5,24 @@ A cognitive-first, minimal UI study system for English Literature exams.
 ## Features
 - Author-first browsing
 - Structured test mode
+- Author-first browsing
+- Structured test mode
 - Micro recall + matching + ordering
 - IndexedDB progress
 - Region-based categorization
 - Fully frontend
 
 ## Data Sources
-- Runtime enrichment source: `data/enriched_data.json`
-- Backup syllabus source: `data/data.json`
-- Legacy per-category enrichment directory `data/enriched/` has been removed
+- Primary database: `data/data.json` (Unified Single Source of Truth)
+- Logic and categorization: `utils/catalog.js`
+- Study Mode & Enrichment logic: Integrated directly into `data/data.json`
+- Search and Filtering: `app/page.js`
 
-## Enrichment Scripts
-- `scripts/importSpreadsheet.js` merges CSV rows directly into `data/enriched_data.json`
+### Legacy / Background Scripts
+- `scripts/importSpreadsheet.js` formerly merged CSV rows into `data/enriched_data.json` (Deprecated)
+- `scripts/enrichDatasetWithGroq.js` used to generate curriculum notes (Deprecated)
 - `scripts/extractAuthorInventory.js` outputs inventory to `data/author-inventory.json`
 - `scripts/auditStudyCoverage.js` generates `data/study_coverage_audit.json` for study/test coverage gaps
-- `scripts/enrichDatasetWithGroq.js` supports `--fill-missing-only`, optional category filters, and timed API throttling
 
 ## Run
 npm install

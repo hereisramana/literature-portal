@@ -37,20 +37,17 @@ export default function Page() {
     }
   }, [categories, category]);
 
-  // Optimization: Pre-merge and sanitise all authors globally once
+  // Master list of all unique authors from the unified database
   const allAuthors = useMemo(() => {
-    // 1. Get unique set of all base author objects
-    const uniqueBaseMap = new Map();
+    const uniqueMap = new Map();
     categories.forEach(c => {
       c.authors.forEach(a => {
-        if (!uniqueBaseMap.has(a.author)) {
-          uniqueBaseMap.set(a.author, a);
+        if (!uniqueMap.has(a.author)) {
+          uniqueMap.set(a.author, a);
         }
       });
     });
-
-    // 2. Merge each once with enrichment data and cleaning
-    return Array.from(uniqueBaseMap.values()).map(a => mergeAuthorWithEnriched(a, "global"));
+    return Array.from(uniqueMap.values());
   }, [categories]);
 
   const activeCategory = useMemo(() => {
@@ -58,26 +55,19 @@ export default function Page() {
   }, [categories, category]);
 
   const filteredAuthors = useMemo(() => {
-    if (!activeCategory || !allAuthors.length) {
-      return [];
-    }
+    if (!activeCategory) return [];
 
-    // Filter the global master list based on which authors belong to this category
-    const categoryAuthorNames = new Set(activeCategory.authors.map(a => a.author));
-    
-    return allAuthors
-      .filter(a => categoryAuthorNames.has(a.author))
-      .filter((author) => {
-        const matchesQuery =
-          !query ||
-          author.author?.toLowerCase().includes(query.toLowerCase()) ||
-          author.works?.some((work) =>
-            (work.title || work).toLowerCase().includes(query.toLowerCase())
-          );
+    return activeCategory.authors.filter((author) => {
+      const matchesQuery =
+        !query ||
+        author.author?.toLowerCase().includes(query.toLowerCase()) ||
+        author.works?.some((work) =>
+          (typeof work === 'string' ? work : work.title).toLowerCase().includes(query.toLowerCase())
+        );
 
-        return matchesQuery;
-      });
-  }, [activeCategory, allAuthors, query]);
+      return matchesQuery;
+    });
+  }, [activeCategory, query]);
 
   const searchSuggestions = useMemo(() => {
     if (!query || filteredAuthors.length > 0) return [];
