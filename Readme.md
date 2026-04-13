@@ -18,6 +18,8 @@ A cognitive-first, minimal UI study system for English Literature exams.
 ## Enrichment Scripts
 - `scripts/importSpreadsheet.js` merges CSV rows directly into `data/enriched_data.json`
 - `scripts/extractAuthorInventory.js` outputs inventory to `data/author-inventory.json`
+- `scripts/auditStudyCoverage.js` generates `data/study_coverage_audit.json` for study/test coverage gaps
+- `scripts/enrichDatasetWithGroq.js` supports `--fill-missing-only`, optional category filters, and timed API throttling
 
 ## Run
 npm install

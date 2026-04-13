@@ -12,7 +12,9 @@ function normalizeWork(work) {
       themes: [], 
       quotes: [], 
       iconic_lines: [], 
-      theory_depth: null 
+      theory_depth: null,
+      summary: "",
+      critical_notes: []
     };
   }
 
@@ -24,6 +26,8 @@ function normalizeWork(work) {
     quotes: work.quotes || [],
     iconic_lines: work.iconic_lines || [],
     theory_depth: work.theory_depth || null,
+    summary: work.summary || "",
+    critical_notes: work.critical_notes || [],
   };
 }
 
@@ -46,6 +50,12 @@ export function mergeAuthorWithEnriched(author, categoryId) {
       movements: [],
       genreTags: [],
       nodes: [],
+      bio_note: "",
+      historical_context: "",
+      core_arguments: [],
+      exam_significance: [],
+      critical_lens_notes: [],
+      key_terms: [],
     };
   }
 
@@ -56,6 +66,12 @@ export function mergeAuthorWithEnriched(author, categoryId) {
     movements: enriched.movements || [],
     genreTags: enriched.genreTags || [],
     nodes: enriched.nodes || [],
+    bio_note: enriched.bio_note || "",
+    historical_context: enriched.historical_context || "",
+    core_arguments: enriched.core_arguments || [],
+    exam_significance: enriched.exam_significance || [],
+    critical_lens_notes: enriched.critical_lens_notes || [],
+    key_terms: enriched.key_terms || [],
   };
 }
 

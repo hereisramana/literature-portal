@@ -67,7 +67,15 @@ export function createEmptyAuthorShell(author) {
       title,
       year: "",
       type: "",
+      summary: "",
+      critical_notes: [],
     })),
+    bio_note: "",
+    historical_context: "",
+    core_arguments: [],
+    exam_significance: [],
+    critical_lens_notes: [],
+    key_terms: [],
     nodes: [],
   };
 }
@@ -91,6 +99,12 @@ export function validateAuthorEntry(entry) {
   return (
     typeof entry?.author === "string" &&
     Array.isArray(entry.works) &&
+    typeof (entry.bio_note || "") === "string" &&
+    typeof (entry.historical_context || "") === "string" &&
+    Array.isArray(entry.core_arguments || []) &&
+    Array.isArray(entry.exam_significance || []) &&
+    Array.isArray(entry.critical_lens_notes || []) &&
+    Array.isArray(entry.key_terms || []) &&
     Array.isArray(entry.nodes) &&
     entry.nodes.every(validateNode)
   );

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function AuthorFocusShell({
   title,
+  headerMeta = null,
   tabs,
   activeTab,
   onTabChange,
@@ -33,10 +34,13 @@ export default function AuthorFocusShell({
         >
           {/* Header */}
           <div className="relative border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-accent-soft)] px-6 py-8 md:px-10">
-            <div className="flex items-center justify-between gap-4 mb-8">
-              <h2 className="text-[28px] font-black leading-tight tracking-tight text-[var(--clr-ink)] md:text-[34px]">
-                {title}
-              </h2>
+            <div className="flex items-start justify-between gap-4 mb-8">
+              <div className="min-w-0 flex-1">
+                <h2 className="text-[28px] font-black leading-tight tracking-tight text-[var(--clr-ink)] md:text-[34px]">
+                  {title}
+                </h2>
+                {headerMeta && <div className="mt-2">{headerMeta}</div>}
+              </div>
 
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 90 }}

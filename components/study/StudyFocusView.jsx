@@ -29,6 +29,12 @@ export function sanitiseAuthor(raw) {
   if (!a.genreTags) a.genreTags = [];
   if (!a.comparison_peers) a.comparison_peers = [];
   if (!a.theory_type) a.theory_type = null;
+  if (!a.bio_note) a.bio_note = "";
+  if (!a.historical_context) a.historical_context = "";
+  if (!a.core_arguments) a.core_arguments = [];
+  if (!a.exam_significance) a.exam_significance = [];
+  if (!a.critical_lens_notes) a.critical_lens_notes = [];
+  if (!a.key_terms) a.key_terms = [];
 
   return a;
 }
@@ -132,6 +138,52 @@ function AuthorTab({ author, category }) {
         </div>
       </div>
 
+      {(author.bio_note || author.historical_context || author.core_arguments.length > 0 || author.exam_significance.length > 0 || author.critical_lens_notes.length > 0 || author.key_terms.length > 0) && (
+        <div className="space-y-4">
+          <SectionLabel>Academic Notes</SectionLabel>
+          {author.bio_note && (
+            <div className="rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 p-5">
+              <p className="text-[13px] leading-relaxed text-[var(--clr-ink)] opacity-80">{author.bio_note}</p>
+            </div>
+          )}
+          {author.historical_context && (
+            <div className="rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 p-5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-2">Historical Context</p>
+              <p className="text-[13px] leading-relaxed text-[var(--clr-ink)] opacity-80">{author.historical_context}</p>
+            </div>
+          )}
+          {author.core_arguments.length > 0 && (
+            <div className="rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 p-5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-2">Core Arguments</p>
+              <ul className="list-disc pl-5 text-[13px] leading-relaxed text-[var(--clr-ink)] opacity-80 space-y-1">
+                {author.core_arguments.map((item, idx) => <li key={idx}>{item}</li>)}
+              </ul>
+            </div>
+          )}
+          {author.exam_significance.length > 0 && (
+            <div className="rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 p-5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-2">Exam Significance</p>
+              <ul className="list-disc pl-5 text-[13px] leading-relaxed text-[var(--clr-ink)] opacity-80 space-y-1">
+                {author.exam_significance.map((item, idx) => <li key={idx}>{item}</li>)}
+              </ul>
+            </div>
+          )}
+          {author.critical_lens_notes.length > 0 && (
+            <div className="rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 p-5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-2">Critical Lens</p>
+              <ul className="list-disc pl-5 text-[13px] leading-relaxed text-[var(--clr-ink)] opacity-80 space-y-1">
+                {author.critical_lens_notes.map((item, idx) => <li key={idx}>{item}</li>)}
+              </ul>
+            </div>
+          )}
+          {author.key_terms.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {author.key_terms.map((item, idx) => <Tag key={idx} label={item} color="tag" />)}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Collaborators */}
       {author.bio_context.collaborators?.length > 0 && (
         <div className="space-y-4">
@@ -192,21 +244,6 @@ function AuthorTab({ author, category }) {
         )}
       </div>
 
-      {author.author_link && (
-        <div className="pt-4">
-          <a
-            href={author.author_link}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--clr-focus)]/40 px-6 py-3 text-[12px] font-bold text-[var(--clr-pulse)] hover:bg-[var(--clr-focus)]/10 transition-colors"
-          >
-            Deep Dive on Britannica
-            <svg className="h-3 w-3 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
-            </svg>
-          </a>
-        </div>
-      )}
     </div>
   );
 }
@@ -316,6 +353,20 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
                 <div className="opacity-80 border-t border-[var(--color-border-subtle)] pt-4">
                   <p className="text-[9px] font-bold uppercase tracking-widest mb-1">Coming Soon</p>
                   <p className="text-[11px] italic">Iconic quotes and textual excerpts are being curated for this work.</p>
+                </div>
+              )}
+
+              {(work.summary || work.critical_notes?.length > 0) && (
+                <div className="bg-[var(--clr-ink)]/[0.04] rounded-2xl p-5 border border-[var(--clr-ink)]/10">
+                  <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.3em] text-[var(--clr-pulse)]">Study Notes</p>
+                  {work.summary && (
+                    <p className="text-[13px] leading-relaxed text-[var(--clr-ink)] opacity-80 mb-2">{work.summary}</p>
+                  )}
+                  {work.critical_notes?.length > 0 && (
+                    <ul className="list-disc pl-5 text-[13px] leading-relaxed text-[var(--clr-ink)] opacity-80 space-y-1">
+                      {work.critical_notes.map((n, idx) => <li key={idx}>{n}</li>)}
+                    </ul>
+                  )}
                 </div>
               )}
 
@@ -431,6 +482,19 @@ export default function StudyFocusView({
   return (
     <AuthorFocusShell
       title={author.author}
+      headerMeta={author.author_link ? (
+        <a
+          href={author.author_link}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 text-[12px] font-semibold text-[var(--clr-pulse)] hover:opacity-85 transition-opacity"
+        >
+          Britannica
+          <svg className="h-3 w-3 opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+          </svg>
+        </a>
+      ) : null}
       tabs={TABS}
       activeTab={activeTab}
       onTabChange={setActiveTab}
