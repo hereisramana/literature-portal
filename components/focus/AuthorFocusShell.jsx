@@ -33,8 +33,8 @@ export default function AuthorFocusShell({
           className="card relative flex h-[min(92vh,900px)] w-full max-w-5xl flex-col overflow-hidden rounded-[32px] shadow-2xl pointer-events-auto"
         >
           {/* Header */}
-          <div className="relative border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-accent-soft)] px-6 py-8 md:px-10">
-            <div className="flex items-start justify-between gap-4 mb-8">
+          <div className="relative border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-accent-soft)] px-6 py-5 md:px-10">
+            <div className="flex items-start justify-between gap-4 mb-4">
               <div className="min-w-0 flex-1">
                 <h2 className="text-[28px] font-black leading-tight tracking-tight text-[var(--clr-ink)] md:text-[34px]">
                   {title}
@@ -63,7 +63,7 @@ export default function AuthorFocusShell({
             {tabs.length > 0 && (
               <div className="flex justify-center">
                 <div
-                  className="flex gap-1 rounded-full bg-[var(--color-bg-accent-soft)] p-1.5 border border-[var(--color-border-subtle)] shadow-inner"
+                  className="flex gap-1 rounded-full bg-[var(--clr-ink)]/[0.04] p-1"
                 >
                   {tabs.map((tab) => (
                     <motion.button
@@ -72,7 +72,7 @@ export default function AuthorFocusShell({
                       onClick={() => onTabChange?.(tab.id)}
                       className={`rounded-full px-6 py-2 text-[12px] font-bold uppercase tracking-wider transition-all duration-300 ${
                         activeTab === tab.id
-                          ? "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] shadow-lg"
+                          ? "bg-[var(--clr-focus)] text-[var(--text-on-accent)]"
                           : "text-[var(--text-muted-color)] hover:text-[var(--text-body-color)]"
                       }`}
                     >

@@ -16,6 +16,18 @@ export function sanitiseAuthor(raw) {
   if (a.legacy.titles === null || !a.legacy.titles) a.legacy.titles = [];
   if (a.legacy.translations === null) a.legacy.translations = [];
 
+  // Data Enrichment: Extract titles from posthumous_notes (e.g. "Father of English literature")
+  if (a.legacy.titles.length === 0 && a.legacy.posthumous_notes) {
+    const titleMatch = a.legacy.posthumous_notes.match(/(?:established as the|known as|titled as) (.*)/i);
+    if (titleMatch && titleMatch[1]) {
+      a.legacy.titles = [titleMatch[1].replace(/\.$/, "")];
+    } else if (a.legacy.posthumous_notes.toLowerCase().includes("father of")) {
+       const parts = a.legacy.posthumous_notes.split(/[.,]/);
+       const fatherPart = parts.find(p => p.toLowerCase().includes("father of"));
+       if (fatherPart) a.legacy.titles = [fatherPart.trim()];
+    }
+  }
+
   if (a.bio_context.collaborators === null) {
     a.bio_context.collaborators = [];
   } else if (Array.isArray(a.bio_context.collaborators)) {
@@ -89,7 +101,7 @@ function EmptyNote({ children }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // TAB 1 — AUTHOR (Merged Profile, Styles, Legacy)
 // ─────────────────────────────────────────────────────────────────────────────
-function AuthorTab({ author, category }) {
+function AuthorTab({ author, category, allAuthors, onNavigateAuthor }) {
   const location = author.bio_context?.location || author.region || null;
   const legacy = author.legacy || {};
   const awards = (legacy.awards || []).filter(a => a && a !== "null");
@@ -97,6 +109,20 @@ function AuthorTab({ author, category }) {
 
   return (
     <div className="space-y-8 pb-8">
+      {/* Honors & Titles Section - MOVED UP FOR PROMINENCE */}
+      {author.legacy.titles?.length > 0 && (
+        <div className="rounded-2xl bg-[var(--clr-pulse)]/10 border border-[var(--clr-pulse)]/20 p-6">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--clr-pulse)] mb-3">Key Honors & Epithets</p>
+          <div className="flex flex-wrap gap-2">
+            {author.legacy.titles.map((t, i) => (
+              <span key={i} className="rounded-full bg-[var(--clr-pulse)] text-white px-3 py-1 text-[12px] font-bold shadow-sm">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Quick Profile */}
       <div className="grid gap-4 sm:grid-cols-2">
         {location && (
@@ -184,14 +210,28 @@ function AuthorTab({ author, category }) {
         </div>
       )}
 
-      {/* Collaborators */}
+      {/* Collaborators - NOW CLICKABLE */}
       {author.bio_context.collaborators?.length > 0 && (
         <div className="space-y-4">
           <SectionLabel>Notable Contemporaries</SectionLabel>
           <div className="flex flex-wrap gap-2">
-            {author.bio_context.collaborators.map((c, i) => (
-              <Pill key={i} label={c} color="blue" />
-            ))}
+            {author.bio_context.collaborators.map((c, i) => {
+              const matched = allAuthors?.find(a => a.author.toLowerCase() === c.toLowerCase());
+              return (
+                <button
+                  key={i}
+                  onClick={() => matched && onNavigateAuthor?.(matched)}
+                  className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold transition-all ${
+                    matched 
+                      ? "bg-[var(--clr-pulse)]/10 text-[var(--clr-pulse)] border border-[var(--clr-pulse)]/30 hover:bg-[var(--clr-pulse)] hover:text-white" 
+                      : "bg-[#7C92A6]/10 text-[#7C92A6] border border-[#7C92A6]/20 cursor-default"
+                  }`}
+                >
+                  {c}
+                  {matched && <svg className="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>}
+                </button>
+              );
+            })}
           </div>
         </div>
       )}
@@ -210,17 +250,8 @@ function AuthorTab({ author, category }) {
 
       {/* Recognition & Impact */}
       <div className="space-y-4">
-        <SectionLabel>Legacy & Recognition</SectionLabel>
+        <SectionLabel>Legacy & Impact</SectionLabel>
         <div className="grid gap-4 sm:grid-cols-2">
-           {/* Honors & Titles Section */}
-           {author.legacy.titles?.length > 0 && (
-             <div className="rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 p-5">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-3">Honors & Titles</p>
-                <div className="flex flex-wrap gap-2">
-                  {author.legacy.titles.map((t, i) => <Pill key={i} label={t} color="blue" />)}
-                </div>
-             </div>
-           )}
            <div className="rounded-2xl bg-[var(--clr-ink)]/[0.04] border border-[var(--clr-ink)]/10 p-5">
               <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-ink)] opacity-35 mb-3">Awards</p>
               {awards.length > 0 ? (
@@ -238,7 +269,7 @@ function AuthorTab({ author, category }) {
         </div>
         {author.legacy?.posthumous_notes && (
           <div className="rounded-2xl bg-[var(--clr-recall)]/20 border border-[var(--clr-focus)]/20 p-5 mt-4">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-pulse)] opacity-50 mb-2">Historical Context</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--clr-pulse)] opacity-50 mb-2">Historical Evaluation</p>
             <p className="text-[14px] italic leading-relaxed text-[var(--clr-ink)] opacity-85">{author.legacy.posthumous_notes}</p>
           </div>
         )}
@@ -299,14 +330,14 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
-            <div className="px-6 pb-6 pt-2 space-y-7 border-t border-[var(--clr-ink)]/5">
+            <div className="px-8 pb-8 pt-4 space-y-9 border-t border-[var(--clr-ink)]/5">
               {/* Internal Work Themes */}
               <div>
-                 <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)] opacity-60">Thematic Focus</p>
+                 <p className="mb-4 text-[10px] font-black uppercase tracking-[0.25em] text-[var(--clr-pulse)] opacity-60">Thematic Focus & Nature</p>
                  { (work.themes?.length > 0 || author.themes?.length > 0) ? (
-                   <div className="flex flex-wrap gap-2">
+                   <div className="flex flex-wrap gap-2.5">
                       {(work.themes || author.themes).map((t, i) => (
-                        <span key={i} className="text-[11px] border border-[var(--clr-ink)]/10 bg-[var(--clr-ink)]/[0.04] px-2.5 py-1 rounded-lg text-[var(--clr-ink)] opacity-70 italic">
+                        <span key={i} className="text-[12px] border border-[var(--clr-focus)]/15 bg-[var(--clr-focus)]/[0.03] px-3 py-1.5 rounded-xl text-[var(--clr-ink)] opacity-85 font-medium">
                           {t}
                         </span>
                       ))}
@@ -319,16 +350,16 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
               {/* Characters */}
               {characters.length > 0 && (
                 <div>
-                   <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)] opacity-60">Key Characters</p>
-                   <div className="grid gap-3 sm:grid-cols-2">
+                   <p className="mb-4 text-[10px] font-black uppercase tracking-[0.25em] text-[var(--clr-pulse)] opacity-60">Key Characters & Archetypes</p>
+                   <div className="grid gap-4 sm:grid-cols-2">
                       {characters.map((char, i) => (
-                        <div key={i} className="flex items-center gap-3 bg-[var(--clr-ink)]/[0.04] rounded-xl p-3 border border-[var(--clr-ink)]/8">
-                          <div className="h-7 w-7 rounded-full bg-[var(--clr-focus)]/20 flex items-center justify-center text-[10px] font-bold text-[var(--clr-pulse)]">
+                        <div key={i} className="flex items-center gap-4 bg-[var(--clr-ink)]/[0.04] rounded-2xl p-4 border border-[var(--clr-ink)]/8">
+                          <div className="h-9 w-9 rounded-full bg-[var(--clr-focus)]/20 flex items-center justify-center text-[11px] font-bold text-[var(--clr-pulse)] shadow-inner">
                             {char.name[0]}
                           </div>
-                          <div>
-                            <p className="text-[13px] font-bold text-[var(--color-text-strong)] leading-tight">{char.name}</p>
-                            <p className="text-[11px] text-[var(--text-muted-color)]">{char.archetype}</p>
+                          <div className="min-w-0">
+                            <p className="text-[14px] font-bold text-[var(--color-text-strong)] leading-tight truncate">{char.name}</p>
+                            <p className="mt-1 text-[11px] font-medium text-[var(--text-muted-color)] opacity-80">{char.archetype}</p>
                           </div>
                         </div>
                       ))}
@@ -339,36 +370,37 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
               {/* Quotes & Iconic Lines */}
               {(work.quotes?.length > 0 || work.iconic_lines?.length > 0) ? (
                 <div>
-                   <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--clr-pulse)] opacity-60">Memorable Lines</p>
-                   <div className="space-y-3">
+                   <p className="mb-4 text-[10px] font-black uppercase tracking-[0.25em] text-[var(--clr-pulse)] opacity-60">Iconic Lines</p>
+                   <div className="space-y-4">
                       {(work.quotes || work.iconic_lines).map((q, i) => (
-                        <div key={i} className="relative pl-6 py-1">
-                          <div className="absolute left-0 top-0 h-full w-[3px] bg-[var(--clr-focus)]/30 rounded-full" />
-                          <p className="text-[14px] leading-relaxed text-[var(--clr-ink)] opacity-80 italic">"{q}"</p>
+                        <div key={i} className="relative pl-7 py-2">
+                          <div className="absolute left-0 top-0 h-full w-[4px] bg-[var(--clr-focus)]/20 rounded-full" />
+                          <p className="text-[15px] leading-relaxed text-[var(--clr-ink)] opacity-85 italic font-serif">"{q}"</p>
                         </div>
                       ))}
                    </div>
                 </div>
               ) : (
-                <div className="opacity-80 border-t border-[var(--color-border-subtle)] pt-4">
-                  <p className="text-[9px] font-bold uppercase tracking-widest mb-1">Coming Soon</p>
-                  <p className="text-[11px] italic">Iconic quotes and textual excerpts are being curated for this work.</p>
+                <div className="opacity-80 border-t border-[var(--color-border-subtle)] pt-6">
+                   <p className="text-[10px] font-black uppercase tracking-widest mb-1 text-[var(--clr-pulse)]">Curating Excerpts</p>
+                   <p className="text-[12px] italic opacity-60">Iconic quotes and textual analysis are being prepared for this work.</p>
                 </div>
               )}
 
               {(work.summary || work.critical_notes?.length > 0) && (
-                <div className="bg-[var(--clr-ink)]/[0.04] rounded-2xl p-5 border border-[var(--clr-ink)]/10">
-                  <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.3em] text-[var(--clr-pulse)]">Study Notes</p>
+                <div className="bg-[var(--clr-ink)]/[0.04] rounded-3xl p-6 border border-[var(--clr-ink)]/10">
+                  <p className="mb-3 text-[10px] font-black uppercase tracking-[0.25em] text-[var(--clr-pulse)]">Mastery Notes</p>
                   {work.summary && (
-                    <p className="text-[13px] leading-relaxed text-[var(--clr-ink)] opacity-80 mb-2">{work.summary}</p>
+                    <p className="text-[14px] leading-relaxed text-[var(--clr-ink)] opacity-85 mb-3">{work.summary}</p>
                   )}
                   {work.critical_notes?.length > 0 && (
-                    <ul className="list-disc pl-5 text-[13px] leading-relaxed text-[var(--clr-ink)] opacity-80 space-y-1">
+                    <ul className="list-disc pl-6 text-[14px] leading-relaxed text-[var(--clr-ink)] opacity-85 space-y-2">
                       {work.critical_notes.map((n, idx) => <li key={idx}>{n}</li>)}
                     </ul>
                   )}
                 </div>
               )}
+            </div>
 
               {/* Theoretical Depth */}
               {work.theory_depth && (
@@ -459,8 +491,8 @@ function StudySidebar({ author, allAuthors, onNavigatePeer }) {
 // MAIN EXPORT: StudyFocusView
 // ─────────────────────────────────────────────────────────────────────────────
 const TABS = [
-  { id: "author", label: "Author Profile" },
-  { id: "works",  label: "Works & Canon"  },
+  { id: "author", label: "Profile" },
+  { id: "works",  label: "Works"    },
 ];
 
 export default function StudyFocusView({
@@ -516,7 +548,15 @@ export default function StudyFocusView({
             transition={{ duration: 0.2 }}
           >
             {activeTab === "author" ? (
-              <AuthorTab author={author} category={categoryLabel} />
+              <AuthorTab 
+                author={author} 
+                category={categoryLabel} 
+                allAuthors={allAuthors} 
+                onNavigateAuthor={(peer) => {
+                  onClose();
+                  // Parent handles navigation
+                }}
+              />
             ) : (
               <WorksTab author={author} />
             )}

@@ -28,11 +28,9 @@ export default function Sidebar({
             onClick={onToggle}
             className="mt-1 flex h-10 w-10 items-center justify-center rounded-xl text-[var(--text-muted-color)] hover:bg-[var(--color-interaction-hover)] hover:text-[var(--text-body-color)] transition"
           >
-            <img 
-              src={logoSrc} 
-              alt="Logo" 
-              className="h-8 w-8 object-contain"
-            />
+            <svg aria-hidden="true" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 12h18M3 6h18M3 18h18" />
+            </svg>
           </motion.button>
         ) : (
           <>

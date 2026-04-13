@@ -75,9 +75,60 @@ export function buildCatalog(data) {
   const criticism = getSource(data, (key) => key.includes("criticism"));
   const newLiterature = getSource(data, (key) => key.includes("new"));
 
-  const britishPoetry = poetry.filter((author) => includesRegion(author, "british"));
-  const britishDrama = drama.filter((author) => includesRegion(author, "british"));
-  const britishProse = prose.filter((author) => includesRegion(author, "british"));
+  const isBritish = (a) => normalize(a.region || "").includes("british");
+  const allBritish = dedupeAuthors([
+    ...poetry.filter(isBritish),
+    ...drama.filter(isBritish),
+    ...prose.filter(isBritish),
+    ...newLiterature.filter(isBritish)
+  ]);
+
+  // CATEGORIZATION LOGIC
+  const britishPoetry = [];
+  const britishDrama = [];
+  const britishFiction = [];
+  const britishNonFictionProse = [];
+  const britishHybrid = [];
+
+  allBritish.forEach(author => {
+    const genres = new Set();
+    const works = author.works || [];
+    
+    // Check root categories first
+    if (poetry.some(p => p.author === author.author)) genres.add("poetry");
+    if (drama.some(d => d.author === author.author)) genres.add("drama");
+    if (prose.some(p => p.author === author.author)) genres.add("prose");
+
+    // Refine by work titles/types if available
+    works.forEach(w => {
+      const title = (typeof w === 'string' ? w : w.title || "").toLowerCase();
+      const type = (typeof w === 'object' ? w.type || w.genre || "" : "").toLowerCase();
+      
+      if (title.includes("(poem)") || type.includes("poetry") || type.includes("poem")) genres.add("poetry");
+      if (title.includes("(play)") || type.includes("drama") || type.includes("play")) genres.add("drama");
+      if (type.includes("novel") || type.includes("fiction")) genres.add("fiction");
+      if (type.includes("essay") || type.includes("prose") || type.includes("criticism")) genres.add("prose");
+    });
+
+    if (genres.size > 1) {
+      britishHybrid.push(author);
+    } else if (genres.has("poetry")) {
+      britishPoetry.push(author);
+    } else if (genres.has("drama")) {
+      britishDrama.push(author);
+    } else if (genres.has("prose")) {
+      // Split prose into Fiction and Non-fiction if possible
+      const isFiction = works.some(w => {
+        const type = (typeof w === 'object' ? w.type || w.genre || "" : "").toLowerCase();
+        return type.includes("novel") || type.includes("fiction");
+      });
+      if (isFiction) britishFiction.push(author);
+      else britishNonFictionProse.push(author);
+    } else {
+      // Fallback to general prose if undefined
+      britishFiction.push(author);
+    }
+  });
 
   const otherRegions = dedupeAuthors(
     [...poetry, ...drama, ...prose, ...newLiterature].filter((author) => {
@@ -97,22 +148,36 @@ export function buildCatalog(data) {
       id: "british-poetry",
       label: "British Poetry",
       shortLabel: "Poetry",
-      description: "Core British poets and movements",
+      description: "Masters of verse, from sonnets to modern lyrics",
       authors: sortChronologically(britishPoetry),
     },
     {
       id: "british-drama",
       label: "British Drama",
       shortLabel: "Drama",
-      description: "Stage texts from Renaissance to modern drama",
+      description: "Classic and contemporary playwrights",
       authors: sortChronologically(britishDrama),
     },
     {
-      id: "british-prose-fiction",
-      label: "British Prose & Fiction",
-      shortLabel: "Prose/Fiction",
-      description: "Novels, essays, and prose with period filters",
-      authors: sortChronologically(britishProse),
+      id: "british-fiction",
+      label: "British Fiction",
+      shortLabel: "Fiction",
+      description: "The evolution of the British novel",
+      authors: sortChronologically(britishFiction),
+    },
+    {
+      id: "british-prose",
+      label: "British Prose",
+      shortLabel: "Prose",
+      description: "Essays, criticism, and non-fiction prose",
+      authors: sortChronologically(britishNonFictionProse),
+    },
+    {
+      id: "british-hybrid",
+      label: "Hybrid Authors",
+      shortLabel: "Hybrid",
+      description: "Poet-dramatists and multi-genre writers",
+      authors: sortChronologically(britishHybrid),
     },
     {
       id: "american",
