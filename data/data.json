@@ -15025,7 +15025,14 @@
     },
     {
       "author": "Harishankar Parsai",
-      "works": [],
+      "works": [
+        {
+          "title": "Viklang Shraddha Ka Daur",
+          "award": "Sahitya Akademi Award (Hindi)",
+          "award_year": "1982",
+          "type": "Satire"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
