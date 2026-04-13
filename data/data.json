@@ -8031,7 +8031,16 @@
     {
       "author": "Amitav Ghosh",
       "works": [
-        "The Shadow Lines",
+        {
+          "title": "Lifetime Achievement",
+          "award": "Jnanpith Award",
+          "award_year": "2018"
+        },
+        {
+          "title": "The Shadow Lines",
+          "award": "Sahitya Akademi Award (English)",
+          "award_year": "1989"
+        },
         "The Great Derangement",
         {
           "title": "The Circle of Reason",
@@ -9294,7 +9303,11 @@
     {
       "author": "Rabindranath Tagore",
       "works": [
-        "Gitanjali",
+        {
+          "title": "Gitanjali",
+          "award": "Nobel Prize in Literature",
+          "award_year": "1913"
+        },
         "Mukta-Dhara",
         "An Eastern University",
         "East and West",
@@ -9357,7 +9370,11 @@
     {
       "author": "R. K. Narayan",
       "works": [
-        "The Guide",
+        {
+          "title": "The Guide",
+          "award": "Sahitya Akademi Award (English)",
+          "award_year": "1960"
+        },
         "Waiting for the Mahatma"
       ],
       "region": "Indian",
@@ -14277,7 +14294,13 @@
   "Award Winners Placeholder": [
     {
       "author": "Gobind Behari Lal",
-      "works": [],
+      "works": [
+        {
+          "title": "Science Reporting",
+          "award": "Pulitzer Prize (Reporting)",
+          "award_year": "1937"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -14302,6 +14325,11 @@
     {
       "author": "Arundhati Roy",
       "works": [
+        {
+          "title": "The Algebra of Infinite Justice",
+          "award": "Sahitya Akademi Award (English)",
+          "award_year": "2005"
+        },
         {
           "title": "The God of Small Things",
           "award": "Booker Prize",
@@ -14341,7 +14369,7 @@
       "works": [
         {
           "title": "Interpreter of Maladies",
-          "award": "Pulitzer Prize",
+          "award": "Pulitzer Prize (Fiction)",
           "award_year": "2000"
         }
       ],
@@ -14369,7 +14397,13 @@
     },
     {
       "author": "Geeta Anand",
-      "works": [],
+      "works": [
+        {
+          "title": "Corporate Corruption Reporting",
+          "award": "Pulitzer Prize (Reporting)",
+          "award_year": "2003"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -14423,7 +14457,13 @@
     },
     {
       "author": "Siddhartha Mukherjee",
-      "works": [],
+      "works": [
+        {
+          "title": "The Emperor of All Maladies",
+          "award": "Pulitzer Prize (General Nonfiction)",
+          "award_year": "2011"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -14447,7 +14487,13 @@
     },
     {
       "author": "Vijay Seshadri",
-      "works": [],
+      "works": [
+        {
+          "title": "3 Sections",
+          "award": "Pulitzer Prize (Poetry)",
+          "award_year": "2014"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -14472,6 +14518,11 @@
     {
       "author": "Geetanjali Shree",
       "works": [
+        {
+          "title": "Tomb of Sand (Ret Samadhi)",
+          "award": "International Booker Prize",
+          "award_year": "2022"
+        },
         {
           "title": "Tomb of Sand",
           "award": "International Booker Prize",
@@ -14503,6 +14554,11 @@
       "author": "Banu Mushtaq",
       "works": [
         {
+          "title": "Heart Lamp: Selected Stories",
+          "award": "International Booker Prize",
+          "award_year": "2025"
+        },
+        {
           "title": "Heart Lamp",
           "award": "International Booker Prize",
           "award_year": "2025"
@@ -14532,6 +14588,11 @@
     {
       "author": "G. Sankara Kurup",
       "works": [
+        {
+          "title": "Odakkuzhal",
+          "award": "Jnanpith Award",
+          "award_year": "1965"
+        },
         {
           "title": "Auda Kujai (Malayalam)",
           "award": "Jnanpith Award",
@@ -14563,6 +14624,16 @@
       "author": "Ramdhari Singh 'Dinkar'",
       "works": [
         {
+          "title": "Sanskriti Ke Char Adhyay",
+          "award": "Sahitya Akademi Award (Hindi)",
+          "award_year": "1959"
+        },
+        {
+          "title": "Urvashi",
+          "award": "Jnanpith Award",
+          "award_year": "1972"
+        },
+        {
           "title": "Urvashi (Hindi)",
           "award": "Jnanpith Award",
           "award_year": "1972"
@@ -14592,7 +14663,13 @@
     },
     {
       "author": "Ashapoorna Devi",
-      "works": [],
+      "works": [
+        {
+          "title": "Pratham Pratisruti",
+          "award": "Jnanpith Award",
+          "award_year": "1976"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -14617,6 +14694,11 @@
     {
       "author": "Amrita Pritam",
       "works": [
+        {
+          "title": "Kagaz Te Canvas",
+          "award": "Jnanpith Award",
+          "award_year": "1981"
+        },
         {
           "title": "Kagaz te canvas (Punjabi)",
           "award": "Jnanpith Award",
@@ -14648,6 +14730,11 @@
       "author": "Gulzar",
       "works": [
         {
+          "title": "Lifetime Achievement",
+          "award": "Jnanpith Award",
+          "award_year": "2023"
+        },
+        {
           "title": "Dhuan (Short Stories)",
           "award": "Sahitya Akademi Award",
           "award_year": "2002"
@@ -14677,7 +14764,13 @@
     },
     {
       "author": "Jagadguru Rambhadracharya",
-      "works": [],
+      "works": [
+        {
+          "title": "Lifetime Achievement",
+          "award": "Jnanpith Award",
+          "award_year": "2023"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -14702,6 +14795,16 @@
     {
       "author": "Vinod Kumar Shukla",
       "works": [
+        {
+          "title": "Deewar Mein Ek Khirkee Rahati Thi",
+          "award": "Sahitya Akademi Award (Hindi)",
+          "award_year": "1999"
+        },
+        {
+          "title": "Naukar Ki Kameez",
+          "award": "Jnanpith Award",
+          "award_year": "2024"
+        },
         {
           "title": "For Hindi Literature / Deewar Mein Ek Khirkee Rahathi Thi (Novel)",
           "award": "Literary Award",
@@ -14733,7 +14836,13 @@
     },
     {
       "author": "Vairamuthu",
-      "works": [],
+      "works": [
+        {
+          "title": "Lifetime Achievement",
+          "award": "Jnanpith Award",
+          "award_year": "2025"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -14757,7 +14866,13 @@
     },
     {
       "author": "Vikram Seth",
-      "works": [],
+      "works": [
+        {
+          "title": "The Golden Gate",
+          "award": "Sahitya Akademi Award (English)",
+          "award_year": "1988"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -14781,7 +14896,13 @@
     },
     {
       "author": "Ruskin Bond",
-      "works": [],
+      "works": [
+        {
+          "title": "Our Trees Still Grow in Dehra",
+          "award": "Sahitya Akademi Award (English)",
+          "award_year": "1992"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -14806,6 +14927,11 @@
     {
       "author": "Ramachandra Guha",
       "works": [
+        {
+          "title": "India After Gandhi",
+          "award": "Sahitya Akademi Award (English)",
+          "award_year": "2011"
+        },
         {
           "title": "India After Gandhi (Narrative History)",
           "award": "Sahitya Akademi Award",
@@ -14838,6 +14964,11 @@
       "author": "Shashi Tharoor",
       "works": [
         {
+          "title": "An Era of Darkness",
+          "award": "Sahitya Akademi Award (English)",
+          "award_year": "2019"
+        },
+        {
           "title": "An era of Darkness (Non-Fiction)",
           "award": "Sahitya Akademi Award",
           "award_year": "2019"
@@ -14868,6 +14999,11 @@
     {
       "author": "Easterine Kire",
       "works": [
+        {
+          "title": "Spirit Nights",
+          "award": "Sahitya Akademi Award (English)",
+          "award_year": "2024"
+        },
         {
           "title": "Spirit Nights (Novel)",
           "award": "Sahitya Akademi Award",
@@ -14900,6 +15036,11 @@
       "author": "Navtej Sarna",
       "works": [
         {
+          "title": "Crimson Spring",
+          "award": "Sahitya Akademi Award (English)",
+          "award_year": "2025"
+        },
+        {
           "title": "Crimson Spring (Novel)",
           "award": "Sahitya Akademi Award",
           "award_year": "2025"
@@ -14929,7 +15070,13 @@
     },
     {
       "author": "Makhanlal Chaturvedi",
-      "works": [],
+      "works": [
+        {
+          "title": "Him Tarangini",
+          "award": "Sahitya Akademi Award (Hindi)",
+          "award_year": "1955"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -14953,7 +15100,13 @@
     },
     {
       "author": "Harivansh Rai Bachchan",
-      "works": [],
+      "works": [
+        {
+          "title": "Do Chattanen",
+          "award": "Sahitya Akademi Award (Hindi)",
+          "award_year": "1968"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -14977,7 +15130,13 @@
     },
     {
       "author": "Bhisham Sahni",
-      "works": [],
+      "works": [
+        {
+          "title": "Tamas",
+          "award": "Sahitya Akademi Award (Hindi)",
+          "award_year": "1975"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -15001,7 +15160,13 @@
     },
     {
       "author": "Krishna Sobti",
-      "works": [],
+      "works": [
+        {
+          "title": "Zindaginama - Zinda Rukh",
+          "award": "Sahitya Akademi Award (Hindi)",
+          "award_year": "1980"
+        }
+      ],
       "region": "Indian",
       "literary_period": "Contemporary",
       "period": null,
@@ -15058,6 +15223,11 @@
       "author": "Gagan Gill",
       "works": [
         {
+          "title": "Main Jab Tak Aai Bahar",
+          "award": "Sahitya Akademi Award (Hindi)",
+          "award_year": "2024"
+        },
+        {
           "title": "Main Jab Tak Aai Bahar (Poetry)",
           "award": "Sahitya Akademi Award",
           "award_year": "2024"
@@ -15089,6 +15259,11 @@
       "author": "Mamta Kalia",
       "works": [
         {
+          "title": "Jeete Jee Allahabad",
+          "award": "Sahitya Akademi Award (Hindi)",
+          "award_year": "2025"
+        },
+        {
           "title": "Jeete Jee Allahabad (Memoir)",
           "award": "Sahitya Akademi Award",
           "award_year": "2025"
@@ -15115,6 +15290,76 @@
         "posthumous_notes": null
       },
       "comparison_peers": []
+    }
+  ],
+  "Award Winning Indians": [
+    {
+      "author": "A. R. Venkatachalapathy",
+      "works": [
+        {
+          "title": "Tirunelveeli Ezucciyum Vaa. Vuu.Ci. Yum 1908",
+          "award": "Sahitya Akademi Award",
+          "award_year": "2024"
+        }
+      ],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "legacy": {
+        "awards": [
+          "Sahitya Akademi Award (2024)"
+        ]
+      }
+    },
+    {
+      "author": "N. Prabhakaran",
+      "works": [
+        {
+          "title": "Maayaamanushyar",
+          "award": "Sahitya Akademi Award",
+          "award_year": "2025"
+        }
+      ],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "legacy": {
+        "awards": [
+          "Sahitya Akademi Award (2025)"
+        ]
+      }
+    },
+    {
+      "author": "Prasun Bandyopadhyay",
+      "works": [
+        {
+          "title": "Shrestha Kabita",
+          "award": "Sahitya Akademi Award",
+          "award_year": "2025"
+        }
+      ],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "legacy": {
+        "awards": [
+          "Sahitya Akademi Award (2025)"
+        ]
+      }
+    },
+    {
+      "author": "Sadhu Bhadreshdas",
+      "works": [
+        {
+          "title": "Prasthanacatustaye Brahmaghosah",
+          "award": "Sahitya Akademi Award",
+          "award_year": "2025"
+        }
+      ],
+      "region": "Indian",
+      "literary_period": "Contemporary",
+      "legacy": {
+        "awards": [
+          "Sahitya Akademi Award (2025)"
+        ]
+      }
     }
   ]
 }
