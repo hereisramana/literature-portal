@@ -176,6 +176,10 @@ export function buildCatalog(data) {
       description: "Celebrating Nobel, Pulitzer, Booker, Jnanpith, and Sahitya Akademi laureates of Indian origin",
       authors: sortChronologically(
         allAuthors.filter((a) => {
+          // Exclude joint/comparative entries (e.g., 'Camus & Buchi Babu')
+          const name = (a.author || "").toLowerCase();
+          if (name.includes("&") || name.includes(" and ")) return false;
+
           const awards = a.legacy?.awards || [];
           const awardStr = Array.isArray(awards) ? awards.join(" ").toLowerCase() : String(awards).toLowerCase();
           const isIndian = normalize(a.region || "").includes("indian");
@@ -187,7 +191,29 @@ export function buildCatalog(data) {
             awardStr.includes("jnanpith") || 
             awardStr.includes("sahitya akademi");
             
-          return isIndian && hasBigAward;
+          if (isIndian && hasBigAward) {
+            // Reorder awards so major ones appear first in the card display
+            if (Array.isArray(a.legacy.awards)) {
+              a.legacy.awards.sort((x, y) => {
+                const p = (s) => {
+                  s = s.toLowerCase();
+                  if (s.includes("nobel")) return 0;
+                  if (s.includes("booker")) return 1;
+                  if (s.includes("pulitzer")) return 2;
+                  if (s.includes("jnanpith")) return 3;
+                  if (s.includes("sahitya akademi")) return 4;
+                  return 10;
+                };
+                return p(x) - p(y);
+              });
+              // Remove generic 'None mentioned' or empty awards
+              a.legacy.awards = a.legacy.awards.filter(aw => 
+                 aw && !aw.toLowerCase().includes("none mentioned")
+              );
+            }
+            return true;
+          }
+          return false;
         })
       ),
     },

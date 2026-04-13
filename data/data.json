@@ -2641,50 +2641,6 @@
       ]
     },
     {
-      "author": "T. S. Eliot",
-      "works": [
-        "Murder in the Cathedral"
-      ],
-      "region": "British-American",
-      "literary_period": "Modern Drama",
-      "author_link": "https://www.britannica.com/biography/T-S-Eliot",
-      "period": "1888–1965",
-      "themes": [
-        "Disillusionment",
-        "Spiritual decay",
-        "Alienation",
-        "Search for meaning"
-      ],
-      "style_innovations": [
-        "Stream-of-consciousness narration",
-        "Experimentation with non-linear structure"
-      ],
-      "key_characters": [],
-      "bio_context": {
-        "location": "St. Louis, Missouri and London, England",
-        "movements": [
-          "Modernism"
-        ],
-        "collaborators": [
-          "Ezra Pound"
-        ]
-      },
-      "magnum_opus": "The Waste Land",
-      "legacy": {
-        "translations": "Numerous translations worldwide",
-        "awards": [
-          "Nobel Prize in Literature"
-        ],
-        "posthumous_notes": "Continued influence on 20th-century literature"
-      },
-      "comparison_peers": [
-        {
-          "name": "James Joyce",
-          "shared_theme": "Disillusionment with modern society"
-        }
-      ]
-    },
-    {
       "author": "Thomas Kyd",
       "works": [
         "The Spanish Tragedy"
@@ -2847,53 +2803,6 @@
           "shared_theme": "social class and morality"
         }
       ]
-    },
-    {
-      "author": "William Shakespeare",
-      "works": [
-        "Hamlet",
-        "Henry IV Part I",
-        "Macbeth",
-        "Twelfth Night",
-        "Much Ado About Nothing",
-        "Julius Caesar",
-        "The Tempest",
-        "Cymbeline"
-      ],
-      "region": "British",
-      "literary_period": "Renaissance",
-      "author_link": "https://www.britannica.com/biography/William-Shakespeare",
-      "period": "1564–1616",
-      "themes": [
-        "beauty",
-        "love",
-        "mortality",
-        "truth"
-      ],
-      "style_innovations": [
-        "metaphysical conceits",
-        "sonnet structure experimentation"
-      ],
-      "key_characters": [],
-      "bio_context": {
-        "location": "Stratford-upon-Avon",
-        "movements": [
-          "English Renaissance"
-        ],
-        "collaborators": null
-      },
-      "magnum_opus": null,
-      "legacy": {
-        "translations": "numerous",
-        "awards": null,
-        "posthumous_notes": "remains widely studied and performed"
-      },
-      "comparison_peers": [
-        {
-          "name": "John Donne",
-          "shared_theme": "metaphysical exploration of love and mortality"
-        }
-      ]
     }
   ],
   "Prose & Fiction": [
@@ -2941,55 +2850,6 @@
         {
           "name": "Jean-Paul Sartre",
           "shared_theme": "Existentialism"
-        }
-      ]
-    },
-    {
-      "author": "Anton Chekhov",
-      "works": [
-        "The Lady with the Pet Dog"
-      ],
-      "region": "Russian",
-      "literary_period": "Realism",
-      "period": "1860–1904",
-      "themes": [
-        "social class",
-        "family dynamics",
-        "decline of nobility",
-        "human condition"
-      ],
-      "style_innovations": [
-        "subtlety in dialogue",
-        "emphasis on character psychology"
-      ],
-      "key_characters": [
-        {
-          "name": "Madame Ranevskaya",
-          "work": "The Cherry Orchard",
-          "archetype": "matriarch"
-        }
-      ],
-      "bio_context": {
-        "location": "Russia",
-        "movements": [
-          "Realism"
-        ],
-        "collaborators": [
-          "Konstantin Stanislavski"
-        ]
-      },
-      "magnum_opus": "The Cherry Orchard",
-      "legacy": {
-        "translations": "widely translated",
-        "awards": [
-          "Pushkin Prize"
-        ],
-        "posthumous_notes": "influence on 20th-century theatre"
-      },
-      "comparison_peers": [
-        {
-          "name": "Leo Tolstoy",
-          "shared_theme": "social class"
         }
       ]
     },
@@ -5156,60 +5016,6 @@
         {
           "name": "Judith Wright",
           "shared_theme": "Australian identity and social justice"
-        }
-      ]
-    },
-    {
-      "author": "Oscar Wilde",
-      "works": [
-        "The Selfish Giant"
-      ],
-      "region": "Irish",
-      "literary_period": "Victorian",
-      "period": "1854–1900",
-      "themes": [
-        "Social class",
-        "Morality",
-        "Appearance vs. Reality",
-        "Love"
-      ],
-      "style_innovations": [
-        "Wit and satire",
-        "Using comedy to critique societal norms"
-      ],
-      "key_characters": [
-        {
-          "name": "Algernon Moncrieff",
-          "work": "The Importance of Being Earnest",
-          "archetype": "Dandy"
-        },
-        {
-          "name": "Jack Worthing",
-          "work": "The Importance of Being Earnest",
-          "archetype": "Everyman"
-        }
-      ],
-      "bio_context": {
-        "location": "Dublin, Ireland",
-        "movements": [
-          "Aestheticism"
-        ],
-        "collaborators": [
-          "Lord Alfred Douglas"
-        ]
-      },
-      "magnum_opus": "The Importance of Being Earnest",
-      "legacy": {
-        "translations": "Translated into many languages",
-        "awards": [
-          "None during his lifetime"
-        ],
-        "posthumous_notes": "Recognized as a major literary figure"
-      },
-      "comparison_peers": [
-        {
-          "name": "George Bernard Shaw",
-          "shared_theme": "Social commentary"
         }
       ]
     },
@@ -7633,57 +7439,6 @@
       ]
     },
     {
-      "author": "Jean Rhys",
-      "works": [
-        "Wide Sargasso Sea"
-      ],
-      "region": "Caribbean-British",
-      "literary_period": "Modern",
-      "theory_type": "Postcolonial Feminism",
-      "author_link": "https://www.britannica.com/biography/Jean-Rhys",
-      "period": "1890–1979",
-      "themes": [
-        "Colonialism",
-        "Identity",
-        "Isolation",
-        "Madness"
-      ],
-      "style_innovations": [
-        "Stream-of-consciousness narrative",
-        "Non-linear storytelling"
-      ],
-      "key_characters": [
-        {
-          "name": "Antoinette Cosway",
-          "work": "Wide Sargasso Sea",
-          "archetype": "The Madwoman"
-        }
-      ],
-      "bio_context": {
-        "location": "Dominica",
-        "movements": [
-          "Modernism"
-        ],
-        "collaborators": [
-          "Ford Madox Ford"
-        ]
-      },
-      "magnum_opus": "Wide Sargasso Sea",
-      "legacy": {
-        "translations": "Translated into multiple languages",
-        "awards": [
-          "WH Smith Literary Award"
-        ],
-        "posthumous_notes": "Recognized as a significant contributor to postcolonial literature"
-      },
-      "comparison_peers": [
-        {
-          "name": "Virginia Woolf",
-          "shared_theme": "The human experience"
-        }
-      ]
-    },
-    {
       "author": "Kate Millett",
       "works": [
         "Sexual Politics"
@@ -8197,66 +7952,6 @@
         {
           "name": "Zora Neale Hurston",
           "shared_theme": "African American Experience"
-        }
-      ]
-    },
-    {
-      "author": "Virginia Woolf",
-      "works": [
-        "A Room of One’s Own"
-      ],
-      "region": "British",
-      "literary_period": "Modernism",
-      "theory_type": "Feminist Theory",
-      "author_link": "https://www.britannica.com/biography/Virginia-Woolf",
-      "period": "1882–1941",
-      "themes": [
-        "human consciousness",
-        "social class",
-        "gender roles",
-        "isolation"
-      ],
-      "style_innovations": [
-        "stream-of-consciousness narrative",
-        "non-linear storytelling"
-      ],
-      "key_characters": [
-        {
-          "name": "Clarissa Dalloway",
-          "work": "Mrs Dalloway",
-          "archetype": "socialite"
-        },
-        {
-          "name": "Lily Briscoe",
-          "work": "To the Lighthouse",
-          "archetype": "artist"
-        }
-      ],
-      "bio_context": {
-        "location": "London",
-        "movements": [
-          "Bloomsbury Group"
-        ],
-        "collaborators": [
-          "E.M. Forster"
-        ]
-      },
-      "magnum_opus": "Mrs Dalloway",
-      "legacy": {
-        "translations": "numerous languages",
-        "awards": [
-          "none during lifetime"
-        ],
-        "posthumous_notes": "recognized as a major figure in Modernist literature"
-      },
-      "comparison_peers": [
-        {
-          "name": "James Joyce",
-          "shared_theme": "human consciousness"
-        },
-        {
-          "name": "E.M. Forster",
-          "shared_theme": "social class"
         }
       ]
     }
@@ -10581,70 +10276,6 @@
       ]
     },
     {
-      "author": "Eugene O’Neill",
-      "works": [
-        "The Hairy Ape"
-      ],
-      "region": "American",
-      "literary_period": "Modern Drama",
-      "author_link": "https://www.britannica.com/biography/Eugene-ONeill",
-      "period": "1888–1953",
-      "themes": [
-        "Grief",
-        "Family dynamics",
-        "Trauma",
-        "Mourning"
-      ],
-      "style_innovations": [
-        "Psychological complexity",
-        "Experimentation with dramatic structure"
-      ],
-      "key_characters": [
-        {
-          "name": "Christine Mannon",
-          "work": "Mourning Becomes Electra",
-          "archetype": "Tragic matriarch"
-        },
-        {
-          "name": "Lavinia Mannon",
-          "work": "Mourning Becomes Electra",
-          "archetype": "Tortured daughter"
-        },
-        {
-          "name": "Orin Mannon",
-          "work": "Mourning Becomes Electra",
-          "archetype": "Haunted son"
-        }
-      ],
-      "bio_context": {
-        "location": "New London, Connecticut",
-        "movements": [
-          "Modernism"
-        ],
-        "collaborators": [
-          "Theatre Guild"
-        ]
-      },
-      "magnum_opus": "Mourning Becomes Electra",
-      "legacy": {
-        "translations": "Numerous translations worldwide",
-        "awards": [
-          "Pulitzer Prize"
-        ],
-        "posthumous_notes": "Continued influence on American drama"
-      },
-      "comparison_peers": [
-        {
-          "name": "Tennessee Williams",
-          "shared_theme": "Family trauma"
-        },
-        {
-          "name": "Arthur Miller",
-          "shared_theme": "American psychological drama"
-        }
-      ]
-    },
-    {
       "author": "Henry David Thoreau",
       "works": [
         "Walden"
@@ -11140,66 +10771,6 @@
       ]
     },
     {
-      "author": "Sylvia Plath",
-      "works": [
-        "Daddy",
-        "Lady Lazarus",
-        "Apprehensions",
-        "Three Women",
-        "Ariel"
-      ],
-      "region": "American",
-      "literary_period": "Confessional Poetry",
-      "author_link": "https://www.britannica.com/biography/Sylvia-Plath",
-      "theory_type": "Feminist Poetry",
-      "period": "1932–1963",
-      "themes": [
-        "Mental Illness",
-        "Femininity",
-        "Mortality",
-        "Family Dynamics"
-      ],
-      "style_innovations": [
-        "Imagery-rich Confessionalism",
-        "Experimentation with Form and Structure"
-      ],
-      "key_characters": [
-        {
-          "name": "The Speaker",
-          "work": "Daddy",
-          "archetype": "The Victim"
-        },
-        {
-          "name": "Lady Lazarus",
-          "work": "Lady Lazarus",
-          "archetype": "The Survivor"
-        }
-      ],
-      "bio_context": {
-        "location": "Massachusetts",
-        "movements": [
-          "Confessional Poetry"
-        ],
-        "collaborators": [
-          "Ted Hughes"
-        ]
-      },
-      "magnum_opus": "Ariel",
-      "legacy": {
-        "translations": "Widely Translated",
-        "awards": [
-          "Pulitzer Prize"
-        ],
-        "posthumous_notes": "Published posthumously, cementing her legacy"
-      },
-      "comparison_peers": [
-        {
-          "name": "Anne Sexton",
-          "shared_theme": "Mental Health"
-        }
-      ]
-    },
-    {
       "author": "Tennessee Williams",
       "works": [
         "A Streetcar Named Desire"
@@ -11304,72 +10875,6 @@
         {
           "name": "Frank Norris",
           "shared_theme": "Naturalism"
-        }
-      ]
-    },
-    {
-      "author": "Toni Morrison",
-      "works": [
-        {
-          "title": "Beloved",
-          "award": "Pulitzer Prize",
-          "award_year": "1988"
-        }
-      ],
-      "region": "American",
-      "literary_period": "Contemporary",
-      "author_link": "https://www.britannica.com/biography/Toni-Morrison",
-      "theory_type": "Black Feminism",
-      "period": "1931–2019",
-      "themes": [
-        "Memory and Trauma",
-        "Racism and Slavery",
-        "Motherhood and Family",
-        "Identity and Belonging"
-      ],
-      "style_innovations": [
-        "Non-linear narrative structure",
-        "Magical realism"
-      ],
-      "key_characters": [
-        {
-          "name": "Sethe",
-          "work": "Beloved",
-          "archetype": "Mother figure"
-        },
-        {
-          "name": "Paul D",
-          "work": "Beloved",
-          "archetype": "Survivor of slavery"
-        }
-      ],
-      "bio_context": {
-        "location": "Lorain, Ohio",
-        "movements": [
-          "Black Arts Movement"
-        ],
-        "collaborators": [
-          "Angela Davis"
-        ]
-      },
-      "magnum_opus": "Beloved",
-      "legacy": {
-        "translations": "Translated into over 40 languages",
-        "awards": [
-          "Nobel Prize in Literature",
-          "Pulitzer Prize for Fiction",
-          "Pulitzer Prize (1988)"
-        ],
-        "posthumous_notes": "Established the Toni Morrison Society and the Toni Morrison Papers at Princeton University"
-      },
-      "comparison_peers": [
-        {
-          "name": "Alice Walker",
-          "shared_theme": "Black Feminism"
-        },
-        {
-          "name": "Zora Neale Hurston",
-          "shared_theme": "African American Experience"
         }
       ]
     },
@@ -11675,57 +11180,6 @@
       ]
     },
     {
-      "author": "Doris Lessing",
-      "works": [
-        "The Grass is Singing"
-      ],
-      "region": "British-African",
-      "literary_period": "Modern",
-      "author_link": "https://www.britannica.com/biography/Doris-Lessing",
-      "theory_type": "Feminist Fiction",
-      "period": "1919–2013",
-      "themes": [
-        "Colonialism",
-        "Racism",
-        "Isolation",
-        "Human Condition"
-      ],
-      "style_innovations": [
-        "Stream-of-consciousness narrative",
-        "Experimentation with non-linear storytelling"
-      ],
-      "key_characters": [
-        {
-          "name": "Mary Turner",
-          "work": "The Grass is Singing",
-          "archetype": "The Isolated Colonial Wife"
-        }
-      ],
-      "bio_context": {
-        "location": "Southern Rhodesia",
-        "movements": [
-          "Modernism"
-        ],
-        "collaborators": [
-          null
-        ]
-      },
-      "magnum_opus": "The Grass is Singing",
-      "legacy": {
-        "translations": "Numerous languages",
-        "awards": [
-          "Nobel Prize in Literature"
-        ],
-        "posthumous_notes": "Continued influence on feminist and postcolonial literature"
-      },
-      "comparison_peers": [
-        {
-          "name": "Jean Rhys",
-          "shared_theme": "Colonialism and Female Identity"
-        }
-      ]
-    },
-    {
       "author": "Gabriel Okara",
       "works": [
         "Once Upon a Time",
@@ -12006,113 +11460,6 @@
       ]
     },
     {
-      "author": "Ngũgĩ wa Thiong'o",
-      "works": [
-        "The Black Hermit",
-        {
-          "title": "The Perfect Nine",
-          "award": "International Booker Prize",
-          "award_year": "2021"
-        }
-      ],
-      "region": "African",
-      "literary_period": "Postcolonial",
-      "author_link": "https://www.britannica.com/biography/Ngugi-wa-Thiongo",
-      "period": "1938–",
-      "themes": [
-        "colonialism",
-        "cultural identity",
-        "social justice",
-        "personal freedom"
-      ],
-      "style_innovations": [
-        "use of native language",
-        "experimentation with narrative structure"
-      ],
-      "key_characters": [
-        {
-          "name": "The Black Hermit's protagonist",
-          "work": "The Black Hermit",
-          "archetype": "the seeker"
-        }
-      ],
-      "bio_context": {
-        "location": "Kenya",
-        "movements": [
-          "Postcolonial movement"
-        ],
-        "collaborators": [
-          "other African writers"
-        ]
-      },
-      "magnum_opus": null,
-      "legacy": {
-        "translations": "numerous",
-        "awards": [
-          "Neustadt International Prize for Literature",
-          "International Booker Prize (2021)"
-        ],
-        "posthumous_notes": "none"
-      },
-      "comparison_peers": [
-        {
-          "name": "Chinua Achebe",
-          "shared_theme": "colonialism"
-        }
-      ]
-    },
-    {
-      "author": "Nadine Gordimer",
-      "works": [
-        "Burger’s Daughter"
-      ],
-      "region": "African",
-      "literary_period": "Postcolonial",
-      "theory_type": "Political Feminism",
-      "author_link": "https://www.britannica.com/biography/Nadine-Gordimer",
-      "period": "1923–2014",
-      "themes": [
-        "Racial tension",
-        "Social inequality",
-        "Personal identity",
-        "Political activism"
-      ],
-      "style_innovations": [
-        "Experimentation with narrative structure",
-        "Blending of political and personal themes"
-      ],
-      "key_characters": [
-        {
-          "name": "Rosa Burger",
-          "work": "Burger’s Daughter",
-          "archetype": "Protestor/Activist"
-        }
-      ],
-      "bio_context": {
-        "location": "South Africa",
-        "movements": [
-          "Anti-Apartheid movement"
-        ],
-        "collaborators": [
-          "Nelson Mandela"
-        ]
-      },
-      "magnum_opus": "Burger’s Daughter",
-      "legacy": {
-        "translations": "Translated into over 30 languages",
-        "awards": [
-          "Nobel Prize in Literature"
-        ],
-        "posthumous_notes": "Continued influence on South African literature and politics"
-      },
-      "comparison_peers": [
-        {
-          "name": "Chinua Achebe",
-          "shared_theme": "Postcolonial identity"
-        }
-      ]
-    },
-    {
       "author": "Wole Soyinka",
       "works": [
         "The Lion and the Jewel",
@@ -12176,46 +11523,6 @@
   ],
   "New Literature": [
     {
-      "author": "A. D. Hope",
-      "works": [
-        "Australia (poem)"
-      ],
-      "region": "Australian",
-      "literary_period": "Modern",
-      "author_link": "https://www.britannica.com/biography/A-D-Hope",
-      "period": "1907–2000",
-      "themes": [
-        "national identity",
-        "cultural critique",
-        "social commentary",
-        "Australian experience"
-      ],
-      "style_innovations": [
-        "use of satire",
-        "exploration of Australian vernacular"
-      ],
-      "key_characters": [],
-      "bio_context": {
-        "location": "Australia",
-        "movements": [
-          "Australian modernism"
-        ],
-        "collaborators": null
-      },
-      "magnum_opus": "Australia (poem)",
-      "legacy": {
-        "translations": null,
-        "awards": null,
-        "posthumous_notes": null
-      },
-      "comparison_peers": [
-        {
-          "name": "Patrick White",
-          "shared_theme": "Australian identity"
-        }
-      ]
-    },
-    {
       "author": "Douglas Stewart",
       "works": [
         "Ned Kelly"
@@ -12265,50 +11572,6 @@
         {
           "name": "David Malouf",
           "shared_theme": "Australian folklore"
-        }
-      ]
-    },
-    {
-      "author": "E. J. Pratt",
-      "works": [
-        "The Dying Eagle"
-      ],
-      "region": "Canadian",
-      "literary_period": "Modern",
-      "author_link": "https://www.britannica.com/biography/E-J-Pratt",
-      "period": "1882–1964",
-      "themes": [
-        "nature",
-        "mortality",
-        "Canadian identity",
-        "symbolism"
-      ],
-      "style_innovations": [
-        "use of symbolism",
-        "exploration of Canadian landscape"
-      ],
-      "key_characters": [],
-      "bio_context": {
-        "location": "Canada",
-        "movements": [
-          "Canadian Modernism"
-        ],
-        "collaborators": [
-          "F.R. Scott"
-        ]
-      },
-      "magnum_opus": null,
-      "legacy": {
-        "translations": "limited",
-        "awards": [
-          "Governor General's Award"
-        ],
-        "posthumous_notes": "recognized as a major Canadian poet"
-      },
-      "comparison_peers": [
-        {
-          "name": "Earle Birney",
-          "shared_theme": "Canadian identity"
         }
       ]
     },
@@ -12383,57 +11646,6 @@
         {
           "name": "Salman Rushdie",
           "shared_theme": "magical realism"
-        }
-      ]
-    },
-    {
-      "author": "Margaret Laurence",
-      "works": [
-        "The Stone Angel"
-      ],
-      "region": "Canadian",
-      "literary_period": "Modern",
-      "author_link": "https://www.britannica.com/biography/Margaret-Laurence",
-      "theory_type": "Feminist Fiction",
-      "period": "1926–1987",
-      "themes": [
-        "Identity",
-        "Family",
-        "Social Class",
-        "Aging"
-      ],
-      "style_innovations": [
-        "Stream-of-consciousness narrative",
-        "Symbolism"
-      ],
-      "key_characters": [
-        {
-          "name": "Hagar Shipley",
-          "work": "The Stone Angel",
-          "archetype": "Matriarch"
-        }
-      ],
-      "bio_context": {
-        "location": "Neepawa, Manitoba, Canada",
-        "movements": [
-          "Canadian Literary Movement"
-        ],
-        "collaborators": [
-          "Alice Munro"
-        ]
-      },
-      "magnum_opus": "The Stone Angel",
-      "legacy": {
-        "translations": "Translated into multiple languages",
-        "awards": [
-          "Governor General's Award"
-        ],
-        "posthumous_notes": "Continued influence on Canadian literature"
-      },
-      "comparison_peers": [
-        {
-          "name": "Alice Munro",
-          "shared_theme": "Canadian identity"
         }
       ]
     },
@@ -12664,123 +11876,6 @@
         {
           "name": "Salman Rushdie",
           "shared_theme": "postcolonial experience"
-        }
-      ]
-    },
-    {
-      "author": "Ralph Ellison",
-      "works": [
-        "Invisible Man"
-      ],
-      "region": "American",
-      "literary_period": "Modernism",
-      "author_link": "https://www.britannica.com/biography/Ralph-Ellison",
-      "period": "1914–1987",
-      "themes": [
-        "alienation",
-        "identity",
-        "racism",
-        "social justice"
-      ],
-      "style_innovations": [
-        "stream-of-consciousness",
-        "magical realism"
-      ],
-      "key_characters": [
-        {
-          "name": "Invisible Man",
-          "work": "Invisible Man",
-          "archetype": "Everyman"
-        }
-      ],
-      "bio_context": {
-        "location": "Oklahoma City, Oklahoma",
-        "movements": [
-          "Harlem Renaissance"
-        ],
-        "collaborators": [
-          "Richard Wright"
-        ]
-      },
-      "magnum_opus": "Invisible Man",
-      "legacy": {
-        "translations": "over 20 languages",
-        "awards": [
-          "National Book Award"
-        ],
-        "posthumous_notes": " Ellison's work continues to influence American literature"
-      },
-      "comparison_peers": [
-        {
-          "name": "Richard Wright",
-          "shared_theme": "racism"
-        },
-        {
-          "name": "James Baldwin",
-          "shared_theme": "social justice"
-        }
-      ]
-    },
-    {
-      "author": "Lorraine Hansberry",
-      "works": [
-        "A Raisin in the Sun"
-      ],
-      "region": "American",
-      "literary_period": "Modern",
-      "period": "1930–1965",
-      "themes": [
-        "Racism",
-        "Identity",
-        "Family",
-        "Social Class"
-      ],
-      "style_innovations": [
-        "Realist drama",
-        "Exploration of African American experience"
-      ],
-      "key_characters": [
-        {
-          "name": "Walter Lee Younger",
-          "work": "A Raisin in the Sun",
-          "archetype": "Tragic hero"
-        },
-        {
-          "name": "Ruth Younger",
-          "work": "A Raisin in the Sun",
-          "archetype": "Matriarch"
-        },
-        {
-          "name": "Benjamin Younger",
-          "work": "A Raisin in the Sun",
-          "archetype": "Tragic figure"
-        }
-      ],
-      "bio_context": {
-        "location": "Chicago, Illinois",
-        "movements": [
-          "The Black Arts Movement"
-        ],
-        "collaborators": [
-          "Robert Nemiroff"
-        ]
-      },
-      "magnum_opus": "A Raisin in the Sun",
-      "legacy": {
-        "translations": "Translated into multiple languages",
-        "awards": [
-          "New York Drama Critics' Circle Award"
-        ],
-        "posthumous_notes": "Posthumously inducted into the American Academy of Arts and Letters"
-      },
-      "comparison_peers": [
-        {
-          "name": "Tennessee Williams",
-          "shared_theme": "Exploration of the human condition"
-        },
-        {
-          "name": "Arthur Miller",
-          "shared_theme": "Social commentary"
         }
       ]
     },
@@ -14155,52 +13250,6 @@
       ]
     },
     {
-      "author": "Alexander Pope",
-      "works": [
-        "An Essay on Criticism",
-        "The Rape of the Lock"
-      ],
-      "region": "British",
-      "literary_period": "Neoclassicism",
-      "theory_type": "Neoclassical Criticism",
-      "author_link": "https://www.britannica.com/biography/Alexander-Pope",
-      "period": "1688–1744",
-      "themes": [
-        "critique of societal norms",
-        "importance of reason",
-        "beauty and aesthetics",
-        "satire of excess"
-      ],
-      "style_innovations": [
-        "use of heroic couplets",
-        "satirical tone"
-      ],
-      "key_characters": [],
-      "bio_context": {
-        "location": "London",
-        "movements": [
-          "Neoclassicism"
-        ],
-        "collaborators": [
-          "Jonathan Swift"
-        ]
-      },
-      "magnum_opus": "An Essay on Criticism",
-      "legacy": {
-        "translations": "numerous translations across Europe",
-        "awards": [
-          "Poet Laureate"
-        ],
-        "posthumous_notes": "remains influential in literary theory and criticism"
-      },
-      "comparison_peers": [
-        {
-          "name": "John Dryden",
-          "shared_theme": "use of satire"
-        }
-      ]
-    },
-    {
       "author": "Ananda Vardhana",
       "works": [
         "Dhvanyaloka (Structure of Poetic Meaning: The First Flash)"
@@ -14485,113 +13534,6 @@
         {
           "name": "Edward W. Said's student and friend",
           "shared_theme": "Postcolonialism"
-        }
-      ]
-    },
-    {
-      "author": "Elaine Showalter",
-      "works": [
-        "New Feminist Criticism"
-      ],
-      "region": "American",
-      "literary_period": "Contemporary",
-      "theory_type": "Feminist Theory",
-      "author_link": "https://www.britannica.com/biography/Elaine-Showalter",
-      "period": "1941–",
-      "themes": [
-        "Feminist literary criticism",
-        "Women's roles in literature",
-        "Gender studies",
-        "Literary theory"
-      ],
-      "style_innovations": [
-        "Intersectional feminist critique",
-        "Reevaluation of literary canon"
-      ],
-      "key_characters": [],
-      "bio_context": {
-        "location": "America",
-        "movements": [
-          "Feminist movement"
-        ],
-        "collaborators": [
-          "Sandra Gilbert"
-        ]
-      },
-      "magnum_opus": "New Feminist Criticism",
-      "legacy": {
-        "translations": "Widely translated",
-        "awards": [
-          "National Book Award nomination"
-        ],
-        "posthumous_notes": "Influenced feminist literary theory"
-      },
-      "comparison_peers": [
-        {
-          "name": "Sandra Gilbert",
-          "shared_theme": "Feminist literary theory"
-        },
-        {
-          "name": "Susan Gubar",
-          "shared_theme": "Feminist literary critique"
-        }
-      ]
-    },
-    {
-      "author": "Francis Bacon",
-      "works": [
-        "Of Studies",
-        "Of Truth",
-        "Of Youth and Age",
-        "Of Death",
-        "Of Revenge",
-        "Of Love",
-        "Of Adversity",
-        "Of Parents and Children",
-        "Of Friendship",
-        "Of Customs and Education",
-        "Of Nature in Men",
-        "Of Beauty",
-        "Of Marriage and Single Life",
-        "New Atlantis"
-      ],
-      "region": "British",
-      "literary_period": "Renaissance",
-      "theory_type": "Empirical Criticism",
-      "author_link": "https://www.britannica.com/biography/Francis-Bacon",
-      "period": "1561–1626",
-      "themes": [
-        "human nature",
-        "morality",
-        "knowledge",
-        "society"
-      ],
-      "style_innovations": [
-        "use of aphorisms",
-        "blending of philosophy and literature"
-      ],
-      "key_characters": [],
-      "bio_context": {
-        "location": "England",
-        "movements": [
-          "Renaissance humanism"
-        ],
-        "collaborators": [
-          "King James I"
-        ]
-      },
-      "magnum_opus": "New Atlantis",
-      "legacy": {
-        "translations": "numerous translations into European languages",
-        "awards": [
-          "none during his lifetime"
-        ],
-        "posthumous_notes": "influence on the scientific method and Enlightenment thinkers"
-      },
-      "comparison_peers": [
-        {
-          "name": "Michel de Montaigne",
-          "shared_theme": "exploration of human nature"
         }
       ]
     },
@@ -14896,51 +13838,6 @@
       ]
     },
     {
-      "author": "Matthew Arnold",
-      "works": [
-        "The Scholar Gypsy"
-      ],
-      "region": "British",
-      "literary_period": "Victorian",
-      "theory_type": "Cultural Criticism",
-      "author_link": "https://www.britannica.com/biography/Matthew-Arnold",
-      "period": "1822–1888",
-      "themes": [
-        "the human condition",
-        "social class",
-        "isolation",
-        "the search for meaning"
-      ],
-      "style_innovations": [
-        "poetic realism",
-        "symbolism"
-      ],
-      "key_characters": [],
-      "bio_context": {
-        "location": "Laleham, England",
-        "movements": [
-          "Victorian literature"
-        ],
-        "collaborators": [
-          "Arthur Hugh Clough"
-        ]
-      },
-      "magnum_opus": null,
-      "legacy": {
-        "translations": "numerous",
-        "awards": [
-          "honorary degrees"
-        ],
-        "posthumous_notes": "remains a significant figure in literary history"
-      },
-      "comparison_peers": [
-        {
-          "name": "Alfred, Lord Tennyson",
-          "shared_theme": "social commentary"
-        }
-      ]
-    },
-    {
       "author": "Northrop Frye",
       "works": [
         "The Archetypes of Literature"
@@ -14980,51 +13877,6 @@
         {
           "name": "Roman Jakobson",
           "shared_theme": "Structuralism"
-        }
-      ]
-    },
-    {
-      "author": "P. B. Shelley",
-      "works": [
-        "Ode to a Skylark",
-        "Ode to the West Wind"
-      ],
-      "region": "British",
-      "literary_period": "Romanticism",
-      "theory_type": "Romantic Criticism",
-      "author_link": "https://www.britannica.com/biography/Percy-Bysshe-Shelley",
-      "period": "1792–1822",
-      "themes": [
-        "beauty of nature",
-        "human longing for transcendence",
-        "freedom and liberty",
-        "impermanence of life"
-      ],
-      "style_innovations": [
-        "use of sensual language to describe natural scenes",
-        "experimentation with ode form"
-      ],
-      "key_characters": [],
-      "bio_context": {
-        "location": "England",
-        "movements": [
-          "Romantic Movement"
-        ],
-        "collaborators": [
-          "Lord Byron",
-          "John Keats"
-        ]
-      },
-      "magnum_opus": "Ode to the West Wind",
-      "legacy": {
-        "translations": "numerous translations worldwide",
-        "awards": null,
-        "posthumous_notes": "recognized as a major Romantic poet"
-      },
-      "comparison_peers": [
-        {
-          "name": "John Keats",
-          "shared_theme": "beauty and mortality"
         }
       ]
     },
@@ -15250,100 +14102,6 @@
       ]
     },
     {
-      "author": "Samuel Taylor Coleridge",
-      "works": [
-        "The Rime of the Ancient Mariner"
-      ],
-      "region": "British",
-      "literary_period": "Romanticism",
-      "theory_type": "Romantic Criticism",
-      "author_link": "https://www.britannica.com/biography/Samuel-Taylor-Coleridge",
-      "period": "1772–1834",
-      "themes": [
-        "guilt and isolation",
-        "the power of nature",
-        "the supernatural",
-        "the human condition"
-      ],
-      "style_innovations": [
-        "use of symbolism",
-        "exploration of the subconscious"
-      ],
-      "key_characters": [
-        {
-          "name": "The Mariner",
-          "work": "The Rime of the Ancient Mariner",
-          "archetype": "the isolated wanderer"
-        }
-      ],
-      "bio_context": {
-        "location": "England",
-        "movements": [
-          "Romanticism"
-        ],
-        "collaborators": [
-          "William Wordsworth"
-        ]
-      },
-      "magnum_opus": "The Rime of the Ancient Mariner",
-      "legacy": {
-        "translations": "numerous translations worldwide",
-        "awards": null,
-        "posthumous_notes": "remains a significant figure in English literature"
-      },
-      "comparison_peers": [
-        {
-          "name": "Lord Byron",
-          "shared_theme": "the human condition"
-        }
-      ]
-    },
-    {
-      "author": "T. S. Eliot",
-      "works": [
-        "Murder in the Cathedral"
-      ],
-      "region": "British-American",
-      "literary_period": "Modern Drama",
-      "theory_type": "Modern Criticism",
-      "author_link": "https://www.britannica.com/biography/T-S-Eliot",
-      "period": "1888–1965",
-      "themes": [
-        "Disillusionment",
-        "Spiritual decay",
-        "Alienation",
-        "Search for meaning"
-      ],
-      "style_innovations": [
-        "Stream-of-consciousness narration",
-        "Experimentation with non-linear structure"
-      ],
-      "key_characters": [],
-      "bio_context": {
-        "location": "St. Louis, Missouri and London, England",
-        "movements": [
-          "Modernism"
-        ],
-        "collaborators": [
-          "Ezra Pound"
-        ]
-      },
-      "magnum_opus": "The Waste Land",
-      "legacy": {
-        "translations": "Numerous translations worldwide",
-        "awards": [
-          "Nobel Prize in Literature"
-        ],
-        "posthumous_notes": "Continued influence on 20th-century literature"
-      },
-      "comparison_peers": [
-        {
-          "name": "James Joyce",
-          "shared_theme": "Disillusionment with modern society"
-        }
-      ]
-    },
-    {
       "author": "W. K. Wimsatt & Monroe Beardsley",
       "works": [
         "The Intentional Fallacy",
@@ -15429,55 +14187,6 @@
           "shared_theme": "practical criticism"
         }
       ]
-    },
-    {
-      "author": "William Wordsworth",
-      "works": [
-        "The Prelude (Book I)",
-        "Tintern Abbey",
-        "Ode: Intimations of Immortality",
-        "Ode to Duty",
-        "Preface to Lyrical Ballads"
-      ],
-      "region": "British",
-      "literary_period": "Romanticism",
-      "theory_type": "Romantic Criticism",
-      "author_link": "https://www.britannica.com/biography/William-Wordsworth",
-      "period": "1770–1850",
-      "themes": [
-        "Nature",
-        "Imagination",
-        "Mortality",
-        "Duty"
-      ],
-      "style_innovations": [
-        "Use of everyday language",
-        "Emphasis on the poet's personal experience"
-      ],
-      "key_characters": [],
-      "bio_context": {
-        "location": "Lake District",
-        "movements": [
-          "Romantic Movement"
-        ],
-        "collaborators": [
-          "Samuel Taylor Coleridge"
-        ]
-      },
-      "magnum_opus": "The Prelude (Book I)",
-      "legacy": {
-        "translations": "Numerous translations worldwide",
-        "awards": [
-          "Poet Laureate"
-        ],
-        "posthumous_notes": "Influence on later poets and writers"
-      },
-      "comparison_peers": [
-        {
-          "name": "Samuel Taylor Coleridge",
-          "shared_theme": "The role of nature in human life"
-        }
-      ]
     }
   ],
   "Award Winners Placeholder": [
@@ -15500,36 +14209,6 @@
         "translations": null,
         "awards": [
           "Pulitzer Prize (Reporting) (1937)"
-        ],
-        "posthumous_notes": null
-      },
-      "comparison_peers": []
-    },
-    {
-      "author": "V.S. Naipaul",
-      "works": [
-        {
-          "title": "In a Free State",
-          "award": "Booker Prize",
-          "award_year": "1971"
-        }
-      ],
-      "region": "Indian",
-      "literary_period": "Contemporary",
-      "period": null,
-      "themes": [],
-      "style_innovations": [],
-      "key_characters": [],
-      "bio_context": {
-        "location": "India",
-        "movements": [],
-        "collaborators": []
-      },
-      "magnum_opus": null,
-      "legacy": {
-        "translations": null,
-        "awards": [
-          "Booker Prize (1971)"
         ],
         "posthumous_notes": null
       },
