@@ -62,6 +62,13 @@ export function mergeAuthorWithEnriched(author, categoryId) {
   return {
     ...author,
     ...enriched,
+    legacy: {
+      ...(author.legacy || {}),
+      ...(enriched.legacy || {}),
+      // Specially preserve awards and titles if they exist in primary but not in enriched
+      awards: (enriched.legacy?.awards?.length > 0) ? enriched.legacy.awards : (author.legacy?.awards || []),
+      titles: (enriched.legacy?.titles?.length > 0) ? enriched.legacy.titles : (author.legacy?.titles || []),
+    },
     works: (enriched.works || author.works || []).map(normalizeWork),
     movements: enriched.movements || [],
     genreTags: enriched.genreTags || [],
