@@ -3,13 +3,20 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export function useTheme() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("enlit-theme") || "dark";
+    const saved = localStorage.getItem("enlit-theme") || "light";
     setTheme(saved);
     document.documentElement.setAttribute("data-theme", saved);
+    
+    // Initial favicon set
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) {
+      link.href = saved === "dark" ? "/assets/logo-light.png" : "/assets/logo-dark.png";
+    }
+    
     setMounted(true);
   }, []);
 
