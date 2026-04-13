@@ -91,6 +91,8 @@ export function buildCatalog(data) {
         !region.includes("british") &&
         !region.includes("american") &&
         !region.includes("indian") &&
+        !region.includes("african")
+      );
     })
   );
   
