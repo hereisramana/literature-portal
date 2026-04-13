@@ -277,6 +277,7 @@ export default function Page() {
                         onOpenStudy={openStudy}
                         onStartTest={setFocusedAuthor}
                         confidence={confidenceMap[author.author]}
+                        showAwardInsteadOfPeriod={activeCategory?.id === "award-winning-indians"}
                       />
                     </div>
                   </motion.div>

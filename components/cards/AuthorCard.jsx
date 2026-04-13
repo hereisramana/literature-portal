@@ -7,6 +7,7 @@ export default function AuthorCard({
   onOpenStudy,
   onStartTest,
   confidence,
+  showAwardInsteadOfPeriod,
 }) {
   return (
     <AuthorCardBrowse
@@ -14,6 +15,7 @@ export default function AuthorCard({
       onOpenStudy={onOpenStudy}
       onStartTest={onStartTest}
       confidence={confidence}
+      showAwardInsteadOfPeriod={showAwardInsteadOfPeriod}
     />
   );
 }

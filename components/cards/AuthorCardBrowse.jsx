@@ -21,7 +21,7 @@ import { motion } from "framer-motion";
 //   - No overflow, no internal scroll, no variable height
 //   - Card height is determined by name + 2 work rows + buttons = consistent grid
 
-export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, confidence }) {
+export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, confidence, showAwardInsteadOfPeriod }) {
   const works = author.works || [];
   // Always render exactly 2 slots: show works[0], works[1], or empty placeholder
   const slot0 = works[0] ? (works[0].title || works[0]) : null;
@@ -37,10 +37,18 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
           <h2 className="text-[18px] font-bold leading-snug text-[var(--color-text-strong)] truncate">
             {author.author}
           </h2>
-          {author.literary_period && (
-            <span className="mt-1 inline-block text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted-color)]">
-              {author.literary_period}
-            </span>
+          {showAwardInsteadOfPeriod ? (
+            author.legacy?.awards?.[0] && (
+              <span className="mt-1 inline-block text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--clr-focus)]">
+                {author.legacy.awards[0]}
+              </span>
+            )
+          ) : (
+            author.literary_period && (
+              <span className="mt-1 inline-block text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted-color)]">
+                {author.literary_period}
+              </span>
+            )
           )}
         </div>
         {confidence && (
