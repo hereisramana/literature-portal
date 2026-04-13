@@ -400,8 +400,6 @@ function WorkExpandablePill({ work, author, isOpen, onToggle }) {
                   )}
                 </div>
               )}
-            </div>
-
               {/* Theoretical Depth */}
               {work.theory_depth && (
                 <div className="bg-[var(--clr-focus)]/5 rounded-2xl p-5 border border-[var(--clr-focus)]/10">
