@@ -18,8 +18,7 @@ import { useProgress } from "../hooks/useProgress.js";
 import { useCloudSync } from "../hooks/useCloudSync.js";
 
 export default function Page() {
-  const categories = useMemo(() => buildCatalog(raw), []);
-  const [category, setCategory] = useState(categories[0]?.id || "");
+  const [category, setCategory] = useState("");
   const [query, setQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [desktopSidebarCollapsed, setDesktopSidebarCollapsed] = useState(false);
@@ -30,25 +29,44 @@ export default function Page() {
   const cloud = useCloudSync();
   const { theme, toggle, mounted } = useTheme();
 
-  const activeCategory =
-    categories.find((entry) => entry.id === category) || categories[0];
-  const allAuthors = useMemo(
-    () =>
-      categories.flatMap((entry) =>
-        (entry.authors || []).map((author) =>
-          mergeAuthorWithEnriched(author, entry.id)
-        )
-      ),
-    [categories]
-  );
+  const categories = useMemo(() => buildCatalog(raw), []);
+  
+  useEffect(() => {
+    if (categories.length > 0 && !category) {
+      setCategory(categories[0].id);
+    }
+  }, [categories, category]);
+
+  // Optimization: Pre-merge and sanitise all authors globally once
+  const allAuthors = useMemo(() => {
+    // 1. Get unique set of all base author objects
+    const uniqueBaseMap = new Map();
+    categories.forEach(c => {
+      c.authors.forEach(a => {
+        if (!uniqueBaseMap.has(a.author)) {
+          uniqueBaseMap.set(a.author, a);
+        }
+      });
+    });
+
+    // 2. Merge each once with enrichment data and cleaning
+    return Array.from(uniqueBaseMap.values()).map(a => mergeAuthorWithEnriched(a, "global"));
+  }, [categories]);
+
+  const activeCategory = useMemo(() => {
+    return categories.find((entry) => entry.id === category) || categories[0];
+  }, [categories, category]);
 
   const filteredAuthors = useMemo(() => {
-    if (!activeCategory) {
+    if (!activeCategory || !allAuthors.length) {
       return [];
     }
 
-    return activeCategory.authors
-      .map((author) => mergeAuthorWithEnriched(author, activeCategory.id))
+    // Filter the global master list based on which authors belong to this category
+    const categoryAuthorNames = new Set(activeCategory.authors.map(a => a.author));
+    
+    return allAuthors
+      .filter(a => categoryAuthorNames.has(a.author))
       .filter((author) => {
         const matchesQuery =
           !query ||
@@ -59,7 +77,7 @@ export default function Page() {
 
         return matchesQuery;
       });
-  }, [activeCategory, query]);
+  }, [activeCategory, allAuthors, query]);
 
   const searchSuggestions = useMemo(() => {
     if (!query || filteredAuthors.length > 0) return [];
@@ -67,11 +85,10 @@ export default function Page() {
     return categories
       .map((cat) => {
         const matches = cat.authors.filter((author) => {
-          const merged = mergeAuthorWithEnriched(author, cat.id);
           return (
-            merged.author?.toLowerCase().includes(query.toLowerCase()) ||
-            merged.works?.some((work) =>
-              (work.title || work).toLowerCase().includes(query.toLowerCase())
+            author.author?.toLowerCase().includes(query.toLowerCase()) ||
+            (author.works || []).some((work) =>
+              (typeof work === 'string' ? work : work.title).toLowerCase().includes(query.toLowerCase())
             )
           );
         });

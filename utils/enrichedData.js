@@ -42,13 +42,18 @@ export function getEnrichedAuthor(categoryId, authorName) {
   return null;
 }
 
+const normalizeName = (s) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "").trim();
+
 export function mergeAuthorWithEnriched(author, categoryId) {
   const enriched = getEnrichedAuthor(categoryId, author.author);
 
+  // 1. Prepare Base Works from Primary DB (contains awards)
+  const baseWorks = (author.works || []).map(normalizeWork);
+  
   if (!enriched) {
     return {
       ...author,
-      works: (author.works || []).map(normalizeWork),
+      works: baseWorks,
       movements: [],
       genreTags: [],
       nodes: [],
@@ -61,17 +66,42 @@ export function mergeAuthorWithEnriched(author, categoryId) {
     };
   }
 
+  // 2. Prepare Enriched Works from Curriculum DB (contains study notes)
+  const curriculumWorks = (enriched.works || []).map(normalizeWork);
+
+  // 3. Smart Merge Works by Title
+  const finalWorksMap = new Map();
+
+  // Load base works first (Source of Truth for Awards)
+  baseWorks.forEach(w => finalWorksMap.set(normalizeName(w.title), { ...w }));
+
+  // Overlay curriculum data (Source of Truth for Themes/Quotes)
+  curriculumWorks.forEach(cw => {
+    const key = normalizeName(cw.title);
+    if (finalWorksMap.has(key)) {
+      const existing = finalWorksMap.get(key);
+      finalWorksMap.set(key, {
+        ...existing,
+        ...cw,
+        // CRITICAL: Preserve awards from primary DB if curriculum misses them
+        award: existing.award || cw.award || "",
+        award_year: existing.award_year || cw.award_year || "",
+      });
+    } else {
+      finalWorksMap.set(key, cw);
+    }
+  });
+
   return {
     ...author,
     ...enriched,
     legacy: {
       ...(author.legacy || {}),
       ...(enriched.legacy || {}),
-      // Specially preserve awards and titles if they exist in primary but not in enriched
       awards: (enriched.legacy?.awards?.length > 0) ? enriched.legacy.awards : (author.legacy?.awards || []),
       titles: (enriched.legacy?.titles?.length > 0) ? enriched.legacy.titles : (author.legacy?.titles || []),
     },
-    works: (enriched.works || author.works || []).map(normalizeWork),
+    works: Array.from(finalWorksMap.values()),
     movements: enriched.movements || [],
     genreTags: enriched.genreTags || [],
     nodes: enriched.nodes || [],

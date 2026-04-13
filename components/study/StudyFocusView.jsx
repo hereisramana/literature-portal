@@ -16,16 +16,9 @@ export function sanitiseAuthor(raw) {
   if (a.legacy.titles === null || !a.legacy.titles) a.legacy.titles = [];
   if (a.legacy.translations === null) a.legacy.translations = [];
 
-  // Data Enrichment: Extract titles from posthumous_notes (e.g. "Father of English literature")
+  // Data Enrichment: Extract titles from posthumous_notes (obsolete: handled by manual legacy.titles population)
   if (a.legacy.titles.length === 0 && a.legacy.posthumous_notes) {
-    const titleMatch = a.legacy.posthumous_notes.match(/(?:established as the|known as|titled as) (.*)/i);
-    if (titleMatch && titleMatch[1]) {
-      a.legacy.titles = [titleMatch[1].replace(/\.$/, "")];
-    } else if (a.legacy.posthumous_notes.toLowerCase().includes("father of")) {
-       const parts = a.legacy.posthumous_notes.split(/[.,]/);
-       const fatherPart = parts.find(p => p.toLowerCase().includes("father of"));
-       if (fatherPart) a.legacy.titles = [fatherPart.trim()];
-    }
+     // Intentionally left empty to favor structured data over regex extraction
   }
 
   if (a.bio_context.collaborators === null) {
