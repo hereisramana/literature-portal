@@ -3,6 +3,8 @@
 import raw from "../data/data.json";
 import { buildCatalog } from "../utils/catalog.js";
 import { useEffect, useMemo, useState } from "react";
+import { VirtuosoGrid } from "react-virtuoso";
+import { useDebounce } from "../hooks/useDebounce.js";
 
 import Sidebar from "../components/layout/Sidebar.jsx";
 import AuthorCard from "../components/cards/AuthorCard.jsx";
@@ -21,6 +23,7 @@ import { useProgress } from "../hooks/useProgress.js";
 export default function Page() {
   const [category, setCategory] = useState("");
   const [query, setQuery] = useState("");
+  const debouncedQuery = useDebounce(query, 300);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [desktopSidebarCollapsed, setDesktopSidebarCollapsed] = useState(false);
   const [focusedAuthor, setFocusedAuthor] = useState(null);
@@ -28,7 +31,7 @@ export default function Page() {
   const [confidenceMap, setConfidenceMap] = useState({});
   const [showFeedback, setShowFeedback] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const { get, save, ready } = useProgress();
+  const { get, save, batchGet, ready } = useProgress();
 
   const { theme, toggle, mounted } = useTheme();
 
@@ -62,26 +65,26 @@ export default function Page() {
 
     return activeCategory.authors.filter((author) => {
       const matchesQuery =
-        !query ||
-        author.author?.toLowerCase().includes(query.toLowerCase()) ||
+        !debouncedQuery ||
+        author.author?.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
         author.works?.some((work) =>
-          (typeof work === 'string' ? work : work.title).toLowerCase().includes(query.toLowerCase())
+          (typeof work === 'string' ? work : work.title).toLowerCase().includes(debouncedQuery.toLowerCase())
         );
 
       return matchesQuery;
     });
-  }, [activeCategory, query]);
+  }, [activeCategory, debouncedQuery]);
 
   const searchSuggestions = useMemo(() => {
-    if (!query || filteredAuthors.length > 0) return [];
+    if (!debouncedQuery || filteredAuthors.length > 0) return [];
 
     return categories
       .map((cat) => {
         const matches = cat.authors.filter((author) => {
           return (
-            author.author?.toLowerCase().includes(query.toLowerCase()) ||
+            author.author?.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
             (author.works || []).some((work) =>
-              (typeof work === 'string' ? work : work.title).toLowerCase().includes(query.toLowerCase())
+              (typeof work === 'string' ? work : work.title).toLowerCase().includes(debouncedQuery.toLowerCase())
             )
           );
         });
@@ -90,7 +93,7 @@ export default function Page() {
           : null;
       })
       .filter(Boolean);
-  }, [categories, query, filteredAuthors]);
+  }, [categories, debouncedQuery, filteredAuthors]);
 
   function handleCategoryChange(nextCategory) {
     setCategory(nextCategory);
@@ -125,37 +128,32 @@ export default function Page() {
   }, [focusedAuthor, get, ready]);
 
   useEffect(() => {
-    if (!ready || filteredAuthors.length === 0) {
-      return;
-    }
+    if (!ready || filteredAuthors.length === 0) return;
 
     let cancelled = false;
+    const keys = filteredAuthors.map(a => `confidence:${a.author}`);
+    
+    batchGet(keys).then((results) => {
+      if (cancelled) return;
 
-    Promise.all(
-      filteredAuthors.map(async (author) => {
-        const value = await get(`confidence:${author.author}`);
-        return [author.author, value?.confidence || value || ""];
-      })
-    ).then((entries) => {
-      if (cancelled) {
-        return;
-      }
-
-      setConfidenceMap((current) => {
-        const next = { ...current };
-        entries.forEach(([authorName, confidence]) => {
-          if (confidence) {
-            next[authorName] = confidence;
-          }
-        });
-        return next;
+      const next = {};
+      filteredAuthors.forEach(author => {
+        const key = `confidence:${author.author}`;
+        const val = results[key];
+        if (val) {
+          next[author.author] = val.confidence || val;
+        }
       });
+
+      if (Object.keys(next).length > 0) {
+        setConfidenceMap(current => ({ ...current, ...next }));
+      }
     });
 
     return () => {
       cancelled = true;
     };
-  }, [filteredAuthors, get, ready]);
+  }, [filteredAuthors, batchGet, ready]);
 
   async function handleConfidenceSave(payload) {
     await save(`confidence:${payload.author}`, payload);
@@ -281,22 +279,16 @@ export default function Page() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
+                className="h-full"
               >
-                {filteredAuthors.map((author, index) => (
-                  <motion.div
-                    key={`${author.author}-${index}`}
-                    layout
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{
-                      duration: 0.3,
-                      delay: index * 0.02,
-                      ease: [0.4, 0, 0.2, 1],
-                    }}
-                  >
-                    <div className="content-lazy">
+                <VirtuosoGrid
+                  useWindowScroll
+                  totalCount={filteredAuthors.length}
+                  listClassName="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 pb-8 pt-2"
+                  itemClassName="content-lazy"
+                  itemContent={(index) => {
+                    const author = filteredAuthors[index];
+                    return (
                       <AuthorCard
                         author={author}
                         onOpenStudy={openStudy}
@@ -304,9 +296,9 @@ export default function Page() {
                         confidence={confidenceMap[author.author]}
                         showAwardInsteadOfPeriod={activeCategory?.id === "award-winning-indians"}
                       />
-                    </div>
-                  </motion.div>
-                ))}
+                    );
+                  }}
+                />
               </motion.div>
             ) : (
               <motion.div

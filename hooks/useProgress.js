@@ -46,5 +46,19 @@ export function useProgress() {
     return requestToPromise(tx.objectStore(STORE).get(key));
   };
 
-  return { save, get, ready: Boolean(db) };
+  const batchGet = async (keys) => {
+    if (!db || !keys.length) return {};
+    const tx = db.transaction(STORE, "readonly");
+    const store = tx.objectStore(STORE);
+    
+    const results = {};
+    await Promise.all(
+      keys.map(async (key) => {
+        results[key] = await requestToPromise(store.get(key));
+      })
+    );
+    return results;
+  };
+
+  return { save, get, batchGet, ready: Boolean(db) };
 }
