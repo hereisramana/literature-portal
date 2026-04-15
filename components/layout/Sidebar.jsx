@@ -110,6 +110,15 @@ export default function Sidebar({
           })}
         </nav>
       </div>
+
+      {!collapsed && (
+        <div className="px-8 py-6 opacity-30">
+          <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted-color)] italic">
+            Designed & Developed by <br />
+            <span className="mt-1 block text-[10px] not-italic tracking-[0.3em] text-[var(--color-text-strong)]">RA_MA_NA</span>
+          </p>
+        </div>
+      )}
     </aside>
   );
 }
