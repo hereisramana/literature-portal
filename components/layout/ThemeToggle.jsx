@@ -7,17 +7,37 @@ export function useTheme() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("enlit-theme") || "light";
-    setTheme(saved);
-    document.documentElement.setAttribute("data-theme", saved);
+    const saved = localStorage.getItem("enlit-theme");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = saved || (systemPrefersDark ? "dark" : "light");
+    
+    setTheme(initialTheme);
+    document.documentElement.setAttribute("data-theme", initialTheme);
     
     // Initial favicon set
     const link = document.querySelector("link[rel~='icon']");
     if (link) {
-      link.href = saved === "dark" ? "/assets/logo-light.png" : "/assets/logo-dark.png";
+      link.href = initialTheme === "dark" ? "/assets/logo-light.png" : "/assets/logo-dark.png";
     }
     
     setMounted(true);
+
+    // Listen for system theme changes if no manual preference is set
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e) => {
+      if (!localStorage.getItem("enlit-theme")) {
+        const next = e.matches ? "dark" : "light";
+        setTheme(next);
+        document.documentElement.setAttribute("data-theme", next);
+        const link = document.querySelector("link[rel~='icon']");
+        if (link) {
+          link.href = next === "dark" ? "/assets/logo-light.png" : "/assets/logo-dark.png";
+        }
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   function toggle() {

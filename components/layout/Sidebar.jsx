@@ -112,11 +112,18 @@ export default function Sidebar({
       </div>
 
       {!collapsed && (
-        <div className="px-8 py-6 opacity-30">
-          <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted-color)] italic">
-            Designed & Developed by <br />
-            <span className="mt-1 block text-[10px] not-italic tracking-[0.3em] text-[var(--color-text-strong)]">RA MA NA</span>
+        <div className="px-8 py-6 opacity-40">
+          <p className="text-[10px] font-bold leading-relaxed text-[var(--text-muted-color)]">
+            <span className="block text-[9px] uppercase tracking-[0.15em] opacity-60 mb-1">Affiliation</span>
+            Tailored for <span className="text-[var(--color-text-strong)]">Andhra Pradesh State Universities'</span> Literature Syllabus.
           </p>
+          
+          <div className="mt-6">
+            <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted-color)] italic">
+              Product Design & Development <br />
+              <span className="mt-1 block text-[10px] not-italic tracking-[0.3em] text-[var(--color-text-strong)]">RA MA NA</span>
+            </p>
+          </div>
         </div>
       )}
     </aside>

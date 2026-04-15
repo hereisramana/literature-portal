@@ -269,8 +269,8 @@ export default function Page() {
           </div>
         </div>
 
-        <section className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
-          <div className="shell-width px-4 py-3 pb-28 md:px-8 md:py-4 md:pb-8 lg:px-10">
+        <section className="min-h-0 flex-1">
+          <div className="h-full shell-width px-4 py-3 md:px-8 md:py-4 lg:px-10">
           <AnimatePresence mode="wait">
             {filteredAuthors.length > 0 ? (
               <motion.div
@@ -282,9 +282,9 @@ export default function Page() {
                 className="h-full"
               >
                 <VirtuosoGrid
-                  useWindowScroll
+                  style={{ height: '100%' }}
                   totalCount={filteredAuthors.length}
-                  listClassName="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 pb-8 pt-2"
+                  listClassName="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 pb-28 pt-2"
                   itemClassName="content-lazy"
                   itemContent={(index) => {
                     const author = filteredAuthors[index];
