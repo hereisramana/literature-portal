@@ -1,5 +1,6 @@
 import { Manrope, Nunito } from "next/font/google";
 import "./globals.css";
+import { PostHogProvider } from "./providers";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -51,7 +52,11 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <PostHogProvider>
+          {children}
+        </PostHogProvider>
+      </body>
     </html>
   );
 }

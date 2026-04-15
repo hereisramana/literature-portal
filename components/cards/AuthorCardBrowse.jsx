@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-
+import posthog from "posthog-js";
 /*
   WCAG & Ergonomic contrast (updated for extended-session palette):
   Author name:   #E8E6F4 on #1E1C34 ≈ 10.2:1  ✅ AAA
@@ -97,7 +97,10 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
         <motion.button
           whileHover={{ opacity: 0.82 }}
           whileTap={{ scale: 0.97 }}
-          onClick={() => onOpenStudy?.(author)}
+          onClick={() => {
+            posthog.capture('author_card_study_click', { author_name: author.author });
+            onOpenStudy?.(author);
+          }}
           className="rounded-full bg-[var(--clr-recall)] py-2.5 text-[12px] font-semibold text-[var(--clr-ink)] transition-opacity"
         >
           Study
@@ -105,7 +108,10 @@ export default function AuthorCardBrowse({ author, onOpenStudy, onStartTest, con
         <motion.button
           whileHover={{ opacity: 0.88 }}
           whileTap={{ scale: 0.97 }}
-          onClick={() => onStartTest?.(author)}
+          onClick={() => {
+            posthog.capture('author_card_test_click', { author_name: author.author });
+            onStartTest?.(author);
+          }}
           className="rounded-full bg-[var(--button-primary-bg)] py-2.5 text-[12px] font-semibold text-[var(--button-primary-text)] transition-opacity shadow-md shadow-[var(--clr-focus)]/25"
         >
           Test

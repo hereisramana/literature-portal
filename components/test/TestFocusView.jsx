@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import posthog from "posthog-js";
 import AuthorFocusShell from "../focus/AuthorFocusShell.jsx";
 import ConfidenceStrip from "./ConfidenceStrip.jsx";
 import { createTestSession, generateMixSession } from "../../utils/testEngine.js";
@@ -52,7 +53,7 @@ function ToggleSwitch({ enabled, onToggle }) {
 // ─── MCQ Panel ───────────────────────────────────────────────────────────────
 function McqPanel({ 
   question, revealed, selected, submitted, 
-  onSelect, onSubmit, onNext, timer, baseTimer, isExpert 
+  onSelect, onSubmit, onNext, onReveal, timer, baseTimer, isExpert 
 }) {
   if (!question) return null;
   const success = submitted && selected === question.answer;
@@ -92,7 +93,13 @@ function McqPanel({
       </div>
 
       {!revealed ? (
-        <div className="flex flex-col items-center py-12 bg-[var(--clr-recall)]/30 rounded-2xl border border-[var(--color-border-subtle)] h-[240px] justify-center text-center px-8">
+        <div 
+          onClick={() => {
+            posthog.capture('test_reveal_click', { author_name: question.authorName, prompt: question.prompt });
+            onReveal?.();
+          }}
+          className="cursor-pointer group flex flex-col items-center py-12 bg-[var(--clr-recall)]/30 rounded-2xl border border-[var(--color-border-subtle)] hover:border-[var(--clr-focus)]/30 transition-all h-[240px] justify-center text-center px-8"
+        >
           <AnimatePresence mode="wait">
             <motion.p
               key={getRecallMessage(timer, baseTimer, isExpert)}
@@ -284,6 +291,10 @@ export default function TestFocusView({
   const currentQuestion = activeQuestions[currentIndex] || null;
 
   useEffect(() => {
+    posthog.capture('test_overlay_open', { author_name: author.author });
+  }, [author.author]);
+
+  useEffect(() => {
     if (showGuide || submitted || revealed || !currentQuestion || sessionComplete) return;
     const interval = setInterval(() => {
       setTimer((prev) => {
@@ -405,6 +416,7 @@ export default function TestFocusView({
                 onSelect={setSelected}
                 onSubmit={handleSubmitAnswer}
                 onNext={handleNext}
+                onReveal={() => setRevealed(true)}
               />
             )}
           </div>
@@ -420,7 +432,12 @@ export default function TestFocusView({
                 Your rating sets the <strong>thinking time</strong> for future sessions on <strong>{author.author}</strong>.
               </p>
               <div className="mb-14">
-                <ConfidenceStrip visible={true} currentValue={confidence} onSelect={(val) => { setConfidence(val); onSaveConfidence?.({ author: author.author, exercise: "verify", confidence: val, timestamp: Date.now() }); setTimeout(onClose, 800); }} embedded={true} />
+                <ConfidenceStrip visible={true} currentValue={confidence} onSelect={(val) => { 
+                  posthog.capture('confidence_submit', { confidence: val, author: author.author });
+                  setConfidence(val); 
+                  onSaveConfidence?.({ author: author.author, exercise: "verify", confidence: val, timestamp: Date.now() }); 
+                  setTimeout(onClose, 800); 
+                }} embedded={true} />
               </div>
             </motion.div>
           </div>
