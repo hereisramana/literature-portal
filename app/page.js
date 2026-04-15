@@ -11,6 +11,7 @@ import SearchBar from "../components/common/Searchbar.jsx";
 import EmptyState from "../components/common/Emptystate.jsx";
 import StudyFocusView from "../components/study/StudyFocusView.jsx";
 import TestFocusView from "../components/test/TestFocusView.jsx";
+import FeedbackModal from "../components/common/FeedbackModal.jsx";
 import { motion, AnimatePresence } from "framer-motion";
 import { mergeAuthorWithEnriched } from "../utils/enrichedData.js";
 import { inferTheme } from "../utils/testEngine.js";
@@ -25,6 +26,8 @@ export default function Page() {
   const [focusedAuthor, setFocusedAuthor] = useState(null);
   const [studyContext, setStudyContext] = useState(null);
   const [confidenceMap, setConfidenceMap] = useState({});
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const { get, save, ready } = useProgress();
 
   const { theme, toggle, mounted } = useTheme();
@@ -160,8 +163,23 @@ export default function Page() {
       ...current,
       [payload.author]: payload.confidence,
     }));
-
   }
+
+  // Trigger feedback after overlay closed
+  const handleOverlayClose = () => {
+    const closedFocused = focusedAuthor;
+    const closedStudy = studyContext;
+    
+    setFocusedAuthor(null);
+    setStudyContext(null);
+
+    if (closedFocused || closedStudy) {
+      const alreadyShown = localStorage.getItem("feedback_shown");
+      if (!alreadyShown) {
+        setShowFeedback(true);
+      }
+    }
+  };
 
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--clr-bg)]">
@@ -318,7 +336,7 @@ export default function Page() {
             allAuthors={allAuthors}
             selectedWork={studyContext.selectedWork}
             inferTheme={inferTheme}
-            onClose={() => setStudyContext(null)}
+            onClose={handleOverlayClose}
             onStartTest={(author) => {
               setStudyContext(null);
               setFocusedAuthor(author);
@@ -341,7 +359,7 @@ export default function Page() {
             storedConfidence={confidenceMap[focusedAuthor.author]}
             onSaveConfidence={handleConfidenceSave}
 
-            onClose={() => setFocusedAuthor(null)}
+            onClose={handleOverlayClose}
             onNextAuthor={() => {
               const idx = filteredAuthors.findIndex(a => a.author === focusedAuthor.author);
               const next = filteredAuthors[idx + 1];
@@ -350,6 +368,11 @@ export default function Page() {
           />
         )}
       </AnimatePresence>
+
+      <FeedbackModal 
+        isOpen={showFeedback} 
+        onClose={() => setShowFeedback(false)} 
+      />
     </div>
   );
 }
