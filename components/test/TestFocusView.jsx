@@ -253,7 +253,7 @@ export default function TestFocusView({
   onClose,
   storedConfidence,
   onSaveConfidence,
-  cloud,
+
   onNextAuthor,
 }) {
   const hasPriorAttempt = !!storedConfidence;

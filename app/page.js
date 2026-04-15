@@ -15,7 +15,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { mergeAuthorWithEnriched } from "../utils/enrichedData.js";
 import { inferTheme } from "../utils/testEngine.js";
 import { useProgress } from "../hooks/useProgress.js";
-import { useCloudSync } from "../hooks/useCloudSync.js";
+
 
 export default function Page() {
   const [category, setCategory] = useState("");
@@ -26,7 +26,7 @@ export default function Page() {
   const [studyContext, setStudyContext] = useState(null);
   const [confidenceMap, setConfidenceMap] = useState({});
   const { get, save, ready } = useProgress();
-  const cloud = useCloudSync();
+
   const { theme, toggle, mounted } = useTheme();
 
   const categories = useMemo(() => buildCatalog(raw), []);
@@ -160,7 +160,7 @@ export default function Page() {
       ...current,
       [payload.author]: payload.confidence,
     }));
-    await cloud.sync(payload);
+
   }
 
   return (
@@ -340,7 +340,7 @@ export default function Page() {
             allAuthors={allAuthors}
             storedConfidence={confidenceMap[focusedAuthor.author]}
             onSaveConfidence={handleConfidenceSave}
-            cloud={cloud}
+
             onClose={() => setFocusedAuthor(null)}
             onNextAuthor={() => {
               const idx = filteredAuthors.findIndex(a => a.author === focusedAuthor.author);

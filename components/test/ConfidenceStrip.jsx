@@ -13,9 +13,6 @@ export default function ConfidenceStrip({
   visible,
   currentValue,
   onSelect,
-  provider,
-  onConnect,
-  onDisconnect,
   embedded = false,
 }) {
   if (!visible) return null;
@@ -58,20 +55,7 @@ export default function ConfidenceStrip({
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center gap-4 text-[10px] font-bold uppercase tracking-widest opacity-40">
-        {provider ? (
-          <div className="flex items-center gap-3">
-            <span>{provider} active</span>
-            <button onClick={onDisconnect} className="hover:underline">Disconnect</button>
-          </div>
-        ) : (
-          <div className="flex items-center gap-3">
-            <button onClick={() => onConnect("Google")} className="hover:opacity-100 transition">Sync with Google</button>
-            <span className="opacity-30">|</span>
-            <button onClick={() => onConnect("OneDrive")} className="hover:opacity-100 transition">Sync with OneDrive</button>
-          </div>
-        )}
-      </div>
+
     </div>
   );
 
