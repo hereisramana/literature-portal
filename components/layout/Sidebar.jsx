@@ -14,12 +14,12 @@ export default function Sidebar({
 }) {
   const isDark = theme === "dark";
   const logoSrc = mounted 
-    ? (isDark ? "/assets/logo-light.png" : "/assets/logo-dark.png")
-    : "/assets/logo-light.png"; // Default to light logo for SSR if default theme is dark
+    ? (isDark ? "/assets/logo-light.svg" : "/assets/logo-dark.svg")
+    : "/assets/logo-light.svg"; // Default to light logo for SSR if default theme is dark
 
   return (
     <aside className={`flex h-full flex-col bg-[var(--clr-surface)] transition-all duration-300`}>
-      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-8"}`}>
+      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-6"}`}>
         {collapsed ? (
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -34,22 +34,12 @@ export default function Sidebar({
           </motion.button>
         ) : (
           <>
-            <div className="max-w-[200px] pt-1">
-              <div className="flex items-center gap-3">
-                <img 
-                  src={logoSrc} 
-                  alt="EnLit Logo" 
-                  className="h-10 w-10 object-contain"
-                />
-                <div>
-                  <h1 className="text-[22px] font-black leading-none tracking-tight text-[var(--color-text-strong)]">
-                    {title}
-                  </h1>
-                  <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--text-muted-color)]">
-                    {tagline}
-                  </p>
-                </div>
-              </div>
+            <div className="flex-1 pt-1 pr-2">
+              <img 
+                src={logoSrc} 
+                alt="EnLit Logo" 
+                className="h-12 w-auto object-contain"
+              />
             </div>
             <motion.button
               whileHover={{ scale: 1.1 }}
