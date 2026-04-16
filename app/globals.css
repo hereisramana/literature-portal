@@ -1,8 +1,8 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 :root {
   --clr-bg: #16141f;
-  --clr-surface: #1c1a30;
+  --clr-surface: #1e1c34;
   --clr-recall: #2e2960;
   --clr-focus: #534ab7;
   --clr-pulse: #7f77dd;
@@ -10,15 +10,15 @@
   --clr-wrong: #d85a30;
   --clr-warn: #d18300;
   --clr-dim: #6c688a;
-  --clr-ink: #d8d6e8;
+  --clr-ink: #c9c6df;
 
   --color-bg-primary: var(--clr-bg);
   --color-bg-surface: var(--clr-surface);
   --color-bg-inset: #12101c;
 
   --color-text-primary: var(--clr-ink);
-  --color-text-secondary: #b0acc5;
-  --color-text-strong: #f0eff7;
+  --color-text-secondary: #a9a6c2;
+  --color-text-strong: #e8e6f4;
 
   --text-body-color: var(--color-text-primary);
   --text-muted-color: var(--color-text-secondary);
@@ -54,8 +54,8 @@
 }
 
 [data-theme="light"] {
-  --clr-bg: #fafafa;
-  --clr-surface: #f0f0f0;
+  --clr-bg: #f5f4fa;
+  --clr-surface: #fdfcff;
   --clr-recall: #ecebf8;
   --clr-focus: #4038a0;
   --clr-pulse: #5850bb;
@@ -63,15 +63,15 @@
   --clr-wrong: #bf4a22;
   --clr-warn: #8a5900;
   --clr-dim: #8f8aac;
-  --clr-ink: #201d2d;
+  --clr-ink: #2e2b44;
 
   --color-bg-primary: var(--clr-bg);
   --color-bg-surface: var(--clr-surface);
   --color-bg-inset: #edeaf8;
 
   --color-text-primary: var(--clr-ink);
-  --color-text-secondary: #55516a;
-  --color-text-strong: #100f16;
+  --color-text-secondary: #625e82;
+  --color-text-strong: #1a1826;
 
   --text-body-color: var(--color-text-primary);
   --text-muted-color: var(--color-text-secondary);
