@@ -126,10 +126,25 @@ function McqPanel({
             let bg = "bg-[var(--clr-surface)]";
             let text = "text-[var(--clr-ink)]";
 
-            if (showCorrect) { bg = "bg-[var(--clr-correct)]"; border = "border-[var(--clr-correct)]"; text = "text-[var(--text-on-accent)]"; }
-            else if (showWrong) { bg = "bg-[var(--clr-wrong)]"; border = "border-[var(--clr-wrong)]"; text = "text-[var(--text-on-accent)]"; }
-            else if (dim) { bg = "bg-transparent"; border = "border-[var(--color-border-subtle)]"; text = "text-[var(--text-muted-color)]"; }
-            else if (isSelected && !submitted) { border = "border-[var(--clr-pulse)]"; bg = "bg-[var(--clr-recall)]"; }
+            if (showCorrect) {
+              bg = "bg-[var(--clr-correct-bg)]";
+              border = "border-[var(--clr-correct-bg)]";
+              text = "text-[var(--clr-correct-text)]";
+            }
+            else if (showWrong) {
+              bg = "bg-[var(--clr-wrong-bg)]";
+              border = "border-[var(--clr-wrong-bg)]";
+              text = "text-[var(--clr-wrong-text)]";
+            }
+            else if (dim) {
+              bg = "bg-[var(--clr-dim-bg)]";
+              border = "border-[var(--clr-dim-bg)]";
+              text = "text-[var(--clr-dim-text)]";
+            }
+            else if (isSelected && !submitted) {
+              border = "border-[var(--clr-pulse)]";
+              bg = "bg-[var(--clr-recall)]";
+            }
 
             return (
               <motion.button
@@ -150,8 +165,8 @@ function McqPanel({
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="pt-2">
           <div className={`p-5 rounded-xl border ${
             success
-              ? "bg-[var(--clr-correct)]/10 border-[var(--clr-correct)]/30 text-[var(--clr-correct)]"
-              : "bg-[var(--clr-wrong)]/10 border-[var(--clr-wrong)]/30 text-[var(--clr-wrong)]"
+              ? "bg-[var(--clr-correct-bg)]/30 border-[var(--clr-correct-bg)] text-[var(--clr-correct-text)]"
+              : "bg-[var(--clr-wrong-bg)]/30 border-[var(--clr-wrong-bg)] text-[var(--clr-wrong-text)]"
           }`}>
             <p className="font-bold text-[11px] uppercase tracking-[0.2em] mb-2 scale-95 origin-left">
               {success ? "That’s right" : "Almost—mixed up with another idea"}
