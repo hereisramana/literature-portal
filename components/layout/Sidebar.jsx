@@ -14,12 +14,12 @@ export default function Sidebar({
 }) {
   const isDark = theme === "dark";
   const logoSrc = mounted 
-    ? (isDark ? "/assets/logo-light.svg" : "/assets/logo-dark.svg")
-    : "/assets/logo-light.svg"; // Default to light logo for SSR if default theme is dark
+    ? (isDark ? "/assets/ENLIT_DARK.svg" : "/assets/ENLIT_LIGHT.svg")
+    : "/assets/ENLIT_DARK.svg"; // Default to light logo for SSR if default theme is dark
 
   return (
     <aside className={`flex h-full flex-col bg-[var(--clr-surface)] transition-all duration-300`}>
-      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-6"}`}>
+      <div className={`flex items-start ${collapsed ? "justify-center px-3 py-6" : "justify-between px-6 py-8"}`}>
         {collapsed ? (
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -34,27 +34,32 @@ export default function Sidebar({
           </motion.button>
         ) : (
           <>
-            <div className="flex-1 pt-1 pr-2">
+            {/* flex-1 allows the logo container to fill available width up to the button */}
+            <div className="flex-1 pr-4 pt-1 flex items-center">
               <img 
                 src={logoSrc} 
                 alt="EnLit Logo" 
-                className="h-12 w-auto object-contain"
+                // w-full width makes it expand.
+                // h-auto keeps the aspect ratio.
+                // max-h-14 stops it from getting ridiculously tall if the sidebar is wide.
+                // object-left aligns it nicely to the left.
+                className="w-full h-auto max-h-14 object-contain object-left"
               />
             </div>
+
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.92 }}
               aria-label="Collapse categories panel"
               onClick={onToggle}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-interaction-hover)] text-[var(--text-muted-color)] hover:text-[var(--text-body-color)] transition"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-interaction-hover)] text-[var(--text-muted-color)] hover:text-[var(--text-body-color)] transition"
             >
               <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M15 18l-6-6 6-6" />
               </svg>
             </motion.button>
           </>
-        )}
-      </div>
+        )}      </div>
 
       <div className={`scrollbar-thin flex-1 overflow-y-auto ${collapsed ? "px-0" : "px-4 py-2"}`}>
         <nav className="space-y-1">
