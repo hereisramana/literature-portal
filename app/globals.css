@@ -145,20 +145,27 @@ h4 {
 .scrollbar-thin {
   scrollbar-width: thin;
   scrollbar-color: var(--clr-dim) transparent;
+  /* Prevents layout 'jumping' when content changes */
+  scrollbar-gutter: stable; 
 }
 
+/* Chrome, Edge, and Safari */
 .scrollbar-thin::-webkit-scrollbar {
-  width: 5px;
+  width: 6px; 
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
-  background: transparent;
+  background: transparent; 
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: var(--clr-dim);
+  background-color: var(--clr-dim);
   border-radius: 10px;
-  opacity: 0.45;
+}
+
+/* Interaction: highlight the scrollbar when the user hovers over the area */
+.scrollbar-thin:hover::-webkit-scrollbar-thumb {
+  background-color: var(--clr-focus); 
 }
 
 .success-surface {

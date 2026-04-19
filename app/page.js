@@ -269,25 +269,25 @@ export default function Page() {
           </div>
         </div>
 
-        <section className="min-h-0 flex-1">
-          <div className="h-full shell-width px-4 py-3 md:px-8 md:py-4 lg:px-10">
-          <AnimatePresence mode="wait">
-            {filteredAuthors.length > 0 ? (
-              <motion.div
-                key={activeCategory?.id || "all"}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="h-full"
-              >
-                <VirtuosoGrid
-                  style={{ height: '100%' }}
-                  totalCount={filteredAuthors.length}
-                  listClassName="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 pb-28 pt-2"
-                  itemClassName="content-lazy"
-                  itemContent={(index) => {
-                    const author = filteredAuthors[index];
+        <section className="min-h-0 flex-1 flex flex-col overflow-hidden">
+  
+  {/* 2. This div should be full width to let the scrollbar reach the edge */}
+  <div className="h-full w-full"> 
+    <AnimatePresence mode="wait">
+      {filteredAuthors.length > 0 ? (
+        <motion.div className="h-full">
+          <VirtuosoGrid
+            /* 3. Apply the scrollbar class directly to Virtuoso */
+            className="scrollbar-thin"
+            style={{ height: '100%' }}
+            totalCount={filteredAuthors.length}
+            
+            /* 4. Move 'shell-width' and padding here to keep cards centered */
+            listClassName="shell-width mx-auto px-4 py-3 md:px-8 md:py-4 lg:px-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 pb-28 pt-2"
+            
+            itemClassName="content-lazy"
+            itemContent={(index) => {
+              const author = filteredAuthors[index]
                     return (
                       <AuthorCard
                         author={author}
